@@ -596,21 +596,31 @@
              <!-- SLIDER -->
                 <div class="fullwidthbanner-container">
                     <div class="fullwidthbanner">
-                        <ul>
+                    <video autoplay="" loop="" class="fillWidth fadeIn animated" poster="https://s3-us-west-2.amazonaws.com/coverr/poster/Traffic-blurred2.jpg" id="video-background" style="width: 100%; height: 100%;">
+					    <source src="<%=cp%>/res/video/puppy.mp4"  type="video/mp4">
+					</video>
+					
+					 <video autoplay="" loop="" class="fillWidth fadeIn animated" poster="https://s3-us-west-2.amazonaws.com/coverr/poster/Traffic-blurred2.jpg" id="video-background">
+					    <source src="https://s3-us-west-2.amazonaws.com/coverr/mp4/Traffic-blurred2.mp4" type="video/mp4">
+					</video>
+						
+						<ul>
+                        
+                        
                             <!-- FADE -->
-                            <li data-transition="fade" data-slotamount="10" data-thumb="">
+                            <!-- <li data-transition="fade" data-slotamount="10" data-thumb="">
                                 <img src="http://placehold.it/1920x800" alt=""/>
-                            </li>
+                            </li> -->
 
                             <!-- SLIDEUP -->
-                            <li data-transition="slideup" data-slotamount="7" data-thumb="">
+                         <!--    <li data-transition="slideup" data-slotamount="7" data-thumb="">
                                 <img src="http://placehold.it/1920x800" alt=""/>
-                            </li>
+                            </li> -->
 
                             <!-- SLIDEDOWN -->
-                            <li data-transition="slidedown" data-slotamount="7" data-thumb="">
+                            <!-- <li data-transition="slidedown" data-slotamount="7" data-thumb="">
                                 <img src="http://placehold.it/1920x800" alt=""/>
-                            </li>
+                            </li> -->
                         </ul>
                         <div class="tp-bannertimer"></div>
                     </div>
@@ -619,6 +629,9 @@
            </div>
         </div>
 </section>
+
+
+
 
 <!-- TOP OFFERTS -->
 
