@@ -49,7 +49,7 @@
 
    <!-- 3단 관리자 -->
 	<definition name=".adminLayout" template="/WEB-INF/views/admin/layout/layout.jsp">
-	    <put-attribute name="title" value="spring" />
+	    <put-attribute name="title" value="" />
 	  	<put-attribute name="header" value="/WEB-INF/views/admin/layout/header.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/admin/main/main.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp" />

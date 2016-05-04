@@ -29,6 +29,8 @@
         <link href="<%=cp%>/res/css/jquery.bxslider.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/layout2.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/responsive.css" rel="stylesheet" type="text/css" />
+        
+
 </head>
 <body>
 <div>
