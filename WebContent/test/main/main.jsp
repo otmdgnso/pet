@@ -21,7 +21,7 @@
 
         <link href="<%=cp%>/res/css/bootstrap.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <link href="<%=cp%>/res/css/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css" />
+        <link href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/animate.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/settings_slide2.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/travel-mega-menu.css" rel="stylesheet" type="text/css" />
@@ -29,9 +29,10 @@
         <link href="<%=cp%>/res/css/layout2.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/responsive.css" rel="stylesheet" type="text/css" />
         
-        <link href="<%=cp%>/res/css/rangeSlider/ion.rangeSlider.skinHTML5.css" rel="stylesheet" type="text/css" />
-        <link href="<%=cp%>/res/css/rangeSlider/normalize.css" rel="stylesheet" type="text/css" />
-        
+ 		<script src="<%=cp%>/res/js/jquery-1.12.3.min.js" type="text/javascript"></script>
+		<script src="<%=cp%>/res/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+		<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
+		<script src="<%=cp%>/res/js/jquery.easing.1.3.js"></script>
 </head>
 <body>
 <div id="loader-wrapper">
@@ -548,12 +549,16 @@
                                               </div>
                                             </div>
                                         </div>
-                                      
-                                          <!--   <div id="range_03" >
-                                            rangeslider
-                                            
-                                            </div> -->
-                                       
+                                        <div class="col-sm-4 fly-who">
+                                            <h3><img alt="" src="<%=cp%>/res/img/animal-prints.png"> 가격 검색</h3>
+                                             <p><input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;"></p>
+                                            <div class="col-sm-4 child">
+                                              <div class="form-group">
+                                                <div id="slider-range" style="width: 300px;"></div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                           
                                         <div class="col-sm-2 colbtn">
                                           <button type="submit" class="btn btn-primary btn-block">Search Now</button>
                                         </div>
@@ -1100,7 +1105,7 @@
                 </div>
            </div>
     </div>
-    <div id="range_03"> </div>
+  
     
     <div class="footer-bottom">
         <div class="container">
@@ -1121,11 +1126,7 @@
 
 
 <script src="<%=cp%>/res/js/modernizr.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/jquery-1.12.3.min.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
 
-<script src="<%=cp%>/res/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/jquery.easing.1.3.js"></script>
 <!-- waypoint -->
 <script type="text/javascript" src="<%=cp%>/res/js/waypoints.min.js"></script>
 <!--Preload-->
@@ -1169,19 +1170,25 @@ var tpj = jQuery;
         });
 });
 </script>
+
+
+
 <!-- rangeSlider -->
-<script src="<%=cp%>/res/js/ion.rangeSlider.min.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/ion.rangeSlider.js" type="text/javascript"></script>
+
 <script type="text/javascript">
-$("#range_03").ionRangeSlider({
-    type: "double",
-    grid: true,
-    min: 0,
-    max: 1000,
-    from: 200,
-    to: 800,
-    prefix: "$"
-});
+$(function() {
+	$( "#slider-range" ).slider({
+      range: true,
+      min: 0,
+      max: 100000,
+      values: [ 20000, 50000 ],
+      slide: function( event, ui ) {
+        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+      }
+    });
+    $( "#amount" ).val( "￦" + $( "#slider-range" ).slider( "values", 0 ) +
+      " - ￦" + $( "#slider-range" ).slider( "values", 1 ) );
+  });
 </script>
 
 
