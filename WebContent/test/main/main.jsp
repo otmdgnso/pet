@@ -28,6 +28,10 @@
         <link href="<%=cp%>/res/css/jquery.bxslider.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/layout2.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/responsive.css" rel="stylesheet" type="text/css" />
+        
+        <link href="<%=cp%>/res/css/rangeSlider/ion.rangeSlider.skinHTML5.css" rel="stylesheet" type="text/css" />
+        <link href="<%=cp%>/res/css/rangeSlider/normalize.css" rel="stylesheet" type="text/css" />
+        
 </head>
 <body>
 <div id="loader-wrapper">
@@ -400,19 +404,19 @@
            <div class="container">
             <div class="row">
               <div class="col-md-12">
-                       <!-- Reservation form -->
+                       <!-- 맡기기 검색 -->
                             <section id="reservation-form" class="reservation-color-form pos-inside-slide">
                               <div class="container-form-chose">
                                   <div class="col-md-12">  
 
-                                   <!--********************* Hotel reservation ********************-->
+                                   <!--개 맡기기 검색-->
                                    <div class="reservation-tabs">
                                         <div id="message"></div>
                                         <div class="row">
                                            <ul class="nav nav-tabs search-opt">
-                                                    <li class="active"><a href="#hotels-tab" data-toggle="tab">HOTELS</a></li>
-                                                    <li class=""><a href="#flights-tab" data-toggle="tab">FLIGHTS</a></li>
-                                                    <li class=""><a href="#flights-tab" data-toggle="tab">FLIGHT &amp; HOTELS</a></li>
+                                                    <li class="active"><a href="#hotels-tab" data-toggle="tab"><img alt="" src="<%=cp%>/res/img/bone.png"> 맡기기  </a></li>
+                                                    <li class=""><a href="#auction-tab" data-toggle="tab"><img alt="" src="<%=cp%>/res/img/won.png"> 경매 검색</a></li>
+                                                    <li class=""><a href="#sell-tab" data-toggle="tab"><img alt="" src="<%=cp%>/res/img/open-box.png"> 분양 검색</a></li>
                                                 </ul>
                                         </div>
                                     </div>
@@ -421,165 +425,137 @@
                                       <div class="row">
                                         <div class="col-sm-2 step-where">
                                           <div class="form-group">
-                                            <h3><span>01</span> Where?</h3>
-                                            <label for="destination1">Your destination</label>
-                                            <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."> <i class="fa fa-info-circle fa-lg"> </i> </div>
-                                            <input type="text" class="form-control" placeholder="City, region" id="destination1" name="destination">
+                                            <h3><img alt="" src="<%=cp%>/res/img/book.png"> Where?</h3>
+                                            <label for="adress">주소 입력</label>
+                                            <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="본인의 주소를 입력하세요. 시, 도, 구까지 입력"> <i class="fa fa-info-circle fa-lg"> </i> </div>
+                                            <input type="text" class="form-control" placeholder="City, region" id="adress" name="destination">
                                           </div>
                                         </div>
                                         <div class="col-sm-4 step-check">
-                                          <h3><span>02</span> When?</h3>
+                                          <h3><img alt="" src="<%=cp%>/res/img/clock.png"> When?</h3>
                                             <div class="col-sm-6 cc-in" style="padding-left:0">
                                               <div class="form-group">
-                                                <label for="checkin">Check-in</label>
-                                                <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Check-In is from 11:00"> <i class="fa fa-info-circle fa-lg"> </i> </div>
+                                                <label for="checkin">맡길 날짜</label>
+                                                <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="맡기고 싶은 날짜 검색"> <i class="fa fa-info-circle fa-lg"> </i> </div>
                                                 <div class="content-checkin-data">
                                                     <i class="fa fa-calendar infield"></i>
-                                                    <input name="checkin" type="text" id="checkin" value="" class="form-control checkin" placeholder="Check-in"/>
+                                                    <input name="checkIn" type="text" id="checkin" value="" class="form-control checkin" placeholder="Check-in"/>
                                                 </div>
                                               </div>
                                             </div>
                                             <div class="col-sm-6 cc-out" style="padding-left:0">
                                               <div class="form-group">
-                                                <label for="checkout">Check-out</label>
-                                                <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Check-out is from 12:00"> <i class="fa fa-info-circle fa-lg"> </i> </div>
+                                                <label for="checkout">찾을 날짜</label>
+                                                <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="반려동물 되찾아갈 날짜"> <i class="fa fa-info-circle fa-lg"> </i> </div>
                                                 <div class="content-checkin-data">
                                                     <i class="fa fa-calendar infield"></i>
-                                                    <input name="checkout" type="text" id="checkout" value="" class="form-control checkout" placeholder="Check-out"/>
+                                                    <input name="checkout" type="text" id="checkOut" value="" class="form-control checkout" placeholder="Check-out"/>
                                                 </div>
                                               </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-4 step-who" style="padding-left:0">
-                                            <h3><span>03</span> Who?</h3>
+                                            <h3><img alt="" src="<%=cp%>/res/img/animal-prints.png"> Who?</h3>
                                             <div class="col-sm-4 room-book" style="padding-left:0">
                                               <div class="form-group">
-                                                <label for="room">Room Type</label>
-                                                <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."> <i class="fa fa-info-circle fa-lg"> </i> </div>
-                                                <select class="form-control" name="room" id="room">
-                                                  <option class="opt-default" selected="selected" disabled="disabled">Rooms</option>
-                                                  <option value="Single">Single room</option>
-                                                  <option value="Double">Double Room</option>
-                                                  <option value="Deluxe">Deluxe room</option>
+                                                <label for="room">DOG or CAT</label>
+                                                <select class="form-control" name="species" id="species">
+                                                  <option class="opt-default" selected="selected" disabled="disabled">PET</option>
+                                                  <option value="dog">DOG</option>
+                                                  <option value="cat">CAT</option>
                                                 </select>
                                               </div>
                                             </div>
                                             <div class="col-sm-4 adult-book">
                                               <div class="form-group">
                                                 <div class="guests-select">
-                                                  <label>Adults</label>
+                                                  <label>How many</label>
                                                   <!--<i class="fa fa-user infield"></i>-->
-                                                  <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="+18 years"> <i class="fa fa-info-circle fa-lg"> </i> </div>
-                                                      <select name="adults" id="adults" class="form-control">
+                                                        <select name="pet_su" id="pet_su" class="form-control">
                                                         <option disabled="disabled" selected="selected">1</option>
                                                         <option value="2">2</option>
-                                                        <option value="3">3</option>
+                                                        <option value="3">3 이상</option>
                                                       </select>
-                  
                                                 </div>
                                               </div>
                                             </div>
                                             <div class="col-sm-4 child">
                                               <div class="form-group">
                                                 <div class="guests-select">
-                                                  <label>Kids</label>
-                                                  <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="0 till 18 years"> <i class="fa fa-info-circle fa-lg"> </i> </div>
-                                                      <select name="children" id="children" class="form-control">
-                                                        <option value="0">0</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                      </select>
                                                 </div>
                                               </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-2 colbtn">
-                                          <button type="submit" class="btn btn-primary btn-block">Book Now</button>
+                                          <button type="submit" class="btn btn-primary btn-block">Search Now</button>
                                         </div>
                                       </div>
                                     </form>
-                                    <!--********************* Flight reservation ********************-->
-
-                                    <form id="flights-tab" class="tab-pane form-inline reservation-flight" method="post" name="reservationform">
+                                    <!--********************* 경매 검색 ********************-->
+                                    <form id="auction-tab" class="tab-pane form-inline reservation-flight" method="post" name="auctionSearch">
                                       <div class="row">
                                         <div class="col-sm-4 flight-where">
                                           <div class="form-group">
-                                            <h3><span>01</span> Where?</h3>
-                                            <label for="destination1">Leaving From</label>
-                                            <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."> <i class="fa fa-info-circle fa-lg"> </i> </div>
-                                            <input type="text" class="form-control" placeholder="City, region" id="destinationflight1" name="destination">
-                                            <label for="destination1">Going to</label>
-                                            <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."> <i class="fa fa-info-circle fa-lg"> </i> </div>
-                                            <input type="text" class="form-control" placeholder="City, region" id="destinationflight2" name="destination">
+                                            <h3> <img alt="" src="<%=cp%>/res/img/product.png"> 검색 상품</h3>
+                                            <label for="auctionSubject">상품 명</label>
+                                            <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="검색할 상품 입력"> <i class="fa fa-info-circle fa-lg"> </i> </div>
+                                            <input type="text" class="form-control" placeholder="상품 이름" id="subject" name="subject" >
                                           </div>
                                         </div>
-                                        <div class="col-sm-2 fly-check">
-                                          <h3><span>02</span> When?</h3>
-                                              <div class="form-group">
-                                                <label for="checkin">Check-in</label>
-                                                <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Check-In is from 11:00"> <i class="fa fa-info-circle fa-lg"> </i> </div>
-                                                <div class="content-checkin-data">
-                                                    <i class="fa fa-calendar infield infieldfly1"></i>
-                                                    <input name="checkin" type="text" id="checkinflight" value="" class="form-control checkin" placeholder="Check-in"/>
-                                                </div>
-
-                                                <label for="checkout">Check-out</label>
-                                                <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Check-out is from 12:00"> <i class="fa fa-info-circle fa-lg"> </i> </div>
-                                                <div class="content-checkin-data">
-                                                    <i class="fa fa-calendar infield infieldfly2"></i>
-                                                    <input name="checkout" type="text" id="checkoutflight" value="" class="form-control checkout" placeholder="Check-out"/>
-                                                </div>
-                                              </div>
-                                        </div>
                                         <div class="col-sm-4 fly-who">
-                                            <h3><span>03</span> Who?</h3>
-                                            <div class="col-sm-4 adultfly">
-                                              <div class="form-group">
-                                                <div class="guests-select">
-                                                  <label>Adults</label>
-                                                  <!--<i class="fa fa-user infield"></i>-->
-                                                  <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="+18 years"> <i class="fa fa-info-circle fa-lg"> </i> </div>
-                                                      <select name="adults" id="Select2" class="form-control">
-                                                        <option disabled="disabled" selected="selected">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                      </select>
-                  
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-sm-4 child md-ch">
-                                              <div class="form-group">
-                                                <div class="guests-select">
-                                                  <label>Kids</label>
-                                                  <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="0 till 18 years"> <i class="fa fa-info-circle fa-lg"> </i> </div>
-                                                      <select name="children" id="Select3" class="form-control">
-                                                        <option value="0">0</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                      </select>
-                                                </div>
-                                              </div>
-                                            </div>
+                                            <h3><img alt="" src="<%=cp%>/res/img/animal-prints.png"> Who?</h3>
                                             <div class="col-sm-4 child">
                                               <div class="form-group">
                                                 <div class="guests-select">
-                                                  <label>Infants</label>
-                                                  <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="0 till 18 years"> <i class="fa fa-info-circle fa-lg"> </i> </div>
-                                                      <select name="children" id="Select1" class="form-control">
-                                                        <option value="0">0</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
+                                                  <label>Dog or Cat</label>
+                                                  
+                                                      <select name="species" id="species" class="form-control">
+                                                        <option value="dog">DOG</option>
+                                                        <option value="cat">CAT</option>
                                                       </select>
                                                 </div>
                                               </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-2 colbtn">
-                                          <button type="submit" class="btn btn-primary btn-block">Book Now</button>
+                                          <button type="submit" class="btn btn-primary btn-block">Search Now</button>
+                                        </div>
+                                      </div>
+                                    </form>
+                                    
+                                        <!--********************* 분양 검색 ********************-->
+                                    <form id="sell-tab" class="tab-pane form-inline reservation-flight" method="post" name="auctionSearch">
+                                      <div class="row">
+                                        <div class="col-sm-4 flight-where">
+                                          <div class="form-group">
+                                            <h3> <img alt="" src="<%=cp%>/res/img/dogplay.png">펫 검색</h3>
+                                            <label for="auctionSubject">통합 검색</label>
+                                            <input type="text" class="form-control" placeholder="품종을 입력하세요" id="species" name="species" >
+                                          </div>
+                                        </div>
+                                        <div class="col-sm-4 fly-who">
+                                            <h3><img alt="" src="<%=cp%>/res/img/animal-prints.png"> Who?</h3>
+                                            <div class="col-sm-4 child">
+                                              <div class="form-group">
+                                                <div class="guests-select">
+                                                  <label>Dog or Cat</label>
+                                                  
+                                                      <select name="species" id="species" class="form-control">
+                                                        <option value="dog">DOG</option>
+                                                        <option value="cat">CAT</option>
+                                                      </select>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                      
+                                          <!--   <div id="range_03" >
+                                            rangeslider
+                                            
+                                            </div> -->
+                                       
+                                        <div class="col-sm-2 colbtn">
+                                          <button type="submit" class="btn btn-primary btn-block">Search Now</button>
                                         </div>
                                       </div>
                                     </form>
@@ -1003,6 +979,7 @@
                          </div>
                      </div>
                 </div>
+           
                 <div class="col-md-4 prices content-green">
                      <div class="price-table-circle medium green-prices">
                          <div class="price-circle">
@@ -1123,6 +1100,8 @@
                 </div>
            </div>
     </div>
+    <div id="range_03"> </div>
+    
     <div class="footer-bottom">
         <div class="container">
             <div class="row">
@@ -1142,8 +1121,9 @@
 
 
 <script src="<%=cp%>/res/js/modernizr.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/jquery-1.12.3.min.js" type="text/javascript"></script>
 <script src="<%=cp%>/res/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+
 <script src="<%=cp%>/res/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
 <script src="<%=cp%>/res/js/jquery.easing.1.3.js"></script>
 <!-- waypoint -->
@@ -1189,9 +1169,25 @@ var tpj = jQuery;
         });
 });
 </script>
+<!-- rangeSlider -->
+<script src="<%=cp%>/res/js/ion.rangeSlider.min.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/ion.rangeSlider.js" type="text/javascript"></script>
+<script type="text/javascript">
+$("#range_03").ionRangeSlider({
+    type: "double",
+    grid: true,
+    min: 0,
+    max: 1000,
+    from: 200,
+    to: 800,
+    prefix: "$"
+});
+</script>
+
 
 <script type="text/javascript" src="<%=cp%>/res/js/bootstrap.min.js"></script> 
 <script src="<%=cp%>/res/js/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+
 <!--bxSlider-->
 <script src="<%=cp%>/res/js/jquery.bxslider.js" type="text/javascript"></script>
 <script type="text/javascript">
