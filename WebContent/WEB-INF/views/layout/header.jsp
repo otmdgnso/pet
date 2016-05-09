@@ -26,7 +26,7 @@
       <!-- mega menu -->
 			<ul class="travel-mega-menu travel-mega-menu-anim-scale travel-mega-menu-response-to-icons">		
                 <li class="line-logo">
-					<a class="logo" href="#"><img src="<%=cp%>/res/images/icon/dog.JPG" width="40" alt=""/></a>
+					<a class="logo" href="<%=cp%>/main"><img src="<%=cp%>/res/images/icon/dog.JPG" width="40" alt=""/></a>
 				</li>	
 					
                 <!-- 호스팅버튼 -->
@@ -56,7 +56,7 @@
                                         <h3>전문가</h3>
                                             <ul>
                                               <li><a href="<%=cp%>/expert/expert">전문가 이야기</a></li>
-                                              <li><a href="#">전문가에게 묻기</a></li>
+                                              <li><a href="<%=cp%>/qna/qna">전문가에게 묻기</a></li>
                                             </ul>
 									</section>
                                     <section class="col col-md-3 destination-img">
