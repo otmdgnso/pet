@@ -63,7 +63,7 @@
 										<img src="<%=cp%>/res/images/icon/photo.JPG" width="40" alt="" />
                                         <h3>커뮤니티</h3>
                                             <ul>
-                                              <li><a href="#">사진</a></li>
+                                              <li><a href="<%=cp%>/photo/photo">사진</a></li>
                                             </ul>
 									</section>
 								</div>
