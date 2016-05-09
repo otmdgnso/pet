@@ -13,18 +13,8 @@
         <div class="container">
             <div class="row">
               <div class="col-md-12">
-                    <div class='top-contact'><i class="fa fa-phone"></i><span>+12 123 456 789</span><i class="fa fa-envelope"></i><span>info@travego.com</span></div>
-                    <div class='top-login'><i class="fa fa-plus"></i><a class='reg-top' href='#'>Register</a><i class="fa fa-lock"></i><a href='#'>Login</a>
-                        <div class="header-lang">
-				            <a href="#"><img alt="" src="<%=cp%>/res/images/flags/en.gif"/></a>
-				            <div class="langs-drop" style="display: none;">
-					            <div><a href="#" class="langs-item en">english</a></div>
-					            <div><a href="#" class="langs-item fr">francais</a></div>
-					            <div><a href="#" class="langs-item de">deutsch</a></div>
-					            <div><a href="#" class="langs-item it">italiano</a></div>
-				            </div>
-			            </div>
-                    </div>
+                    <div class='top-contact'><i class="fa fa-phone"></i><span>02 336 8546~8</span><i class="fa fa-envelope"></i><span>info@pet.com</span></div>
+                    <div class='top-login'><i class="fa fa-plus"></i><a class='reg-top' href='#'>Register</a><i class="fa fa-lock"></i><a href='#'>Login</a></div>
               </div>
             </div>
         </div>
@@ -36,83 +26,44 @@
       <!-- mega menu -->
 			<ul class="travel-mega-menu travel-mega-menu-anim-scale travel-mega-menu-response-to-icons">		
                 <li class="line-logo">
-					<a class="logo" href="#"><img src="<%=cp%>/res/images/logo.jpg" alt=""/></a>
-				</li>		
-                
-				<li>
-					<a class="top-menu-txt" href="#">Home</a>
-                    <div class="grid-container3 blue-link">
-						<ul>
-							<li><a href="index.html">Home Layout</a></li>
-                            <li><a href="homepage1.html">Home Layout1</a></li>
-							<li><a href="homepage2.html">Home Layout2</a></li>
-							<li><a href="homepage3.html">Home Layout3</a></li>
-                            <li><a href="homepage4.html">Home Layout4</a></li>
-                            <li><a href="homepage5.html">Home Layout5</a></li>
-                            <li><a href="homepage_oxy_slider.html">Home Oxy Slider</a></li>
-                            <li><a href="homepage_map.html">Home Map</a></li>
-						</ul>
-					</div>
+					<a class="logo" href="#"><img src="<%=cp%>/res/images/icon/dog.JPG" width="40" alt=""/></a>
+				</li>	
+					
+                <!-- 호스팅버튼 -->
+				<li class="weather">
+					<a class="top-menu-txt" href="#"></i>호스팅하기</a>
 				</li>
+				<!--/ 호스팅버튼 -->
 				
-				<!-- resume -->
+				<!-- 메뉴 -->
 				<li class="center">
-					<a class="top-menu-txt" href="#">Destination</a>
+					<a class="top-menu-txt" href="#">메뉴</a>
 					<div class="grid-container10 destination">
                         <form>
 							<fieldset>					
 								<div class="row">
 									<section class="col col-md-3 destination-img">	
-											<img src="<%=cp%>/res/images/continent/continent_1.png" alt="" />
-                                            <h3>North America</h3>
+											<img src="<%=cp%>/res/images/icon/menu.JPG" width="40" alt="" />
+                                            <h3>메뉴</h3>
                                             <ul>
-                                              <li><a href="guide.html">Canada</a></li>
-                                              <li><a href="guide.html">Hawai</a></li>
-                                              <li><a href="guide.html">Alaska</a></li>
-                                            </ul>
-									</section>
-									<section class="col col-md-3 destination-img">
-										<img src="<%=cp%>/res/images/continent/continent_2.png" alt="" />
-                                        <h3>South America</h3>
-                                            <ul>
-                                              <li><a href="guide.html">Brazil</a></li>
-                                              <li><a href="guide.html">Argentina</a></li>
-                                              <li><a href="guide.html">Jamaica</a></li>
-                                              <li><a href="guide.html">Columbia</a></li>
-                                              <li><a href="guide.html">Peru'</a></li>
+                                              <li><a href="#">예약하기</a></li>
+                                              <li><a href="#">경매</a></li>
+                                              <li><a href="#">분양</a></li>
                                             </ul>
 									</section>
                                     <section class="col col-md-3 destination-img">
-										<img src="<%=cp%>/res/images/continent/continent_3.png" alt="" />
-                                        <h3>Africa</h3>
+										<img src="<%=cp%>/res/images/icon/professor.JPG" width="40" alt="" />
+                                        <h3>전문가</h3>
                                             <ul>
-                                              <li><a href="guide.html">Marocco</a></li>
-                                              <li><a href="guide.html">Tunisia</a></li>
-                                              <li><a href="guide.html">Egipt</a></li>
-                                              <li><a href="guide.html">Kenya</a></li>
-                                              <li><a href="guide.html">Tanzania</a></li>
+                                              <li><a href="<%=cp%>/expert/expert">전문가 이야기</a></li>
+                                              <li><a href="#">전문가에게 묻기</a></li>
                                             </ul>
 									</section>
                                     <section class="col col-md-3 destination-img">
-										<img src="<%=cp%>/res/images/continent/continent_4.png" alt="" />
-                                        <h3>Europe</h3>
+										<img src="<%=cp%>/res/images/icon/photo.JPG" width="40" alt="" />
+                                        <h3>커뮤니티</h3>
                                             <ul>
-                                              <li><a href="guide.html">Italy</a></li>
-                                              <li><a href="guide.html">France</a></li>
-                                              <li><a href="guide.html">Greece</a></li>
-                                              <li><a href="guide.html">Spain</a></li>
-                                              <li><a href="guide.html">Germany</a></li>
-                                            </ul>
-									</section>
-                                    <section class="col col-md-3 destination-img">
-										<img src="<%=cp%>/res/images/continent/continent_5.png" alt="" />
-                                        <h3>Asia</h3>
-                                            <ul>
-                                              <li><a href="guide.html">Australia</a></li>
-                                              <li><a href="guide.html">China</a></li>
-                                              <li><a href="guide.html">India</a></li>
-                                              <li><a href="guide.html">Indonesia</a></li>
-                                              <li><a href="guide.html">Singapore</a></li>
+                                              <li><a href="#">사진</a></li>
                                             </ul>
 									</section>
 								</div>
@@ -120,81 +71,11 @@
 						</form>
 					</div>
 				</li>
-				<!--/ resume -->
-                <!-- hotels -->
-				<li>
-					<a class="top-menu-txt" href="list-trip.html">Hotels</a>
-				</li>
-				<!--/ hotels -->
-                <!-- hotels -->
-				<li>
-					<a class="top-menu-txt" href="list-fly.html">Fly</a>
-				</li>
-				<!--/ hotels -->
-				<!-- page -->
-				<li class="center">
-					<a class="top-menu-txt" href="#">Pages</a>
-					<div class="grid-container7 destination blue-link">
-                        <form>
-							<fieldset>					
-								<div class="row">
-									<section class="col col-md-4">	
-                                            <h3>Standard</h3>
-                                            <ul>
-                                              <li><a href="about.html">About Us 1</a></li>
-                                              <li><a href="about2.html">About Us 2</a></li>
-                                              <li><a href="services1.html">Services 1</a></li>
-                                              <li><a href="services2.html">Services 2</a></li>
-                                              <li><a href="information.html">Information</a></li>
-                                            </ul>
-									</section>
-									<section class="col col-md-4">
-                                        <h3>Extra</h3>
-                                            <ul>
-                                              <li><a href="list-trip.html">Catalog</a></li>
-                                              <li><a href="details.html">Details</a></li>
-                                              <li><a href="gallery-4col.html">Gallery 4 Col</a></li>
-                                              <li><a href="gallery-3col.html">Gallery 3 Col</a></li>
-                                              <li><a href="gallery-2col.html">Gallery 2 Col</a></li>
-                                              
-                                            </ul>
-									</section>
-                                    <section class="col col-md-4">
-                                        <h3>Special</h3>
-                                            <ul>
-                                              <li><a href="blog.html">Blog</a></li>
-                                              <li><a href="blog-lft-col.html">Blog Left Sidebar</a></li>
-                                              <li><a href="blog-rgh-col.html">Blog Right Sidebar</a></li>
-                                              <li><a href="guide.html">Travego Guide</a></li>
-                                              <li><a href="meteo.html">Tracego Weather</a></li>
-                                            </ul>
-									</section>
-								</div>
-							</fieldset>						
-						</form>
-						
-					</div>
-				</li>
-				<!--/ page -->
 				
-				<!-- contacts -->
 				<li>
-					<a class="top-menu-txt" href="contact.html"><i class="fa fa-phone"></i>Contacts</a>
-					<div class="grid-container3 blue-link">
-						<ul>
-							<li><a href="contact.html"><i class="fa fa-twitter"></i>Twitter</a></li>
-							<li><a href="contact.html"><i class="fa fa-facebook"></i>Facebook</a></li>
-							<li><a href="contact.html"><i class="fa fa-google-plus"></i>Google Plus</a></li>
-						</ul>
-					</div>
-				</li>
-				<!--/ contacts -->
-				
-				<!-- weather -->
-				<li class="weather">
-					<a class="top-menu-txt" href="meteo.html"><i class="fa fa-cloud"></i>Weather</a>
-				</li>
-				<!--/ weather -->
+					<a class="top-menu-txt" href="#">도움말</a>
+				</li>				
+				<!--/ 메뉴 -->		
 			</ul>
 			<!--/ mega menu -->
           </div>
@@ -206,162 +87,39 @@
                 <div class="clear"></div>
                 <ul class="travel-mega-menu-mobile">		
 
-				<!-- about -->
-				<li class="line-mini-menu k-opn">
-					<a class="top-menu-txt" href="#">Home</a>
-                    <div class="grid-container3 collapse blue-link">
-						<ul>
-							<li><a href="index.html">Home Layout</a></li>
-                            <li><a href="homepage1.html">Home Layout1</a></li>
-							<li><a href="homepage2.html">Home Layout2</a></li>
-							<li><a href="homepage3.html">Home Layout3</a></li>
-                            <li><a href="homepage_oxy_slider.html">Home Oxy Slider</a></li>
-                            <li><a href="homepage_map.html">Home Map</a></li>
-						</ul>
-					</div>
+				<!-- 호스팅버튼 -->
+				<li class="weather">
+					<a class="top-menu-txt" href="#"></i>호스팅하기</a>
 				</li>
-				<!--/ about -->
+				<!--/ 호스팅버튼 -->
 				
-				<!-- resume -->
-				<li class="line-mini-menu k-opn">
-					<a class="top-menu-txt" href="#">Destination</a>
-					<div class="grid-container10 destination collapse blue-link">
-                        <form>
-							<fieldset>					
-								<div class="row">
-									<section class="col destination-img">	
-											
-                                            <h3>North America</h3>
-                                            <ul>
-                                              <li><a href="guide.html">Canada</a></li>
-                                              <li><a href="guide.html">Hawai</a></li>
-                                              <li><a href="guide.html">Alaska</a></li>
-                                            </ul>
-									</section>
-									<section class="col destination-img">
-										
-                                        <h3>South America</h3>
-                                            <ul>
-                                              <li><a href="guide.html">Brazil</a></li>
-                                              <li><a href="guide.html">Argentina</a></li>
-                                              <li><a href="guide.html">Jamaica</a></li>
-                                              <li><a href="guide.html">Columbia</a></li>
-                                              <li><a href="guide.html">Peru'</a></li>
-                                            </ul>
-									</section>
-                                    <section class="col destination-img">
-										
-                                        <h3>Africa</h3>
-                                            <ul>
-                                              <li><a href="guide.html">Marocco</a></li>
-                                              <li><a href="guide.html">Tunisia</a></li>
-                                              <li><a href="guide.html">Egipt</a></li>
-                                              <li><a href="guide.html">Kenya</a></li>
-                                              <li><a href="guide.html">Tanzania</a></li>
-                                            </ul>
-									</section>
-                                    <section class="col destination-img">
-										
-                                        <h3>Europe</h3>
-                                            <ul>
-                                              <li><a href="guide.html">Italy</a></li>
-                                              <li><a href="guide.html">France</a></li>
-                                              <li><a href="guide.html">Greece</a></li>
-                                              <li><a href="guide.html">Spain</a></li>
-                                              <li><a href="guide.html">Germany</a></li>
-                                            </ul>
-									</section>
-                                    <section class="col destination-img">
-										
-                                        <h3>Asia</h3>
-                                            <ul>
-                                              <li><a href="guide.html">Australia</a></li>
-                                              <li><a href="guide.html">China</a></li>
-                                              <li><a href="guide.html">India</a></li>
-                                              <li><a href="guide.html">Indonesia</a></li>
-                                              <li><a href="guide.html">Singapore</a></li>
-                                            </ul>
-									</section>
-								</div>
-							</fieldset>						
-						</form>
-					</div>
+				<!-- 메뉴 -->
+				<li>
+					<a class="top-menu-txt" href="#">예약하기</a>
 				</li>
-				<!--/ resume -->
-                <!-- hotels -->
-				<li class="k-opn">
-					<a class="top-menu-txt" href="list-trip.html">Hotels</a>
+				
+				<li>
+					<a class="top-menu-txt" href="#">경매</a>
 				</li>
-				<!--/ hotels -->
-                <!-- hotels -->
-				<li class="k-opn">
-					<a class="top-menu-txt" href="list-fly.html">Fly</a>
+
+				<li>
+					<a class="top-menu-txt" href="#">분양</a>
 				</li>
-				<!--/ hotels -->
-				<!-- page -->
-				<li class="line-mini-menu k-opn">
-					<a class="top-menu-txt" href="#">Pages</a>
-					<div class="grid-container7 destination collapse blue-link">
-                        <form>
-							<fieldset>					
-								<div class="row">
-									<section class="col">	
-                                            <h3>Standard</h3>
-                                            <ul>
-                                              <li><a href="about.html">About Us 1</a></li>
-                                              <li><a href="about2.html">About Us 2</a></li>
-                                              <li><a href="services1.html">Services 1</a></li>
-                                              <li><a href="services2.html">Services 2</a></li>
-                                              <li><a href="information.html">Information</a></li>
-                                            </ul>
-									</section>
-									<section class="col">
-                                        <h3>Extra</h3>
-                                            <ul>
-                                              <li><a href="list-trip.html">Catalog</a></li>
-                                              <li><a href="details.html">Details</a></li>
-                                              <li><a href="gallery-4col.html">Gallery 4 Col</a></li>
-                                              <li><a href="gallery-3col.html">Gallery 3 Col</a></li>
-                                              <li><a href="gallery-2col.html">Gallery 2 Col</a></li>
-                                              
-                                            </ul>
-									</section>
-                                    <section class="col">
-                                        <h3>Special</h3>
-                                            <ul>
-                                              <li><a href="blog.html">Blog</a></li>
-                                              <li><a href="blog-lft-col.html">Blog Left Sidebar</a></li>
-                                              <li><a href="blog-rgh-col.html">Blog Right Sidebar</a></li>
-                                              <li><a href="guide.html">Travego Guide</a></li>
-                                              <li><a href="meteo.html">Tracego Weather</a></li>
-                                            </ul>
-									</section>
-								</div>
-							</fieldset>						
-						</form>
 						
-					</div>
-				</li>
-				<!--/ page -->
-				
-				<!-- contacts -->
-				<li class="line-mini-menu k-opn">
-					<a class="top-menu-txt" href="contact.html"><i class="fa fa-phone"></i>Contacts</a>
-					<div class="grid-container3 collapse blue-link">
+				<li>
+					<a class="top-menu-txt" href="#">전문가</a>
+                    <div class="grid-container3 blue-link">
 						<ul>
-							<li><a href="contact.html"><i class="fa fa-twitter"></i>Twitter</a></li>
-							<li><a href="contact.html"><i class="fa fa-facebook"></i>Facebook</a></li>
-							<li><a href="contact.html"><i class="fa fa-google-plus"></i>Google Plus</a></li>
+							<li><a href="#">정보</a></li>
+                            <li><a href="#">Q&A</a></li>
 						</ul>
 					</div>
 				</li>
-				<!--/ contacts -->
-				
-				<!-- weather -->
-				<li class="k-opn">
-					<a class="top-menu-txt" href="meteo.html"><i class="fa fa-cloud"></i>Weather</a>
-				</li>
-				<!--/ weather -->
+
+				<li>
+					<a class="top-menu-txt" href="#">사진</a>
+				</li>				
+				<!--/ 메뉴 -->
 			</ul>
 			<!--/ mega menu -->
           </nav>
