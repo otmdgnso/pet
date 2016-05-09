@@ -5,44 +5,19 @@
 <%
 	String cp=request.getContextPath();
 %>
- 
-<script src="<%=cp%>/res/js/modernizr.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/jquery-1.10.1.min.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/jquery.easing.1.3.js"></script>
-<!-- waypoint -->
-<script type="text/javascript" src="<%=cp%>/res/js/waypoints.min.js"></script>
+<!DOCTYPE html>
 
- <!--Carousel-->
- <script src="<%=cp%>/res/js/carousel/modernizr.custom.js" type="text/javascript"></script>
- <script src="<%=cp%>/res/js/carousel/jquery.cbpContentSlider.min.js" type="text/javascript"></script>
- <script>
-$(function () {
-    "use strict";
-    $('#cbp-contentslider').cbpContentSlider();
-});
-</script>
- <script type="text/javascript" src="<%=cp%>/res/js/bootstrap.min.js"></script> 
- <script src="<%=cp%>/res/js/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<html>
+	<head>
+    <title>Travego</title>
+    <meta charset="utf-8">
+    
 
- <!--bxSlider-->
-<script src="<%=cp%>/res/js/jquery.bxslider.js" type="text/javascript"></script>
-<script>
-$(document).ready(function () {
-    "use strict";
-    $('.bxslider').bxSlider({
-        auto: true
-    });
-});
-</script>
+</head>
+	<body>
+    
 
- <script src="<%=cp%>/res/js/script.js" type="text/javascript"></script>
- 
-<div id="loader-wrapper">
-        <div id="loader"></div>
-    </div>
-
+    <div class="clear"></div>
     <section class="about-section-top">
        <div class="container">
           <div class="row">
@@ -50,13 +25,7 @@ $(document).ready(function () {
                <div class="page-title pull-left">
                     <h2 class="title-about">Blog Full</h2>
                 </div>
-                <ul class="breadcrumbs pull-right">
-                    <li><a href="#">HOME</a></li>
-                    <li>/</li>
-                    <li><a href="#">PAGES</a></li>
-                    <li>/</li>
-                    <li class="active">Blog Full</li>
-                </ul>
+                
              </div>
           </div>
       </div>
@@ -92,6 +61,78 @@ $(document).ready(function () {
                                       </ul>
                                     </div>
                             </div>
+	
+	                        <div class="blog-view">
+                                    <div class="entry-date">
+                                                    <label class="date">22</label>
+                                                    <label class="month">OCTOBER</label>
+                                                    <p>07 comments</p>
+                                                </div>
+                                    <div class="bx-about2">
+
+                                        <ul class="bxslider">
+                                            <li><img src="http://placehold.it/1920x600" alt=""/></li>
+  	    		                            <li><img src="http://placehold.it/1920x600" alt=""/></li>
+  	    		                            <li><img src="http://placehold.it/1920x600" alt=""/></li>
+  	    		                            <li><img src="http://placehold.it/1920x600" alt=""/></li>
+                                        </ul>
+                                     </div>
+                                    <div class="blog-img-title">
+                                      <h3>Slideshow post with slider</h3>
+                                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's stand dummy text ever since the 1500s, when an unknown printer took a galley of type and 
+                                      scrambled it to make a neque a tortor tempor in porta sem vulputate. Donec varius felis fermentum nis type specimen book. It has survived not only five centuries.</p>
+                                      <ul class="blog-info">  
+                                        <li><i class="fa fa-user"></i>POSTED BY : <a href="#"> Robert Doe</a></li>
+                                        <li><a href="#"><i class="fa fa-comments"></i>30 comments</a></li>
+                                        <li><a href="#"><i class="fa fa-heart"></i>22 Likes</a></li>
+                                      </ul>
+                                    </div>
+                            </div>
+
+	                        <div class="blog-view view-fifth">
+                                     <div class="entry-date">
+                                                    <label class="date">22</label>
+                                                    <label class="month">OCTOBER</label>
+                                                    <p>08 comments</p>
+                                                </div>
+                                    <div class="col-video">
+                                            <div class="video-container">
+                                                <iframe height="298" width="397" src="http://www.youtube.com/embed/308nBBeRV24?wmode=transparent&amp;showinfo=0&amp;autoplay=0&amp;rel=0" frameborder="0" allowfullscreen="true"></iframe>
+                                            </div>
+                                        </div>
+                                    <div class="blog-img-title">
+                                      <h3>YouTube Video Post</h3>
+                                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's stand dummy text ever since the 1500s, when an unknown printer took a galley of type and 
+                                      scrambled it to make a neque a tortor tempor in porta sem vulputate. Donec varius felis fermentum nis type specimen book. It has survived not only five centuries.</p>
+                                      <ul class="blog-info">  
+                                        <li><i class="fa fa-user"></i>POSTED BY : <a href="#"> Robert Doe</a></li>
+                                        <li><a href="#"><i class="fa fa-comments"></i>30 comments</a></li>
+                                        <li><a href="#"><i class="fa fa-heart"></i>22 Likes</a></li>
+                                      </ul>
+                                    </div>
+                            </div>
+                            <div class="blog-view view-fifth">
+                                    <div class="entry-date">
+                                            <label class="date">22</label>
+                                            <label class="month">OCTOBER</label>
+                                            <p>10 comments</p>
+                                        </div>
+                                    <div class="col-video">
+                                        <div class="video-container">
+                                            <iframe class="" src="//player.vimeo.com/video/110690554" frameborder="0" allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                    <div class="blog-img-title">
+                                      <h3>Vimeo Video Post</h3>
+                                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's stand dummy text ever since the 1500s, when an unknown printer took a galley of type and 
+                                      scrambled it to make a neque a tortor tempor in porta sem vulputate. Donec varius felis fermentum nis type specimen book. It has survived not only five centuries.</p>
+                                      <ul class="blog-info">  
+                                        <li><i class="fa fa-user"></i>POSTED BY : <a href="#"> Robert Doe</a></li>
+                                        <li><a href="#"><i class="fa fa-comments"></i>30 comments</a></li>
+                                        <li><a href="#"><i class="fa fa-heart"></i>22 Likes</a></li>
+                                      </ul>
+                                    </div>
+                            </div>
 
                     <ul class="pagination clearfix">
                         <li class="prev disabled"><a href="#">Previous</a></li>
@@ -107,4 +148,9 @@ $(document).ready(function () {
        </div>
           
     </div>
-    </section>    
+        
+</section>      
+
+
+	</body>
+</html>
