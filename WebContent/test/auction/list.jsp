@@ -19,17 +19,17 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'/>
 
 
-        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
-        <link href="css/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <link href="css/animate.css" rel="stylesheet" type="text/css" />
-        <link href="css/settings_slide2.css" rel="stylesheet" type="text/css" />
-        <link href="css/travel-mega-menu.css" rel="stylesheet" type="text/css" />
-        <link href="css/jquery.bxslider.css" rel="stylesheet" type="text/css" />
+        <link href="<%=cp%>/res/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="<%=cp%>/res/css/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="<%=cp%>/res/css/animate.css" rel="stylesheet" type="text/css" />
+        <link href="<%=cp%>/res/css/settings_slide2.css" rel="stylesheet" type="text/css" />
+        <link href="<%=cp%>/res/css/travel-mega-menu.css" rel="stylesheet" type="text/css" />
+        <link href="<%=cp%>/res/css/jquery.bxslider.css" rel="stylesheet" type="text/css" />
         <!--List-->
-        <link href="css/list/component.css" rel="stylesheet" type="text/css" />
-        <link href="css/layout2.css" rel="stylesheet" type="text/css" />
+        <link href="<%=cp%>/res/css/list/component.css" rel="stylesheet" type="text/css" />
+        <link href="<%=cp%>/res/css/layout2.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
-        <link href="css/responsive.css" rel="stylesheet" type="text/css" />
+        <link href="<%=cp%>/res/css/responsive.css" rel="stylesheet" type="text/css" />
 </head>
 	<body>
     <section class='section-top-header'>
@@ -40,7 +40,7 @@
                     <div class='top-contact'><i class="fa fa-phone"></i><span>+12 123 456 789</span><i class="fa fa-envelope"></i><span>info@travego.com</span></div>
                     <div class='top-login'><i class="fa fa-plus"></i><a class='reg-top' href='#'>Register</a><i class="fa fa-lock"></i><a href='#'>Login</a>
                         <div class="header-lang">
-				            <a href="#"><img alt="" src="images/flags/en.gif"/></a>
+				            <a href="#"><img alt="" src="<%=cp%>/res/images/flags/en.gif"/></a>
 				            <div class="langs-drop" style="display: none;">
 					            <div><a href="#" class="langs-item en">english</a></div>
 					            <div><a href="#" class="langs-item fr">francais</a></div>
@@ -60,7 +60,7 @@
       <!-- mega menu -->
 			<ul class="travel-mega-menu travel-mega-menu-anim-scale travel-mega-menu-response-to-icons">		
                 <li class="line-logo">
-					<a class="logo" href="#"><img src="images/logo.jpg" alt=""/></a>
+					<a class="logo" href="#"><img src="<%=cp%>/res/images/logo.jpg" alt=""/></a>
 				</li>		
 				<li>
 					<a class="top-menu-txt" href="#">Home</a>
@@ -86,7 +86,7 @@
 							<fieldset>					
 								<div class="row">
 									<section class="col col-md-3 destination-img">	
-											<img src="images/continent/continent_1.png" alt="" />
+											<img src="<%=cp%>/res/images/continent/continent_1.png" alt="" />
                                             <h3>North America</h3>
                                             <ul>
                                               <li><a href="guide.html">Canada</a></li>
@@ -95,7 +95,7 @@
                                             </ul>
 									</section>
 									<section class="col col-md-3 destination-img">
-										<img src="images/continent/continent_2.png" alt="" />
+										<img src="<%=cp%>/res/images/continent/continent_2.png" alt="" />
                                         <h3>South America</h3>
                                             <ul>
                                               <li><a href="guide.html">Brazil</a></li>
@@ -106,7 +106,7 @@
                                             </ul>
 									</section>
                                     <section class="col col-md-3 destination-img">
-										<img src="images/continent/continent_3.png" alt="" />
+										<img src="<%=cp%>/res/images/continent/continent_3.png" alt="" />
                                         <h3>Africa</h3>
                                             <ul>
                                               <li><a href="guide.html">Marocco</a></li>
@@ -117,7 +117,7 @@
                                             </ul>
 									</section>
                                     <section class="col col-md-3 destination-img">
-										<img src="images/continent/continent_4.png" alt="" />
+										<img src="<%=cp%>/res/images/continent/continent_4.png" alt="" />
                                         <h3>Europe</h3>
                                             <ul>
                                               <li><a href="guide.html">Italy</a></li>
@@ -128,7 +128,7 @@
                                             </ul>
 									</section>
                                     <section class="col col-md-3 destination-img">
-										<img src="images/continent/continent_5.png" alt="" />
+										<img src="<%=cp%>/res/images/continent/continent_5.png" alt="" />
                                         <h3>Asia</h3>
                                             <ul>
                                               <li><a href="guide.html">Australia</a></li>
@@ -225,7 +225,7 @@
           <!--Mobile Menu-->
           <nav id="mobile-menu-01" class="mobile-menu">
                 <div class="line-logo">
-					    <a class="logo" href="#"><img src="images/logo.jpg" alt=""/></a><i class="fa fa-bars"></i>
+					    <a class="logo" href="#"><img src="<%=cp%>/res/images/logo.jpg" alt=""/></a><i class="fa fa-bars"></i>
 				    </div>	
                 <div class="clear"></div>
                 <ul class="travel-mega-menu-mobile">		
@@ -498,7 +498,7 @@
 						<li class="mix category-1" data-value="1250">
 							<figure>
                                 <div class="cbp-vm-image img">
-                                    <img src="images/fly/1.png" alt="img01"/>
+                                    <img src="<%=cp%>/res/images/fly/1.png" alt="img01"/>
                                 </div>
 								
 								<figcaption>
@@ -512,7 +512,7 @@
 						<li class="mix category-2" data-value="850">
 							<figure>
                                 <div class="cbp-vm-image img">
-                                    <img src="images/fly/2.png" alt="img01"/>
+                                    <img src="<%=cp%>/res/images/fly/2.png" alt="img01"/>
                                 </div>
 								<figcaption>
                                     <h3>FR 7124</h3><span>Manchester</span> <span>Rzeszow</span><div class="clear"></div><span>06:10</span> <span>9:55</span><span><i class="fa fa-clock-o"></i>3 h 20 min</span>
@@ -525,7 +525,7 @@
 						<li class="mix category-3" data-value="700">
 							<figure>
                                 <div class="cbp-vm-image img">
-                                    <img src="images/fly/3.png" alt="img01"/>
+                                    <img src="<%=cp%>/res/images/fly/3.png" alt="img01"/>
                                 </div>
 								<figcaption>
                                     <h3>ST 7124</h3><span>Dublin</span> <span>Madrid</span><div class="clear"></div><span>06:10</span> <span>10:00</span><span><i class="fa fa-clock-o"></i>4 h 00 min</span>
@@ -538,7 +538,7 @@
 						<li class="mix category-3" data-value="1050">
 							<figure>
                                 <div class="cbp-vm-image img">
-                                    <img src="images/fly/3.png" alt="img01"/>
+                                    <img src="<%=cp%>/res/images/fly/3.png" alt="img01"/>
                                 </div>
 								<figcaption>
                                     <h3>ST 7124</h3><span>Dublin</span> <span>Madrid</span><div class="clear"></div><span>06:10</span> <span>10:00</span><span><i class="fa fa-clock-o"></i>4 h 00 min</span>
@@ -551,7 +551,7 @@
 						<li class="mix category-1" data-value="330">
 							<figure>
                                 <div class="cbp-vm-image img">
-                                    <img src="images/fly/1.png" alt="img01"/>
+                                    <img src="<%=cp%>/res/images/fly/1.png" alt="img01"/>
                                 </div>
 								
 								<figcaption>
@@ -565,7 +565,7 @@
 						<li class="mix category-2" data-value="480">
 							<figure>
                                 <div class="cbp-vm-image img">
-                                    <img src="images/fly/2.png" alt="img01"/>
+                                    <img src="<%=cp%>/res/images/fly/2.png" alt="img01"/>
                                 </div>
 								<figcaption>
                                     <h3>FR 7124</h3><span>Manchester</span> <span>Rzeszow</span><div class="clear"></div><span>06:10</span> <span>9:55</span><span><i class="fa fa-clock-o"></i>3 h 20 min</span>
@@ -578,7 +578,7 @@
 						<li class="mix category-3" data-value="1100">
 							<figure>
                                 <div class="cbp-vm-image img">
-                                    <img src="images/fly/3.png" alt="img01"/>
+                                    <img src="<%=cp%>/res/images/fly/3.png" alt="img01"/>
                                 </div>
 								<figcaption>
                                     <h3>ST 7124</h3><span>Dublin</span> <span>Madrid</span><div class="clear"></div><span>06:10</span> <span>10:00</span><span><i class="fa fa-clock-o"></i>4 h 00 min</span>
@@ -602,28 +602,28 @@
              <div class="bx-about2">
                 <ul class="bxslider">
                             <li>
-  	    	                 <img src="images/trip/city2.jpg" alt=""/><div class="cover-slide-trip"></div>
+  	    	                 <img src="<%=cp%>/res/images/trip/city2.jpg" alt=""/><div class="cover-slide-trip"></div>
                              <div class="trip-slide-price col-md-5">
                                 <div class="trip-slide-text prague">Paris</div>
                                 <p>Nestled between the Caribbean, the South Pacific, and the South Atlantic Oceans, South America is the wilder of the Americas, and a continent of superlatives...</p>
                              </div>
   	    		            </li>
   	    		            <li>
-  	    	                 <img src="images/trip/city5.jpg" alt=""/><div class="cover-slide-trip"></div>
+  	    	                 <img src="<%=cp%>/res/images/trip/city5.jpg" alt=""/><div class="cover-slide-trip"></div>
                              <div class="trip-slide-price col-md-5">
                                 <div class="trip-slide-text prague">Venice</div>
                                 <p>Nestled between the Caribbean, the South Pacific, and the South Atlantic Oceans, South America is the wilder of the Americas, and a continent of superlatives...</p>
                              </div>
   	    		            </li>
   	    		            <li>
-  	    	                 <img src="images/trip/city3.jpg" alt=""/><div class="cover-slide-trip"></div>
+  	    	                 <img src="<%=cp%>/res/images/trip/city3.jpg" alt=""/><div class="cover-slide-trip"></div>
                              <div class="trip-slide-price col-md-5">
                                 <div class="trip-slide-text prague">London</div>
                                 <p>Nestled between the Caribbean, the South Pacific, and the South Atlantic Oceans, South America is the wilder of the Americas, and a continent of superlatives...</p>
                              </div>
   	    		            </li>
   	    		            <li>
-  	    	                 <img src="images/trip/city4.jpg" alt=""/><div class="cover-slide-trip"></div>
+  	    	                 <img src="<%=cp%>/res/images/trip/city4.jpg" alt=""/><div class="cover-slide-trip"></div>
                              <div class="trip-slide-price col-md-5">
                                 <div class="trip-slide-text prague">Prague</div>
                                 <p>Nestled between the Caribbean, the South Pacific, and the South Atlantic Oceans, South America is the wilder of the Americas, and a continent of superlatives...</p>
@@ -640,7 +640,7 @@
             <div class="row">
                 <div class="col-md-12">
                   <div class="col-md-3">
-                    <img class='logo-footer' src='images/travego.png' alt='logo' />
+                    <img class='logo-footer' src='<%=cp%>/res/images/travego.png' alt='logo' />
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque arcu lorem, mattis quis convallis ac</p> 
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque arcu lorem, mattis quis convallis ac</p>   
                   </div>
@@ -719,19 +719,19 @@
 </section>
 
 
-<script src="js/modernizr.js" type="text/javascript"></script>
-<script src="js/jquery-1.10.1.min.js" type="text/javascript"></script>
-<script src="js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-<script src="js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
-<script src="js/jquery.easing.1.3.js"></script>
+<script src="<%=cp%>/res/js/modernizr.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/jquery.easing.1.3.js"></script>
 <!-- waypoint -->
-<script type="text/javascript" src="js/waypoints.min.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/js/waypoints.min.js"></script>
 
-<script type="text/javascript" src="js/bootstrap.min.js"></script> 
-<script src="js/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="<%=cp%>/res/js/bootstrap.min.js"></script> 
+<script src="<%=cp%>/res/js/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
 
 <!--bxSlider-->
-<script src="js/jquery.bxslider.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/jquery.bxslider.js" type="text/javascript"></script>
 <script>
 $(document).ready(function () {
     "use strict";
@@ -741,11 +741,11 @@ $(document).ready(function () {
 });
 </script>
 <!--List-->
-<script src="js/list/cbpViewModeSwitch.js" type="text/javascript"></script>
-<script src="js/list/classie.js" type="text/javascript"></script>
-<script src="js/script.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/list/cbpViewModeSwitch.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/list/classie.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/script.js" type="text/javascript"></script>
 
-<script src="js/list/jquery.mixitup.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/list/jquery.mixitup.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(function () {
     "use strict";

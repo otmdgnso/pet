@@ -19,17 +19,17 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'/>
 
 
-        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
-        <link href="css/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <link href="css/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css" />
-        <link href="css/animate.css" rel="stylesheet" type="text/css" />
-        <link href="css/settings_slide2.css" rel="stylesheet" type="text/css" />
-        <link href="css/travel-mega-menu.css" rel="stylesheet" type="text/css" />
+        <link href="<%=cp%>/res/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="<%=cp%>/res/css/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="<%=cp%>/res/css/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css" />
+        <link href="<%=cp%>/res/css/animate.css" rel="stylesheet" type="text/css" />
+        <link href="<%=cp%>/res/css/settings_slide2.css" rel="stylesheet" type="text/css" />
+        <link href="<%=cp%>/res/css/travel-mega-menu.css" rel="stylesheet" type="text/css" />
         <!--Carousel-->
-        <link href="css/carousel/component.css" rel="stylesheet" type="text/css" />
+        <link href="<%=cp%>/res/css/carousel/component.css" rel="stylesheet" type="text/css" />
 
-        <link href="css/layout2.css" rel="stylesheet" type="text/css" />
-        <link href="css/responsive.css" rel="stylesheet" type="text/css" />
+        <link href="<%=cp%>/res/css/layout2.css" rel="stylesheet" type="text/css" />
+        <link href="<%=cp%>/res/css/responsive.css" rel="stylesheet" type="text/css" />
 </head>
 	<body>
     <section class='section-top-header'>
@@ -40,7 +40,7 @@
                     <div class='top-contact'><i class="fa fa-phone"></i><span>+12 123 456 789</span><i class="fa fa-envelope"></i><span>info@travego.com</span></div>
                     <div class='top-login'><i class="fa fa-plus"></i><a class='reg-top' href='#'>Register</a><i class="fa fa-lock"></i><a href='#'>Login</a>
                         <div class="header-lang">
-				            <a href="#"><img alt="" src="images/flags/en.gif"/></a>
+				            <a href="#"><img alt="" src="<%=cp%>/res/images/flags/en.gif"/></a>
 				            <div class="langs-drop" style="display: none;">
 					            <div><a href="#" class="langs-item en">english</a></div>
 					            <div><a href="#" class="langs-item fr">francais</a></div>
@@ -60,7 +60,7 @@
       <!-- mega menu -->
 			<ul class="travel-mega-menu travel-mega-menu-anim-scale travel-mega-menu-response-to-icons">		
                 <li class="line-logo">
-					<a class="logo" href="#"><img src="images/logo.jpg" alt=""/></a>
+					<a class="logo" href="#"><img src="<%=cp%>/res/images/logo.jpg" alt=""/></a>
 				</li>		
 				<li>
 					<a class="top-menu-txt" href="#">Home</a>
@@ -86,7 +86,7 @@
 							<fieldset>					
 								<div class="row">
 									<section class="col col-md-3 destination-img">	
-											<img src="images/continent/continent_1.png" alt="" />
+											<img src="<%=cp%>/res/images/continent/continent_1.png" alt="" />
                                             <h3>North America</h3>
                                             <ul>
                                               <li><a href="guide.html">Canada</a></li>
@@ -95,7 +95,7 @@
                                             </ul>
 									</section>
 									<section class="col col-md-3 destination-img">
-										<img src="images/continent/continent_2.png" alt="" />
+										<img src="<%=cp%>/res/images/continent/continent_2.png" alt="" />
                                         <h3>South America</h3>
                                             <ul>
                                               <li><a href="guide.html">Brazil</a></li>
@@ -106,7 +106,7 @@
                                             </ul>
 									</section>
                                     <section class="col col-md-3 destination-img">
-										<img src="images/continent/continent_3.png" alt="" />
+										<img src="<%=cp%>/res/images/continent/continent_3.png" alt="" />
                                         <h3>Africa</h3>
                                             <ul>
                                               <li><a href="guide.html">Marocco</a></li>
@@ -117,7 +117,7 @@
                                             </ul>
 									</section>
                                     <section class="col col-md-3 destination-img">
-										<img src="images/continent/continent_4.png" alt="" />
+										<img src="<%=cp%>/res/images/continent/continent_4.png" alt="" />
                                         <h3>Europe</h3>
                                             <ul>
                                               <li><a href="guide.html">Italy</a></li>
@@ -128,7 +128,7 @@
                                             </ul>
 									</section>
                                     <section class="col col-md-3 destination-img">
-										<img src="images/continent/continent_5.png" alt="" />
+										<img src="<%=cp%>/res/images/continent/continent_5.png" alt="" />
                                         <h3>Asia</h3>
                                             <ul>
                                               <li><a href="guide.html">Australia</a></li>
@@ -225,7 +225,7 @@
           <!--Mobile Menu-->
           <nav id="mobile-menu-01" class="mobile-menu">
                 <div class="line-logo">
-					    <a class="logo" href="#"><img src="images/logo.jpg" alt=""/></a><i class="fa fa-bars"></i>
+					    <a class="logo" href="#"><img src="<%=cp%>/res/images/logo.jpg" alt=""/></a><i class="fa fa-bars"></i>
 				    </div>	
                 <div class="clear"></div>
                 <ul class="travel-mega-menu-mobile">		
@@ -439,7 +439,7 @@
                                     </div>
                                     <div class="gallery-img-title">
                                       <h3>ZANZIBAR - NUNGWI</h3>
-                                      <div class="gallery-stars"><img src="images/4star.png" alt="" /></div>
+                                      <div class="gallery-stars"><img src="<%=cp%>/res/images/4star.png" alt="" /></div>
                                     </div>
                             </div>
 	
@@ -453,7 +453,7 @@
                                     </div>
                                     <div class="gallery-img-title">
                                       <h3>ZANZIBAR - NUNGWI</h3>
-                                      <div class="gallery-stars"><img src="images/5star.png" alt="" /></div>
+                                      <div class="gallery-stars"><img src="<%=cp%>/res/images/5star.png" alt="" /></div>
                                     </div>
                             </div>
 
@@ -467,7 +467,7 @@
                                     </div>
                                     <div class="gallery-img-title">
                                       <h3>ZANZIBAR - NUNGWI</h3>
-                                      <div class="gallery-stars"><img src="images/5star.png" alt="" /></div>
+                                      <div class="gallery-stars"><img src="<%=cp%>/res/images/5star.png" alt="" /></div>
                                     </div>
                             </div>
 	                        
@@ -481,7 +481,7 @@
                                     </div>
                                     <div class="gallery-img-title">
                                       <h3>ZANZIBAR - NUNGWI</h3>
-                                      <div class="gallery-stars"><img src="images/3star.png" alt="" /></div>
+                                      <div class="gallery-stars"><img src="<%=cp%>/res/images/3star.png" alt="" /></div>
                                     </div>
                             </div>
 
@@ -495,7 +495,7 @@
                                     </div>
                                     <div class="gallery-img-title">
                                       <h3>ZANZIBAR - NUNGWI</h3>
-                                      <div class="gallery-stars"><img src="images/4star.png" alt="" /></div>
+                                      <div class="gallery-stars"><img src="<%=cp%>/res/images/4star.png" alt="" /></div>
                                     </div>
                             </div>
 
@@ -509,7 +509,7 @@
                                     </div>
                                     <div class="gallery-img-title">
                                       <h3>ZANZIBAR - NUNGWI</h3>
-                                      <div class="gallery-stars"><img src="images/3star.png" alt="" /></div>
+                                      <div class="gallery-stars"><img src="<%=cp%>/res/images/3star.png" alt="" /></div>
                                     </div>
                             </div>
 
@@ -524,7 +524,7 @@
                                     </div>
                                     <div class="gallery-img-title">
                                       <h3>ZANZIBAR - NUNGWI</h3>
-                                      <div class="gallery-stars"><img src="images/3star.png" alt="" /></div>
+                                      <div class="gallery-stars"><img src="<%=cp%>/res/images/3star.png" alt="" /></div>
                                     </div>
                             </div>
 
@@ -538,7 +538,7 @@
                                     </div>
                                     <div class="gallery-img-title">
                                       <h3>ZANZIBAR - NUNGWI</h3>
-                                      <div class="gallery-stars"><img src="images/4star.png" alt="" /></div>
+                                      <div class="gallery-stars"><img src="<%=cp%>/res/images/4star.png" alt="" /></div>
                                     </div>
                             </div>
 
@@ -552,7 +552,7 @@
                                     </div>
                                     <div class="gallery-img-title">
                                       <h3>ZANZIBAR - NUNGWI</h3>
-                                      <div class="gallery-stars"><img src="images/3star.png" alt="" /></div>
+                                      <div class="gallery-stars"><img src="<%=cp%>/res/images/3star.png" alt="" /></div>
                                     </div>
                             </div>
                            
@@ -647,7 +647,7 @@
             <div class="row">
                 <div class="col-md-12">
                   <div class="col-md-3">
-                    <img class='logo-footer' src='images/travego.png' alt='logo' />
+                    <img class='logo-footer' src='<%=cp%>/res/images/travego.png' alt='logo' />
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque arcu lorem, mattis quis convallis ac</p> 
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque arcu lorem, mattis quis convallis ac</p>   
                   </div>
@@ -725,15 +725,15 @@
     </div>
 </section>
 
-<script src="js/modernizr.js" type="text/javascript"></script>
-<script src="js/jquery-1.10.1.min.js" type="text/javascript"></script>
-<script src="js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-<script src="js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
-<script src="js/jquery.easing.1.3.js"></script>
+<script src="<%=cp%>/res/js/modernizr.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/jquery.easing.1.3.js"></script>
 <!-- waypoint -->
-<script type="text/javascript" src="js/waypoints.min.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/js/waypoints.min.js"></script>
 
-<script src="js/gallery/isotope.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/gallery/isotope.js" type="text/javascript"></script>
 <script>
 /********************************************
 PORTFOLIO
@@ -768,8 +768,8 @@ $(window).load(function () {
 });
 </script>
  <!--Carousel-->
-<script src="js/carousel/modernizr.custom.js" type="text/javascript"></script>
-<script src="js/carousel/jquery.cbpContentSlider.min.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/carousel/modernizr.custom.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/carousel/jquery.cbpContentSlider.min.js" type="text/javascript"></script>
 <script>
 $(function () {
     "use strict";
@@ -777,9 +777,9 @@ $(function () {
 });
 </script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script> 
-<script src="js/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
 
-<script src="js/script.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/script.js" type="text/javascript"></script>
 
 
 	</body>
