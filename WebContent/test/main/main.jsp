@@ -495,8 +495,8 @@
                                     <!--********************* 경매 검색 ********************-->
                                     <form id="auction-tab" class="tab-pane form-inline reservation-flight" method="post" name="auctionSearch">
                                       <div class="row">
-                                        <div class="col-sm-4 flight-where">
-                                          <div class="form-group">
+                                        <div class="col-sm-4 flight-where" >
+                                          <div class="form-group" >
                                             <h3> <img alt="" src="<%=cp%>/res/img/product.png"> 검색 상품</h3>
                                             <label for="auctionSubject">상품 명</label>
                                             <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="검색할 상품 입력"> <i class="fa fa-info-circle fa-lg"> </i> </div>
