@@ -1,6 +1,6 @@
 package com.pet.member;
 
-public class SessionInfo {¤·
+public class SessionInfo {
 	private String userId, userName, pwd;
 
 	public String getUserId() {

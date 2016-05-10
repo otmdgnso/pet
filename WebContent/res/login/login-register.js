@@ -6,7 +6,7 @@
  * Web script: http://creative-tim.com
  * 
  */
- String cp = request.getContextPath();
+
 function showRegisterForm(){
 
 	$('.loginBox').fadeOut('fast',function(){
