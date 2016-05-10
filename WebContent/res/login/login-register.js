@@ -6,8 +6,10 @@
  * Web script: http://creative-tim.com
  * 
  */
+ String cp = request.getContextPath();
 function showRegisterForm(){
-    $('.loginBox').fadeOut('fast',function(){
+
+	$('.loginBox').fadeOut('fast',function(){
         $('.registerBox').fadeIn('fast');
         $('.login-footer').fadeOut('fast',function(){
             $('.register-footer').fadeIn('fast');
@@ -61,11 +63,13 @@ function loginAjax(){
 
 function shakeModal(){
     $('#loginModal .modal-dialog').addClass('shake');
-             $('.error').addClass('alert alert-danger').html("Invalid email/password combination");
+             $('.error').addClass('alert alert-danger').html("Invalid id/password combination");
              $('input[type="password"]').val('');
              setTimeout( function(){ 
                 $('#loginModal .modal-dialog').removeClass('shake'); 
     }, 1000 ); 
 }
+
+
 
    

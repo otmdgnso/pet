@@ -14,10 +14,9 @@
 	<link href="<%=cp%>/res/css/bootstrap.css" rel="stylesheet" type="text/css" />
 	<link href="<%=cp%>/res/css/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 	<script src="<%=cp%>/res/js/jquery-1.12.3.min.js" type="text/javascript"></script>
-	<script src="<%=cp%>/res/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
-	<script src="<%=cp%>/res/js/jquery.easing.1.3.js"></script>
+
 	
+	<script src="<%=cp%>/res/login/bootstrap3/js/bootstrap.js" type="text/javascript"></script>
 	<script src="<%=cp%>/res/login/login-register.js" type="text/javascript"></script>
 	<link href="<%=cp%>/res/login/login-register.css" rel="stylesheet" />
 	
@@ -45,12 +44,6 @@
                         <div class="box">
                              <div class="content">
                                 <div class="social">
-                                    <a class="circle github" href="/auth/github">
-                                        <i class="fa fa-github fa-fw"></i>
-                                    </a>
-                                    <a id="google_login" class="circle google" href="/auth/google_oauth2">
-                                        <i class="fa fa-google-plus fa-fw"></i>
-                                    </a>
                                     <a id="facebook_login" class="circle facebook" href="/auth/facebook">
                                         <i class="fa fa-facebook fa-fw"></i>
                                     </a>
@@ -74,9 +67,14 @@
                             <div class="content registerBox" style="display:none;">
                              <div class="form">
                                 <form method="post" html="{:multipart=>true}" data-remote="true" action="/register" accept-charset="UTF-8">
-                                <input id="email" class="form-control" type="text" placeholder="Email" name="email">
-                                <input id="password" class="form-control" type="password" placeholder="Password" name="password">
+                                <input id="userId" class="form-control" type="text" placeholder="id" name="userId">
+                                <input id="pwd" class="form-control" type="password" placeholder="Password" name="password">
                                 <input id="password_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
+                                <input id="userName" class="form-control" type="text" placeholder="이름" name="userName">
+                                <input id="phone" class="form-control" type="text" placeholder="010-1234-1234" name="tel">
+                                <input id="email" class="form-control" type="text" placeholder="abc@abc.com" name="email">
+                                <input id="birth" class="form-control" type="text" placeholder="1991-12-23" name="birth">
+                                <input id="profile" class="form-control" type="file" >
                                 <input class="btn btn-default btn-register" type="submit" value="Create account" name="commit">
                                 </form>
                                 </div>
@@ -99,4 +97,5 @@
 		  </div>
     </div>
 </body>
+
 </html>
