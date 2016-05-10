@@ -622,8 +622,8 @@
          <div class="col-md-12 effect-5 effects">
             
                <div class="text-center top-txt-title">
-                    <h2>THE BEST PROMOTIONS</h2>
-                    <p>Find your favorite place, feel more than home</p>
+                    <h2>THIS MONTH</h2>
+                    <p>HOT HOST</p>
      			 </div>
                 <!-- FIFTH EXAMPLE -->
                 <div class="col-md-4 view view-fifth">
