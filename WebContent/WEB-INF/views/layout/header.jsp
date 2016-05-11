@@ -11,7 +11,6 @@ function loginSend(){
     var url="<%=cp%>/member/login";       
     var params="userId="+$("#userId").val()+"&pwd="+$("#pwd").val()
      
-     alert(params);
      
      $.ajax({
     	url:url
@@ -22,7 +21,6 @@ function loginSend(){
     		if(data.state=="false") {
     			shakeModal();
     		} else {    			
-    			alert(data.state+":"+data.userName);	
     			location.href="<%=cp%>";
     		}
     		
@@ -60,7 +58,7 @@ function loginSend(){
       <!-- mega menu -->
 			<ul class="travel-mega-menu travel-mega-menu-anim-scale travel-mega-menu-response-to-icons">		
                 <li class="line-logo">
-					<a class="logo" href="<%=cp%>/main"><img src="<%=cp%>/res/images/icon/dog.JPG" width="40" alt=""/></a>
+					<a class="logo" href="<%=cp%>"><img src="<%=cp%>/res/images/icon/dog.JPG" width="40" alt=""/></a>
 				</li>	
 					
                 <!-- 호스팅버튼 -->
