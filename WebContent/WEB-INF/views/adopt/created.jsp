@@ -60,6 +60,7 @@ function check() {
 <title>Insert title here</title>
 </head>
 <body>
+
 <form name="boardForm" method="post" onsubmit="return check();">
 <input type="text" class="form-control" placeholder="제목" name="subject"/>
 <br>

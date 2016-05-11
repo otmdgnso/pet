@@ -1,10 +1,25 @@
 package com.pet.adopt;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Adopt {
 	private int listNum, preSaleNum,month,price,deposit,num, hitCount;
 	private String subject, content, created,species, type, gender;
-	private String lineage, vaccin;
+	private String lineage, vaccin, saveFilename;
+	public String getSaveFilename() {
+		return saveFilename;
+	}
+	public void setSaveFilename(String saveFilename) {
+		this.saveFilename = saveFilename;
+	}
+	private MultipartFile upload;
 	
+	public MultipartFile getUpload() {
+		return upload;
+	}
+	public void setUpload(MultipartFile upload) {
+		this.upload = upload;
+	}
 	public int getPreSaleNum() {
 		return preSaleNum;
 	}
