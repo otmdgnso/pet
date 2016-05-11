@@ -30,15 +30,12 @@
         <link href="<%=cp%>/res/css/layout2.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/responsive.css" rel="stylesheet" type="text/css" />
         <!--  -->
-        
-        <script src="<%=cp%>/res/js/jquery-1.12.3.min.js" type="text/javascript"></script>
+		<script src="<%=cp%>/res/js/jquery-1.12.3.min.js" type="text/javascript"></script>
+		<script src="<%=cp%>/res/login/login-register.js" type="text/javascript"></script>
 		<script src="<%=cp%>/res/js/modernizr.js" type="text/javascript"></script>
-		<script src="<%=cp%>/res/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
 		<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
 		<script src="<%=cp%>/res/js/jquery.easing.1.3.js"></script>
 		
-		<script src="<%=cp%>/res/js/jquery-1.12.3.min.js" type="text/javascript"></script>
-		<script src="<%=cp%>/res/login/login-register.js" type="text/javascript"></script>
 		<link href="<%=cp%>/res/login/login-register.css" rel="stylesheet" />
 
 </head>

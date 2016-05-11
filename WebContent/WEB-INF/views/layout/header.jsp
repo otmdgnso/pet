@@ -5,6 +5,33 @@
 <%
 	String cp=request.getContextPath();
 %>
+
+<script type="text/javascript">
+function loginSend(){
+    var url="<%=cp%>/member/login";       
+    var params="userId="+$("#userId").val()+"&pwd="+$("#pwd").val()
+     
+     alert(params);
+     
+     $.ajax({
+    	url:url
+    	,data:params
+    	,type:"post"
+    	,dataType:"json"
+    	,success:function(data){
+    		if(data.state=="false") {
+    			shakeModal();
+    		} else {    			
+    			alert(data.state+":"+data.userName);	
+    			location.href="<%=cp%>";
+    		}
+    		
+    	}
+     });
+}
+
+</script>
+
 <div id="loader-wrapper">
         <div id="loader"></div>
     </div>
@@ -14,7 +41,14 @@
             <div class="row">
               <div class="col-md-12">
                      <div class='top-contact'><i class="fa fa-phone"></i><span>02 336 8546~8</span><i class="fa fa-envelope"></i><span>info@pet.com</span></div>
+              <c:if test="${empty sessionScope.member}">
                     <div class='top-login'><i class="fa fa-plus"></i><a data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Register</a><i class="fa fa-lock"></i> <a data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Log in</a></div>
+              </c:if>
+              <c:if test="${not empty sessionScope.member}">
+              		 <div class='top-login'><i class="fa fa-plus"></i><span>${sessionScope.member.userName}</span>님
+              		 <i class="fa fa-lock"></i> <a href="javascript:void(0)" onclick="location.href='<%=cp%>/member/logout'">Logout</a></div>
+              </c:if>
+              
               </div>
             </div>
         </div>
@@ -153,10 +187,10 @@
                                 </div>
                                 <div class="error"></div>
                                 <div class="form loginBox">
-                                    <form method="post" action="/login" accept-charset="UTF-8">
-                                    <input id="email" class="form-control" type="text" placeholder="Email" name="email">
-                                    <input id="password" class="form-control" type="password" placeholder="Password" name="password">
-                                    <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginAjax()">
+                                    <form>
+                                    <input id="userId" class="form-control" type="text" placeholder="userId" name="userId">
+                                    <input id="pwd" class="form-control" type="password" placeholder="pwd" name="pwd">
+                                    <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginSend()">
                                     </form>
                                 </div>
                              </div>
