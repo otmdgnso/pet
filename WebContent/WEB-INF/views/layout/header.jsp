@@ -13,8 +13,8 @@
         <div class="container">
             <div class="row">
               <div class="col-md-12">
-                    <div class='top-contact'><i class="fa fa-phone"></i><span>02 336 8546~8</span><i class="fa fa-envelope"></i><span>info@pet.com</span></div>
-                    <div class='top-login'><i class="fa fa-plus"></i><a class='reg-top' href='#'>Register</a><i class="fa fa-lock"></i><a href='#'>Login</a></div>
+                     <div class='top-contact'><i class="fa fa-phone"></i><span>02 336 8546~8</span><i class="fa fa-envelope"></i><span>info@pet.com</span></div>
+                    <div class='top-login'><i class="fa fa-plus"></i><a data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Register</a><i class="fa fa-lock"></i> <a data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Log in</a></div>
               </div>
             </div>
         </div>

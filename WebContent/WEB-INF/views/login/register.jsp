@@ -11,12 +11,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-	<script src="<%=cp%>/res/js/jquery-1.12.3.min.js" type="text/javascript"></script>
-
-	
-
-	<script src="<%=cp%>/res/login/login-register.js" type="text/javascript"></script>
-	<link href="<%=cp%>/res/login/login-register.css" rel="stylesheet" />
 	
 	
 	<script type="text/javascript">
