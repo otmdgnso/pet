@@ -48,7 +48,7 @@
                                             <ul>
                                               <li><a href="#">예약하기</a></li>
                                               <li><a href="#">경매</a></li>
-                                              <li><a href="#">분양</a></li>
+                                              <li><a href="<%=cp%>/adopt/list">분양</a></li>
                                             </ul>
 									</section>
                                     <section class="col col-md-3 destination-img">
