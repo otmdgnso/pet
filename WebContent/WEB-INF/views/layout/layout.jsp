@@ -22,14 +22,20 @@
 
         <link href="<%=cp%>/res/css/bootstrap.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <link href="<%=cp%>/res/css/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css" />
+        <link href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/animate.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/settings_slide2.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/travel-mega-menu.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/jquery.bxslider.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/layout2.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/responsive.css" rel="stylesheet" type="text/css" />
+        <!--  -->
         
+        <script src="<%=cp%>/res/js/jquery-1.12.3.min.js" type="text/javascript"></script>
+		<script src="<%=cp%>/res/js/modernizr.js" type="text/javascript"></script>
+		<script src="<%=cp%>/res/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+		<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
+		<script src="<%=cp%>/res/js/jquery.easing.1.3.js"></script>
 
 </head>
 <body>
@@ -37,7 +43,7 @@
     <tiles:insertAttribute name="header"/>
 </div>
 
-<div class="container" role="main">
+<div role="main">
     <tiles:insertAttribute name="body"/>
 </div>
 
@@ -46,11 +52,7 @@
 </div>
 
 
-<script src="<%=cp%>/res/js/modernizr.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/jquery-1.10.1.min.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/jquery.easing.1.3.js"></script>
+
 <!-- waypoint -->
 <script type="text/javascript" src="<%=cp%>/res/js/waypoints.min.js"></script>
 <!--Preload-->
@@ -68,6 +70,20 @@
 <script src="<%=cp%>/res/js/jquery.themepunch.plugins.min.js" type="text/javascript"></script>
 <script src="<%=cp%>/res/js/jquery.themepunch.revolution.min.js" type="text/javascript"></script>
 <script type="text/javascript">
+$(function() {
+  $( "#slider-range" ).slider({
+    range: true,
+    min: 0,
+    max: 500,
+    values: [ 75, 300 ],
+    slide: function( event, ui ) {
+      $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+    }
+  });
+  $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+    " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+});
+
 var tpj = jQuery;
     tpj(document).ready(function () {
         "use strict";
