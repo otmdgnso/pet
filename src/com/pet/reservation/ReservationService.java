@@ -1,0 +1,15 @@
+package com.pet.reservation;
+
+import java.util.List;
+import java.util.Map;
+
+public interface ReservationService {
+	public int insertReservation(Reservation dto, String pathname);
+	public List<Reservation> listReservation(Map<String, Object> map);
+	public int dataCount(Map<String, Object> map);
+	public Reservation readReservation(int reservationNum);
+	public Reservation preReadReservation(Map<String, Object> map);
+	public Reservation nextReadReservation(Map<String, Object> map);
+	public int updateReservation(Reservation dto, String pathname);
+	public int deleteReservation(int reservationNum, String pathname);
+}
