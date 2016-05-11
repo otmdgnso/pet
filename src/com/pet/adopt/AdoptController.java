@@ -19,7 +19,7 @@ public class AdoptController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/adopt/created", method=RequestMethod.GET)
+	@RequestMapping(value="/adopt/created")
 	public ModelAndView create() throws Exception {
 		ModelAndView mav = new ModelAndView(".adopt.created");
 		return mav;

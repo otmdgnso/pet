@@ -1,7 +1,7 @@
 package com.pet.adopt;
 
 public class Adopt {
-	private int preSaleNum,month,price,deposit,num, hitCount;
+	private int listNum, preSaleNum,month,price,deposit,num, hitCount;
 	private String subject, content, created,species, type, gender;
 	private String lineage, vaccin;
 	
@@ -88,6 +88,12 @@ public class Adopt {
 	}
 	public void setVaccin(String vaccin) {
 		this.vaccin = vaccin;
+	}
+	public int getListNum() {
+		return listNum;
+	}
+	public void setListNum(int listNum) {
+		this.listNum = listNum;
 	}
 	
 }
