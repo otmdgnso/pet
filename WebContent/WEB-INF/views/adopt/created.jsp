@@ -48,8 +48,11 @@ function check() {
 		f.deposit.focus();
 		return false;
 	}
-	
-	f.action="<%=cp%>/adopt/created";
+	var mode="${mode}";
+	if(mode=="created")
+		f.action="<%=cp%>/adopt/created";
+	else if(mode=="update")
+		f.action="<%=cp%>/adopt/update"
 	
 	return true;
 }
@@ -62,6 +65,7 @@ function check() {
 <br>
 <textarea rows="20" cols="160" placeholder="내용" name="content"></textarea>
 
+<br>
 	<font color="blue">종류</font>
 	<select name="species">
 		<option value="개">

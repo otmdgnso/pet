@@ -209,62 +209,6 @@
         
 </section>      
 
-<script src="<%=cp%>/res/js/modernizr.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/jquery-1.10.1.min.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/jquery.easing.1.3.js"></script>
-<!-- waypoint -->
-<script type="text/javascript" src="<%=cp%>/res/js/waypoints.min.js"></script>
-
-<script src="<%=cp%>/res/js/gallery/isotope.js" type="text/javascript"></script>
-<script>
-/********************************************
-PORTFOLIO
-********************************************/
-$(window).load(function () {
-    "use strict";
-    var $container = $('.albumContainer');
-    $container.isotope({
-        filter: '*',
-        animationOptions: {
-            duration: 750,
-            easing: 'linear',
-            queue: false
-        }
-    });
-
-    $('.albumFilter li').click(function () {
-        $('.albumFilter .current').removeClass('current');
-        $(this).addClass('current');
-
-        var selector = $(this).attr('data-filter');
-        $container.isotope({
-            filter: selector,
-            animationOptions: {
-                duration: 750,
-                easing: 'linear',
-                queue: false
-            }
-        });
-        return false;
-    });
-});
-</script>
- <!--Carousel-->
-<script src="<%=cp%>/res/js/carousel/modernizr.custom.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/carousel/jquery.cbpContentSlider.min.js" type="text/javascript"></script>
-<script>
-$(function () {
-    "use strict";
-    $('#cbp-contentslider').cbpContentSlider();
-});
-</script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script> 
-<script src="<%=cp%>/res/js/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-
-<script src="<%=cp%>/res/js/script.js" type="text/javascript"></script>
-
 
 	</body>
 </html>

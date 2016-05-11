@@ -47,7 +47,7 @@
                                             <h3>메뉴</h3>
                                             <ul>
                                               <li><a href="<%=cp%>/reservation/created">예약하기</a></li>
-                                              <li><a href="#">경매</a></li>
+                                              <li><a href="<%=cp%>/auction/auction">경매</a></li>
                                               <li><a href="<%=cp%>/adopt/list">분양</a></li>
                                             </ul>
 									</section>
