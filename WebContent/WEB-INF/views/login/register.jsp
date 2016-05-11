@@ -13,19 +13,6 @@
 
 	
 	
-	<script type="text/javascript">
-	function insertMember() {
-	 	var url="<%=cp%>/member/member";
-	 	$.ajax({
-	 		type:"post"
-	 		,url:url
-	 		,dataType:"json"
-	 		,error:function(e){
-	 			alert(e.responseText);
-	 		}
-	 	});
-	}
-	</script>
 	
 </head>
 <body>
