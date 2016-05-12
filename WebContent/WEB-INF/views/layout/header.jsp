@@ -32,6 +32,26 @@ function loginSend(){
      });
 }
 
+function insertMember(){
+    var url="<%=cp%>/member/register";       
+    var params="userId="+$("#userId").val()+"&pwd="+$("#pwd").val()
+     
+     $.ajax({
+    	url:url
+    	,data:params
+    	,type:"post"
+    	,dataType:"json"
+    	,success:function(data){
+    		if(data.state=="false") {
+    			shakeModal();
+    		} else {    			
+    			location.href="<%=cp%>";
+    		}
+    		
+    	}
+     });
+}
+
 </script>
 
 <div id="loader-wrapper">
@@ -233,4 +253,4 @@ function loginSend(){
     <!-- 로그인, 로그아웃 끝 -->   
     
  <script src="<%=cp%>/res/js/reg/jquery.validate.min.js" type="text/javascript"></script>
- <script src="<%=cp%>/res/js/reg/wizard.js" type="text/javascript"></script>
+ <%-- <script src="<%=cp%>/res/js/reg/wizard.js" type="text/javascript"></script> --%>
