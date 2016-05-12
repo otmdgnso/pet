@@ -63,7 +63,7 @@ function openRegisterModal(){
 
 function shakeModal(){
     $('#loginModal .modal-dialog').addClass('shake');
-             $('.error').addClass('alert alert-danger').html("Invalid id/password combination");
+             $('.error').addClass('alert alert-danger').html("아이디 또는 패스워드가 일치하지 않습니다.ㅋㅋ");
              $('input[type="password"]').val('');
              setTimeout( function(){ 
                 $('#loginModal .modal-dialog').removeClass('shake'); 
