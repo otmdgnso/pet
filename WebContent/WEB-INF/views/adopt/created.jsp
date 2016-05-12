@@ -5,10 +5,6 @@
 <%
 	String cp=request.getContextPath();
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
 <script type="text/javascript">
 function check() {
 	var f=document.boardForm;
@@ -57,12 +53,10 @@ function check() {
 	return true;
 }
 </script>
-<title>Insert title here</title>
-</head>
-<body>
-
+<section id="gallery">
+   <div class="container">
 <form name="boardForm" method="post" onsubmit="return check();" enctype="multipart/form-data">
-<input type="text" class="form-control" placeholder="제목" name="subject"/>
+<input type="text" class="form-control" placeholder="제목" name="subject" size="200px"/>
 <br>
 <textarea rows="20" cols="160" placeholder="내용" name="content"></textarea>
 
@@ -130,5 +124,5 @@ function check() {
 			등록하기
 	</button>
 </form>
-</body>
-</html>
+</div>
+</section>

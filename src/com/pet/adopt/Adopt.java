@@ -6,6 +6,13 @@ public class Adopt {
 	private int listNum, preSaleNum,month,price,deposit,num, hitCount;
 	private String subject, content, created,species, type, gender;
 	private String lineage, vaccin, saveFilename;
+	private int photoNum;
+	public int getPhotoNum() {
+		return photoNum;
+	}
+	public void setPhotoNum(int photoNum) {
+		this.photoNum = photoNum;
+	}
 	public String getSaveFilename() {
 		return saveFilename;
 	}
