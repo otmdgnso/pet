@@ -96,8 +96,8 @@
 					</div>
 					</div>
 				
-					<div class="form-group" style="margin:0 auto; width:150px;" align="center">					               															
-						<!-- 몇박 --><input type="text" readonly="readonly" id="period" name="period" style="border: 0px;"></input>
+					<div style="margin:0 auto; width:150px;" align="center">					               															
+						<!-- 몇박 --><input type="text" readonly="readonly" id="period" name="period" style="color:#8C8C8C; border: 0px;">3박
 					</div>
 				</div>
 
@@ -123,27 +123,31 @@
 					</div>
 					</div>
 				</div>	
-									
-				<div class="col-sm-4 step-who" style="padding-left: 0">
+
+				<!-- 가격 -->					
+				<div class="col-sm-4 fly-who">
 					<div class="separator" style="width:100%"></div>
 						<h3>가격</h3>
-					<div class="col-sm-4 step-check">				
-					<div class="form-group" style="margin:0 auto; width:150px;" align="center">	
-					<div class="guests-select">
-						<input type="text" class="form-control" readonly="readonly" id="period" name="period"></input>
-						<input type="text" class="form-control" readonly="readonly" id="period" name="period"></input>
-						<input type="text" class="form-control" readonly="readonly" id="period" name="period"></input>
-					
-						<label>가격</label>
-					<div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="선택 기간과 펫 수에 따른 가격입니다.">
-						<i class="fa fa-info-circle fa-lg"> </i>
-					</div>
 						
-					</div>
-					</div>
-					</div>
-				</div>
-
+					<div>
+                    	<table style="width: 500px; margin: 0px auto; border-spacing: 0px;">
+                    		<tr align="center" height="40%">
+                    			<td align="center" width="10%">100,000</td>
+                    			<td align="center" width="5%">x</td>
+                    			<td align="center" width="5%">3박</td>
+                     			<td align="center" width="80%">300,000원</td>
+                    		</tr>
+                    		<tr align="center" height="40%">
+                    			<td colspan="3">서비스 수수료</td>
+                    			<td>30,000원</td>
+                    		</tr>
+                    		<tr align="center" height="40%">
+                    			<td colspan="3">총합계</td>
+                    			<td>330,000원</td>
+                    	</table>                                     
+                     </div>
+                     </div>
+                     
 				<div class="col-sm-2 colbtn">
 					<button type="submit" class="btn btn-primary btn-block">예약하기</button>
 				</div>
