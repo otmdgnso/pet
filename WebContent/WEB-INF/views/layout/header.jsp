@@ -5,8 +5,12 @@
 <%
 	String cp=request.getContextPath();
 %>
+<link href="<%=cp%>/res/css/gsdk-base.css" rel="stylesheet" type="text/css" />
+
+
 
 <script type="text/javascript">
+
 function loginSend(){
     var url="<%=cp%>/member/login";       
     var params="userId="+$("#userId").val()+"&pwd="+$("#pwd").val()
@@ -27,6 +31,8 @@ function loginSend(){
     	}
      });
 }
+
+
 
 </script>
 
@@ -173,16 +179,6 @@ function loginSend(){
                     <div class="modal-body">  
                         <div class="box">
                              <div class="content">
-                                <div class="social">
-                                    <a id="facebook_login" class="circle facebook" href="/auth/facebook">
-                                        <i class="fa fa-facebook fa-fw"></i>
-                                    </a>
-                                </div>
-                                <div class="division">
-                                    <div class="line l"></div>
-                                      <span>or</span>
-                                    <div class="line r"></div>
-                                </div>
                                 <div class="error"></div>
                                 <div class="form loginBox">
                                     <form>
@@ -197,14 +193,24 @@ function loginSend(){
                             <div class="content registerBox" style="display:none;">
                              <div class="form">
                                 <form method="post" html="{:multipart=>true}" data-remote="true" action="/register" accept-charset="UTF-8">
+                              <div class="card wizard-card ct-wizard-orange" id="wizardProfile">
+                                     <div class="picture-container">
+                                          <div class="picture">
+                                              <img src="<%=cp%>/res/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title=""/>
+                                              <input type="file" id="wizard-picture">
+                                          </div>
+                                          <h6>Choose Picture</h6>
+                                     </div>
                                 <input id="userId" class="form-control" type="text" placeholder="id" name="userId">
                                 <input id="pwd" class="form-control" type="password" placeholder="Password" name="password">
                                 <input id="password_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
                                 <input id="userName" class="form-control" type="text" placeholder="이름" name="userName">
-                                <input id="phone" class="form-control" type="text" placeholder="010-1234-1234" name="tel">
-                                <input id="email" class="form-control" type="text" placeholder="abc@abc.com" name="email">
-                                <input id="birth" class="form-control" type="text" placeholder="1991-12-23" name="birth">
-                                 <input id="profile" class="form-control" type="file">
+                                <input id="phone" class="form-control" type="text" placeholder="휴대폰 번호 입력" name="tel">
+                                <input id="email1" class="form-control" type="text" placeholder="email 입력" name="email">
+                                <input id="birth" class="form-control" type="text" placeholder="생년 월일 입력" name="birth">
+                              
+                                  	
+                                  </div>
                                 <input class="btn btn-default btn-register" onclick="insertMember();" value="Create account">
                                 </form>
                                 </div>
@@ -227,3 +233,6 @@ function loginSend(){
 		  </div>
     </div>
     <!-- 로그인, 로그아웃 끝 -->   
+    
+ <%-- <script src="<%=cp%>/res/js/reg/jquery.validate.min.js" type="text/javascript"></script> --%>
+<script src="<%=cp%>/res/js/reg/wizard.js" type="text/javascript"></script>

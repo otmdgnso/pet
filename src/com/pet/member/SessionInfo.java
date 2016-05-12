@@ -2,6 +2,15 @@ package com.pet.member;
 
 public class SessionInfo {
 	private String userId, userName, pwd;
+	private int memberNum;
+	
+	public int getMemberNum() {
+		return memberNum;
+	}
+
+	public void setMemberNum(int memberNum) {
+		this.memberNum = memberNum;
+	}
 
 	public String getUserId() {
 		return userId;

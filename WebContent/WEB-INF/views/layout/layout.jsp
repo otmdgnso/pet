@@ -25,6 +25,7 @@
         <link href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/animate.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/settings_slide2.css" rel="stylesheet" type="text/css" />
+        
         <link href="<%=cp%>/res/css/travel-mega-menu.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/jquery.bxslider.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/layout2.css" rel="stylesheet" type="text/css" />
@@ -35,9 +36,10 @@
 		<script src="<%=cp%>/res/js/modernizr.js" type="text/javascript"></script>
 		<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
 		<script src="<%=cp%>/res/js/jquery.easing.1.3.js"></script>
-		
+	
 		<link href="<%=cp%>/res/login/login-register.css" rel="stylesheet" />
-
+ 		
+ 		
 </head>
 <body>
 <div>
@@ -124,6 +126,7 @@ $(document).ready(function () {
     });
 });
 </script>
+
 
  <script src="<%=cp%>/res/js/script.js" type="text/javascript"></script>
 </body>
