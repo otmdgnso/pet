@@ -60,25 +60,15 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping(value="/member/member", method=RequestMethod.POST)
+	@RequestMapping(value="/member/register", method=RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView memberSubmit(Member dto){
-		int result =service.insertMemeber(dto);
+	public Map<String, Object> memberSubmit(Member dto){
 		
-		ModelAndView mav=new ModelAndView();
 		
-		if(result==1){
-			StringBuffer sb=new StringBuffer();
-			mav.setViewName(".member.complete");
-			mav.addObject("message", sb.toString());
-	
-			
-		}else{
-			mav.setViewName(".member.member");
-			mav.addObject("mode", "created");
-			
-		}
-		return mav;
+		Map<String , Object> model=new HashMap<>();
+		
+		
+		return model;
 	}
 	
 	
