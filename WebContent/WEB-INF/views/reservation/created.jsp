@@ -30,9 +30,9 @@
 		
 		var mode="${mode}";
 		if(mpde=="created")
-			f.action="<%=cp%>/created";
+			f.action="<%=cp%>/reservation/created";
 		else if(mode=="update")
-			f.action="<%=cp%>/update";
+			f.action="<%=cp%>/reservation/update";
 			
 		return true;
 	}
@@ -52,9 +52,9 @@
 
 <section class="top-we-are">
 	<div class="container">
-	<div class="row">
-	<div class="col-md-12 effect-5 effects no-border-img">
-	<div class="text-center top-txt-title">
+	<div class="row" style="margin:0 auto; width:80%;" align="center">
+	<div class="col-md-12 effect-5 effects no-border-img" style="margin:0 auto; width:90%;" align="center">
+	<div class="text-center top-txt-title" align="center">
 
 	<!-- Reservation form -->
 		<section id="reservation-form" class="reservation-color-form pos-middle resv-plus-meteo">
@@ -78,8 +78,8 @@
 					<div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="맡길 날짜를 선택하세요.">
 						<i class="fa fa-info-circle fa-lg"></i>
 					</div>
-					<div class="content-checkin-data">
-						<i class="fa fa-calendar infield"></i><input name="checkin" type="text" id="checkin" value="" class="form-control checkin" placeholder="Check-in" />
+					<div class="content-checkin-data" style="margin:0 auto; width:60%" align="center">
+						<i class="fa fa-calendar infield"></i><input name="checkin" type="text" id="checkin" value="${dto.checkIn}" style="margin:0 auto; width:100%;" class="form-control checkin" placeholder="Check-in" />
 					</div>
 					</div>
 					</div>
@@ -89,15 +89,16 @@
 					<div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="데려갈 날짜를 선택하세요.">
 						<i class="fa fa-info-circle fa-lg"> </i>
 					</div>
-					<div class="content-checkin-data">
-						<i class="fa fa-calendar infield"></i> <input name="checkout" type="text" id="checkout" value="" class="form-control checkout" placeholder="Check-out" />
+					<div class="content-checkin-data" style="margin:0 auto; width:60%" align="center">
+						<i class="fa fa-calendar infield"></i> <input name="checkout" type="text" id="checkout" value="${dto.checkOut}" style="margin:0 auto; width:100%;" class="form-control checkout" placeholder="Check-out" />
 					</div>
 					</div>
 					</div>
 					</div>
-				
-					<div style="margin:0 auto; width:150px;" align="center">					               															
-						<!-- 몇박 --><input type="text" readonly="readonly" id="period" name="period" style="color:#8C8C8C; border: 0px;">3박
+					
+					<!-- checkIn, checkOut이 선택될 경우 -->
+					<div class="form-group" style="margin:0 auto; width:60%" align="center">		               															
+						<!-- 몇박 --><input type="text" readonly="readonly" id="period" name="period" value="(${dto.checkIn}-${dto.checkOut})박" style="color:#8C8C8C; border: 0px; text-align:center"/>
 					</div>
 				</div>
 
@@ -109,14 +110,14 @@
 					<div class="col-sm-4 step-who" style="padding-left: 0">
 						<h3>맡길 펫 수</h3>											
 					<div class="col-sm-4 step-check">				
-					<div class="form-group" style="margin:0 auto; width:150px;" align="center">	
-					<div class="guests-select">
+					<div class="form-group" >
+					<div class="guests-select" style="margin:0 auto; width:25%" align="center">
 						<select name="petcount" id="petcount" class="form-control">
-							<option disabled="disabled" selected="selected">1</option>
+							<option value="1" disabled="disabled" selected="selected">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
-							<option value="3">4</option>
-							<option value="3">5 이상</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
 						</select>
 					</div>
 					</div>
@@ -129,21 +130,19 @@
 					<div class="separator" style="width:100%"></div>
 						<h3>가격</h3>
 						
-					<div>
-                    	<table style="width: 500px; margin: 0px auto; border-spacing: 0px;">
+					<div class="form-group" style="margin:0 auto; width:40%" align="center">
+                    	<table style="width: 400px; margin: 0px auto; border-spacing: 0px;">
                     		<tr align="center" height="40%">
-                    			<td align="center" width="10%">100,000</td>
-                    			<td align="center" width="5%">x</td>
-                    			<td align="center" width="5%">3박</td>
-                     			<td align="center" width="80%">300,000원</td>
+                    			<td align="center" width="30%"><label>기본료</label></td>
+                     			<td align="center" width="70%"><input class="form-control" type="text" id="price1" value="300,000원" style="text-align:center"></td>
                     		</tr>
                     		<tr align="center" height="40%">
-                    			<td colspan="3">서비스 수수료</td>
-                    			<td>30,000원</td>
+                    			<td align="center" width="30%"><label>서비스 수수료</label></td>
+                     			<td align="center" width="70%"><input class="form-control" type="text" id="price2" value="30,000원" style="text-align:center"></td>
                     		</tr>
                     		<tr align="center" height="40%">
-                    			<td colspan="3">총합계</td>
-                    			<td>330,000원</td>
+                    			<td align="center" width="30%"><label>총합계</label></td>
+                     			<td align="center" width="70%"><input class="form-control" type="text" id="price3" value="330,000원" style="text-align:center"></td>
                     	</table>                                     
                      </div>
                      </div>
