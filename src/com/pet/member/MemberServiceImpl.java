@@ -3,26 +3,24 @@ package com.pet.member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.pet.common.FileManager;
 import com.pet.common.dao.CommonDAO;
 
 @Service("member.memberService")
 public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private CommonDAO dao;
-	
+	@Autowired
+	private FileManager fileManager;
 	@Override
-	public int insertMemeber(Member dto) {
+	public int insertMemeber(Member dto, String pathname) {
 		int result = 0;
-
 		try {
-			if (dto.getPhone1() != null && dto.getPhone1().length() != 0 && dto.getPhone2() != null
-					&& dto.getPhone2() .length() != 0 && dto.getPhone3()  != null && dto.getPhone3() .length() != 0)
-				dto.setPhone(dto.getPhone1()  + "-" + dto.getPhone2()  + "-" + dto.getPhone3() );
-			System.out.println(dto.getPhone());
-			// 회원정보 저장
-		
-			dao.insertData("member.insertMember", dto);
-			result = 1;
+			if(dto.getUpload()!=null && !dto.getUpload().isEmpty()){
+				String profile=fileManager.doFileUpload(dto.getUpload(), pathname);
+				dto.setProfile(profile);
+			}		
+			result = dao.insertData("member.insertMember", dto);;
 		} catch (Exception e) {
 		}
 

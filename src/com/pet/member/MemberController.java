@@ -1,5 +1,6 @@
 package com.pet.member;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,11 +64,22 @@ public class MemberController {
 	
 	@RequestMapping(value="/member/register", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> memberSubmit(Member dto){
+	public Map<String, Object> memberSubmit(
+			Member dto,
+			HttpSession session
+			) throws Exception{
 		
+		String root=session.getServletContext().getRealPath("/");
+		String pathname=root+File.separator+"uploads"+File.separator+"profile";
+		
+		int result=service.insertMemeber(dto, pathname);
+		String state="true";
+		if(result==0){
+			state="false";
+		}
 		
 		Map<String , Object> model=new HashMap<>();
-		
+		model.put("state", state);
 		
 		return model;
 	}

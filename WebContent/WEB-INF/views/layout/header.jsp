@@ -33,6 +33,29 @@ function loginSend(){
 }
 
 
+function registerMember(){
+	var url="<%=cp%>/member/register";
+	var f=$("form")[2];
+	var formData=new FormData(f);
+	
+	$.ajax({
+		url:url
+    	,data:formData
+    	,type:"post"
+    	,dataType:"json"
+    	,processData:false
+    	,contentType:false
+    	,success:function(data){
+    		if(data.state=="false") {
+    			shakeModal();
+    		} else {    			
+    			location.href="<%=cp%>";
+    		}
+    		
+    	}
+	});
+}
+
 
 </script>
 
@@ -192,26 +215,26 @@ function loginSend(){
                         <div class="box">
                             <div class="content registerBox" style="display:none;">
                              <div class="form">
-                                <form method="post" html="{:multipart=>true}" data-remote="true" action="/register" accept-charset="UTF-8">
+                                <form id="joinForm" enctype="multipart/form-data">
                               <div class="card wizard-card ct-wizard-orange" id="wizardProfile">
                                      <div class="picture-container">
                                           <div class="picture">
                                               <img src="<%=cp%>/res/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title=""/>
-                                              <input type="file" id="wizard-picture">
+                                              <input type="file" id="wizard-picture" name="upload">
                                           </div>
                                           <h6>Choose Picture</h6>
                                      </div>
                                 <input id="userId" class="form-control" type="text" placeholder="id" name="userId">
-                                <input id="pwd" class="form-control" type="password" placeholder="Password" name="password">
+                                <input id="pwd" class="form-control" type="password" placeholder="Password" name="pwd">
                                 <input id="password_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
                                 <input id="userName" class="form-control" type="text" placeholder="이름" name="userName">
-                                <input id="phone" class="form-control" type="text" placeholder="휴대폰 번호 입력" name="tel">
+                                <input id="phone" class="form-control" type="text" placeholder="휴대폰 번호 입력" name="phone">
                                 <input id="email1" class="form-control" type="text" placeholder="email 입력" name="email">
                                 <input id="birth" class="form-control" type="text" placeholder="생년 월일 입력" name="birth">
                               
                                   	
                                   </div>
-                                <input class="btn btn-default btn-register" onclick="insertMember();" value="Create account">
+                                <input class="btn btn-default btn-register" onclick="registerMember();" value="Create account">
                                 </form>
                                 </div>
                             </div>
