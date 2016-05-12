@@ -30,7 +30,6 @@ function loginSend(){
     	}
      });
 }
-
 function registerMember(){
     var url="<%=cp%>/member/register";       
     // var f=$("#joinForm");
@@ -74,7 +73,7 @@ function check() {
 	str = f.pwd.value;
 	if(!/^(?=.*[a-z])(?=.*[!@#$%^*+=-]|.*[0-9]).{5,10}$/i.test(str)) { 
 		f.pwd.focus();
-		shakeModalMember('비밀번호는 특수기호와 영어 숫자를 조합하세요!');
+		shakeModalMember('패스워드는 5~10자이며 하나 이상의 숫자나 특수문자가 포함되어야합니다!');
 		return false;
 	}
 	
@@ -91,33 +90,32 @@ function check() {
         return false;
     }
 	
-    str = f.phone.value;
-    if(!str) {
-        f.phone.focus();
-        shakeModalMember('전화 번호 형식을 확인하세요!');
-        return false;
-    }
-    
     str = f.email.value;
-    if(!isValidEmail) {
+    if(!isValidEmail(str)) {
         f.email.focus();
         shakeModalMember('이메일 형식이 잘못되었습니다!');
         return false;
     }
-    
     str = f.birth.value;
     if(!isValidDateFormat(str)) {
         f.birth.focus();
         shakeModalMember('생일형식이 잘못 되었습니다. "1991-12-23" 이렇게 입력!');
         return false;
     }
+    str = f.phone.value;
+    if(!/^\d{3}-\d{3,4}-\d{4}$/.test(str)) {
+        f.phone.focus();
+        shakeModalMember('전화 번호 형식을 확인하세요!');
+        return false;
+    }
+    
 
     return true;
 }
 
 function shakeModal(){
     $('#loginModal .modal-dialog').addClass('shake');
-             $('.error').addClass('alert alert-danger').html("아이디 또는 패스워드가 일치하지 않습니다.ㅋㅋ");
+             $('.error').addClass('alert alert-danger').html("아이디 또는 패스워드가 일치하지 않습니다.");
              $('input[type="password"]').val('');
              setTimeout( function(){ 
                 $('#loginModal .modal-dialog').removeClass('shake'); 
@@ -299,13 +297,13 @@ function shakeModalMember(msg){
 		                                          <h6>Choose Picture</h6>
 		                                     </div>
 		                              <!--   <input id="wizard-picture" class="form-control" type="text" placeholder="id" name="wizard-picture"> -->
-		                                <input id="userId" class="form-control" type="text" placeholder="id" name="userId">
-		                                <input id="pwd" class="form-control" type="password" placeholder="Password" name="pwd">
+		                                <input id="userId" class="form-control" type="text" placeholder="아이디는 5~10자, 첫글자는 영문자" name="userId">
+		                                <input id="pwd" class="form-control" type="password" placeholder="하나 이상의 숫자나 특수문자가 포함" name="pwd">
 		                                <input id="pwd_confirm" class="form-control" type="password" placeholder="Repeat Password" name="pwd_confirm">
 		                                <input id="userName" class="form-control" type="text" placeholder="이름" name="userName">
-		                                <input id="phone" class="form-control" type="text" placeholder="010-0000-0000" name="phone">
 		                                <input id="email1" class="form-control" type="text" placeholder="email 입력" name="email">
 		                                <input id="birth" class="form-control" type="text" placeholder="생년 월일 입력" name="birth">
+		                                <input id="phone" class="form-control" type="text" placeholder="010-0000-0000" name="phone">
                                   </div>
                                 <input class="btn btn-default btn-register" onclick="registerMember();" value="Create account">
                                 </form>
