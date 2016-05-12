@@ -60,51 +60,55 @@ function check() {
 	
 	str=f.upload.value;
 	if(!str){
-		shakeModal1();
+		shakeModalMember('사진을 등록하세요!');
 		return false;
 	}
 	
 	str=f.userId.value;
 	if(!/^[a-z][a-z0-9_]{4,9}$/i.test(str)) { 
 		f.userId.focus();
-		shakeModal2();
+		shakeModalMember('아이디는 영문과 숫자를 조합하세요');
 		return false;
 	}
 	
-	str = f.userPwd.value;
+	str = f.pwd.value;
 	if(!/^(?=.*[a-z])(?=.*[!@#$%^*+=-]|.*[0-9]).{5,10}$/i.test(str)) { 
-		f.userPwd.focus();
+		f.pwd.focus();
+		shakeModalMember('비밀번호는 특수기호와 영어 숫자를 조합하세요!');
 		return false;
 	}
 	
 	if(f.pwd_confirm.value != str) {
-		f.userPwdCheck.focus();
-		
+		f.pwd_confirm.focus();
+		shakeModalMember('비밀번호를 동일하게 입력하세요!');
 		return false;
 	} 
     str = f.userName.value;
 	str = $.trim(str);
     if(!str) {
         f.userName.focus();
+        shakeModalMember('이름이 잘못된 형식입니다!');
         return false;
     }
-    f.userName.value = str;
 	
-    str = f.birth.value;
-    if(!isValidDateFormat(str)) {
-        f.birth.focus();
-        return false;
-    }
-
-    str = f.email.value;
-    if(!isValidEmail) {
-        f.email.focus();
+    str = f.phone.value;
+    if(!str) {
+        f.phone.focus();
+        shakeModalMember('전화 번호 형식을 확인하세요!');
         return false;
     }
     
-    str = f.phone.value;
-    if(!str) {
-        f.tel1.focus();
+    str = f.email.value;
+    if(!isValidEmail) {
+        f.email.focus();
+        shakeModalMember('이메일 형식이 잘못되었습니다!');
+        return false;
+    }
+    
+    str = f.birth.value;
+    if(!isValidDateFormat(str)) {
+        f.birth.focus();
+        shakeModalMember('생일형식이 잘못 되었습니다. "1991-12-23" 이렇게 입력!');
         return false;
     }
 
@@ -120,22 +124,13 @@ function shakeModal(){
     }, 1000 ); 
 }
 
-function shakeModal1(){
+function shakeModalMember(msg){
     $('#loginModal .modal-dialog').addClass('shake');
-             $('.error').addClass('alert alert-danger').html("사진 등록해주세요");
+             $('.error').addClass('alert alert-danger').html(msg);
              setTimeout( function(){ 
                 $('#loginModal .modal-dialog').removeClass('shake'); 
     }, 1000 ); 
 }
-
-function shakeModal2(){
-    $('#loginModal .modal-dialog').addClass('shake');
-             $('.error').addClass('alert alert-danger').html("아이디 영문 아무튼");
-             setTimeout( function(){ 
-                $('#loginModal .modal-dialog').removeClass('shake'); 
-    }, 1000 ); 
-}
-
 
 
 </script>
@@ -308,9 +303,7 @@ function shakeModal2(){
 		                                <input id="pwd" class="form-control" type="password" placeholder="Password" name="pwd">
 		                                <input id="pwd_confirm" class="form-control" type="password" placeholder="Repeat Password" name="pwd_confirm">
 		                                <input id="userName" class="form-control" type="text" placeholder="이름" name="userName">
-		                                <!-- phone -->
 		                                <input id="phone" class="form-control" type="text" placeholder="010-0000-0000" name="phone">
-		                                <!-- phone -->
 		                                <input id="email1" class="form-control" type="text" placeholder="email 입력" name="email">
 		                                <input id="birth" class="form-control" type="text" placeholder="생년 월일 입력" name="birth">
                                   </div>
