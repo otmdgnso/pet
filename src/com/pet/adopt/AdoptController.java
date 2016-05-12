@@ -32,19 +32,19 @@ public class AdoptController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/apopt/created", method=RequestMethod.POST)
+	@RequestMapping(value="/adopt/created", method=RequestMethod.POST)
 	public String createdSubmit(
 			HttpSession session,
 			Adopt dto
 			) throws Exception {
-		SessionInfo info=(SessionInfo)session.getAttribute("userId");
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		
 		String root=session.getServletContext().getRealPath("/");
-		String pathname=root+File.separator+"uploads"+File.separator+"apopt";
-		
-		
-		
-		
+		String pathname=root+File.separator+"uploads"+File.separator+"adopt";
+		dto.setNum(info.getMemberNum());
+		System.out.println(dto.getNum());
+		service.insertPreSale(dto, pathname);
+
 		return "redirect:/adopt/list";
 	}
 	

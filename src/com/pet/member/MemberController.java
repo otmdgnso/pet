@@ -38,6 +38,7 @@ public class MemberController {
 			SessionInfo info = new SessionInfo();
 			info.setUserId(dto.getUserId());
 			info.setUserName(dto.getUserName());
+			info.setMemberNum(dto.getNum());
 			session.setAttribute("member", info);
 		}
 		
