@@ -19,7 +19,7 @@ public class AdoptServiceImpl implements AdoptService {
 		int result = 0;
 		try {
 			int seq = dao.getIntValue("adopt.seq");
-			dto.setPhotoNum(seq);
+			dto.setPreSaleNum(seq);
 			result = dao.insertData("adopt.insertPreSale", dto);
 
 			// 파일 업로드
@@ -46,7 +46,7 @@ public class AdoptServiceImpl implements AdoptService {
 	public int insertFile(Adopt dto) {
 		int result = 0;
 		try {
-			result = dao.insertData("adopt.insertFile", dto);
+			result = dao.insertData("adopt.insertPreSalePhoto", dto);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}

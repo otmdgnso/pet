@@ -3,15 +3,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="adopt">
 
+	<select id="seq" resultType="Integer">
+		SELECT preSale_seq.NEXTVAL FROM dual
+	</select>
+	
 	<insert id="insertPreSale" parameterType="com.pet.adopt.Adopt">
 		INSERT INTO preSale (preSaleNum, subject, content, species, type, gender,
 		lineage, month, price, deposit, vaccin, num)
-		VALUES(preSale_seq.NEXTVAL,#{subject},#{content},#{species},#{type},
+		VALUES(#{preSaleNum},#{subject},#{content},#{species},#{type},
 		#{gender},#{lineage},#{month},#{price},#{deposit},#{vaccin},#{num})
 	</insert>
 	
 	<insert id="insertPreSalePhoto">
-		INSERT INTO insertPreSalePhoto(photoNum, saveFilename, preSaleNum)
+		INSERT INTO PreSalePhoto(photoNum, saveFilename, preSaleNum)
 		VALUES(preSalePhoto_seq.NEXTVAL,#{saveFilename},#{preSaleNum})
 	</insert>
 
