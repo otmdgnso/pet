@@ -6,6 +6,18 @@
 	String cp=request.getContextPath();
 %>
 <script type="text/javascript">
+$(function(){
+	$("body").on("change", "input[name='upload']", function(){
+		if(! $(this).val())
+			return;
+		
+		var s;
+		s+="<input type='file' name='upload' class='boxTF'  size='61' style='height: 20px; color: blue;'>";
+		
+		$("#tbFile").append(s);
+	});
+});
+
 function check() {
 	var f=document.boardForm;
 	
@@ -53,6 +65,9 @@ function check() {
 	return true;
 }
 </script>
+
+<body>
+
 <section id="gallery">
    <div class="container">
 <form name="boardForm" method="post" onsubmit="return check();" enctype="multipart/form-data">
@@ -116,8 +131,10 @@ function check() {
 	<input type="text" placeholder="숫자 입력" name="deposit">
 	<br>
 	
+	<div id="tbFile">
 	<font color="blue">첨부</font>
-	<input type="file" name="upload">
+	<input type="file" name="upload" class="boxTF" size="61" style="height: 20px; color: blue;">
+	</div>
 	
 	<br>
 	<button type="submit" class="btn btn-primary btn-block" style="width: 100px">
@@ -126,3 +143,5 @@ function check() {
 </form>
 </div>
 </section>
+
+</body>
