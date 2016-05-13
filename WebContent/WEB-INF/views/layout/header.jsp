@@ -34,10 +34,10 @@ function registerMember(){
     var url="<%=cp%>/member/register";       
     // var f=$("#joinForm");
     var f=$("form")[2];
-    var formData=new FormData(f);
-    checked();
+    checked();   
     
-    alert(check);
+    var formData=new FormData(f);
+    
      $.ajax({
     	url:url
     	,type:"post"
@@ -47,6 +47,7 @@ function registerMember(){
     	,dataType:"json"
     	,success:function(data){
     		if(data.state=="false") {
+    			
     		} else {     		  			
     			location.href="<%=cp%>";
     		}
@@ -83,13 +84,12 @@ function checked() {
 		shakeModalMember('비밀번호를 동일하게 입력하세요!');
 		return false;
 	} 
-    str = f.userName.value;
-	str = $.trim(str);
-    if(!str) {
-        f.userName.focus();
-        shakeModalMember('이름이 잘못된 형식입니다!');
-        return false;
-    }
+	   str = f.userName.value;
+	    if(!/^[가-힣]{2,4}$/.test(str)) {
+	        f.userName.focus();
+	        shakeModalMember('이름이 잘못된 형식입니다!');
+	        return false;
+	    }
 	
     str = f.email.value;
     if(!isValidEmail(str)) {
@@ -109,7 +109,7 @@ function checked() {
         shakeModalMember('전화 번호 형식을 확인하세요!');
         return false;
     }    
-    check="true";
+    f.checking.value="true";
     return true;
 }
 
@@ -304,8 +304,8 @@ function shakeModalMember(msg){
 		                                <input id="email1" class="form-control" type="text" placeholder="email 입력" name="email">
 		                                <input id="birth" class="form-control" type="text" placeholder="생년 월일 입력" name="birth">
 		                                <input id="phone" class="form-control" type="text" placeholder="010-0000-0000" name="phone">
-		                                <input id="check" type="hidden" name="check">
-                                  </div>
+		                              	<input id="checking" type="hidden" name="checking">
+		                                     </div>
                                 <input class="btn btn-default btn-register" onclick="registerMember();" value="Create account">
                                 </form>
                                 </div>
