@@ -1,5 +1,7 @@
 package com.pet.adopt;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class Adopt {
@@ -7,6 +9,14 @@ public class Adopt {
 	private String subject, content, created,species, type, gender;
 	private String lineage, vaccin, saveFilename;
 	private int photoNum;
+	private List<MultipartFile> upload;
+	
+	public List<MultipartFile> getUpload() {
+		return upload;
+	}
+	public void setUpload(List<MultipartFile> upload) {
+		this.upload = upload;
+	}
 	public int getPhotoNum() {
 		return photoNum;
 	}
@@ -19,14 +29,7 @@ public class Adopt {
 	public void setSaveFilename(String saveFilename) {
 		this.saveFilename = saveFilename;
 	}
-	private MultipartFile upload;
 	
-	public MultipartFile getUpload() {
-		return upload;
-	}
-	public void setUpload(MultipartFile upload) {
-		this.upload = upload;
-	}
 	public int getPreSaleNum() {
 		return preSaleNum;
 	}

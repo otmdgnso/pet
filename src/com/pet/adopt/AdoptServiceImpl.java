@@ -2,6 +2,7 @@ package com.pet.adopt;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.pet.common.FileManager;
 import com.pet.common.dao.CommonDAO;
@@ -15,14 +16,37 @@ public class AdoptServiceImpl implements AdoptService {
 
 	@Override
 	public int insertPreSale(Adopt dto, String pathname) {
-		int result=0;
+		int result = 0;
 		try {
-			if(dto.getUpload()!=null&&!dto.getUpload().isEmpty()) {
-				// 업로드한 파일이 존재하는 경우
-				String saveFilename=fileManager.doFileUpload(dto.getUpload(), pathname);
-				dto.setSaveFilename(saveFilename);
+			int seq = dao.getIntValue("adopt.seq");
+			dto.setPhotoNum(seq);
+			result = dao.insertData("adopt.insertPreSale", dto);
+
+			// 파일 업로드
+			if (!dto.getUpload().isEmpty()) {
+				for (MultipartFile mf : dto.getUpload()) {
+					if (mf.isEmpty())
+						continue;
+
+					// 업로드한 파일이 존재하는 경우
+					String saveFilename = fileManager.doFileUpload(mf, pathname);
+					if (saveFilename != null) {
+						dto.setSaveFilename(saveFilename);
+						insertFile(dto);
+					}
+				}
 			}
-			result=dao.insertData("adopt.insertPreSale", dto);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	@Override
+	public int insertFile(Adopt dto) {
+		int result = 0;
+		try {
+			result = dao.insertData("adopt.insertFile", dto);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
