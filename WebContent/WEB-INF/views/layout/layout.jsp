@@ -90,7 +90,7 @@
 				clearTimeout(myTimer);
 				myTimer = setTimeout(function() {
 					$("#loader-wrapper").slideUp()
-				}, 2000);
+				}, 100);
 			} catch (err) {
 			}
 		});
