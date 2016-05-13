@@ -36,6 +36,8 @@ function registerMember(){
     var f=$("form")[2];
     var formData=new FormData(f);
     checked();
+    
+    alert(check);
      $.ajax({
     	url:url
     	,type:"post"
