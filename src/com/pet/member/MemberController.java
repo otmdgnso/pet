@@ -66,17 +66,24 @@ public class MemberController {
 	@ResponseBody
 	public Map<String, Object> memberSubmit(
 			Member dto,
-			HttpSession session
+			HttpSession session,
+			@RequestParam String check
 			) throws Exception{
-		
+				
 		String root=session.getServletContext().getRealPath("/");
 		String pathname=root+File.separator+"uploads"+File.separator+"profile";
 		
-		int result=service.insertMemeber(dto, pathname);
+		int result=0;
+		if(check=="true")
+		result=service.insertMemeber(dto, pathname);
+		
+		System.out.println(check);
+		System.out.println(result);
+		
 		String state="true";
 		if(result==0){
 			state="false";
-		}
+		}	
 		
 		Map<String , Object> model=new HashMap<>();
 		model.put("state", state);

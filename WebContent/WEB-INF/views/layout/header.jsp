@@ -35,7 +35,7 @@ function registerMember(){
     // var f=$("#joinForm");
     var f=$("form")[2];
     var formData=new FormData(f);
-    check();
+    checked();
      $.ajax({
     	url:url
     	,type:"post"
@@ -45,15 +45,14 @@ function registerMember(){
     	,dataType:"json"
     	,success:function(data){
     		if(data.state=="false") {
-    			
-    		} else {    			
+    		} else {     		  			
     			location.href="<%=cp%>";
     		}
     		
     	}
      });
 }
-function check() {
+function checked() {
 	var f=$("form")[2];
 	var str;
 	
@@ -107,9 +106,8 @@ function check() {
         f.phone.focus();
         shakeModalMember('전화 번호 형식을 확인하세요!');
         return false;
-    }
-    
-
+    }    
+    check="true";
     return true;
 }
 
@@ -304,6 +302,7 @@ function shakeModalMember(msg){
 		                                <input id="email1" class="form-control" type="text" placeholder="email 입력" name="email">
 		                                <input id="birth" class="form-control" type="text" placeholder="생년 월일 입력" name="birth">
 		                                <input id="phone" class="form-control" type="text" placeholder="010-0000-0000" name="phone">
+		                                <input id="check" type="hidden" name="check">
                                   </div>
                                 <input class="btn btn-default btn-register" onclick="registerMember();" value="Create account">
                                 </form>
