@@ -11,7 +11,13 @@
     <!-- 회원정보 가져오기 -->
 	<select id="readMember" resultType="com.pet.member.Member" parameterType="String">
 		SELECT num, userId, userName, pwd, phone, email, profile, created, 
-          TO_CHAR(birth, 'YYY-MM-DD') birth FROM member
+          TO_CHAR(birth, 'YYYY-MM-DD') birth FROM member
       WHERE userId=#{userId}
 	</select>
+	
+	<!-- 회원정보 수정 -->
+	<update id="updateMember" parameterType="com.pet.member.Member">
+		UPDATE member SET pwd=#{pwd}, email=#{email}, phone=#{phone}, profile=#{profile}
+			WHERE num=#{num}
+	</update>
 </mapper>

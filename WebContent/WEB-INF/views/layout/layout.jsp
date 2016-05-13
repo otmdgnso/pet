@@ -64,7 +64,7 @@
         "use strict";
         try {
             var myTimer = 0; clearTimeout(myTimer);
-            myTimer = setTimeout(function () { $("#loader-wrapper").slideUp() }, 2000);
+            myTimer = setTimeout(function () { $("#loader-wrapper").slideUp() }, 100);
         } catch (err) {
         }
     });
@@ -126,7 +126,6 @@ $(document).ready(function () {
     });
 });
 </script>
-
 
 </body>
 </html>
