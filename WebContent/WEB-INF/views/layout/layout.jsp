@@ -38,6 +38,8 @@
 		<script src="<%=cp%>/res/js/jquery.easing.1.3.js"></script>
 	
 		<link href="<%=cp%>/res/login/login-register.css" rel="stylesheet" />
+		<script type="text/javascript" src="<%=cp%>/res/js/bootstrap.min.js"></script> 
+<script src="<%=cp%>/res/js/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
  		
  		
 </head>
@@ -114,8 +116,7 @@ var tpj = jQuery;
 });
 </script>
 
-<script type="text/javascript" src="<%=cp%>/res/js/bootstrap.min.js"></script> 
-<script src="<%=cp%>/res/js/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+
 <!--bxSlider-->
 <script src="<%=cp%>/res/js/jquery.bxslider.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -126,6 +127,10 @@ $(document).ready(function () {
     });
 });
 </script>
+<<<<<<< HEAD
+=======
+<script src="<%=cp%>/res/js/script.js" type="text/javascript"></script>
+>>>>>>> ca7aaf118d925d2e93b3785841a12746ac29de3c
 
 </body>
 </html>
