@@ -14,6 +14,9 @@ public class FileManager {
 	public String doFileUpload(MultipartFile partFile, String pathname) throws Exception {
 		String saveFilename = null;
 
+		if(partFile == null || partFile.isEmpty())
+			return null;
+		
 		// 클라이언트가 업로드한 파일의 이름
 		String originalFilename = partFile.getOriginalFilename();
 		if (originalFilename == null || originalFilename.length() == 0)
