@@ -527,7 +527,7 @@
         </div>
 </section>      
 
-<section id="parallax_slide" class="service2-prx">
+<!-- <section id="parallax_slide" class="service2-prx">
    <div class="effect-over">
              <div class="bx-about2">
                 <ul class="bxslider all-info-trip long-pannel">
@@ -564,9 +564,9 @@
                              </div>
   	    		            </li>
                       </ul>
-             </div><!--Close col-md-12-->
+             </div>Close col-md-12
     </div>
-</section>
+</section> -->
 
 <section id="parallax-footer" class="price-color-log">
    <div class="effect-over">

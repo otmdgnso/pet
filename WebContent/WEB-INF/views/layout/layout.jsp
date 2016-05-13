@@ -128,6 +128,5 @@ $(document).ready(function () {
 </script>
 
 
- <script src="<%=cp%>/res/js/script.js" type="text/javascript"></script>
 </body>
 </html>
