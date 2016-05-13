@@ -9,6 +9,11 @@
 		VALUES(preSale_seq.NEXTVAL,#{subject},#{content},#{species},#{type},
 		#{gender},#{lineage},#{month},#{price},#{deposit},#{vaccin},#{num})
 	</insert>
+	
+	<insert id="insertPreSalePhoto">
+		INSERT INTO insertPreSalePhoto(photoNum, saveFilename, preSaleNum)
+		VALUES(preSalePhoto_seq.NEXTVAL,#{saveFilename},#{preSaleNum})
+	</insert>
 
 
 
