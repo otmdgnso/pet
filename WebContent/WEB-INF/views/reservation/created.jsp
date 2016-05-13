@@ -61,7 +61,7 @@
 			<div class="container-form-chose">
 			<div class="col-md-12">
 			<div class="reservation-tabs command-tabs">
-			<div id="message"></div>
+			
 			<div class="row"><ul class="nav nav-tabs search-opt"></ul></div>
 			</div>
 			
