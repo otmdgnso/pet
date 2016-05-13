@@ -30,7 +30,8 @@
                                     <div class="tab-content">
                                     <form id="hotels-tab" class="tab-pane form-inline reservation-hotel active" method="post" name="reservationform">
                                       <div class="row">
-                                        <div class="col-sm-2 step-where">
+                                      
+                                        <div class="col-sm-4 step-where">
                                           <div class="form-group">
                                             <h3><img alt="" src="<%=cp%>/res/img/book.png"> Where?</h3>
                                             <label for="adress">주소 입력</label>
@@ -46,7 +47,7 @@
                                                 <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="맡기고 싶은 날짜 검색"> <i class="fa fa-info-circle fa-lg"> </i> </div>
                                                 <div class="content-checkin-data">
                                                     <i class="fa fa-calendar infield"></i>
-                                                    <input name="checkIn" type="text" id="checkin" value="" class="form-control checkin" placeholder="Check-in"/>
+                                                    <input name="checkin" type="text" id="checkin" value="" class="form-control checkin" placeholder="Check-in"/>
                                                 </div>
                                               </div>
                                             </div>
