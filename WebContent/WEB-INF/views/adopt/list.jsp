@@ -64,144 +64,33 @@
 	                </dl>
 
                 <div class="portfolio albumContainer">
+                		<c:forEach var="dto" items="${list}">
 	                        <div class="cat3 col-md-4 gallery-view view-fifth">
                                    <div class="img">
-                                        <img src="http://placehold.it/1920x1080" alt=""/>
+                                        <img src="<%=cp%>/uploads/adopt/${dto.saveFilename}" alt=""/>
                                         <div class="overlay">
                                             <a href="#" class="expand">+</a>
                                             <a class="close-overlay hidden">x</a>
                                         </div>
                                     </div>
                                     <div class="gallery-img-title">
-                                      <h3>ZANZIBAR - NUNGWI</h3>
-                                      <div class="gallery-stars"><img src="<%=cp%>/res/images/4star.png" alt="" /></div>
+                                      <h3>${dto.subject} - ${dto.userName}</h3>
+                                     
                                     </div>
                             </div>
-	
-	                        <div class="cat2 col-md-4 gallery-view view-fifth">
-                                    <div class="img">
-                                        <img src="http://placehold.it/1920x1080" alt=""/>
-                                        <div class="overlay">
-                                            <a href="#" class="expand">+</a>
-                                            <a class="close-overlay hidden">x</a>
-                                        </div>
-                                    </div>
-                                    <div class="gallery-img-title">
-                                      <h3>ZANZIBAR - NUNGWI</h3>
-                                      <div class="gallery-stars"><img src="<%=cp%>/res/images/5star.png" alt="" /></div>
-                                    </div>
-                            </div>
-
-	                        <div class="cat2 col-md-4 gallery-view view-fifth">
-                                    <div class="img">
-                                        <img src="http://placehold.it/1920x1080" alt=""/>
-                                        <div class="overlay">
-                                            <a href="#" class="expand">+</a>
-                                            <a class="close-overlay hidden">x</a>
-                                        </div>
-                                    </div>
-                                    <div class="gallery-img-title">
-                                      <h3>ZANZIBAR - NUNGWI</h3>
-                                      <div class="gallery-stars"><img src="<%=cp%>/res/images/5star.png" alt="" /></div>
-                                    </div>
-                            </div>
+						</c:forEach>
 	                        
-                            <div class="cat1 col-md-4 gallery-view view-fifth">
-                                    <div class="img">
-                                        <img src="http://placehold.it/1920x1080" alt=""/>
-                                        <div class="overlay">
-                                            <a href="#" class="expand">+</a>
-                                            <a class="close-overlay hidden">x</a>
-                                        </div>
-                                    </div>
-                                    <div class="gallery-img-title">
-                                      <h3>ZANZIBAR - NUNGWI</h3>
-                                      <div class="gallery-stars"><img src="<%=cp%>/res/images/3star.png" alt="" /></div>
-                                    </div>
-                            </div>
-
-                            <div class="cat4 col-md-4 gallery-view view-fifth">
-                                    <div class="img">
-                                        <img src="http://placehold.it/1920x1080" alt=""/>
-                                        <div class="overlay">
-                                            <a href="#" class="expand">+</a>
-                                            <a class="close-overlay hidden">x</a>
-                                        </div>
-                                    </div>
-                                    <div class="gallery-img-title">
-                                      <h3>ZANZIBAR - NUNGWI</h3>
-                                      <div class="gallery-stars"><img src="<%=cp%>/res/images/4star.png" alt="" /></div>
-                                    </div>
-                            </div>
-
-                            <div class="cat4 col-md-4 gallery-view view-fifth">
-                                    <div class="img">
-                                        <img src="http://placehold.it/1920x1080" alt=""/>
-                                        <div class="overlay">
-                                            <a href="#" class="expand">+</a>
-                                            <a class="close-overlay hidden">x</a>
-                                        </div>
-                                    </div>
-                                    <div class="gallery-img-title">
-                                      <h3>ZANZIBAR - NUNGWI</h3>
-                                      <div class="gallery-stars"><img src="<%=cp%>/res/images/3star.png" alt="" /></div>
-                                    </div>
-                            </div>
-
-
-                            <div class="cat1 col-md-4 gallery-view view-fifth">
-                                    <div class="img">
-                                        <img src="http://placehold.it/1920x1080" alt=""/>
-                                        <div class="overlay">
-                                            <a href="#" class="expand">+</a>
-                                            <a class="close-overlay hidden">x</a>
-                                        </div>
-                                    </div>
-                                    <div class="gallery-img-title">
-                                      <h3>ZANZIBAR - NUNGWI</h3>
-                                      <div class="gallery-stars"><img src="<%=cp%>/res/images/3star.png" alt="" /></div>
-                                    </div>
-                            </div>
-
-                            <div class="cat3 col-md-4 gallery-view view-fifth">
-                                    <div class="img">
-                                        <img src="http://placehold.it/1920x1080" alt=""/>
-                                        <div class="overlay">
-                                            <a href="#" class="expand">+</a>
-                                            <a class="close-overlay hidden">x</a>
-                                        </div>
-                                    </div>
-                                    <div class="gallery-img-title">
-                                      <h3>ZANZIBAR - NUNGWI</h3>
-                                      <div class="gallery-stars"><img src="<%=cp%>/res/images/4star.png" alt="" /></div>
-                                    </div>
-                            </div>
-
-                            <div class="cat2 col-md-4 gallery-view view-fifth">
-                                    <div class="img">
-                                        <img src="http://placehold.it/1920x1080" alt=""/>
-                                        <div class="overlay">
-                                            <a href="#" class="expand">+</a>
-                                            <a class="close-overlay hidden">x</a>
-                                        </div>
-                                    </div>
-                                    <div class="gallery-img-title">
-                                      <h3>ZANZIBAR - NUNGWI</h3>
-                                      <div class="gallery-stars"><img src="<%=cp%>/res/images/3star.png" alt="" /></div>
-                                    </div>
-                            </div>
                            
                       </div>
-                    <ul class="pagination clearfix">
-                        <li class="prev disabled"><a href="#">Previous</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li class="disabled"><span>...</span></li>
-                        <li><a href="#">5</a></li>
-                        <li class="next"><a href="#">Next</a></li>
-                    </ul>
+                      
+                     
+                    
           </div><!--Close col 12 -->
+          <ul class="pagination clearfix">
+                        <c:if test="${dataCount!=0}">
+            				${paging}
+         				</c:if>
+                    </ul>
 
        </div>
           

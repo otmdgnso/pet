@@ -3,6 +3,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="adopt">
 
+	<sql id="where-list">
+		<if test = "searchKey == 'name'">
+			name = #{searchValue}
+		</if>
+		<if test="searchKey == 'subject'">
+			subject LIKE '%' || #{searchValue} || '%'
+		</if>
+		<if test="searchKey == 'content'">
+			INSTR(content, #{searchValue}) &gt; 0
+		</if>
+		<if test="searchKey == 'created'">
+			TO_CHAR(b.created, 'YYYY-MM-DD') = #{searchValue}
+	          OR TO_CHAR(b.created, 'YYYYMMDD') = #{searchValue}
+		</if>
+	</sql>
+	
 	<select id="seq" resultType="Integer">
 		SELECT preSale_seq.NEXTVAL FROM dual
 	</select>
@@ -19,9 +35,43 @@
 		VALUES(preSalePhoto_seq.NEXTVAL,#{saveFilename},#{preSaleNum})
 	</insert>
 
+	<select id="dataCount" resultType="Integer" parameterType="map">
+		SELECT NVL(COUNT(*),0) FROM preSale
+		<where>
+          <if test="searchValue != null and searchValue != '' ">
+			   <include refid="where-list"/>
+		   </if>
+	   </where>
+	</select>
 
+	<select id="listPreSale" resultType="com.pet.adopt.Adopt" parameterType="map">
+	SELECT * FROM (
+  		SELECT ROWNUM rnum, tb.* FROM (
+    		SELECT preSaleNum, subject, userName
+    		FROM preSale p JOIN
+    		member m ON p.num=m.num
+    		 <where>
+                         <if test="searchValue != null and searchValue != ''">
+			                  <include refid="where-list"/>
+		                 </if>
+	                </where>
+    		ORDER BY preSaleNum DESC
+   	<![CDATA[
+  		) tb WHERE ROWNUM <= #{end}
+	) WHERE rnum >= #{start}
+	]]>
+	</select>
 
-
+	<select id="listPhoto" resultType="com.pet.adopt.Adopt" parameterType="Integer">
+	SELECT tb1. * FROM(
+  		SELECT saveFilename
+  		FROM preSalePhoto
+  		WHERE  preSaleNum=#{preSaleNum}
+  		ORDER BY photoNum
+  	<![CDATA[
+  	)tb1 WHERE ROWNUM =1
+  	]]>
+	</select>
 
 
 

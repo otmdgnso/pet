@@ -56,7 +56,7 @@ function check() {
 	}
 	var mode="${mode}";
 	
-	if(mode=="created"||mode=="update"&& f.upload.value!="") {
+	if(f.upload.value!="") {
 		if(! /(\.gif|\.jpg|\.png|\.jpeg)$/i.test(f.upload.value)) {
 			alert('이미지 파일만 가능합니다. !!!');
 			return false;
@@ -138,7 +138,7 @@ function check() {
 	<br>
 	
 	<div id="tbFile">
-	<font color="blue">첨부</font><br>
+	<font color="blue">첨부 (첫번째 사진이 대표사진)</font><br>
 	<input type="button" name="plus" value="이미지 추가하기">
 	<input type="file" name="upload" class="boxTF" size="61" style="height: 20px; color: blue;">
 	</div>
