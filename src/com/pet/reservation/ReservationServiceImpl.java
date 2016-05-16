@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.pet.common.dao.CommonDAO;
 
 @Service("reservation.reservationService")
-public class ReservationImpl implements ReservationService {
+public class ReservationServiceImpl implements ReservationService {
 
 	@Autowired
 	private CommonDAO dao;
@@ -27,14 +27,25 @@ public class ReservationImpl implements ReservationService {
 
 	@Override
 	public List<Reservation> listReservation(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Reservation> list=null;
+		try {
+			list=dao.getListData("reservation.listReservation", map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return list;
 	}
 
 	@Override
 	public int dataCount(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result=0;
+		
+		try {
+			result=dao.getIntValue("reservation.dataCount", map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
 	}
 
 	@Override
