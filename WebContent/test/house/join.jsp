@@ -9,16 +9,9 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>Bootstrap Wizard by Creative Tim</title>
-
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
 
     <link href="<%=cp%>/res/assets/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="<%=cp%>/res/assets/css/gsdk-base.css" rel="stylesheet" />
-    
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
 </head>
 
@@ -37,33 +30,44 @@
                 
                     	<div class="wizard-header">
                         	<h3>
-                        	   <b>LIST</b> YOUR PLACE <br>
-                        	   <small>This information will let us know more about your place.</small>
+                        	   <b>집 정보 입력</b><br>
+                        	   <small>회원님의 집에 대한 정보를 입력해 주세요</small>
                         	</h3>
                     	</div>
                     	<ul>
-                            <li><a href="#location" data-toggle="tab">Location</a></li>
-                            <li><a href="#type" data-toggle="tab">Type</a></li>
-                            <li><a href="#facilities" data-toggle="tab">Facilities</a></li>
-                            <li><a href="#description" data-toggle="tab">Description</a></li>
+                            <li><a href="#location" data-toggle="tab" style="font-size:11pt">위치</a></li>
+                            <li><a href="#type" data-toggle="tab" style="font-size:11pt">동물 종류</a></li>
+                            <li><a href="#facilities" data-toggle="tab" style="font-size:11pt">시설</a></li>
+                            <li><a href="#description" data-toggle="tab" style="font-size:11pt">상세정보</a></li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane" id="location">
                               <div class="row">
                                   <div class="col-sm-12">
-                                    <h4 class="info-text"> Let's start with the basic details</h4>
+                                    <h4 class="info-text"><b>위치 정보 입력</b></h4>
                                   </div>
                                   <div class="col-sm-5 col-sm-offset-1">
                                       <div class="form-group">
-                                        <label>City</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Where is your place located?">
+                                        <label><b>시·도</b></label><br>
+                                             <select name="country" class="form-control">
+                                                <option disabled="" selected="">- 시·도 -</option>
+                                                <option value="Afghanistan"> Afghanistan </option>
+                                                <option value="Albania"> Albania </option>
+                                                <option value="Algeria"> Algeria </option>
+                                                <option value="American Samoa"> American Samoa </option>
+                                                <option value="Andorra"> Andorra </option>
+                                                <option value="Angola"> Angola </option>
+                                                <option value="Anguilla"> Anguilla </option>
+                                                <option value="Antarctica"> Antarctica </option>
+                                                <option value="...">...</option>
+                                            </select>
                                       </div>
                                   </div>
                                   <div class="col-sm-5">
                                        <div class="form-group">
-                                            <label>Country</label><br>
+                                            <label><b>시·군·구</b></label><br>
                                              <select name="country" class="form-control">
-                                                <option disabled="" selected="">- country -</option>
+                                                <option disabled="" selected="">- 시·군·구 -</option>
                                                 <option value="Afghanistan"> Afghanistan </option>
                                                 <option value="Albania"> Albania </option>
                                                 <option value="Algeria"> Algeria </option>
@@ -76,26 +80,32 @@
                                             </select>
                                           </div>
                                   </div>
+                                  <div class="col-sm-10 col-sm-offset-1">
+                                      <div class="form-group">
+                                        <label><b>상세주소</b></label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="상세 주소를 입력해주세요">
+                                      </div>
+                                  </div>
                                   <div class="col-sm-5 col-sm-offset-1">
                                       <div class="form-group">
-                                          <label>Accommodates</label>
+                                          <label><b>수용가능 동물 수</b></label>
                                           <select class="form-control">
-                                            <option disabled="" selected="">- persons -</option>
-                                            <option>1 Person</option>
-                                            <option>2 Persons </option>
-                                            <option>3 Persons</option>
-                                            <option>4 Persons</option>
-                                            <option>5 Persons</option>
-                                            <option>6+ Persons</option>
+                                            <option disabled="" selected="">- 마리 -</option>
+                                            <option>1 마리</option>
+                                            <option>2 마리 </option>
+                                            <option>3 마리</option>
+                                            <option>4 마리</option>
+                                            <option>5 마리</option>
+                                            <option>6+ 마리</option>
                                           </select>
                                       </div>
                                   </div>
                                   <div class="col-sm-5">
                                       <div class="form-group">
-                                          <label>Rent price</label>
+                                          <label><b>비용</b></label>
                                           <div class="input-group">
-                                              <input type="text" class="form-control" placeholder="Rent price per day">
-                                              <span class="input-group-addon">$</span>
+                                              <input type="text" class="form-control" placeholder="1일 비용">
+                                              <span class="input-group-addon">￦</span>
                                           </div>
                                       </div>
                                   </div>
@@ -175,10 +185,10 @@
                             </div>
                             <div class="tab-pane" id="description">
                                 <div class="row">
-                                    <h4 class="info-text"> Drop us a small description. </h4>
+                                    <h4 class="info-text"><b> 집 세부 정보 </b></h4>
                                     <div class="col-sm-6 col-sm-offset-1">
                                          <div class="form-group">
-                                            <label>Place description</label>
+                                            <label>집에 대한 소개를 해주세요.</label>
                                             <textarea class="form-control" placeholder="" rows="9">
                                                 
                                             </textarea>
@@ -186,8 +196,8 @@
                                     </div>
                                     <div class="col-sm-4">
                                          <div class="form-group">
-                                            <label>Example</label>
-                                            <p class="description">"The place is really nice. We use it every sunday when we go fishing. It is so awesome."</p>
+                                            <label>예시</label>
+                                            <p class="description">"편리한 시설, 아늑한 공간"</p>
                                           </div>
                                     </div>
                                 </div>

@@ -9,34 +9,14 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>Bootstrap Wizard by Creative Tim</title>
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
-
-    <link rel="icon" type="image/png" href="<%=cp%>/res/img/favicon.ico">
-    <link href="<%=cp%>/res/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="<%=cp%>/res/css/gsdk-base.css" rel="stylesheet" />
-    
+    <link href="<%=cp%>/res/assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="<%=cp%>/res/assets/css/gsdk-base.css" rel="stylesheet" />
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
 </head>
 
 <body>
 <div class="image-container set-full-height" style="background-image: url('<%=cp%>/res/img/bg_housejoin.jpg')">
-    <!--   Creative Tim Branding   -->
-    <a href="http://creative-tim.com">
-         <div class="logo-container">
-            <div class="logo">
-                <img src="<%=cp%>/res/img/new_logo.png">
-            </div>
-            <div class="brand">
-                Creative Tim
-            </div>
-        </div>
-    </a>
-    
     <!--   Big container   -->
     <div class="container">
         <div class="row">
@@ -45,7 +25,7 @@
             <!--      Wizard container        -->   
             <div class="wizard-container"> 
                 <div class="card wizard-card ct-wizard-azzure" id="wizard">
-                <form action="<%=cp%>/house/join" method="post">
+                <form action="" method="">
                 <!--        You can switch "ct-wizard-azzure"  with one of the next bright colors: "ct-wizard-blue", "ct-wizard-green", "ct-wizard-orange", "ct-wizard-red"             -->
                 
                     	<div class="wizard-header">
@@ -132,32 +112,29 @@
                               </div>
                             </div>
                             <div class="tab-pane" id="type">
-                                <h4 class="info-text"><b>집에 어떤 동물을 키우시나요?</b></h4>
+                                <h4 class="info-text">What type of location do you have? </h4>
                                 <div class="row">
                                     <div class="col-sm-10 col-sm-offset-1">
                                         <div class="col-sm-4 col-sm-offset-2">
-                                            <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you have a dog.">
-                                                <input type="radio" name="type" value="Dog">
+                                            <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you have a house.">
+                                                <input type="radio" name="type" value="House">
                                                 <div class="icon">
                                                     <img src="<%=cp%>/res/img/dog_icon.png">
                                                 </div>
-                                                <h6>DOG</h6>
+                                                <h6>House</h6>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
-                                            <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you have a cat.">
-                                                <input type="radio" name="type" value="Cat">
+                                            <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you have an appartment">
+                                                <input type="radio" name="type" value="Appartment">
                                                 <div class="icon">
                                                     <img src="<%=cp%>/res/img/cat_icon.png">
                                                 </div>
-                                                <h6>CAT</h6>
+                                                <h6>Appartment</h6>
                                             </div>
                                         </div>
                                         
                                     </div>
-                                    <!-- <div class="col-sm-5 col-sm-offset-3" style="margin-top: 3px;">
-                                    	<input type="text" class="form-control" placeholder="동물 종은 무엇인가요? 예)치와와">
-                                    </div> -->
                                 </div>
                             </div>
                             <div class="tab-pane" id="facilities">
@@ -254,16 +231,16 @@
 
 </body>
 
-    <script src="<%=cp%>/res/js/jquery-1.10.2.js" type="text/javascript"></script>
-	<script src="<%=cp%>/res/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="<%=cp%>/res/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+	<script src="<%=cp%>/res/assets/js/bootstrap.min.js" type="text/javascript"></script>
 		
 	<!--   plugins 	 -->
-	<script src="<%=cp%>/res/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+	<script src="<%=cp%>/res/assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
 	
     <!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
-	<script src="<%=cp%>/res/js/jquery.validate.min.js"></script>
+	<script src="<%=cp%>/res/assets/js/jquery.validate.min.js"></script>
 	
 	<!--  methods for manipulating the wizard and the validation -->
-	<script src="<%=cp%>/res/js/wizard.js"></script>
+	<script src="<%=cp%>/res/assets/js/wizard.js"></script>
 
 </html>
