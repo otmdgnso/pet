@@ -24,9 +24,9 @@
 
 						<div id="tab-1">
 							<div class="city-info-content">
-								<div class="info-box-guide">
+								<div class="info-box-guide" style="width: 100px; height: 100px;">
 											<img src="<%=cp%>/uploads/profile/${dto.profile}"
-												class="avatar img-circle img-thumbnail" id="wizardPicturePreview" title="" />
+												>
 								</div>
 								<img src="http://placehold.it/1600x800" alt="" />
 							</div>

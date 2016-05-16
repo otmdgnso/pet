@@ -147,7 +147,8 @@ function shakeModalMember(msg){
               </c:if>
               <c:if test="${not empty sessionScope.member}">
               		 <div class='top-login'><i class="fa fa-plus"></i><span>${sessionScope.member.userName}</span>님
-              		 <i class="fa fa-lock"></i> <a href="javascript:void(0)" onclick="location.href='<%=cp%>/member/logout'">Logout</a></div>
+              		 <i class="fa fa-lock"></i> <a href="javascript:void(0)" onclick="location.href='<%=cp%>/member/logout'">Logout</a>
+              		<i class="glyphicon glyphicon-user" style="color: white;"></i><a href="<%=cp%>/member/blog">마이페이지</a></div>
               </c:if>
               
               </div>
