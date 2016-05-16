@@ -5,10 +5,17 @@
 <%
 	String cp=request.getContextPath();
 %>
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
 
-	<link href="<%=cp%>/res/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<%=cp%>/res/assets/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="<%=cp%>/res/assets/css/gsdk-base.css" rel="stylesheet" />
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+</head>
+
+<body>
 <div class="image-container set-full-height" style="background-image: url('<%=cp%>/res/img/bg_housejoin.jpg')">
     <!--   Big container   -->
     <div class="container">
@@ -222,6 +229,7 @@
     
 </div>
 
+</body>
 
     <script src="<%=cp%>/res/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
 	<script src="<%=cp%>/res/assets/js/bootstrap.min.js" type="text/javascript"></script>
@@ -235,3 +243,4 @@
 	<!--  methods for manipulating the wizard and the validation -->
 	<script src="<%=cp%>/res/assets/js/wizard.js"></script>
 
+</html>

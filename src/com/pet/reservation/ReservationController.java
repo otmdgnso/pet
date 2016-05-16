@@ -1,12 +1,14 @@
 package com.pet.reservation;
 
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pet.common.MyUtil;
+import com.pet.member.SessionInfo;
 
 @Controller("reservation.reservationController")
 public class ReservationController {
@@ -28,11 +31,17 @@ public class ReservationController {
 	
 	@RequestMapping(value="/reservation/list")
 	public ModelAndView list(
-			HttpServletRequest req
+			HttpSession session
+			,Reservation dto
+			,HttpServletRequest req
 			,@RequestParam(value="page", defaultValue="1") int current_page
 			,@RequestParam(defaultValue="reservationNum") String searchKey
 			,@RequestParam(defaultValue="") String searchValue
 			) throws Exception {
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		// dto.setUserName(info.getUserName());
+		dto.setUserName("오화혜");
 		
 		String cp=req.getContextPath();
 		
@@ -59,8 +68,9 @@ public class ReservationController {
 		int end=current_page*numPerPage;
 		map.put("start", start);
 		map.put("end", end);
-		
+					
 		List<Reservation> list=service.listReservation(map);
+		
 		
 		//리스트 번호
 		int listNum, n=0;
@@ -72,20 +82,58 @@ public class ReservationController {
 			n++;
 		}
 		
+		String params="";
+		String listUrl="";
+		String articleUrl="";
+		if(searchValue.length()!=0) {
+			params="searchKey="+searchKey+"&searchValue="+URLEncoder.encode(searchValue, "utf-8");
+		}
+		
+		if(params.length()==0) {
+			listUrl=cp+"/reservation/list";
+			articleUrl=cp+"/reservation/article?page="+current_page;
+		} else {
+			listUrl=cp+"reservation/list?"+params;
+			articleUrl=cp+"/reservation/article?page="+current_page+"&"+params;
+		}
+		
 		ModelAndView mav=new ModelAndView(".reservation.list");
+		mav.addObject("list",list);
+		mav.addObject("articleUrl",articleUrl);
+		mav.addObject("page",current_page);
+		mav.addObject("dataCount",dataCount);
+		mav.addObject("paging",util.paging(current_page, total_page, listUrl));
 		return mav;
 	}
 	
 	@RequestMapping(value="/reservation/created", method=RequestMethod.GET)
-	public ModelAndView createdForm() throws Exception {
+	public ModelAndView createdForm(
+			HttpSession session
+			) throws Exception {
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		if(info==null){
+			return new ModelAndView("redirect:/");
+		}
 		
 		ModelAndView mav=new ModelAndView(".reservation.created");
 		mav.addObject("mode", "created");
+		
 		return mav;
 	}
 	
 	@RequestMapping(value="/reservation/created", method=RequestMethod.POST)
-	public String createdSubmit(Reservation dto) throws Exception {
+	public String createdSubmit(
+			HttpSession session
+			,Reservation dto
+			) throws Exception {
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		if(info==null){
+			return "redirect:/";
+		}
+		
+		dto.setNum(info.getMemberNum());
 		service.insertReservation(dto, "created");
 		
 		return "redirect:/reservation/list";

@@ -6,6 +6,16 @@
 	String cp=request.getContextPath();
 %>
 <script type="text/javascript">
+$(function(){
+	$("body").on("click", "input[name='plus']", function(){
+		
+		var s;
+		s+="<input type='file' name='upload' class='boxTF'  size='61' style='height: 20px; color: blue;'>";
+		
+		$("#tbFile").append(s);
+	});
+});
+
 function check() {
 	var f=document.boardForm;
 	
@@ -45,17 +55,28 @@ function check() {
 		return false;
 	}
 	var mode="${mode}";
+	
+	if(mode=="created"||mode=="update"&& f.upload.value!="") {
+		if(! /(\.gif|\.jpg|\.png|\.jpeg)$/i.test(f.upload.value)) {
+			alert('이미지 파일만 가능합니다. !!!');
+			return false;
+		}
+	}
+	
 	if(mode=="created")
 		f.action="<%=cp%>/adopt/created";
 	else if(mode=="update")
 		f.action="<%=cp%>/adopt/update"
 	
-	return true;
+	f.submit();
 }
 </script>
+
+<body>
+
 <section id="gallery">
    <div class="container">
-<form name="boardForm" method="post" onsubmit="return check();" enctype="multipart/form-data">
+<form name="boardForm" method="post" enctype="multipart/form-data">
 <input type="text" class="form-control" placeholder="제목" name="subject" size="200px"/>
 <br>
 <textarea rows="20" cols="160" placeholder="내용" name="content"></textarea>
@@ -116,13 +137,18 @@ function check() {
 	<input type="text" placeholder="숫자 입력" name="deposit">
 	<br>
 	
-	<font color="blue">첨부</font>
-	<input type="file" name="upload">
+	<div id="tbFile">
+	<font color="blue">첨부</font><br>
+	<input type="button" name="plus" value="이미지 추가하기">
+	<input type="file" name="upload" class="boxTF" size="61" style="height: 20px; color: blue;">
+	</div>
 	
 	<br>
-	<button type="submit" class="btn btn-primary btn-block" style="width: 100px">
+	<button type="button" class="btn btn-primary btn-block" style="width: 100px" onclick="check();">
 			등록하기
 	</button>
 </form>
 </div>
 </section>
+
+</body>

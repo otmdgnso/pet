@@ -4,6 +4,20 @@ public class Reservation {
 	private int reservationNum, pet_su, num, hostNum;
 	private String reservationDate, checkIn, checkOut, accept, acceptDate;
 	
+	private String address, userName;
+	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public int getReservationNum() {
 		return reservationNum;
 	}

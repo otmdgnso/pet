@@ -41,8 +41,8 @@ public class AdoptController {
 		
 		String root=session.getServletContext().getRealPath("/");
 		String pathname=root+File.separator+"uploads"+File.separator+"adopt";
+		
 		dto.setNum(info.getMemberNum());
-		System.out.println(dto.getNum());
 		service.insertPreSale(dto, pathname);
 
 		return "redirect:/adopt/list";
