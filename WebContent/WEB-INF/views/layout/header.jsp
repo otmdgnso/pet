@@ -6,7 +6,7 @@
 	String cp=request.getContextPath();
 %>
 <link href="<%=cp%>/res/css/gsdk-base.css" rel="stylesheet" type="text/css" />
- <script type="text/javascript" src="<%=cp%>/res/js/jquery.form.js"></script>
+<!--  <script type="text/javascript" src="<%=cp%>/res/js/jquery.form.js"></script> -->
 <script type="text/javascript" src="<%=cp%>/res/js/util.js"></script>
 
 
