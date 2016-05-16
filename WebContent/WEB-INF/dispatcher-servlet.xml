@@ -24,8 +24,7 @@
 	<context:component-scan base-package="com.pet" />
 	
 	<mvc:resources mapping="/res/**" location="/res/" /> <!-- 파일들을 mapping 허용 -->
-	<mvc:resources mapping="/uploads/image/**" location="/uploads/image/" /><!-- /**하위폴더 모두 -->
-	<mvc:resources mapping="/uploads/photo/**" location="/uploads/photo/" />
+	<mvc:resources mapping="/uploads/**" location="/uploads/" /><!-- /**하위폴더 모두 -->
 	
 	<!-- 어노테이션을 이용한  컨트롤러 등록 -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"

@@ -61,7 +61,7 @@
 <script type="text/javascript" src="<%=cp%>/res/js/bootstrap.min.js"></script>
 <script src="<%=cp%>/res/js/bootstrap-hover-dropdown.min.js"
 	type="text/javascript"></script>
-
+<script src="<%=cp%>/res/js/reg/wizard.js" type="text/javascript"></script>
 
 </head>
 <body>

@@ -20,4 +20,6 @@
 		UPDATE member SET pwd=#{pwd}, email=#{email}, phone=#{phone}, profile=#{profile}
 			WHERE num=#{num}
 	</update>
+	
+	
 </mapper>

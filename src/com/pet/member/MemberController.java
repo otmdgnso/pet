@@ -99,5 +99,17 @@ public class MemberController {
 		return model;		
 	}
 	
+	@RequestMapping(value="/member/blog")
+	public ModelAndView blog(
+			HttpSession session
+			) throws Exception{
+		SessionInfo info= (SessionInfo)session.getAttribute("member");
+		Member dto=service.readMember(info.getUserId());
+		ModelAndView mav= new ModelAndView(".member.blog");
+		mav.addObject("dto",dto);
+		return mav;		
+	}
+	
+	
 	
 }

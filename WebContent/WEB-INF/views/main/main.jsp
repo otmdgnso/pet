@@ -5,7 +5,36 @@
 <%
 	String cp=request.getContextPath();
 %>
-      <section class="top-content">
+<script type="text/javascript">
+	var nowTemp = new Date();
+	var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp
+			.getDate(), 0, 0, 0, 0);
+
+	var checkin = $('#dpd1').datepicker({
+		onRender : function(date) {
+			return date.valueOf() < now.valueOf() ? 'disabled' : '';
+		}
+	}).on('changeDate', function(ev) {
+		if (ev.date.valueOf() > checkout.date.valueOf()) {
+			var newDate = new Date(ev.date)
+			newDate.setDate(newDate.getDate() + 1);
+			checkout.setValue(newDate);
+		}
+		checkin.hide();
+		$('#dpd2')[0].focus();
+	}).data('datepicker');
+	var checkout = $('#dpd2').datepicker({
+		onRender : function(date) {
+			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+		}
+	}).on('changeDate', function(ev) {
+		checkout.hide();
+	}).data('datepicker');
+	
+	$('.datepicker').datepicker();
+</script>
+
+<section class="top-content">
         <div class="container-slider removeslide">
           <div class="container-reservation inside-slider">
            <div class="container">
@@ -99,6 +128,9 @@
                                         </div>
                                       </div>
                                     </form>
+                                  
+                                    $(document).ready(function() {
+​
                                     <!--********************* 경매 검색 ********************-->
                                     <form id="auction-tab" class="tab-pane form-inline reservation-flight" method="post" name="auctionSearch">
                                       <div class="row">
@@ -631,3 +663,4 @@
         </div>
     </div>
 </section>
+
