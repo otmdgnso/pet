@@ -9,6 +9,13 @@ public class Adopt {
 	private String subject, content, created,species, type, gender;
 	private String lineage, vaccin, saveFilename;
 	private int photoNum;
+	private String userName;
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	private List<MultipartFile> upload;
 	
 	public List<MultipartFile> getUpload() {

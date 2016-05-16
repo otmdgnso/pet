@@ -1,5 +1,8 @@
 package com.pet.adopt;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -52,5 +55,47 @@ public class AdoptServiceImpl implements AdoptService {
 		}
 		return result;
 	}
+
+	
+
+	@Override
+	public List<Adopt> listPreSale(Map<String, Object> map) {
+		List<Adopt> list=null;
+		try {
+			list=dao.getListData("adopt.listPreSale",map);
+			for(Adopt vo:list) {
+				Adopt t=listPhoto(vo.getPreSaleNum());
+				if(t!=null)
+					vo.setSaveFilename(t.getSaveFilename());
+			}
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return list;
+	}
+
+	@Override
+	public Adopt listPhoto(int preSaleNum) {
+		Adopt dto=null;
+		try {
+			dto=dao.getReadData("adopt.listPhoto",preSaleNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return dto;
+	}
+
+	@Override
+	public int dataCount(Map<String, Object> map) {
+		int result=0;
+		try {
+			result=dao.getIntValue("adopt.dataCount",map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	
 
 }
