@@ -38,22 +38,46 @@
 		<div class="form-group" style="margin:0 auto; width:80%; height=50%;" align="center">
 			<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
 	           <tr align="center" height="50px">
+	           	  <td align="center" width="5%"><label>번호</label></td>
 	              <td align="center" width="15%"><label>상태</label></td>
 	              <td align="center" width="20%"><label>위치</label></td>
 	              <td align="center" width="15%"><label>호스트</label></td>
 	              <td align="center" width="20%"><label>날짜</label></td>
+	              
 	              <td align="center" width="20%"></td>
 	           </tr>
 	           
 	           <c:forEach var="dto" items="${list}">
 	           <tr align="center" height="50px">
+	           	  <td align="center" width="5%" style="color: #A6A6A6;">${dto.listNum}</td>
 	              <td align="center" width="15%" style="color: #6ABC64;">${dto.accept}</td>
 	              <td align="center" width="20%" style="color: #A6A6A6;">${dto.address}</td>
 	              <td align="center" width="15%" style="color: #A6A6A6;">${dto.userName}</td>
 	              <td align="center" width="20%" style="color: #A6A6A6;">${dto.checkIn}~${dto.checkOut}</td>
-	              <td align="center" width="20%" style="color: #A6A6A6;">삭제</td>
+	              <td>
+	              	<button style="border: 0; color: white;" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+					 ∇
+					</button>
+
+				  </td>
+	              <c:if test="${dto.accept != 'wait'}">
+	              	<td align="center" width="20%" style="color: #A6A6A6;">삭제</td>
+	              </c:if>
+	              <c:if test="${dto.accept == 'wait'}">
+	              	<td align="center" width="20%" style="color: #A6A6A6;">변경|취소</td>
+	              </c:if>
 	           </tr>
 	           </c:forEach>  
+	           
+	           <tr align="center" height="50px">
+	           	 <td>  
+					<div class="collapse" id="collapseExample">
+					  <div class="well">
+					    맡긴 펫수 총금액
+					  </div>
+					</div>
+				  </td>
+	           </tr>
 	        </table>          
 		</div>
 	</div>

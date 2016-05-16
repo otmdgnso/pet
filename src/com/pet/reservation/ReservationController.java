@@ -78,7 +78,7 @@ public class ReservationController {
 		while(it.hasNext()) {
 			Reservation data=it.next();
 			listNum=dataCount-(start+n-1);
-			data.setReservationNum(listNum);
+			data.setListNum(listNum);
 			n++;
 		}
 		
@@ -109,9 +109,13 @@ public class ReservationController {
 	@RequestMapping(value="/reservation/created", method=RequestMethod.GET)
 	public ModelAndView createdForm(
 			HttpSession session
+			,Reservation dto
 			) throws Exception {
-		
+
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		// dto.setUserName(info.getUserName());
+		dto.setUserName("¿ÀÈ­Çý");
+		
 		if(info==null){
 			return new ModelAndView("redirect:/");
 		}
@@ -129,14 +133,16 @@ public class ReservationController {
 			) throws Exception {
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		// dto.setUserName(info.getUserName());
+		dto.setUserName("¿ÀÈ­Çý");
+		
 		if(info==null){
 			return "redirect:/";
 		}
 		
 		dto.setNum(info.getMemberNum());
 		service.insertReservation(dto, "created");
-		
-		return "redirect:/reservation/list";
-	}
 
+		return "/reservation/list";
+	}
 }

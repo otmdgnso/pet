@@ -1,11 +1,25 @@
 package com.pet.reservation;
 
 public class Reservation {
-	private int reservationNum, pet_su, num, hostNum;
+	private int listNum, reservationNum, pet_su, num, hostNum;
 	private String reservationDate, checkIn, checkOut, accept, acceptDate;
 	
 	private String address, userName;
+	private int pay;
 	
+	
+	public int getPay() {
+		return pay;
+	}
+	public void setPay(int pay) {
+		this.pay = pay;
+	}	
+	public int getListNum() {
+		return listNum;
+	}
+	public void setListNum(int listNum) {
+		this.listNum = listNum;
+	}
 	public String getAddress() {
 		return address;
 	}

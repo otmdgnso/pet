@@ -101,9 +101,7 @@
 						<!-- 몇박 --><input type="text" readonly="readonly" id="period" name="period" value="(${dto.checkIn}-${dto.checkOut})박" style="color:#8C8C8C; border: 0px; text-align:center"/>
 					</div>
 				</div>
-
-
-				
+		
 				<!-- 펫수 -->
 				<div class="col-sm-4 step-check">				
 					<div class="separator" style="width:100%"></div>
@@ -112,7 +110,7 @@
 					<div class="col-sm-4 step-check">				
 					<div class="form-group" >
 					<div class="guests-select" style="margin:0 auto; width:25%" align="center">
-						<select name="petcount" id="petcount" class="form-control">
+						<select name="pet_su" id="pet_su" class="form-control">
 							<option value="1" disabled="disabled" selected="selected">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -124,7 +122,7 @@
 					</div>
 					</div>
 				</div>	
-
+                    		
 				<!-- 가격 -->					
 				<div class="col-sm-4 fly-who">
 					<div class="separator" style="width:100%"></div>
@@ -134,22 +132,27 @@
                     	<table style="width: 400px; margin: 0px auto; border-spacing: 0px;">
                     		<tr align="center" height="40%">
                     			<td align="center" width="30%"><label>기본료</label></td>
-                     			<td align="center" width="70%"><input class="form-control" type="text" id="price1" value="300,000원" style="text-align:center"></td>
+                     			<td align="center" width="70%"><input class="form-control" type="text" name="pay" id="pay" value="${dto.pay}" style="text-align:center"></td>
                     		</tr>
                     		<tr align="center" height="40%">
                     			<td align="center" width="30%"><label>서비스 수수료</label></td>
-                     			<td align="center" width="70%"><input class="form-control" type="text" id="price2" value="30,000원" style="text-align:center"></td>
+                     			<td align="center" width="70%"><input class="form-control" type="text" name="tax" id="tax" value="${dto.pay}" style="text-align:center"></td>
                     		</tr>
                     		<tr align="center" height="40%">
                     			<td align="center" width="30%"><label>총합계</label></td>
-                     			<td align="center" width="70%"><input class="form-control" type="text" id="price3" value="330,000원" style="text-align:center"></td>
+                     			<td align="center" width="70%"><input class="form-control" type="text" name="totalPrice" id="totalPrice" value="${dto.pay}" style="text-align:center"></td>
+                    		</tr>                                       		           
                     	</table>                                     
                      </div>
                      </div>
                      
+				<input type="hidden" name="num" value="${dto.num}">
+                <input type="hidden" name="hostNum" value="${dto.hostNum}">
+
 				<div class="col-sm-2 colbtn">
 					<button type="submit" class="btn btn-primary btn-block">예약하기</button>
 				</div>
+				
 				</form>
 				</div>
 				<!--Close tab-content form-->
