@@ -2,12 +2,18 @@ package com.pet.reservation;
 
 public class Reservation {
 	private int listNum, reservationNum, pet_su, num, hostNum;
-	private String reservationDate, checkIn, checkOut, accept, acceptDate;
+	private String reservationDate, checkIn, checkOut, check_day, accept, acceptDate;
 	
 	private String address, userName;
 	private int pay;
 	
 	
+	public String getCheck_day() {
+		return check_day;
+	}
+	public void setCheck_day(String check_day) {
+		this.check_day = check_day;
+	}
 	public int getPay() {
 		return pay;
 	}
