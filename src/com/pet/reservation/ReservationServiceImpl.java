@@ -53,7 +53,7 @@ public class ReservationServiceImpl implements ReservationService {
 	public Reservation readReservation(int reservationNum) {
 		Reservation dto=null;
 		try {
-			dto=dao.getReadData("Reservation.readReservation", reservationNum);
+			dto=dao.getReadData("reservation.readReservation", reservationNum);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
@@ -61,27 +61,27 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public Reservation preReadReservation(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Reservation nextReadReservation(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public int updateReservation(Reservation dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result=0;
+		
+		try {
+			result=dao.updateData("reservation.updateReservation", dto);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
 	}
 
 	@Override
 	public int deleteReservation(int reservationNum) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result=0;
+		
+		try {
+			result=dao.deleteData("reservation.deleteReservation", reservationNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
 	}
 
 

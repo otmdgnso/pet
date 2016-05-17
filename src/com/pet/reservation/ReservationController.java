@@ -1,7 +1,6 @@
 package com.pet.reservation;
 
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -40,10 +39,8 @@ public class ReservationController {
 			) throws Exception {
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		// dto.setUserName(info.getUserName());
-		dto.setUserName("¿ÀÈ­Çý");
-		
-		String cp=req.getContextPath();
+		dto.setNum(info.getMemberNum());
+		dto.setUserName(info.getUserName());
 		
 		int numPerPage=10;
 		int total_page=0;
@@ -70,8 +67,7 @@ public class ReservationController {
 		map.put("end", end);
 					
 		List<Reservation> list=service.listReservation(map);
-		
-		
+			
 		//¸®½ºÆ® ¹øÈ£
 		int listNum, n=0;
 		Iterator<Reservation> it=list.iterator();
@@ -82,27 +78,11 @@ public class ReservationController {
 			n++;
 		}
 		
-		String params="";
-		String listUrl="";
-		String articleUrl="";
-		if(searchValue.length()!=0) {
-			params="searchKey="+searchKey+"&searchValue="+URLEncoder.encode(searchValue, "utf-8");
-		}
-		
-		if(params.length()==0) {
-			listUrl=cp+"/reservation/list";
-			articleUrl=cp+"/reservation/article?page="+current_page;
-		} else {
-			listUrl=cp+"reservation/list?"+params;
-			articleUrl=cp+"/reservation/article?page="+current_page+"&"+params;
-		}
-		
 		ModelAndView mav=new ModelAndView(".reservation.list");
 		mav.addObject("list",list);
-		mav.addObject("articleUrl",articleUrl);
 		mav.addObject("page",current_page);
 		mav.addObject("dataCount",dataCount);
-		mav.addObject("paging",util.paging(current_page, total_page, listUrl));
+		mav.addObject("paging",util.paging(current_page, total_page));
 		return mav;
 	}
 	
@@ -113,12 +93,7 @@ public class ReservationController {
 			) throws Exception {
 
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		// dto.setUserName(info.getUserName());
-		dto.setUserName("¿ÀÈ­Çý");
-		
-		if(info==null){
-			return new ModelAndView("redirect:/");
-		}
+		dto.setUserName(info.getUserName());
 		
 		ModelAndView mav=new ModelAndView(".reservation.created");
 		mav.addObject("mode", "created");
@@ -133,16 +108,58 @@ public class ReservationController {
 			) throws Exception {
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		// dto.setUserName(info.getUserName());
-		dto.setUserName("¿ÀÈ­Çý");
-		
-		if(info==null){
-			return "redirect:/";
-		}
+		dto.setUserName(info.getUserName());
 		
 		dto.setNum(info.getMemberNum());
 		service.insertReservation(dto, "created");
 
 		return "/reservation/list";
+	}
+	
+	@RequestMapping(value="/reservation/update", method=RequestMethod.GET)
+	public ModelAndView updateReservation(
+			HttpSession session
+			,Reservation dto
+			,@RequestParam(value="reservationNum") int reservationNum
+			,@RequestParam(value="page") String page
+			) throws Exception {
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		dto.setUserName(info.getUserName());
+		
+		dto=(Reservation)service.readReservation(reservationNum);
+		int tax=(int)((double)dto.getPay()*0.1);
+		int total=(int)(tax+(double)dto.getPay());
+		
+		
+		ModelAndView mav=new ModelAndView(".reservation.created");
+		mav.addObject("mode", "update");
+		mav.addObject("page", page);
+		mav.addObject("dto", dto);
+		mav.addObject("tax", tax);
+		mav.addObject("total", total);
+		return mav;
+	}
+	
+	@RequestMapping(value="/reservation/update", method=RequestMethod.POST)
+	public ModelAndView updateSubmit(
+			Reservation dto
+			,@RequestParam(value="page") String page
+			) throws Exception {
+		
+		service.updateReservation(dto);
+		
+		return new ModelAndView("redirect:/reservation/list?page="+page);
+	}
+	
+	@RequestMapping(value="/reservation/delete")
+	public String delete(
+			@RequestParam(value="reservationNum") int reservationNum
+			,@RequestParam(value="page", defaultValue="1") String page
+			) throws Exception {
+
+		service.deleteReservation(reservationNum);
+		
+		return "redirect:/reservation/list?page="+page;
 	}
 }
