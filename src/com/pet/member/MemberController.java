@@ -89,7 +89,7 @@ public class MemberController {
 		return model;
 	}
 	
-	@RequestMapping(value="/member/update",method=RequestMethod.POST)
+	/*@RequestMapping(value="/member/update",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> updateSubmit(
 			HttpSession session
@@ -97,11 +97,33 @@ public class MemberController {
 		
 		Map<String, Object> model=new HashMap<>();
 		return model;		
+	}*/
+	
+	@RequestMapping(value="/member/update",method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> update(
+			Member dto,
+			HttpSession session
+			) throws Exception{
+		
+		String root=session.getServletContext().getRealPath("/");
+		String pathname=root+File.separator+"uploads"+File.separator+"profile";
+				
+		int result=0;
+		result=service.updateMember(dto, pathname);
+		String state="true";
+		if(result==0){
+			state="false";
+		}
+		
+		Map<String, Object> model=new HashMap<>();
+		model.put("state", state);
+		return model;
 	}
 	
 	@RequestMapping(value="/member/blog")
 	public ModelAndView blog(
-			HttpSession session
+			HttpSession session		
 			) throws Exception{
 		SessionInfo info= (SessionInfo)session.getAttribute("member");
 		Member dto=service.readMember(info.getUserId());

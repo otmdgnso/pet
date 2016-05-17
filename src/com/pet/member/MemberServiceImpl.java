@@ -39,9 +39,14 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int updateMember(Member dto) {
+	public int updateMember(Member dto, String pathname) {
 		int result=0;
 		try {			
+			if(dto.getUpload()!=null && !dto.getUpload().isEmpty()){
+				/*String profile=fileManager.doFileUpload(dto.getUpload(), pathname);
+				dto.setProfile(profile);*/				
+			}	
+			
 			result=dao.updateData("member.updateMember", dto);
 		} catch (Exception e) {
 			System.out.println(e.toString());

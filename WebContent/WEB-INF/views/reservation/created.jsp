@@ -43,7 +43,7 @@
 	<div class="row">
 	<div class="col-md-12">
 	<div class="page-title pull-left">
-		<h2 class="title-about">예약하기</h2>
+		<h2 class="title-about">예약</h2>
 	</div>
 	</div>
 	</div>
@@ -98,7 +98,7 @@
 					
 					<!-- checkIn, checkOut이 선택될 경우 -->
 					<div class="form-group" style="margin:0 auto; width:60%" align="center">		               															
-						<!-- 몇박 --><input type="text" readonly="readonly" id="period" name="period" value="(${dto.checkIn}-${dto.checkOut})박" style="color:#8C8C8C; border: 0px; text-align:center"/>
+						<!-- 몇박 --><input type="text" readonly="readonly" id="period" name="period" value="${dto.check_day}박" style="color:#8C8C8C; border: 0px; text-align:center"/>
 					</div>
 				</div>
 		
@@ -111,7 +111,8 @@
 					<div class="form-group" >
 					<div class="guests-select" style="margin:0 auto; width:25%" align="center">
 						<select name="pet_su" id="pet_su" class="form-control">
-							<option value="1" disabled="disabled" selected="selected">1</option>
+							<option value="${dto.pet_su}" disabled="disabled" selected="selected">"${dto.pet_su}"</option>
+							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
 							<option value="4">4</option>
@@ -132,15 +133,15 @@
                     	<table style="width: 400px; margin: 0px auto; border-spacing: 0px;">
                     		<tr align="center" height="40%">
                     			<td align="center" width="30%"><label>기본료</label></td>
-                     			<td align="center" width="70%"><input class="form-control" type="text" name="pay" id="pay" value="${dto.pay}" style="text-align:center"></td>
+                     			<td align="center" width="70%"><input class="form-control" type="text" name="pay" id="pay" value="${dto.pay}" style="text-align:center" readonly="readonly"></td>
                     		</tr>
                     		<tr align="center" height="40%">
                     			<td align="center" width="30%"><label>서비스 수수료</label></td>
-                     			<td align="center" width="70%"><input class="form-control" type="text" name="tax" id="tax" value="${dto.pay}" style="text-align:center"></td>
+                     			<td align="center" width="70%"><input class="form-control" type="text" name="tax" id="tax" value="${tax}" style="text-align:center;" readonly="readonly"></td>
                     		</tr>
                     		<tr align="center" height="40%">
                     			<td align="center" width="30%"><label>총합계</label></td>
-                     			<td align="center" width="70%"><input class="form-control" type="text" name="totalPrice" id="totalPrice" value="${dto.pay}" style="text-align:center"></td>
+                     			<td align="center" width="70%"><input class="form-control" type="text" name="totalPrice" id="totalPrice" value="${total}" style="text-align:center" readonly="readonly"></td>
                     		</tr>                                       		           
                     	</table>                                     
                      </div>
@@ -149,9 +150,18 @@
 				<input type="hidden" name="num" value="${dto.num}">
                 <input type="hidden" name="hostNum" value="${dto.hostNum}">
 
+				<c:if test="${mode=='created'}">
 				<div class="col-sm-2 colbtn">
 					<button type="submit" class="btn btn-primary btn-block">예약하기</button>
 				</div>
+				</c:if>
+				
+				<c:if test="${mode=='update'}">
+				<div class="col-sm-2 colbtn">
+					<button type="submit" class="btn btn-primary btn-block" style="float: left; width: 50%;">수정하기</button>
+					<button type="button" class="btn btn-primary btn-block" style="float: right; width: 50%;" onclick="javascript:location.href='<%=cp%>/reservation/list';">취소</button>		
+				</div>
+				</c:if>
 				
 				</form>
 				</div>

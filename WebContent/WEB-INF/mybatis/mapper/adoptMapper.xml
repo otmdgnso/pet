@@ -14,8 +14,8 @@
 			INSTR(content, #{searchValue}) &gt; 0
 		</if>
 		<if test="searchKey == 'created'">
-			TO_CHAR(b.created, 'YYYY-MM-DD') = #{searchValue}
-	          OR TO_CHAR(b.created, 'YYYYMMDD') = #{searchValue}
+			TO_CHAR(created, 'YYYY-MM-DD') = #{searchValue}
+	          OR TO_CHAR(created, 'YYYYMMDD') = #{searchValue}
 		</if>
 	</sql>
 	
@@ -88,10 +88,14 @@
 	WHERE preSaleNum=#{preSaleNum}
 	</select>
 
-
-
-
-
+	<update id="preUpdateHitCount" parameterType="Integer">
+	UPDATE preSale SET hitCount=hitCount+1
+ 	WHERE preSaleNum=#{preSaleNum}
+	</update>
+	
+	<delete id="deletePreSale" parameterType="Integer">
+	DELETE FROM preSale WHERE preSaleNum=#{preSaleNum}
+	</delete>
 
 
 

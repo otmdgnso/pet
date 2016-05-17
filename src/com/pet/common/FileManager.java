@@ -45,4 +45,14 @@ public class FileManager {
 		
 		return saveFilename;
 	}
+	
+	// 실제 파일 삭제
+	public void doFileDelete(String filename, String pathname)
+			throws Exception {
+		String fullpathname= pathname + File.separator +filename;
+		File file= new File(fullpathname);
+		if (file.exists())
+			file.delete();
+	}
+	
 }
