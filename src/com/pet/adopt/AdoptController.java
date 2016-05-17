@@ -127,7 +127,37 @@ public class AdoptController {
 		return mav;
 	}
 	
-	
+	@RequestMapping(value="adopt/article", method=RequestMethod.GET)
+	public ModelAndView article(
+			@RequestParam(value="preSaleNum") int preSaleNum,
+			@RequestParam(value="page") String page,
+			@RequestParam(value="searchKey", defaultValue="subject")String searchKey,
+			@RequestParam(value="searchValue", defaultValue="")String searchValue
+			) throws Exception {
+		
+		searchValue = URLDecoder.decode(searchValue, "utf-8");
+		
+		// 해당 레코드 가져오기
+		Adopt dto = service.readPreSale(preSaleNum);
+		if(dto==null)
+			return new ModelAndView("redirect:.adopt.list?page="+page);
+		
+		// 내용에 엔터 넣기
+		dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
+		
+		// 파일
+		List<Adopt> readPreFile=service.readPreFile(preSaleNum);
+		
+		String params = "page="+page;
+		if(searchValue.length()!=0) {
+			params += "&searchKey=" + searchKey +
+					"&searchValue=" +URLEncoder.encode(searchValue,"utf-8");
+		}
+		
+		ModelAndView mav= new ModelAndView(".adopt.article");
+		
+		return mav;
+	}
 	
 	
 	

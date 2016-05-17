@@ -73,7 +73,20 @@
   	]]>
 	</select>
 
-
+	<select id="readPreSale" resultType="com.pet.adopt.Adopt" parameterType="Integer">
+	SELECT preSaleNum, subject, userId, content, 
+  		TO_CHAR(p.created, 'YYYY-MM-DD') created, 
+  		species, type, gender, lineAge, month, price, 
+  		deposit, vaccin, p.num, hitCount
+	FROM preSale p JOIN member m ON p.num=m.num
+	WHERE preSaleNum=#{preSaleNum}
+	</select>
+	
+	<select id="readPreFile" parameterType="Integer" resultType="com.pet.adopt.Adopt">
+	SELECT photoNum, saveFilename, preSaleNum
+	FROM preSalePhoto
+	WHERE preSaleNum=#{preSaleNum}
+	</select>
 
 
 

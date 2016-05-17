@@ -67,9 +67,9 @@
                 		<c:forEach var="dto" items="${list}">
 	                        <div class="cat3 col-md-4 gallery-view view-fifth">
                                    <div class="img">
-                                        <img src="<%=cp%>/uploads/adopt/${dto.saveFilename}" alt=""/>
+                                        <img src="<%=cp%>/uploads/adopt/${dto.saveFilename}"/>
                                         <div class="overlay">
-                                            <a href="#" class="expand">+</a>
+                                            <a href="${articleUrl}&num=${dto.preSaleNum}" class="expand">+</a>
                                             <a class="close-overlay hidden">x</a>
                                         </div>
                                     </div>

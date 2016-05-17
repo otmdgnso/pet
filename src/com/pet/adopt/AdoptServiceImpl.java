@@ -96,6 +96,29 @@ public class AdoptServiceImpl implements AdoptService {
 		return result;
 	}
 
+	@Override
+	public Adopt readPreSale(int preSaleNum) {
+		Adopt dto=null;
+		try {
+			// 게시물 가져오기
+			dto=dao.getReadData("adopt.readPreSale", preSaleNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return dto;
+	}
+
+	@Override
+	public List<Adopt> readPreFile(int preSaleNum) {
+		List<Adopt> readPreFile=null;
+		try {
+			readPreFile=dao.getListData("adopt.readPreFile",preSaleNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return readPreFile;
+	}
+
 	
 
 }
