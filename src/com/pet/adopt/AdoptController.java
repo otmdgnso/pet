@@ -137,6 +137,9 @@ public class AdoptController {
 		
 		searchValue = URLDecoder.decode(searchValue, "utf-8");
 		
+		// 조회수 증가
+		service.preUpdateHitCount(preSaleNum);
+		
 		// 해당 레코드 가져오기
 		Adopt dto = service.readPreSale(preSaleNum);
 		if(dto==null)
@@ -164,7 +167,20 @@ public class AdoptController {
 		return mav;
 	}
 	
-	
+	@RequestMapping(value="/adopt/delete")
+	public String delete (
+			HttpSession session,
+			@RequestParam(value="preSaleNum") int preSaleNum,
+			@RequestParam(value="page") String page
+			) throws Exception {
+		String root = session.getServletContext().getRealPath("/");
+		String pathname = root + File.separator + "uploads" +File.separator + "adopt";
+		
+		// 자료 삭제
+		service.deletePreSale(preSaleNum, pathname);
+		
+		return "redirect:/adopt/list?page="+page;
+	}
 	
 	
 	

@@ -6,6 +6,15 @@
 	String cp=request.getContextPath();
 %>
 
+<script type="text/javascript">
+function deletePreSale(preSaleNum) {
+	if(confirm("분양 게시글을 삭제 하시겠습니까?")) {
+		var url="<%=cp%>/adopt/delete?preSaleNum="+preSaleNum+"&page=${page}";
+		location.href=url;
+	}
+}
+</script>
+
 <body>
 
 <section id="gallery">
@@ -44,10 +53,14 @@
 	<c:forEach var="vo" items="${readPreFile}">
 	<img src="<%=cp%>/uploads/adopt/${vo.saveFilename}">
 	</c:forEach>
-	
-	<button type="button" class="btn btn-primary btn-block" style="width: 100px" onclick="location:href=<%=cp%>/list?page=${page}">
-			목록으로
-	</button>
+	<ul class="filter group albumFilter">
+	<li class="current">
+	<a class="clicker" href="<%=cp%>/adopt/list?page=${page}">목록으로</a>
+	</li>
+	<li class="current">
+	<a class="clicker" href="javascript:deletePreSale(${dto.preSaleNum});">삭제</a>
+	</li>
+	</ul>
 </form>
 </div>
 </section>
