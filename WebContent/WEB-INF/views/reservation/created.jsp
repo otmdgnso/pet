@@ -111,12 +111,17 @@
 					<div class="form-group" >
 					<div class="guests-select" style="margin:0 auto; width:25%" align="center">
 						<select name="pet_su" id="pet_su" class="form-control">
-							<option value="${dto.pet_su}" disabled="disabled" selected="selected">"${dto.pet_su}"</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
+							<c:if test="${mode=='created'}">
+								<option value="" disabled="disabled" selected="selected">선택</option>
+							</c:if>
+							<c:if test="${mode=='update'}">
+								<option value="${dto.pet_su}" disabled="disabled" selected="selected">${dto.pet_su}</option>
+							</c:if>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
 						</select>
 					</div>
 					</div>
