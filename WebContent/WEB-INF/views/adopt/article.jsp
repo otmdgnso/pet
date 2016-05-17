@@ -45,7 +45,7 @@
 	<img src="<%=cp%>/uploads/adopt/${vo.saveFilename}">
 	</c:forEach>
 	
-	<button type="button" class="btn btn-primary btn-block" style="width: 100px" onclick="location.href=">
+	<button type="button" class="btn btn-primary btn-block" style="width: 100px" onclick="location:href=<%=cp%>/list?page=${page}">
 			목록으로
 	</button>
 </form>

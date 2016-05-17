@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.pet.common.FileManager;
 import com.pet.common.dao.CommonDAO;
 
-@Service("adpot.AdpotService")
+@Service("adopt.AdoptService")
 public class AdoptServiceImpl implements AdoptService {
 	@Autowired
 	private CommonDAO dao;
