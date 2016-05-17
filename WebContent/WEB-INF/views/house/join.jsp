@@ -107,7 +107,22 @@ $(function(){
 	<img id="loading" src="<%=cp%>/res/img/loading.gif" border="0">
 </div>
 
-
+<section class="about-section-top">
+       <div class="container">
+          <div class="row">
+             <div class="col-md-12">
+               <div class="page-title pull-left">
+                    <h2 class="title-about">호스팅</h2>
+                </div>
+                <ul class="breadcrumbs pull-right">
+                    <li><a href="#">HOME</a></li>
+                    <li>/</li>
+                    <li class="active">House hosting</li>
+                </ul>
+             </div>
+          </div>
+      </div>
+    </section>
 <div class="image-container set-full-height" style="background-image: url('<%=cp%>/res/img/bg_housejoin.jpg')">
     <!--   Big container   -->
     <div class="container">
