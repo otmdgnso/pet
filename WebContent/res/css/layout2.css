@@ -1,4 +1,4 @@
-﻿
+
 /********************************************
             SLIDE SHOW
  ********************************************/
@@ -3520,13 +3520,10 @@ bar {
 }
 .info-box-guide {
 	position: absolute;
-	background: rgba(255,255,255,0.9);
 	margin-left: 20px;
 	padding: 20px;
 	z-index: 0;
 	bottom: 20px;
-	box-shadow: 0px 0px 0px 2px #fff inset;
-	border: 3px solid rgba(255,255,255,0.9);
 }
 .info-box-guide li {
 	 list-style-type: none;

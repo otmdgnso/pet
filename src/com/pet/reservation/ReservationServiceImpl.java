@@ -48,10 +48,16 @@ public class ReservationServiceImpl implements ReservationService {
 		return result;
 	}
 
+	
 	@Override
 	public Reservation readReservation(int reservationNum) {
-		// TODO Auto-generated method stub
-		return null;
+		Reservation dto=null;
+		try {
+			dto=dao.getReadData("Reservation.readReservation", reservationNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return dto;
 	}
 
 	@Override

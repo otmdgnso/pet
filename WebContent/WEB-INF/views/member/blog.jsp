@@ -5,7 +5,28 @@
 <%
 	String cp = request.getContextPath();
 %>
+ <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.blue_grey-red.min.css" />
+  <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<style>
 
+.file_input_div {
+  margin: auto;
+  width: 250px;
+  height: 40px;
+}
+
+.file_input {
+  float: left;
+}
+
+#file_input_text_div {
+  width: 200px;
+  margin-top: -8px;
+  margin-left: 5px;
+}
+
+</style>
 <body>
 	<div class="clear"></div>
 	<section id="guide">
@@ -24,20 +45,52 @@
 
 						<div id="tab-1">
 							<div class="city-info-content">
-								<div class="info-box-guide" style="width: 100px; height: 100px;">
-											<img src="<%=cp%>/uploads/profile/${dto.profile}"
-												>
+								<div class="info-box-guide" style="width: 150px; height: 150px;">
+									<img src="<%=cp%>/uploads/profile/${dto.profile}" class="avatar img-circle img-thumbnail">
 								</div>
 								<img src="http://placehold.it/1600x800" alt="" />
+								<div class="file_input_div" style="float: right;">
+								    <div class="file_input">
+								      <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
+								        <i class="material-icons">file_upload</i>
+								        <input id="file_input_file" class="none" type="file" style="display: none;"/>
+								      </label>
+								    </div>
+								    <div id="file_input_text_div" class="mdl-textfield mdl-js-textfield textfield-demo">
+								      <input class="file_input_text mdl-textfield__input" type="text" disabled readonly id="file_input_text" />
+								      <label class="mdl-textfield__label" for="file_input_text"></label>
+								    </div>
+								  </div>
 							</div>
-							<h3>Information</h3>
-							이름 : ${dto.userName }<br>
-							생년월일 :${dto.birth } <br>
-							가입일 : ${dto.created }<br>
-							이메일 : ${dto.email }<br>
-							${dto.profile}
-							
-							
+							<div style="text-align: center;">
+								<h1><img alt="" src="<%=cp%>/res/images/asterisk.png" style="width: 64px;"> &nbsp; Information</h1>
+								<div align="center" >
+									<table style="text-align: left;">
+										<tr style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
+											<td ><h3> <img
+												alt="" src="<%=cp%>/res/images/name.png"
+												style="width: 64px;"> 이름 : ${dto.userName }</h3></td>
+										</tr>
+										<tr style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
+											<td><h3><img alt=""
+												src="<%=cp%>/res/images/birthday-cake.png"
+												style="width: 64px;"> 생년월일 : ${dto.birth }</h3></td>
+										</tr>
+										<tr style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
+											<td><h3><img alt="" src="<%=cp%>/res/images/calendar.png"
+												style="width: 64px;"> 가입일 : ${dto.created }</h3></td>
+										</tr>
+										<tr style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
+											<td><h3><img alt="" src="<%=cp%>/res/images/email.png"
+												style="width: 64px;"> 이메일 : ${dto.email }</h3></td>
+										</tr>
+										<tr style="text-align: center;">
+											<td><h3><a>수정하기</a></h3>
+										</tr>
+									</table>
+								</div>
+							</div>
+
 						</div>
 						<div id="tab-2">
 
@@ -465,6 +518,37 @@
 				sunset : true
 			});
 		});
+		
+		var fileInputTextDiv = document.getElementById('file_input_text_div');
+		var fileInput = document.getElementById('file_input_file');
+		var fileInputText = document.getElementById('file_input_text');
+		fileInput.addEventListener('change', changeInputText);
+		fileInput.addEventListener('change', changeState);
+
+		function changeInputText() {
+		  var str = fileInput.value;
+		  var i;
+		  if (str.lastIndexOf('\\')) {
+		    i = str.lastIndexOf('\\') + 1;
+		  } else if (str.lastIndexOf('/')) {
+		    i = str.lastIndexOf('/') + 1;
+		  }
+		  fileInputText.value = str.slice(i, str.length);
+		}
+
+		function changeState() {
+		  if (fileInputText.value.length != 0) {
+		    if (!fileInputTextDiv.classList.contains("is-focused")) {
+		      fileInputTextDiv.classList.add('is-focused');
+		    }
+		  } else {
+		    if (fileInputTextDiv.classList.contains("is-focused")) {
+		      fileInputTextDiv.classList.remove('is-focused');
+		    }
+		  }
+		}
+		
+		
 	</script>
 </body>
 </html>
