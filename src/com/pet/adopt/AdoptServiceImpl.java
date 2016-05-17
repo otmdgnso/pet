@@ -1,5 +1,7 @@
 package com.pet.adopt;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.pet.common.FileManager;
 import com.pet.common.dao.CommonDAO;
 
-@Service("adpot.AdpotService")
+@Service("adopt.AdoptService")
 public class AdoptServiceImpl implements AdoptService {
 	@Autowired
 	private CommonDAO dao;
@@ -96,6 +98,58 @@ public class AdoptServiceImpl implements AdoptService {
 		return result;
 	}
 
-	
+	@Override
+	public Adopt readPreSale(int preSaleNum) {
+		Adopt dto=null;
+		try {
+			// 게시물 가져오기
+			dto=dao.getReadData("adopt.readPreSale", preSaleNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return dto;
+	}
+
+	@Override
+	public List<Adopt> readPreFile(int preSaleNum) {
+		List<Adopt> readPreFile=null;
+		try {
+			readPreFile=dao.getListData("adopt.readPreFile",preSaleNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return readPreFile;
+	}
+
+	@Override
+	public int preUpdateHitCount(int preSaleNum) {
+		int result=0;
+		try {
+			result=dao.updateData("adopt.preUpdateHitCount", preSaleNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	@Override
+	public int deletePreSale(int preSaleNum, String pathname) {
+		int result=0;
+		try {
+			// 파일 지우기
+			List<Adopt> readPreFile=readPreFile(preSaleNum);
+			if(readPreFile!=null) {
+				Iterator<Adopt> it=readPreFile.iterator();
+				while(it.hasNext()) {
+					Adopt dto=it.next();
+					fileManager.doFileDelete(dto.getSaveFilename(), pathname);
+				}
+			}
+			result=dao.deleteData("adopt.deletePreSale", preSaleNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
 
 }
