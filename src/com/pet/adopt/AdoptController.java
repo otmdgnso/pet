@@ -155,6 +155,11 @@ public class AdoptController {
 		}
 		
 		ModelAndView mav= new ModelAndView(".adopt.article");
+		mav.addObject("dto",dto);
+		mav.addObject("readPreFile",readPreFile);
+		
+		mav.addObject("page",page);
+		mav.addObject("params",params);
 		
 		return mav;
 	}

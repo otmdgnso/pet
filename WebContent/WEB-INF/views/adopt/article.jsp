@@ -41,8 +41,11 @@
 	<input type="text" name="deposit" readonly="readonly" value="${dto.deposit}">
 	<br>
 	
-	<br>
-	<button type="button" class="btn btn-primary btn-block" style="width: 100px" onclick="check();">
+	<c:forEach var="vo" items="${readPreFile}">
+	<img src="<%=cp%>/uploads/adopt/${vo.saveFilename}">
+	</c:forEach>
+	
+	<button type="button" class="btn btn-primary btn-block" style="width: 100px" onclick="location.href=">
 			목록으로
 	</button>
 </form>

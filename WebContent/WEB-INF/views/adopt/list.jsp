@@ -69,12 +69,12 @@
                                    <div class="img">
                                         <img src="<%=cp%>/uploads/adopt/${dto.saveFilename}"/>
                                         <div class="overlay">
-                                            <a href="${articleUrl}&num=${dto.preSaleNum}" class="expand">+</a>
+                                            <a href="${articleUrl}&preSaleNum=${dto.preSaleNum}" class="expand">+</a>
                                             <a class="close-overlay hidden">x</a>
                                         </div>
                                     </div>
                                     <div class="gallery-img-title">
-                                      <h3>${dto.subject} - ${dto.userName}</h3>
+                                      <h3>${dto.subject} - ${dto.userId}</h3>
                                      
                                     </div>
                             </div>

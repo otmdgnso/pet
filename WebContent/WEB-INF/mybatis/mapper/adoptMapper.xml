@@ -47,7 +47,7 @@
 	<select id="listPreSale" resultType="com.pet.adopt.Adopt" parameterType="map">
 	SELECT * FROM (
   		SELECT ROWNUM rnum, tb.* FROM (
-    		SELECT preSaleNum, subject, userName
+    		SELECT preSaleNum, subject, userId
     		FROM preSale p JOIN
     		member m ON p.num=m.num
     		 <where>

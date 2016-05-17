@@ -10,6 +10,13 @@ public class Adopt {
 	private String lineage, vaccin, saveFilename;
 	private int photoNum;
 	private String userName;
+	private String userId;
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public String getUserName() {
 		return userName;
 	}
