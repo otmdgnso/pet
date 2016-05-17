@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="location">
+
+<select id="listCategory1" resultType="com.pet.house.Location">
+	SELECT DISTINCT(category1) FROM zip ORDER BY category1
+</select>
+
+<select id="listCategory2" parameterType="String" resultType="com.pet.house.Location">
+	SELECT DISTINCT(category2) FROM zip WHERE category1=#{category1} ORDER BY category2
+</select>
+
+</mapper>

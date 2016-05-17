@@ -9,6 +9,105 @@
 	<link href="<%=cp%>/res/assets/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="<%=cp%>/res/assets/css/gsdk-base.css" rel="stylesheet" />
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+    
+<script type="text/javascript">
+jQuery.fn.center = function () {
+    this.css("position","absolute");
+    this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + 
+                                                $(window).scrollTop()) + "px");
+    this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + 
+                                                $(window).scrollLeft()) + "px");
+    return this;
+}
+
+function listCategory2(){
+	var category1 = $("#category1").val();
+	if(category1==""){
+		$("#category2 option").each(function(){
+			$("#category2 option:eq(0)").remove();
+		});
+		
+		$("#category2").append("<option value=''>- 시·군·구 -</option>");
+		return false;
+	}
+	var url = "<%=cp%>/house/listCategory2";
+	var params = "category1="+category1;
+	
+	$.ajax({
+		type:"post",
+		url:url,
+		data:params,
+		dataType:"json",
+		success:function(data){
+			$("#category2 option").each(function(){
+				$("#category2 option:eq(0)").remove();
+			});
+			$("#category2").append("<option value=''>- 시·군·구 -</option>");
+			 
+			 for(var idx=0; idx<data.list.length; idx++) {
+				 $("#category2").append("<option value='"+data.list[idx].category2+"'>"+data.list[idx].category2+"</option>");
+			 }
+		},
+	    error:function(e) {
+	    	alert(e.responseText);
+	    }
+	});
+}
+
+$(function(){
+	$("#category1").change(function(){
+		var category1 = $("#category1").val();
+		if(category1==""){
+			$("#category2 option").each(function(){
+				$("#category2 option:eq(0)").remove();
+			});
+			
+			$("#category2").append("<option value=''>- 시·군·구 -</option>");
+			return false;
+		}
+		
+		var url = "<%=cp%>/house/listCategory2";
+		var params = "category1="+category1;
+		
+		$.ajax({
+			type:"post",
+			url:url,
+			data:params,
+			dataType:"json",
+			success:function(data){
+				$("#category2 option").each(function(){
+					$("#category2 option:eq(0)").remove();
+				});
+				$("#category2").append("<option value=''>- 시·군·구 -</option>");
+				 
+				 for(var idx=0; idx<data.list.length; idx++) {
+					 $("#category2").append("<option value='"+data.list[idx].category2+"'>"+data.list[idx].category2+"</option>");
+				 }
+			},
+		    error:function(e) {
+		    	alert(e.responseText);
+		    }
+		});
+	});
+	
+	$(document)
+    .ajaxStart(function(){ // AJAX 시작시
+    	 $("#loading").center(); // 이미지를 화면 중앙에
+    	 $("#loadingLayout1").fadeTo("slow",0.5); // 불투명으로
+    	 // $("#loadingLayout1").show();
+   })
+   .ajaxComplete(function(){ // AJAX 종료시
+        $("#loadingLayout1").hide();
+   });	
+});
+
+</script>
+
+<div id="loadingLayout1" style="display: none; position:absolute; left:0; top:0; width: 100%; height: 100%; z-index:90000;  background: #eee;">
+	<img id="loading" src="<%=cp%>/res/img/loading.gif" border="0">
+</div>
+
+
 <div class="image-container set-full-height" style="background-image: url('<%=cp%>/res/img/bg_housejoin.jpg')">
     <!--   Big container   -->
     <div class="container">
@@ -42,34 +141,19 @@
                                   <div class="col-sm-5 col-sm-offset-1">
                                       <div class="form-group">
                                         <label><b>시·도</b></label><br>
-                                             <select name="country" class="form-control">
-                                                <option disabled="" selected="">- 시·도 -</option>
-                                                <option value="Afghanistan"> Afghanistan </option>
-                                                <option value="Albania"> Albania </option>
-                                                <option value="Algeria"> Algeria </option>
-                                                <option value="American Samoa"> American Samoa </option>
-                                                <option value="Andorra"> Andorra </option>
-                                                <option value="Angola"> Angola </option>
-                                                <option value="Anguilla"> Anguilla </option>
-                                                <option value="Antarctica"> Antarctica </option>
-                                                <option value="...">...</option>
+                                             <select id="category1" class="form-control" >
+                                                <option value="">- 시·도 -</option>
+                                                <c:forEach var="loca1" items="${list}">
+                                                	<option value="${loca1.category1}">${loca1.category1}</option>
+                                                </c:forEach>
                                             </select>
                                       </div>
                                   </div>
                                   <div class="col-sm-5">
                                        <div class="form-group">
                                             <label><b>시·군·구</b></label><br>
-                                             <select name="country" class="form-control">
+                                             <select id="category2" class="form-control">
                                                 <option disabled="" selected="">- 시·군·구 -</option>
-                                                <option value="Afghanistan"> Afghanistan </option>
-                                                <option value="Albania"> Albania </option>
-                                                <option value="Algeria"> Algeria </option>
-                                                <option value="American Samoa"> American Samoa </option>
-                                                <option value="Andorra"> Andorra </option>
-                                                <option value="Angola"> Angola </option>
-                                                <option value="Anguilla"> Anguilla </option>
-                                                <option value="Antarctica"> Antarctica </option>
-                                                <option value="...">...</option>
                                             </select>
                                           </div>
                                   </div>
@@ -222,9 +306,6 @@
     
 </div>
 
-
-    <script src="<%=cp%>/res/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
-	<script src="<%=cp%>/res/assets/js/bootstrap.min.js" type="text/javascript"></script>
 		
 	<!--   plugins 	 -->
 	<script src="<%=cp%>/res/assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
