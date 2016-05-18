@@ -88,6 +88,7 @@ function updateMember(){
    });
 }
 function sendTheme(){
+<<<<<<< HEAD
    
    var url="<%=cp%>/member/theme";
    var f=$("form")[3];   
@@ -104,6 +105,24 @@ function sendTheme(){
          alert("ssg");
       }
    });
+=======
+	
+	var url="<%=cp%>/member/theme";
+	var f=$("form")[3];	
+	var formData=new FormData(f);
+	
+	$.ajax({
+		url:url
+		,type:"post"
+		,processData:false
+		,contentType:false
+		,data:formData
+		,dataType:"json"
+		,success:function(data){
+			alert("ssg");
+		}
+	});
+>>>>>>> 4176d7c92a9d053af290ec4055c5f203d0838860
 }
 </script>
 
