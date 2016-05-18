@@ -26,5 +26,10 @@
 			WHERE userId=#{userId}
 	</update>
 	
+	<!-- 회원정보 삭제 -->
+	<delete id="deleteMember" parameterType="String">
+		DELETE FROM member userId=#{userId}
+	</delete>
+	
 	
 </mapper>

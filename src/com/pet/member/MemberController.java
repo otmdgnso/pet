@@ -121,7 +121,16 @@ public class MemberController {
 		mav.addObject("dto",dto);
 		return mav;		
 	}
-	
+
+	@RequestMapping(value="/member/delete")
+	public String delete(
+			Member dto
+			,HttpSession session
+			) throws Exception{
+		
+		return "redirect:/";
+	}
+
 	@RequestMapping(value="/member/theme")
 	@ResponseBody
 	public ModelAndView themeprofile(
@@ -146,6 +155,7 @@ public class MemberController {
 		return mav;		
 	}
 	
+
 	
 	
 }

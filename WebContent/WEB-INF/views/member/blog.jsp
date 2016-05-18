@@ -32,6 +32,22 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+<<<<<<< HEAD
+	   $("#wizard-picture1").change(function(){
+	       readURL(this);
+	   });
+	});
+	function readURL(input) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+
+	        reader.onload = function (e) {
+	            $('#wizardPicturePreview1').attr('src', e.target.result).fadeIn('slow');
+	        }
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+=======
 	$("#wizard-picture1").change(function(){
 	    readURL(this);
 	});
@@ -47,6 +63,7 @@ function readURL(input) {
     }
 }
 
+>>>>>>> 2561759439f9af1fe13609b7a4190bf4e7481e31
 
 
 function openUpdateModal(){
@@ -69,10 +86,13 @@ function showUpdateForm(){
 function updateMember(){
 	var url="<%=cp%>/member/update";
 	
+<<<<<<< HEAD
+	var f=document.upForm;
+=======
 	var f=$("form")[6];	
+>>>>>>> 2561759439f9af1fe13609b7a4190bf4e7481e31
 	 
 	var formData=new FormData(f);
-
 
 	$.ajax({
 		url:url
@@ -214,13 +234,13 @@ function sendTheme(){
                         <div class="box">
                             <div class="content registerBox1" style="display:none;">
                              <div class="form">
-                                <form id="upForm" enctype="multipart/form-data">
+                                <form name="upForm" enctype="multipart/form-data">
                               		<div class="card wizard-card ct-wizard-orange" >
 		 									<div class="picture-container">
 		                                          <div class="picture">
 		                                              <img src="<%=cp%>/uploads/profile/${dto.profile}" width="110px" height="100px"
 		                                              class="picture-src" id="wizardPicturePreview1" title=""/>		                                              
-		                                              <input type="file" id="wizard-picture1" name="upload" value="${dto.profile}">
+		                                              <input type="file" id="wizard-picture1" name="upload" >
 		                                          </div>
 		                                          <h6>Choose Picture</h6>
 		                                     </div>
@@ -233,6 +253,7 @@ function sendTheme(){
 		                                <input id="birth1" class="form-control" type="text" value="${dto.birth}" name="birth">
 		                                <input id="phone1" class="form-control" type="text" value="${dto.phone}" name="phone">
 		                              	<input id="checking1" type="hidden" name="checking">
+		                              	<input name="profile" type="hidden"> 
 		                                     </div>
                                 <input class="btn btn-default btn-register" onclick="updateMember();" value="수정 완료">
                                 
