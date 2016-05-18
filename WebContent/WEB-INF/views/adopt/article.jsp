@@ -7,6 +7,19 @@
 %>
 
 <script type="text/javascript">
+// 댓글 리스트
+$(function(){
+	listPage(1);
+});
+
+function listPage(page) {
+	var url="<%=cp%>/adopt/listReply";
+	var preSaleNum="${dto.preSaleNum}";
+	$.post(url, {preSaleNum:preSaleNum, pageNo:page}, function(data){
+		$("#listReply").html(data);
+	});
+}
+
 // 댓글 추가
 function sendReply() {
 	var uid="${sessionScope.member.userId}";
@@ -21,6 +34,27 @@ function sendReply() {
 		$("#content").focus();
 		return false;
 	}
+	
+	var params="preSaleNum=" +preSaleNum;
+	params+="&content="+content;
+	
+	$.ajax({
+		type:"post"
+		,url:"<%=cp%>/adopt/insertReply"
+		,data:params
+		,dataType:"json"
+		,success:function(data) {
+			$("#content").val("");
+			
+			var state=data.state;
+			if(state=="true") {
+				listPage(1);
+			} else if(state=="false") {
+				alert("댓글을 등록하지 못했습니다. !!!");
+			} 
+		}
+		
+	});
 }
 
 function deletePreSale(preSaleNum) {
@@ -83,9 +117,8 @@ function deletePreSale(preSaleNum) {
 </form>
 	<a>댓글보기</a>
 	<div class="col-md-12 details-hotel" id="replyList">
-	<p><input type="text" id="content" size="150px"> <a id="btnSend" onclick="sendReply()">등록</a></p>
-	<p>작성자:admin 작성일:2014
-	<br>메롱ㅋㅋ <a> 삭제 </a>
+	<p><textarea id="content" cols="140" rows="4"></textarea> <a id="btnSend" onclick="javascript:location.href=sendReply()">등록</a></p>
+	<p id="listReply">
 	</p>
 	</div>
 </div>

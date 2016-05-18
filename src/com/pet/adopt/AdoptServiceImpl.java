@@ -188,4 +188,37 @@ public class AdoptServiceImpl implements AdoptService {
 		return result;
 	}
 
+	@Override
+	public int insertPreReply(Reply dto) {
+		int result=0;
+		try {
+			result=dao.insertData("adopt.insertPreReply", dto);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	@Override
+	public int dataCountPreReply(int preSaleNum) {
+		int result=0;
+		try {
+			result=dao.getIntValue("adopt.dataCountPreReply", preSaleNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	@Override
+	public List<Reply> listPreReply(Map<String, Object> map) {
+		List<Reply> list=null;
+		try {
+			list=dao.getListData("adopt.listPreReply",map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return list;
+	}
+
 }

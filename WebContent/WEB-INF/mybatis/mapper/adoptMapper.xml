@@ -108,6 +108,38 @@
 		DELETE FROM preSalePhoto WHERE saveFilename=#{saveFilename}
 	</delete>
 
-
+	<!-- 댓글 ................. -->
+	
+	<insert id="insertPreReply" parameterType="com.pet.adopt.Reply">
+	INSERT INTO preSaleReply(replyNum, preSaleNum, num, content)
+	VALUES (preSaleReply_seq.NEXTVAL,#{preSaleNum},#{num},#{content})
+	</insert>
+	
+	<select id="dataCountPreReply" resultType="Integer"
+			parameterType="Integer">
+	SELECT NVL(COUNT(*),0)
+		FROM preSaleReply WHERE preSaleNum=#{preSaleNum}
+	</select>
+	
+	<select id="listPreReply" resultType="com.pet.adopt.Reply"
+			parameterType="map">
+	SELECT * FROM(
+		SELECT ROWNUM rnum, tb.* FROM(
+			SELECT replyNum, preSaleNum, pr.num, userId, content, 
+			TO_CHAR(pr.created,'YYYY-MM-DD HH24:MI:SS') created
+			FROM preSaleReply pr JOIN member m ON pr.num=m.num
+      		WHERE preSaleNum=#{preSaleNum}
+      		ORDER BY replyNum DESC
+    <![CDATA[
+		) tb WHERE ROWNUM <= #{end}
+	) WHERE rnum >= #{start}
+	]]>
+	</select>
+	
+	
+	
+	
+	
+	
 
 </mapper>
