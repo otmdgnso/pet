@@ -105,6 +105,7 @@ function sendTheme(){
    });
 	
 }
+
 </script>
 
 <body>
@@ -200,17 +201,15 @@ function sendTheme(){
 												<td><h4>
 														<a href="javascript:void(0)" onclick="openUpdateModal();">수정하기</a>
 													</h4></td>
+												<!-- <td><h6>
+													<a href="javascript:void(0)" onclick="deleteMember();">회원탈퇴</a>
+												</h6></td> -->
 											</tr>
 										</table>
 										</div>
-						
+										
 						</div>
 
-
-						
-                  
-                  
-                  
                   <div id="tab-2">
 
                      <div class="col-md-5 histo-img">
@@ -542,7 +541,7 @@ function sendTheme(){
                 <div class="modal-content">
                    <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Login with</h4>
+                        <h4 class="modal-title">회원 정보 수정</h4>
                     </div>
                     <div class="modal-body">  
                         <div class="box">
