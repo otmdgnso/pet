@@ -31,8 +31,22 @@
 </style>
 
 <script type="text/javascript">
+$(document).ready(function(){
 
+	   $("#wizard-picture1").change(function(){
+	       readURL(this);
+	   });
+});
+	function readURL(input) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
 
+	        reader.onload = function (e) {
+	            $('#wizardPicturePreview1').attr('src', e.target.result).fadeIn('slow');
+	        }
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
 function openUpdateModal(){
     showUpdateForm();
     setTimeout(function(){
@@ -52,11 +66,10 @@ function showUpdateForm(){
 
 function updateMember(){
 	var url="<%=cp%>/member/update";
-	
-	var f=$("form")[5];	
-	 
-	var formData=new FormData(f);
+	var f=document.upForm;
+	var f=$("form")[6];	
 
+	var formData=new FormData(f);
 
 	$.ajax({
 		url:url
@@ -71,6 +84,29 @@ function updateMember(){
 			}else{
 				location.href="<%=cp%>/member/blog";
 			}
+		}
+	});
+}
+function sendTheme(){
+	
+	var url="<%=cp%>/member/theme";
+	var f=$("form")[3];	
+	var formData=new FormData(f);
+
+	if(f.value==null){
+		alert("사진을 선택하세요");
+		location.href="<%=cp%>/member/blog";
+	}
+	
+	$.ajax({
+		url:url
+		,type:"post"
+		,processData:false
+		,contentType:false
+		,data:formData
+		,dataType:"json"
+		,success:function(data){
+			alert("ssg");
 		}
 	});
 }
@@ -97,19 +133,24 @@ function updateMember(){
 								<div class="info-box-guide" style="width: 150px; height: 150px;">
 									<img src="<%=cp%>/uploads/profile/${dto.profile}" class="avatar img-circle img-thumbnail">
 								</div>
-								<img src="http://placehold.it/1600x800" alt="" />
-								<div class="file_input_div" style="float: right;">
-								    <div class="file_input">
-								      <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
-								        <i class="material-icons">file_upload</i>
-								        <input id="file_input_file" class="none" type="file" style="display: none;"/>
-								      </label>
-								    </div>
-								    <div id="file_input_text_div" class="mdl-textfield mdl-js-textfield textfield-demo">
-								      <input class="file_input_text mdl-textfield__input" type="text" disabled readonly id="file_input_text" />
-								      <label class="mdl-textfield__label" for="file_input_text"></label>
-								    </div>
-								  </div>
+								<img src="<%=cp%>/uploads/theme/${dto.themeprofile}" alt="" />
+								<form name="updateTheme" method="post" enctype="multipart/form-data">
+									<div class="file_input_div" style="float: right;">
+									    <div class="file_input">
+									      <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
+									        <i class="material-icons">file_upload</i>
+									        <input id="file_input_file" class="none" type="file" style="display: none;" name="themeUpload"/>
+									      </label>
+									    </div>
+									    <div id="file_input_text_div" class="mdl-textfield mdl-js-textfield textfield-demo">
+									      <input class="file_input_text mdl-textfield__input" type="text" disabled readonly id="file_input_text" />
+									      <label class="mdl-textfield__label" for="file_input_text"></label>
+									    </div>
+									    <div style=" float: right;" >
+									     <button onclick="sendTheme();" class="btn btn-info btn-small"><i class="icon-white icon-chevron-right"></i>테마사진변경</button> 
+									    </div>
+									  </div>
+								  </form>
 							</div>
 				<form name="updateForm" action="" method="post">
 							<div style="text-align: center;">
@@ -170,13 +211,13 @@ function updateMember(){
                         <div class="box">
                             <div class="content registerBox1" style="display:none;">
                              <div class="form">
-                                <form id="upForm" enctype="multipart/form-data">
+                                <form name="upForm" enctype="multipart/form-data">
                               		<div class="card wizard-card ct-wizard-orange" >
 		 									<div class="picture-container">
 		                                          <div class="picture">
 		                                              <img src="<%=cp%>/uploads/profile/${dto.profile}" width="110px" height="100px"
 		                                              class="picture-src" id="wizardPicturePreview1" title=""/>		                                              
-		                                              <input type="file" id="wizard-picture1" name="upload" value="${dto.profile}">
+		                                              <input type="file" id="wizard-picture1" name="upload" >
 		                                          </div>
 		                                          <h6>Choose Picture</h6>
 		                                     </div>
@@ -189,6 +230,7 @@ function updateMember(){
 		                                <input id="birth1" class="form-control" type="text" value="${dto.birth}" name="birth">
 		                                <input id="phone1" class="form-control" type="text" value="${dto.phone}" name="phone">
 		                              	<input id="checking1" type="hidden" name="checking">
+		                              	<input name="profile" type="hidden"> 
 		                                     </div>
                                 <input class="btn btn-default btn-register" onclick="updateMember();" value="수정 완료">
                                 

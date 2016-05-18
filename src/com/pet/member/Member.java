@@ -8,7 +8,29 @@ public class Member {
 	private String phone;
 	private String birth, email, profile, created;
 	
+	private String themeprofile;
+	
+	private MultipartFile themeUpload;
+	
+	public MultipartFile getThemeUpload() {
+		return themeUpload;
+	}
+
+	public void setThemeUpload(MultipartFile themeUpload) {
+		this.themeUpload = themeUpload;
+	}
+
 	private MultipartFile upload;
+	
+	
+	public String getThemeprofile() {
+		return themeprofile;
+	}
+
+	public void setThemeprofile(String themeprofile) {
+		this.themeprofile = themeprofile;
+	}
+
 
 	public int getNum() {
 		return num;

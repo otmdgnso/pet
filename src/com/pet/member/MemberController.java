@@ -121,7 +121,41 @@ public class MemberController {
 		mav.addObject("dto",dto);
 		return mav;		
 	}
+
+	@RequestMapping(value="/member/delete")
+	public String delete(
+			Member dto
+			,HttpSession session
+			) throws Exception{
+		
+		return "redirect:/";
+	}
+
+	@RequestMapping(value="/member/theme")
+	@ResponseBody
+	public ModelAndView themeprofile(
+			HttpSession session,
+			Member dto
+			) throws Exception{
+		
+		SessionInfo info= (SessionInfo)session.getAttribute("member");
+		dto.setUserId(info.getUserId());
+		
+		String root=session.getServletContext().getRealPath("/");
+		String pathname=root+File.separator+"uploads"+File.separator+"theme";
+		
+		int result=0;
+		result=service.updateTheme(dto, pathname);
+		//System.out.println(result);
+		String state="true";
+		if(result==0){
+			state="false";
+		}
+		ModelAndView mav= new ModelAndView(".member.blog");
+		return mav;		
+	}
 	
+
 	
 	
 }
