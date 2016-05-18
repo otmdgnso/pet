@@ -147,7 +147,7 @@
 	</script>
 
 
-<%-- 	<!--bxSlider-->
+	<%-- <!--bxSlider-->
 	<script src="<%=cp%>/res/js/jquery.bxslider.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -156,8 +156,8 @@
 				auto : true
 			});
 		});
-	</script>
-	<script src="<%=cp%>/res/js/script.js" type="text/javascript"></script> --%>
+	</script> --%>
+	<script src="<%=cp%>/res/js/script.js" type="text/javascript"></script>
 
 </body>
 </html>

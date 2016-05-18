@@ -8,9 +8,7 @@
  <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.blue_grey-red.min.css" />
   <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  
-   
-<script src="<%=cp%>/res/js/reg/wizard.js" type="text/javascript"></script>
+
 
 <style>
 
