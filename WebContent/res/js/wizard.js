@@ -55,6 +55,10 @@ $(document).ready(function(){
             }
         }
     });
+    
+    $("#wizard-picture1").change(function(){
+        readURL1(this);
+    });
 
     // Prepare the preview for profile picture
     $("#wizard-picture").change(function(){
@@ -192,6 +196,18 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+function readURL1(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#wizardPicturePreview1').attr('src', e.target.result).fadeIn('slow');
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+    
     
 
 

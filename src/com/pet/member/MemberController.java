@@ -89,16 +89,6 @@ public class MemberController {
 		return model;
 	}
 	
-	/*@RequestMapping(value="/member/update",method=RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> updateSubmit(
-			HttpSession session
-			) throws Exception{
-		
-		Map<String, Object> model=new HashMap<>();
-		return model;		
-	}*/
-	
 	@RequestMapping(value="/member/update",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> update(
