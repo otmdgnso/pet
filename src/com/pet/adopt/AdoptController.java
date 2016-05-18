@@ -201,6 +201,20 @@ public class AdoptController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/adopt/deleteFile")
+	public String deleteFile (
+			HttpSession session,
+			@RequestParam(value="saveFilename") String saveFilename
+			) throws Exception {
+		String root = session.getServletContext().getRealPath("/");
+		String pathname = root + File.separator + "uploads" +File.separator + "adopt";
+		
+		// 해당 파일 삭제
+		service.deletePreFile(saveFilename, pathname);
+		
+		return "";
+	}
+	
 	
 	
 	

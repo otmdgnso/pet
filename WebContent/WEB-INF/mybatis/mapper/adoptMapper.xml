@@ -104,7 +104,9 @@
 		WHERE preSaleNum=#{preSaleNum}
 	</update>
 
-
+	<delete id="deletePreFile" parameterType="String">
+		DELETE FROM preSalePhoto WHERE saveFilename=#{saveFilename}
+	</delete>
 
 
 
