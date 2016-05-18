@@ -87,11 +87,11 @@ function updateMember(){
 					<div id="horizontalTab">
 						<ul>
 							<li><a href="#tab-1">INFO</a></li>
-							<li><a href="#tab-2">예약 목록</a></li>
-							<li><a href="#tab-3">북마크 리스트</a></li>
-							<li><a href="#tab-4">포토 갤러리</a></li>
-							<li><a href="#tab-5">나의 QnA</a></li>
-							<li><a href="#tab-6">Weather</a></li>
+							<li><a href="#tab-2">호스팅 목록</a></li>
+							<li><a href="#tab-3">예약 목록</a></li>
+							<li><a href="#tab-4">북마크 목록</a></li>
+							<li><a href="#tab-5">포토갤러리</a></li>
+							<li><a href="#tab-6">나의 QnA</a></li>
 						</ul>
 
 						<div id="tab-1">

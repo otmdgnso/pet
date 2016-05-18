@@ -97,8 +97,12 @@
 	DELETE FROM preSale WHERE preSaleNum=#{preSaleNum}
 	</delete>
 
-
-
+	<update id="updatePreSale" parameterType="com.pet.adopt.Adopt">
+		UPDATE preSale SET subject=#{subject}, content=#{content},
+		species=#{species}, type=#{type}, gender=#{gender}, lineage=#{lineage},
+		month=#{month}, price=#{price}, deposit=#{deposit}, vaccin=#{vaccin}
+		WHERE preSaleNum=#{preSaleNum}
+	</update>
 
 
 

@@ -18,13 +18,8 @@
           <div class="row">
              <div class="col-md-12">
                <div class="page-title pull-left">
-                    <h2 class="title-about">Search Results</h2>
+                    <h2 class="title-about">집 구경</h2>
                 </div>
-                <ul class="breadcrumbs pull-right">
-                    <li><a href="#">HOME</a></li>
-                    <li>/</li>
-                    <li class="active">Search Results</li>
-                </ul>
              </div>
           </div>
       </div>

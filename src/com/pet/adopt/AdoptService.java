@@ -13,4 +13,5 @@ public interface AdoptService {
 	public List<Adopt> readPreFile(int preSaleNum);
 	public int preUpdateHitCount(int preSaleNum);
 	public int deletePreSale(int preSaleNum, String pathname);
+	public int updatePreSale(Adopt dto, String pathname);
 }
