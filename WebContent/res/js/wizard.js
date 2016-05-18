@@ -55,6 +55,7 @@ $(document).ready(function(){
             }
         }
     });
+    
 
     // Prepare the preview for profile picture
     $("#wizard-picture").change(function(){
@@ -192,6 +193,7 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
     
 
 

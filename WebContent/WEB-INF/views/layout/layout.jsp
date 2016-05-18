@@ -61,7 +61,6 @@
 <script type="text/javascript" src="<%=cp%>/res/js/bootstrap.min.js"></script>
 <script src="<%=cp%>/res/js/bootstrap-hover-dropdown.min.js"
 	type="text/javascript"></script>
-<script src="<%=cp%>/res/js/reg/wizard.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -147,7 +146,7 @@
 	</script>
 
 
-<%-- 	<!--bxSlider-->
+	<%-- <!--bxSlider-->
 	<script src="<%=cp%>/res/js/jquery.bxslider.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -156,8 +155,8 @@
 				auto : true
 			});
 		});
-	</script>
-	<script src="<%=cp%>/res/js/script.js" type="text/javascript"></script> --%>
+	</script> --%>
+	<script src="<%=cp%>/res/js/script.js" type="text/javascript"></script>
 
 </body>
 </html>

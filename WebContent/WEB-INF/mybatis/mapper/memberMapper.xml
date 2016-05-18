@@ -2,24 +2,34 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
-	<insert id="insertMember" parameterType="com.pet.member.Member">
+   <insert id="insertMember" parameterType="com.pet.member.Member">
              INSERT INTO member
-            (num, userId, userName, pwd, email, phone, birth, profile)  VALUES 
-            (member_seq.nextval, #{userId}, #{userName}, #{pwd}, #{email},#{phone}, #{birth}, #{profile})
+            (num, userId, userName, pwd, email, phone, birth, profile, themeprofile)  VALUES 
+            (member_seq.nextval, #{userId}, #{userName}, #{pwd}, #{email},#{phone}, #{birth}, #{profile}, #{themeprofile, jdbcType=VARCHAR})
     </insert>
     
+    <update id="updateTheme" parameterType="com.pet.member.Member">
+             update member set themeprofile=#{themeprofile}
+             where userId=#{userId}
+    </update>
+    
     <!-- 회원정보 가져오기 -->
-	<select id="readMember" resultType="com.pet.member.Member" parameterType="String">
-		SELECT num, userId, userName, pwd, phone, email, profile, created, 
+   <select id="readMember" resultType="com.pet.member.Member" parameterType="String">
+      SELECT num, userId, userName, pwd, phone, email, profile, created, themeprofile,
           TO_CHAR(birth, 'YYYY-MM-DD') birth FROM member
       WHERE userId=#{userId}
-	</select>
-	
-	<!-- 회원정보 수정 -->
-	<update id="updateMember" parameterType="com.pet.member.Member">
-		UPDATE member SET pwd=#{pwd}, email=#{email}, birth=#{birth} ,phone=#{phone}, profile=#{profile}
-			WHERE userId=#{userId}
-	</update>
-	
-	
+   </select>
+   
+   <!-- 회원정보 수정 -->
+   <update id="updateMember" parameterType="com.pet.member.Member">
+      UPDATE member SET pwd=#{pwd}, email=#{email}, birth=#{birth} ,phone=#{phone}, profile=#{profile}
+         WHERE userId=#{userId}
+   </update>
+   
+   <!-- 회원정보 삭제 -->
+   <delete id="deleteMember" parameterType="String">
+      DELETE FROM member userId=#{userId}
+   </delete>
+   
+   
 </mapper>
