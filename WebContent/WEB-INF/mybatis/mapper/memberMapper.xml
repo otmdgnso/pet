@@ -4,13 +4,18 @@
 <mapper namespace="member">
 	<insert id="insertMember" parameterType="com.pet.member.Member">
              INSERT INTO member
-            (num, userId, userName, pwd, email, phone, birth, profile)  VALUES 
-            (member_seq.nextval, #{userId}, #{userName}, #{pwd}, #{email},#{phone}, #{birth}, #{profile})
+            (num, userId, userName, pwd, email, phone, birth, profile, themeprofile)  VALUES 
+            (member_seq.nextval, #{userId}, #{userName}, #{pwd}, #{email},#{phone}, #{birth}, #{profile}, #{themeprofile, jdbcType=VARCHAR})
     </insert>
+    
+    <update id="updateTheme" parameterType="com.pet.member.Member">
+             update member set themeprofile=#{themeprofile}
+             where userId=#{userId}
+    </update>
     
     <!-- 회원정보 가져오기 -->
 	<select id="readMember" resultType="com.pet.member.Member" parameterType="String">
-		SELECT num, userId, userName, pwd, phone, email, profile, created, 
+		SELECT num, userId, userName, pwd, phone, email, profile, created, themeprofile,
           TO_CHAR(birth, 'YYYY-MM-DD') birth FROM member
       WHERE userId=#{userId}
 	</select>
