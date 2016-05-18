@@ -40,6 +40,7 @@ public class MemberController {
          info.setUserId(dto.getUserId());
          info.setUserName(dto.getUserName());
          info.setMemberNum(dto.getNum());
+         info.setPwd(dto.getPwd());
          session.setAttribute("member", info);
       }
       
@@ -123,12 +124,30 @@ public class MemberController {
    }
 
    @RequestMapping(value="/member/delete")
-   public String delete(
+   @ResponseBody
+   public Map<String, Object> delete(
          Member dto
-         ,HttpSession session
+         ,HttpSession session,
+         @RequestParam String pwd
          ) throws Exception{
-      
-      return "redirect:/";
+	   
+	SessionInfo info=(SessionInfo)session.getAttribute("member");
+    	
+	String state="true";	
+	 if(!pwd.equals(info.getPwd())){
+		 state="false";
+     } else{
+	 
+	int result=0;
+	result=service.deleteMember(info.getUserId());
+	
+	  session.removeAttribute("member");
+      session.invalidate();
+     }
+      Map<String, Object> model=new HashMap<>();
+      model.put("state", state);
+      return model;
+	
    }
 
    @RequestMapping(value="/member/theme")
