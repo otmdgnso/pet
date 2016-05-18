@@ -92,11 +92,6 @@ function sendTheme(){
 	var url="<%=cp%>/member/theme";
 	var f=$("form")[3];	
 	var formData=new FormData(f);
-
-	if(f.value==null){
-		alert("사진을 선택하세요");
-		location.href="<%=cp%>/member/blog";
-	}
 	
 	$.ajax({
 		url:url
