@@ -122,6 +122,14 @@ public class MemberController {
 		return mav;		
 	}
 	
+	@RequestMapping(value="/member/delete")
+	public String delete(
+			Member dto
+			,HttpSession session
+			) throws Exception{
+		
+		return "redirect:/";
+	}
 	
 	
 }
