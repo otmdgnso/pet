@@ -182,7 +182,7 @@ function shakeModalMember(msg){
 											<img src="<%=cp%>/res/images/icon/menu.JPG" width="40" alt="" />
                                             <h3>메뉴</h3>
                                             <ul>
-                                              <li><a href="<%=cp%>/reservation/created">예약하기</a></li>
+                                              <li><a href="<%=cp%>/reservation/list">예약</a></li>
                                               <li><a href="<%=cp%>/auction/auction">경매</a></li>
                                               <li><a href="<%=cp%>/adopt/list">분양</a></li>
                                             </ul>

@@ -8,6 +8,7 @@
  <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.blue_grey-red.min.css" />
   <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 <style>
 
 .file_input_div {
@@ -27,6 +28,53 @@
 }
 
 </style>
+
+<script type="text/javascript">
+
+
+function openUpdateModal(){
+    showUpdateForm();
+    setTimeout(function(){
+        $('#updateModal').modal('show');    
+    }, 230);
+    
+}
+
+function showUpdateForm(){
+	$('.loginBox').fadeOut('fast',function(){
+        $('.registerBox1').fadeIn('fast');
+       
+        $('.modal-title').html('Register with');
+    }); 
+    $('.error').removeClass('alert alert-danger').html('');
+}
+
+function updateMember(){
+	var url="<%=cp%>/member/update";
+	
+	var f=$("form")[5];	
+	 
+	var formData=new FormData(f);
+
+
+	$.ajax({
+		url:url
+		,type:"post"
+		,processData:false
+		,contentType:false
+		,data:formData
+		,dataType:"json"
+		,success:function(data){
+			var state=data.state;
+			if(state=="false"){
+			}else{
+				location.href="<%=cp%>/member/blog";
+			}
+		}
+	});
+}
+</script>
+
 <body>
 	<div class="clear"></div>
 	<section id="guide">
@@ -36,11 +84,11 @@
 					<div id="horizontalTab">
 						<ul>
 							<li><a href="#tab-1">INFO</a></li>
-							<li><a href="#tab-2">예약 목록</a></li>
-							<li><a href="#tab-3">북마크 리스트</a></li>
-							<li><a href="#tab-4">포토 갤러리</a></li>
-							<li><a href="#tab-5">나의 QnA</a></li>
-							<li><a href="#tab-6">Weather</a></li>
+							<li><a href="#tab-2">호스팅 목록</a></li>
+							<li><a href="#tab-3">예약 목록</a></li>
+							<li><a href="#tab-4">북마크 목록</a></li>
+							<li><a href="#tab-5">포토갤러리</a></li>
+							<li><a href="#tab-6">나의 QnA</a></li>
 						</ul>
 
 						<div id="tab-1">
@@ -62,6 +110,7 @@
 								    </div>
 								  </div>
 							</div>
+				<form name="updateForm" action="" method="post">
 							<div style="text-align: center;">
 								<h1><img alt="" src="<%=cp%>/res/images/asterisk.png" style="width: 64px;"> &nbsp; Information</h1>
 								<div align="center" >
@@ -85,13 +134,86 @@
 												style="width: 64px;"> 이메일 : ${dto.email }</h3></td>
 										</tr>
 										<tr style="text-align: center;">
-											<td><h3><a>수정하기</a></h3>
+										<!-- 	<td><h3><input class="btn btn-default btn-register"  type="button" onclick="update();" value="수정하기"></h3> -->
+										
+										<td><h4><a href="javascript:void(0)" onclick="openUpdateModal();">수정하기</a></h4></td>
 										</tr>
 									</table>
 								</div>
 							</div>
-
+			</form>
 						</div>
+						
+						
+		 <div class="container">
+		 <div class="modal fade login" id="updateModal">
+		      <div class="modal-dialog login animated">
+    		      <div class="modal-content">
+    		         <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Login with</h4>
+                    </div>
+                    <div class="modal-body">  
+                        <div class="box">
+                             <div class="content">
+                                <div class="error"></div>
+                                <div class="form loginBox">
+                                    <form>
+                                    <input id="userId" class="form-control" type="text" placeholder="userId" name="userId">
+                                    <input id="pwd" class="form-control" type="password" placeholder="pwd" name="pwd">
+                                    <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginSend()">
+                                    </form>
+                                </div>
+                             </div>
+                        </div>
+                        <div class="box">
+                            <div class="content registerBox1" style="display:none;">
+                             <div class="form">
+                                <form id="upForm" enctype="multipart/form-data">
+                              		<div class="card wizard-card ct-wizard-orange" id="wizardProfile">
+		 									<div class="picture-container">
+		                                          <div class="picture">
+		                                              <img src="<%=cp%>/uploads/profile/${dto.profile}" width="110px" height="100px"
+		                                              class="picture-src" id="wizardPicturePreview" title=""/>		                                              
+		                                              <input type="file" id="wizard-picture1" name="upload" value="${dto.profile}">
+		                                          </div>
+		                                          <h6>Choose Picture</h6>
+		                                     </div>
+		                              <!--   <input id="wizard-picture" class="form-control" type="text" placeholder="id" name="wizard-picture"> -->
+		                                <input id="userId1" class="form-control" type="text" value="${dto.userId}" name="userId" readonly="readonly" >
+		                                <input id="pwd1" class="form-control" type="password" value="${dto.pwd}" name="pwd">
+		                                <input id="pwd_confirm1" class="form-control" type="password" value="${dto.pwd}" name="pwd_confirm">
+		                                <input id="userName1" class="form-control" type="text" value="${dto.userName}" name="userName" readonly="readonly">
+		                                <input id="email11" class="form-control" type="text" value="${dto.email}" name="email">
+		                                <input id="birth1" class="form-control" type="text" value="${dto.birth}" name="birth">
+		                                <input id="phone1" class="form-control" type="text" value="${dto.phone}" name="phone">
+		                              	<input id="checking1" type="hidden" name="checking">
+		                                     </div>
+                                <input class="btn btn-default btn-register" onclick="updateMember();" value="수정 완료">
+                                
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="forgot login-footer">
+                            <span>Looking to 
+                                 <a href="javascript: showRegisterForm();">create an account</a>
+                            ?</span>
+                        </div>
+                        <div class="forgot register-footer" style="display:none">
+                             <span>Already have an account?</span>
+                             <a href="javascript: showLoginForm();">Login</a>
+                        </div>
+                    </div>        
+    		      </div>
+		      </div>
+		  </div>
+    </div>
+						
+						
+						
 						<div id="tab-2">
 
 							<div class="col-md-5 histo-img">
