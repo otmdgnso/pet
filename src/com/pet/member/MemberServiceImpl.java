@@ -43,8 +43,11 @@ public class MemberServiceImpl implements MemberService {
 		int result=0;
 		try {			
 			if(dto.getUpload()!=null && !dto.getUpload().isEmpty()){
-				/*String profile=fileManager.doFileUpload(dto.getUpload(), pathname);
-				dto.setProfile(profile);*/				
+				if(dto.getProfile().length()!=0)
+					fileManager.doFileDelete(dto.getProfile(), pathname);
+				
+				String profile=fileManager.doFileUpload(dto.getUpload(), pathname);
+				dto.setProfile(profile);
 			}	
 			
 			result=dao.updateData("member.updateMember", dto);

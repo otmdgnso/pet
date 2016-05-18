@@ -60,6 +60,9 @@ function deletePreSale(preSaleNum) {
 	<li class="current">
 	<a class="clicker" href="javascript:deletePreSale(${dto.preSaleNum});">삭제</a>
 	</li>
+	<li class="current">
+	<a class="clicker" href="<%=cp%>/adopt/update?preSaleNum=${dto.preSaleNum}&page=${page}">수정</a>
+	</li>
 	</ul>
 </form>
 </div>

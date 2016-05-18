@@ -152,4 +152,29 @@ public class AdoptServiceImpl implements AdoptService {
 		return result;
 	}
 
+	@Override
+	public int updatePreSale(Adopt dto, String pathname) {
+		int result=0;
+		try {
+			result=dao.updateData("adopt.updatePreSale", dto);
+			
+			if(!dto.getUpload().isEmpty()) {
+				for(MultipartFile mf:dto.getUpload()) {
+					if(mf.isEmpty())
+						continue;
+					
+					String saveFilename=fileManager.doFileUpload(mf, pathname);
+					if(saveFilename!=null) {
+						dto.setSaveFilename(saveFilename);
+						
+						insertFile(dto);
+					}
+				}
+			}
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
 }

@@ -182,6 +182,24 @@ public class AdoptController {
 		return "redirect:/adopt/list?page="+page;
 	}
 	
+	@RequestMapping(value="/adopt/update",method=RequestMethod.GET)
+	public ModelAndView updateForm(
+			@RequestParam(value="preSaleNum") int preSaleNum,
+			@RequestParam(value="page") String page
+			) throws Exception {
+		Adopt dto = service.readPreSale(preSaleNum);
+		if(dto==null)
+			return new ModelAndView("redirect:.adopt.list?page="+page);
+		
+		List<Adopt> readPreFile = service.readPreFile(preSaleNum);
+		
+		ModelAndView mav=new ModelAndView(".adopt.created");
+		mav.addObject("mode","update");
+		mav.addObject("page",page);
+		mav.addObject("dto",dto);
+		mav.addObject("readPreFile",readPreFile);
+		return mav;
+	}
 	
 	
 	

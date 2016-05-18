@@ -54,6 +54,7 @@ public class ReservationController {
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("searchKey", searchKey);
 		map.put("searchValue", searchValue);
+		map.put("num", dto.getNum());
 		
 		dataCount=service.dataCount(map);
 		
@@ -65,7 +66,7 @@ public class ReservationController {
 		int end=current_page*numPerPage;
 		map.put("start", start);
 		map.put("end", end);
-					
+		
 		List<Reservation> list=service.listReservation(map);
 			
 		//리스트 번호
