@@ -60,4 +60,19 @@ public class MemberServiceImpl implements MemberService {
 		return 0;
 	}
 
+	@Override
+	public int updateTheme(Member dto, String pathname) {
+		int result=0;
+		try {			
+			if(dto.getThemeUpload()!=null && !dto.getThemeUpload().isEmpty()){
+				String profile=fileManager.doFileUpload(dto.getThemeUpload(), pathname);
+				dto.setThemeprofile(profile);
+			}	
+			result=dao.updateData("member.updateTheme", dto);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
 }

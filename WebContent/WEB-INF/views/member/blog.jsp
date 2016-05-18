@@ -52,7 +52,7 @@ function showUpdateForm(){
 function updateMember(){
 	var url="<%=cp%>/member/update";
 	
-	var f=$("form")[5];	
+	var f=$("form")[6];	
 	 
 	var formData=new FormData(f);
 
@@ -70,6 +70,23 @@ function updateMember(){
 			}else{
 				location.href="<%=cp%>/member/blog";
 			}
+		}
+	});
+}
+function sendTheme(){
+	var url="<%=cp%>/member/theme";
+	var f=$("form")[3];	
+	var formData=new FormData(f);
+	alert("ssg");
+	$.ajax({
+		url:url
+		,type:"post"
+		,processData:false
+		,contentType:false
+		,data:formData
+		,dataType:"json"
+		,success:function(data){
+			alert("ssg");
 		}
 	});
 }
@@ -96,19 +113,24 @@ function updateMember(){
 								<div class="info-box-guide" style="width: 150px; height: 150px;">
 									<img src="<%=cp%>/uploads/profile/${dto.profile}" class="avatar img-circle img-thumbnail">
 								</div>
-								<img src="http://placehold.it/1600x800" alt="" />
-								<div class="file_input_div" style="float: right;">
-								    <div class="file_input">
-								      <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
-								        <i class="material-icons">file_upload</i>
-								        <input id="file_input_file" class="none" type="file" style="display: none;"/>
-								      </label>
-								    </div>
-								    <div id="file_input_text_div" class="mdl-textfield mdl-js-textfield textfield-demo">
-								      <input class="file_input_text mdl-textfield__input" type="text" disabled readonly id="file_input_text" />
-								      <label class="mdl-textfield__label" for="file_input_text"></label>
-								    </div>
-								  </div>
+								<img src="<%=cp%>/uploads/theme/${dto.themeprofile}" alt="" />
+								<form name="updateTheme" method="post" enctype="multipart/form-data">
+									<div class="file_input_div" style="float: right;">
+									    <div class="file_input">
+									      <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
+									        <i class="material-icons">file_upload</i>
+									        <input id="file_input_file" class="none" type="file" style="display: none;" name="themeUpload"/>
+									      </label>
+									    </div>
+									    <div id="file_input_text_div" class="mdl-textfield mdl-js-textfield textfield-demo">
+									      <input class="file_input_text mdl-textfield__input" type="text" disabled readonly id="file_input_text" />
+									      <label class="mdl-textfield__label" for="file_input_text"></label>
+									    </div>
+									    <div>
+									    	<button onclick="sendTheme();">사진올리기</button>
+									    </div>
+									  </div>
+								  </form>
 							</div>
 				<form name="updateForm" action="" method="post">
 							<div style="text-align: center;">
