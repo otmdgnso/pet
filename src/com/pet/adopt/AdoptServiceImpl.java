@@ -1,6 +1,5 @@
 package com.pet.adopt;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -175,6 +174,51 @@ public class AdoptServiceImpl implements AdoptService {
 			System.out.println(e.toString());
 		}
 		return result;
+	}
+
+	@Override
+	public int deletePreFile(String saveFilename, String pathname) {
+		int result=0;
+		try {
+			result=dao.deleteData("adopt.deletePreFile", saveFilename);
+			fileManager.doFileDelete(saveFilename, pathname);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	@Override
+	public int insertPreReply(Reply dto) {
+		int result=0;
+		try {
+			result=dao.insertData("adopt.insertPreReply", dto);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	@Override
+	public int dataCountPreReply(int preSaleNum) {
+		int result=0;
+		try {
+			result=dao.getIntValue("adopt.dataCountPreReply", preSaleNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	@Override
+	public List<Reply> listPreReply(Map<String, Object> map) {
+		List<Reply> list=null;
+		try {
+			list=dao.getListData("adopt.listPreReply",map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return list;
 	}
 
 }

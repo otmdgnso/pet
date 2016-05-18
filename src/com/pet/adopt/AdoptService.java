@@ -14,4 +14,10 @@ public interface AdoptService {
 	public int preUpdateHitCount(int preSaleNum);
 	public int deletePreSale(int preSaleNum, String pathname);
 	public int updatePreSale(Adopt dto, String pathname);
+	public int deletePreFile(String saveFilename, String pathname);
+	
+	// ´ñ±Û
+	public int insertPreReply(Reply dto);
+	public int dataCountPreReply(int preSaleNum);
+	public List<Reply> listPreReply(Map<String, Object> map);
 }

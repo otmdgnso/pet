@@ -1,6 +1,7 @@
 package com.pet.adopt;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +18,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pet.common.MyUtil;
 import com.pet.member.SessionInfo;
+
+import net.sf.json.JSONObject;
 
 @Controller("adopt.adoptController")
 public class AdoptController {
@@ -201,8 +206,110 @@ public class AdoptController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/adopt/update", method=RequestMethod.POST)
+	public String updateSubmit(
+			HttpSession session,
+			Adopt dto,
+			@RequestParam(value="page") String page
+			) throws Exception {
+		String root = session.getServletContext().getRealPath("/");
+		String pathname = root + File.separator + "uploads" +File.separator +"adopt";
+		
+		// 수정 하기
+		service.updatePreSale(dto, pathname);
+		
+		return "redirect:/adopt/list?page="+page;
+	}
 	
+	@ResponseBody
+	@RequestMapping(value="/adopt/deleteFile")
+	public Map<String, Object> deleteFile (
+			HttpSession session,
+			@RequestParam(value="saveFilename") String saveFilename
+			) throws Exception {
+		Map<String, Object> map= new HashMap<>();
+		String root = session.getServletContext().getRealPath("/");
+		String pathname = root + File.separator + "uploads" +File.separator + "adopt";
+		
+		// 해당 파일 삭제
+		service.deletePreFile(saveFilename, pathname);
+		
+		return map;
+	}
 	
+	// 리플 추가
+	@RequestMapping(value="/adopt/insertReply",method=RequestMethod.POST)
+	public void insertReply(
+			HttpServletResponse resp,
+			HttpSession session,
+			Reply dto
+			) throws Exception {
+		SessionInfo info=(SessionInfo) session.getAttribute("member");
+		
+		String state="true";
+		if(info==null) {
+			state="loginFail";
+		} else {
+			dto.setUserId(info.getUserId());
+			dto.setNum(info.getMemberNum());
+			int result=service.insertPreReply(dto);
+			if(result==0)
+				state="false";
+		}
+		
+		// 작업 결과를 json으로 전송
+		JSONObject job = new JSONObject();
+		job.put("state", state);
+		
+		resp.setContentType("text/html;charset=utf-8");
+		PrintWriter out=resp.getWriter();
+		out.println(job.toString());
+	}
+	
+	// 댓글 리스트
+	@RequestMapping(value="/adopt/listReply")
+	public ModelAndView listReply(
+			@RequestParam(value="preSaleNum") int preSaleNum,
+			@RequestParam(value="pageNo",defaultValue="1") int current_page
+			) throws Exception {
+		int numPerPage=5;
+		int total_page=0;
+		int dataCount=0;
+		
+		dataCount=service.dataCountPreReply(preSaleNum);
+		total_page=myutil.pageCount(numPerPage, dataCount);
+		if(current_page>total_page)
+			total_page=current_page;
+		
+		int start=(current_page-1)*numPerPage+1;
+		int end=current_page*numPerPage;
+		
+		// 리스트에 출력할 데이터
+		Map<String, Object> map= new HashMap<String, Object>();
+		map.put("preSaleNum", preSaleNum);
+		map.put("start", start);
+		map.put("end", end);
+		List<Reply> list=service.listPreReply(map);
+		
+		// 엔터를 <br>
+		Iterator<Reply> it=list.iterator();
+		while(it.hasNext()) {
+			Reply dto=it.next();
+			dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
+		}
+		
+		String paging=myutil.paging(current_page, total_page);
+		
+		ModelAndView mav=new ModelAndView("adopt/listReply");
+		
+		// jsp로 넘길 데이터
+		mav.addObject("list",list);
+		mav.addObject("pageNo",current_page);
+		mav.addObject("dataCount",dataCount);
+		mav.addObject("paging",paging);
+		
+		return mav;
+	}
 	
 	
 }
