@@ -88,53 +88,53 @@ function deleteFile(fileNum) {
 <section id="gallery">
    <div class="container">
 <form name="boardForm" method="post" enctype="multipart/form-data">
-<input type="text" class="form-control" placeholder="제목" name="subject" size="200px"/>
+<input type="text" class="form-control" placeholder="제목" name="subject" size="200px" value="${dto.subject}"/>
 <br>
-<textarea rows="20" cols="160" placeholder="내용" name="content"></textarea>
+<textarea rows="20" cols="160" placeholder="내용" name="content">${dto.content}</textarea>
 
 <br>
 	<font color="blue">종류</font>
 	<select name="species">
-		<option value="개">
+		<option value="개" ${dto.species=="개"?"selected='selected'" : ""}>
 		개
 		</option>
-		<option value="고양이">
+		<option value="고양이" ${dto.species=="고양이"?"selected='selected'" : ""}>
 		고양이
 		</option>
 	</select>
 	
 	<font color="blue">품종</font>
-	<input type="text" placeholder="개 혹은 고양이의 품종" name="type">
+	<input type="text" placeholder="개 혹은 고양이의 품종" name="type" value="${dto.type}">
 	
 	<font color="blue">암수</font>
 	<select name="gender">
-		<option value="암">
+		<option value="암" ${dto.gender=="암"?"selected='selected'" : ""}>
 		암
 		</option>
-		<option value="수">
+		<option value="수" ${dto.gender=="수"?"selected='selected'" : ""}>
 		수
 		</option>
 	</select>
 	
 	<font color="blue">혈통서</font>
 	<select name="lineage">
-		<option value="유">
+		<option value="유" ${dto.lineage=="유"?"selected='selected'" : ""}>
 		유
 		</option>
-		<option value="무">
+		<option value="무" ${dto.lineage=="무"?"selected='selected'" : ""}>
 		무
 		</option>
 	</select>
 	
 	<font color="blue">개월수</font>
-	<input type="text" placeholder="숫자 입력" name="month">
+	<input type="text" placeholder="숫자 입력" name="month" value="${dto.month}">
 	
 	<font color="blue">예방접종</font>
 	<select name="vaccin">
-		<option value="유">
+		<option value="유" ${dto.vaccin=="유"?"selected='selected'" : ""}>
 		유
 		</option>
-		<option value="무">
+		<option value="무" ${dto.vaccin=="무"?"selected='selected'" : ""}>
 		무
 		</option>
 	</select>
@@ -142,10 +142,10 @@ function deleteFile(fileNum) {
 	<br>
 	
 	<font color="blue">가격</font>
-	<input type="text" placeholder="숫자 입력" name="price">
+	<input type="text" placeholder="숫자 입력" name="price" value="${dto.price}">
 	
 	<font color="blue">보증금</font>
-	<input type="text" placeholder="숫자 입력" name="deposit">
+	<input type="text" placeholder="숫자 입력" name="deposit" value="${dto.deposit}">
 	<br>
 	
 	<div id="tbFile">
