@@ -7,7 +7,9 @@
 %>
 <script type="text/javascript">
 $(function(){
-	$("body").on("click", "input[name='plus']", function(){
+	$("body").on("change", "input[name='upload']", function(){
+		if(! $(this).val())
+			return;
 		
 		var s;
 		s+="<input type='file' name='upload' class='boxTF'  size='61' style='height: 20px; color: blue;'>";
@@ -56,8 +58,8 @@ function check() {
 	}
 	var mode="${mode}";
 	
-	if(f.upload.value!="") {
-		if(! /(\.gif|\.jpg|\.png|\.jpeg)$/i.test(f.upload.value)) {
+	if(mode=="created"||mode=="update"&& f.upload.value!="") {
+		if(! /(\.gif|\.jpg|\.png|\.jpeg)$/.test(f.upload.value)) {
 			alert('이미지 파일만 가능합니다. !!!');
 			return false;
 		}
@@ -72,11 +74,11 @@ function check() {
 }
 
 <c:if test="${mode=='update'}">
-function deleteFile(saveFilename, preSaleNum) {
+function deleteFile(saveFilename, photoNum) {
 	if(confirm("사진을 삭제 하시겠습니까?")) {
 	    var url="<%=cp%>/adopt/deleteFile";
 	    $.post(url, {saveFilename:saveFilename}, function(data){
-		    $("#fileview"+preSaleNum).remove();
+		    $("#fileview"+photoNum).remove();
 	     }, "JSON");
 	}
 }
@@ -150,15 +152,14 @@ function deleteFile(saveFilename, preSaleNum) {
 	
 	<div id="tbFile">
 	<font color="blue">첨부 (첫번째 사진이 대표사진)</font><br>
-	<input type="button" name="plus" value="이미지 추가하기">
-	<input type="file" name="upload" class="boxTF" size="61" style="height: 20px; color: blue;">
+	<input type="file" name="upload" id="file0" class="boxTF" size="61" style="height: 20px; color: blue;">
 	</div>
 	
 	<c:if test="${mode=='update'}">
 	<font color="blue">첨부된 파일(사진 클릭시 삭제가능!!)</font><br>
 		<c:forEach var="vo" items="${readPreFile}">
-		   <div id="fileview${vo.preSaleNum}">
-			 <img src="<%=cp%>/uploads/adopt/${vo.saveFilename}"  onclick="deleteFile('${vo.saveFilename}', ${vo.preSaleNum});">
+		   <div id="fileview${vo.photoNum}">
+			 <img src="<%=cp%>/uploads/adopt/${vo.saveFilename}"  onclick="deleteFile('${vo.saveFilename}', ${vo.photoNum});">
 			</div>
 		</c:forEach>
 	</c:if>

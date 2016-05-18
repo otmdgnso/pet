@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pet.common.MyUtil;
@@ -201,18 +202,35 @@ public class AdoptController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/adopt/update", method=RequestMethod.POST)
+	public String updateSubmit(
+			HttpSession session,
+			Adopt dto,
+			@RequestParam(value="page") String page
+			) throws Exception {
+		String root = session.getServletContext().getRealPath("/");
+		String pathname = root + File.separator + "uploads" +File.separator +"adopt";
+		
+		// 수정 하기
+		service.updatePreSale(dto, pathname);
+		
+		return "redirect:/adopt/list?page="+page;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value="/adopt/deleteFile")
-	public String deleteFile (
+	public Map<String, Object> deleteFile (
 			HttpSession session,
 			@RequestParam(value="saveFilename") String saveFilename
 			) throws Exception {
+		Map<String, Object> map= new HashMap<>();
 		String root = session.getServletContext().getRealPath("/");
 		String pathname = root + File.separator + "uploads" +File.separator + "adopt";
 		
 		// 해당 파일 삭제
 		service.deletePreFile(saveFilename, pathname);
 		
-		return "";
+		return map;
 	}
 	
 	

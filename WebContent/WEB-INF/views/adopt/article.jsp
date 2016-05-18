@@ -7,6 +7,22 @@
 %>
 
 <script type="text/javascript">
+// 댓글 추가
+function sendReply() {
+	var uid="${sessionScope.member.userId}";
+	if (! uid) {
+		return false;
+	}
+	
+	var preSaleNum="${dto.preSaleNum}"; // 해당 게시물의 번호
+	var content=$.trim($('#content').val());
+	if(! content ) {
+		alert("내용을 입력하세요!!!");
+		$("#content").focus();
+		return false;
+	}
+}
+
 function deletePreSale(preSaleNum) {
 	if(confirm("분양 게시글을 삭제 하시겠습니까?")) {
 		var url="<%=cp%>/adopt/delete?preSaleNum="+preSaleNum+"&page=${page}";
@@ -65,6 +81,13 @@ function deletePreSale(preSaleNum) {
 	</li>
 	</ul>
 </form>
+	<a>댓글보기</a>
+	<div class="col-md-12 details-hotel" id="replyList">
+	<p><input type="text" id="content" size="150px"> <a id="btnSend" onclick="sendReply()">등록</a></p>
+	<p>작성자:admin 작성일:2014
+	<br>메롱ㅋㅋ <a> 삭제 </a>
+	</p>
+	</div>
 </div>
 </section>
 
