@@ -121,8 +121,7 @@ public class MemberController {
 		mav.addObject("dto",dto);
 		return mav;		
 	}
-	
-<<<<<<< HEAD
+
 	@RequestMapping(value="/member/delete")
 	public String delete(
 			Member dto
@@ -131,7 +130,7 @@ public class MemberController {
 		
 		return "redirect:/";
 	}
-=======
+
 	@RequestMapping(value="/member/theme")
 	@ResponseBody
 	public ModelAndView themeprofile(
@@ -156,7 +155,7 @@ public class MemberController {
 		return mav;		
 	}
 	
->>>>>>> 2561759439f9af1fe13609b7a4190bf4e7481e31
+
 	
 	
 }
