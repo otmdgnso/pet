@@ -91,10 +91,16 @@ function updateMember(){
 	});
 }
 function sendTheme(){
+	
 	var url="<%=cp%>/member/theme";
 	var f=$("form")[3];	
 	var formData=new FormData(f);
-	alert("ssg");
+
+	if(f.value==null){
+		alert("사진을 선택하세요");
+		location.href="<%=cp%>/member/blog";
+	}
+	
 	$.ajax({
 		url:url
 		,type:"post"
@@ -143,8 +149,8 @@ function sendTheme(){
 									      <input class="file_input_text mdl-textfield__input" type="text" disabled readonly id="file_input_text" />
 									      <label class="mdl-textfield__label" for="file_input_text"></label>
 									    </div>
-									    <div>
-									    	<button onclick="sendTheme();">사진올리기</button>
+									    <div style=" float: right;" >
+									     <button onclick="sendTheme();" class="btn btn-info btn-small"><i class="icon-white icon-chevron-right"></i>테마사진변경</button> 
 									    </div>
 									  </div>
 								  </form>
