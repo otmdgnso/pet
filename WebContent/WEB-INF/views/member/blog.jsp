@@ -31,6 +31,22 @@
 </style>
 
 <script type="text/javascript">
+$(document).ready(function(){
+	$("#wizard-picture1").change(function(){
+	    readURL(this);
+	});
+});
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#wizardPicturePreview1').attr('src', e.target.result).fadeIn('slow');
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
 
 
 function openUpdateModal(){
