@@ -32,11 +32,11 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-<<<<<<< HEAD
+
 	   $("#wizard-picture1").change(function(){
 	       readURL(this);
 	   });
-	});
+});
 	function readURL(input) {
 	    if (input.files && input.files[0]) {
 	        var reader = new FileReader();
@@ -47,25 +47,6 @@ $(document).ready(function(){
 	        reader.readAsDataURL(input.files[0]);
 	    }
 	}
-=======
-	$("#wizard-picture1").change(function(){
-	    readURL(this);
-	});
-});
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('#wizardPicturePreview1').attr('src', e.target.result).fadeIn('slow');
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
->>>>>>> 2561759439f9af1fe13609b7a4190bf4e7481e31
-
-
 function openUpdateModal(){
     showUpdateForm();
     setTimeout(function(){
@@ -85,13 +66,9 @@ function showUpdateForm(){
 
 function updateMember(){
 	var url="<%=cp%>/member/update";
-	
-<<<<<<< HEAD
 	var f=document.upForm;
-=======
 	var f=$("form")[6];	
->>>>>>> 2561759439f9af1fe13609b7a4190bf4e7481e31
-	 
+
 	var formData=new FormData(f);
 
 	$.ajax({
