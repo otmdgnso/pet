@@ -18,7 +18,7 @@
   height: 40px;
 }
 
-.file_input {
+.file_input { 
   float: left;
 }
 
@@ -66,11 +66,10 @@ function showUpdateForm(){
 
 function updateMember(){
    var url="<%=cp%>/member/update";
-   var f=document.upForm;
-   var f=$("form")[6];   
-
+   
+   var f=document.upForm;   
    var formData=new FormData(f);
-
+	
    $.ajax({
       url:url
       ,type:"post"
@@ -88,7 +87,6 @@ function updateMember(){
    });
 }
 function sendTheme(){
-<<<<<<< HEAD
    
    var url="<%=cp%>/member/theme";
    var f=$("form")[3];   
@@ -105,24 +103,7 @@ function sendTheme(){
          alert("ssg");
       }
    });
-=======
 	
-	var url="<%=cp%>/member/theme";
-	var f=$("form")[3];	
-	var formData=new FormData(f);
-	
-	$.ajax({
-		url:url
-		,type:"post"
-		,processData:false
-		,contentType:false
-		,data:formData
-		,dataType:"json"
-		,success:function(data){
-			alert("ssg");
-		}
-	});
->>>>>>> 4176d7c92a9d053af290ec4055c5f203d0838860
 }
 </script>
 
@@ -141,133 +122,92 @@ function sendTheme(){
                      <li><a href="#tab-5">포토갤러리</a></li>
                      <li><a href="#tab-6">나의 QnA</a></li>
                   </ul>
+						<div id="tab-1" >
+							<div class="city-info-content">
+								<div class="info-box-guide" style="width: 200px; height: 200px;">
+									<img src="<%=cp%>/uploads/profile/${dto.profile}"
+										class="avatar img-circle img-thumbnail">
+								</div>
+								<c:if test="${empty dto.themeprofile }">
+									<img src="http://placehold.it/1600x800" alt="" />
+								</c:if>
+								<c:if test="${not empty dto.themeprofile }">
+									<img src="<%=cp%>/uploads/theme/${dto.themeprofile}" alt="" />
+								</c:if>
 
-                  <div id="tab-1">
-                     <div class="city-info-content">
-                        <div class="info-box-guide" style="width: 150px; height: 150px;">
-                           <img src="<%=cp%>/uploads/profile/${dto.profile}" class="avatar img-circle img-thumbnail">
-                        </div>
-                        <img src="<%=cp%>/uploads/theme/${dto.themeprofile}" alt="" />
-                        <form name="updateTheme" method="post" enctype="multipart/form-data">
-                           <div class="file_input_div" style="float: right;">
-                               <div class="file_input">
-                                 <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
-                                   <i class="material-icons">file_upload</i>
-                                   <input id="file_input_file" class="none" type="file" style="display: none;" name="themeUpload"/>
-                                 </label>
-                               </div>
-                               <div id="file_input_text_div" class="mdl-textfield mdl-js-textfield textfield-demo">
-                                 <input class="file_input_text mdl-textfield__input" type="text" disabled readonly id="file_input_text" />
-                                 <label class="mdl-textfield__label" for="file_input_text"></label>
-                               </div>
-                               <div style=" float: right;" >
-                                <button onclick="sendTheme();" class="btn btn-info btn-small"><i class="icon-white icon-chevron-right"></i>테마사진변경</button> 
-                               </div>
-                             </div>
-                          </form>
-                     </div>
-            <form name="updateForm" action="" method="post">
-                     <div style="text-align: center;">
-                        <h1><img alt="" src="<%=cp%>/res/images/asterisk.png" style="width: 64px;"> &nbsp; Information</h1>
-                        <div align="center" >
-                           <table style="text-align: left;">
-                              <tr style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
-                                 <td ><h3> <img
-                                    alt="" src="<%=cp%>/res/images/name.png"
-                                    style="width: 64px;"> 이름 : ${dto.userName }</h3></td>
-                              </tr>
-                              <tr style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
-                                 <td><h3><img alt=""
-                                    src="<%=cp%>/res/images/birthday-cake.png"
-                                    style="width: 64px;"> 생년월일 : ${dto.birth }</h3></td>
-                              </tr>
-                              <tr style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
-                                 <td><h3><img alt="" src="<%=cp%>/res/images/calendar.png"
-                                    style="width: 64px;"> 가입일 : ${dto.created }</h3></td>
-                              </tr>
-                              <tr style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
-                                 <td><h3><img alt="" src="<%=cp%>/res/images/email.png"
-                                    style="width: 64px;"> 이메일 : ${dto.email }</h3></td>
-                              </tr>
-                              <tr style="text-align: center;">
-                              <!--    <td><h3><input class="btn btn-default btn-register"  type="button" onclick="update();" value="수정하기"></h3> -->
-                              
-                              <td><h4><a href="javascript:void(0)" onclick="openUpdateModal();">수정하기</a></h4></td>
-                              </tr>
-                           </table>
-                        </div>
-                     </div>
-         </form>
-                  </div>
-                  
-                  
-       <div class="container">
-       <div class="modal fade login" id="updateModal">
-            <div class="modal-dialog login animated">
-                <div class="modal-content">
-                   <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Login with</h4>
-                    </div>
-                    <div class="modal-body">  
-                        <div class="box">
-                             <div class="content">
-                                <div class="error"></div>
-                                <div class="form loginBox">
-                                    <form>
-                                    <input id="userId" class="form-control" type="text" placeholder="userId" name="userId">
-                                    <input id="pwd" class="form-control" type="password" placeholder="pwd" name="pwd">
-                                    <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginSend()">
-                                    </form>
-                                </div>
-                             </div>
-                        </div>
-                        <div class="box">
-                            <div class="content registerBox1" style="display:none;">
-                             <div class="form">
-                                <form name="upForm" enctype="multipart/form-data">
-                                    <div class="card wizard-card ct-wizard-orange" >
-                                  <div class="picture-container">
-                                                <div class="picture">
-                                                    <img src="<%=cp%>/uploads/profile/${dto.profile}" width="110px" height="100px"
-                                                    class="picture-src" id="wizardPicturePreview1" title=""/>                                                    
-                                                    <input type="file" id="wizard-picture1" name="upload" >
-                                                </div>
-                                                <h6>Choose Picture</h6>
-                                           </div>
-                                    <!--   <input id="wizard-picture" class="form-control" type="text" placeholder="id" name="wizard-picture"> -->
-                                      <input id="userId1" class="form-control" type="text" value="${dto.userId}" name="userId" readonly="readonly" >
-                                      <input id="pwd1" class="form-control" type="password" value="${dto.pwd}" name="pwd">
-                                      <input id="pwd_confirm1" class="form-control" type="password" value="${dto.pwd}" name="pwd_confirm">
-                                      <input id="userName1" class="form-control" type="text" value="${dto.userName}" name="userName" readonly="readonly">
-                                      <input id="email11" class="form-control" type="text" value="${dto.email}" name="email">
-                                      <input id="birth1" class="form-control" type="text" value="${dto.birth}" name="birth">
-                                      <input id="phone1" class="form-control" type="text" value="${dto.phone}" name="phone">
-                                       <input id="checking1" type="hidden" name="checking">
-                                       <input name="profile" type="hidden"> 
-                                           </div>
-                                <input class="btn btn-default btn-register" onclick="updateMember();" value="수정 완료">
-                                
-                                </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="forgot login-footer">
-                            <span>Looking to 
-                                 <a href="javascript: showRegisterForm();">create an account</a>
-                            ?</span>
-                        </div>
-                        <div class="forgot register-footer" style="display:none">
-                             <span>Already have an account?</span>
-                             <a href="javascript: showLoginForm();">Login</a>
-                        </div>
-                    </div>        
-                </div>
-            </div>
-        </div>
-    </div>
+								<form name="updateTheme" method="post"
+									enctype="multipart/form-data">
+									<div class="file_input_div" style="float: right;">
+										<div class="file_input">
+											<label
+												class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
+												<i class="material-icons">file_upload</i> <input
+												id="file_input_file" class="none" type="file"
+												style="display: none;" name="themeUpload" />
+											</label>
+										</div>
+										<div id="file_input_text_div"
+											class="mdl-textfield mdl-js-textfield textfield-demo">
+											<input class="file_input_text mdl-textfield__input"
+												type="text" disabled readonly id="file_input_text" /> <label
+												class="mdl-textfield__label" for="file_input_text"></label>
+										</div>
+										<div style="float: right;">
+											<button onclick="sendTheme();" class="btn btn-info btn-small">
+												<i class="icon-white icon-chevron-right"></i>테마사진변경
+											</button>
+										</div>
+									</div>
+								</form>
+							</div>
+							<h3 style="text-align: center;"><img alt="" src="<%=cp%>/res/images/asterisk.png"
+											style="width: 64px;"> &nbsp; Information</h3>
+							
+							
+						<div align="center">
+						<table style="text-align: left;margin-left: 290px; margin-right: 290px; ">
+											<tr
+												style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
+												<td><h4>
+														<img alt="" src="<%=cp%>/res/images/name.png"
+															style="width: 64px;"> 이름 : ${dto.userName }
+													</h4></td>
+											</tr>
+											<tr
+												style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
+												<td><h4>
+														<img alt="" src="<%=cp%>/res/images/birthday-cake.png"
+															style="width: 64px;"> 생년월일 : ${dto.birth }
+													</h4></td>
+											</tr>
+											<tr
+												style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
+												<td><h4>
+														<img alt="" src="<%=cp%>/res/images/calendar.png"
+															style="width: 64px;"> 가입일 : ${dto.created }
+													</h4></td>
+											</tr>
+											<tr
+												style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
+												<td><h4>
+														<img alt="" src="<%=cp%>/res/images/email.png"
+															style="width: 64px;"> 이메일 : ${dto.email }
+													</h4></td>
+											</tr>
+											<tr style="text-align: center;">
+												<!--    <td><h3><input class="btn btn-default btn-register"  type="button" onclick="update();" value="수정하기"></h3> -->
+
+												<td><h4>
+														<a href="javascript:void(0)" onclick="openUpdateModal();">수정하기</a>
+													</h4></td>
+											</tr>
+										</table>
+										</div>
+						
+						</div>
+
+
+						
                   
                   
                   
@@ -594,25 +534,78 @@ function sendTheme(){
             </div>
          </div>
       </div>
+      
+      
+      <div class="container">
+       <div class="modal fade login" id="updateModal">
+            <div class="modal-dialog login animated">
+                <div class="modal-content">
+                   <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Login with</h4>
+                    </div>
+                    <div class="modal-body">  
+                        <div class="box">
+                             <div class="content">
+                                <div class="error"></div>
+                                <div class="form loginBox">
+                                    <form>
+                                    <input id="userId" class="form-control" type="text" placeholder="userId" name="userId">
+                                    <input id="pwd" class="form-control" type="password" placeholder="pwd" name="pwd">
+                                    <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginSend()">
+                                    </form>
+                                </div>
+                             </div>
+                        </div>
+                        <div class="box">
+                            <div class="content registerBox1" style="display:none;">
+                             <div class="form">
+                                <form name="upForm" enctype="multipart/form-data">
+                                    <div class="card wizard-card ct-wizard-orange" >
+                                  <div class="picture-container">
+                                                <div class="picture">
+                                                    <img src="<%=cp%>/uploads/profile/${dto.profile}" width="110px" height="100px"
+                                                    class="picture-src" id="wizardPicturePreview1" title=""/>                                                    
+                                                    <input type="file" id="wizard-picture1" name="upload" >
+                                                </div>
+                                                <h6>Choose Picture</h6>
+                                           </div>
+                                    <!--   <input id="wizard-picture" class="form-control" type="text" placeholder="id" name="wizard-picture"> -->
+                                      <input id="userId1" class="form-control" type="text" value="${dto.userId}" name="userId" readonly="readonly" >
+                                      <input id="pwd1" class="form-control" type="password" value="${dto.pwd}" name="pwd">
+                                      <input id="pwd_confirm1" class="form-control" type="password" value="${dto.pwd}" name="pwd_confirm">
+                                      <input id="userName1" class="form-control" type="text" value="${dto.userName}" name="userName" readonly="readonly">
+                                      <input id="email11" class="form-control" type="text" value="${dto.email}" name="email">
+                                      <input id="birth1" class="form-control" type="text" value="${dto.birth}" name="birth">
+                                      <input id="phone1" class="form-control" type="text" value="${dto.phone}" name="phone">
+                                       <input id="checking1" type="hidden" name="checking">
+                                       <input name="profile" type="hidden" value="${dto.profile}"> 
+                                           </div>
+                                <input class="btn btn-default btn-register" onclick="updateMember();" value="수정 완료">
+                                
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="forgot login-footer">
+                            <span>Looking to 
+                                 <a href="javascript: showRegisterForm();">create an account</a>
+                            ?</span>
+                        </div>
+                        <div class="forgot register-footer" style="display:none">
+                             <span>Already have an account?</span>
+                             <a href="javascript: showLoginForm();">Login</a>
+                        </div>
+                    </div>        
+                </div>
+            </div>
+        </div>
+    </div>
+      
    </section>
 
-   <!-- waypoint -->
-   <script type="text/javascript" src="<%=cp%>/res/js/waypoints.min.js"></script>
-   <script>
-      $(function() {
-         "use strict";
-         var mobile_nav = $("#mobile-menu-01 li.line-mini-menu");
-         mobile_nav.click(function() {
-            $(this).children('div').addClass("active");
-            $(this).children('div').toggle(1000);
-         });
-
-         var mobile_open = $("#mobile-menu-01 .line-logo i.fa-bars");
-         mobile_open.click(function() {
-            $("#mobile-menu-01 .travel-mega-menu-mobile").toggle(1000);
-         });
-      });
-   </script>
 
    <script src="<%=cp%>/res/js/tabs/jquery.responsiveTabs.js"
       type="text/javascript"></script>
@@ -652,80 +645,7 @@ function sendTheme(){
 
                   });
    </script>
-   <!--Carousel-->
-   <script src="<%=cp%>/res/js/carousel/modernizr.custom.js"
-      type="text/javascript"></script>
-   <script src="<%=cp%>/res/js/carousel/jquery.cbpContentSlider.min.js"
-      type="text/javascript"></script>
-   <script>
-      $(function() {
-         $('#cbp-contentslider').cbpContentSlider();
-      });
-   </script>
 
-   <!--Counter-->
 
-   <script src="<%=cp%>/res/js/jquery.counterup.js"
-      type="text/javascript"></script>
-   <script type="text/javascript">
-      jQuery(document).ready(function($) {
-         "use strict";
-         $('.counter').counterUp({
-            delay : 40,
-            time : 4000
-         });
-      });
-   </script>
-
-   <!--Meteo-->
-   <script src="<%=cp%>/res/js/meteo/jquery.zweatherfeed.js"
-      type="text/javascript"></script>
-
-   <script type="text/javascript">
-      $(document).ready(function() {
-         "use strict";
-         $('#meteo-guide').weatherfeed([ 'ITXX0067', 'ITXX0028' ], {
-            unit : 'f',
-            image : true,
-            country : true,
-            highlow : true,
-            wind : true,
-            humidity : true,
-            visibility : true,
-            sunrise : true,
-            sunset : true
-         });
-      });
       
-      var fileInputTextDiv = document.getElementById('file_input_text_div');
-      var fileInput = document.getElementById('file_input_file');
-      var fileInputText = document.getElementById('file_input_text');
-      fileInput.addEventListener('change', changeInputText);
-      fileInput.addEventListener('change', changeState);
-
-      function changeInputText() {
-        var str = fileInput.value;
-        var i;
-        if (str.lastIndexOf('\\')) {
-          i = str.lastIndexOf('\\') + 1;
-        } else if (str.lastIndexOf('/')) {
-          i = str.lastIndexOf('/') + 1;
-        }
-        fileInputText.value = str.slice(i, str.length);
-      }
-
-      function changeState() {
-        if (fileInputText.value.length != 0) {
-          if (!fileInputTextDiv.classList.contains("is-focused")) {
-            fileInputTextDiv.classList.add('is-focused');
-          }
-        } else {
-          if (fileInputTextDiv.classList.contains("is-focused")) {
-            fileInputTextDiv.classList.remove('is-focused');
-          }
-        }
-      }
-      
-      
-   </script>
 </body>
