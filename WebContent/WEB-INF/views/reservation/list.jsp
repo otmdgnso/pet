@@ -62,22 +62,22 @@ function updateReservation(reservationNum) {
 	<div class="separator" style="width:100%"></div>       
 		<h3>예약목록</h3>
 	<div class="separator" style="width:100%"></div>  
-		<div class="form-group" style="margin:0 auto; width:80%; height=50%;" align="center">
+		<div class="form-group" style="margin:0 auto; width:70%;" align="center">
+			<form name="searchForm" action="" method="post">
 			<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
-				<tr height="50px">
-					<td align="left" width="50%">
-						<form name="searchForm" action="" method="post">
-							  <select name="searchKey" class="selectField">
-								  <option value="userName">호스트명</option>
-								  <option value="accept">상태</option>
-							</select>
+				<tr align="center" height="50px">
+					<td align="center" width="40%">
+							<i class="fa fa-smile-o" aria-hidden="true"></i><label>호스트명 : </label>
 							<input type="text" name="searchValue" class="boxTF">
-							<input type="button" value=" 검 색 " class="btn" onclick="searchList()">
-						</form>
 					</td>
+					<td align="center" width="15%"><input type="checkbox" name="searchValue" value="wait" checked="checked"><label>wait</label></td>
+					<td align="center" width="15%"><input type="checkbox" name="searchValue" value="accept" checked="checked"><label>accept</label></td>
+					<td align="center" width="20%"><input type="button" value="검색" class="btn" onclick="searchList()"></td>
 				</tr>
 			</table>
-			
+			</form>		
+		</div>
+		<div class="form-group" style="margin:0 auto; width:80%;" align="center">
 			<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
 	           <tr align="center" height="50px">
 	           	  <td align="center" width="5%"><label>번호</label></td>
@@ -96,7 +96,7 @@ function updateReservation(reservationNum) {
 	              <td align="center" width="15%" style="color: #A6A6A6;">${dto.userName}</td>
 	              <td align="center" width="20%" style="color: #A6A6A6;">${dto.checkIn}~${dto.checkOut}</td>
 	              <c:if test="${dto.accept != 'wait'}">
-	              	<td align="center" width="10%" style="color: #A6A6A6;"><a onclick='deleteReservation(${dto.reservationNum});'>삭제</a></td>
+	              	<td align="center" width="10%" style="color: #A6A6A6;"><a onclick='deleteReservation($	{dto.reservationNum});'>삭제</a></td>
 	              </c:if>
 	              <c:if test="${dto.accept == 'wait'}">
 	              	<td align="center" width="10%" style="color: #A6A6A6;"><a onclick='updateReservation(${dto.reservationNum});'>변경</a></td>
@@ -110,7 +110,7 @@ function updateReservation(reservationNum) {
 	</div>
 	<div class="cbp-vm-switcher cbp-vm-view-list">
 		<div class="form-group" style="margin:0 auto; width:80%; height:60px " align="center">
-		<div class="paging" style="text-align: center; min-height: 50px; line-height: 50px;">
+		<div class="paging" style="text-align: center; min-height: 50px; line-height: 50px; color: #A6A6A6;">
             <c:if test="${dataCount==0 }">
                   	등록된 게시물이 없습니다.
             </c:if>
