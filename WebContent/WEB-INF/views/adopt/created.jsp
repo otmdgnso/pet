@@ -70,6 +70,17 @@ function check() {
 	
 	f.submit();
 }
+
+<c:if test="${mode=='update'}">
+function deleteFile(fileNum) {
+	var url="<%=cp%>/adopt/deleteFile";
+	$.post(url, {fileNum:fileNum}, function(data){
+		$("#b"+fileNum).remove();
+		$("#f"+fileNum).remove();
+		
+	}, "JSON");
+}
+</c:if>
 </script>
 
 <body>
@@ -143,10 +154,22 @@ function check() {
 	<input type="file" name="upload" class="boxTF" size="61" style="height: 20px; color: blue;">
 	</div>
 	
+	<c:if test="${mode=='update'}">
+		<c:forEach var="vo" items="${readPreFile}">
+			<font color="blue">첨부된 파일(사진 클릭시 삭제가능!!)</font><br>
+			<img src="<%=cp%>/uploads/adopt/${vo.saveFilename}" onclick="javascript:location.href=deleteFile(fileNum)">
+		</c:forEach>
+	</c:if>
+	
 	<br>
 	<button type="button" class="btn btn-primary btn-block" style="width: 100px" onclick="check();">
 			등록하기
 	</button>
+	
+	<c:if test="${mode=='update'}">
+		<input type="hidden" name="preSaleNum" value="${dto.preSaleNum}">
+		<input type="hidden" name="page" value="${page}">
+	</c:if>
 </form>
 </div>
 </section>
