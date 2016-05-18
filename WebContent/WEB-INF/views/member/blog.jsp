@@ -9,6 +9,7 @@
   <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
+
 <style>
 
 .file_input_div {
@@ -170,11 +171,11 @@ function updateMember(){
                             <div class="content registerBox1" style="display:none;">
                              <div class="form">
                                 <form id="upForm" enctype="multipart/form-data">
-                              		<div class="card wizard-card ct-wizard-orange" id="wizardProfile">
+                              		<div class="card wizard-card ct-wizard-orange" >
 		 									<div class="picture-container">
 		                                          <div class="picture">
 		                                              <img src="<%=cp%>/uploads/profile/${dto.profile}" width="110px" height="100px"
-		                                              class="picture-src" id="wizardPicturePreview" title=""/>		                                              
+		                                              class="picture-src" id="wizardPicturePreview1" title=""/>		                                              
 		                                              <input type="file" id="wizard-picture1" name="upload" value="${dto.profile}">
 		                                          </div>
 		                                          <h6>Choose Picture</h6>
@@ -539,7 +540,6 @@ function updateMember(){
 		</div>
 	</section>
 
-
 	<!-- waypoint -->
 	<script type="text/javascript" src="<%=cp%>/res/js/waypoints.min.js"></script>
 	<script>
@@ -673,4 +673,3 @@ function updateMember(){
 		
 	</script>
 </body>
-</html>
