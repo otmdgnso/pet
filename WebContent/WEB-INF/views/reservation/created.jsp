@@ -29,13 +29,69 @@
 		}
 		
 		var mode="${mode}";
-		if(mpde=="created")
+		if(mode=="created")
 			f.action="<%=cp%>/reservation/created";
 		else if(mode=="update")
 			f.action="<%=cp%>/reservation/update";
 			
 		return true;
 	}
+	
+	$(function(){
+		$("#checkin").change(function() {
+			
+			var s="박";
+			
+			var cinArray = $("#checkin").val().trim().split("/");
+			var cinObj =  new Date(cinArray[0], Number(cinArray[1])-1, cinArray[2]); 
+			
+			var coutArray = $("#checkout").val().trim().split("/");
+			var coutObj = new Date(coutArray[0], Number(coutArray[1])-1, coutArray[2]); 
+
+			if(cinArray=="") {
+				$("#period").val("예약 시작일을 입력하세요.");
+				return;
+			}
+			
+			if(coutArray=="") {
+				$("#period").val("예약 종료일을 입력하세요.");
+				return;
+			}
+			
+			var betweenDay = (coutObj.getTime() - cinObj.getTime())/1000/60/60/24;
+
+			return $("#period").val(betweenDay+s);
+			
+		});
+		
+		$("#checkout").change(function() {
+			
+			var s="박";
+			
+			var cinArray = $("#checkin").val().trim().split("/");
+			var cinObj =  new Date(cinArray[0], Number(cinArray[1])-1, cinArray[2]); 
+			
+			var coutArray = $("#checkout").val().trim().split("/");
+			var coutObj = new Date(coutArray[0], Number(coutArray[1])-1, coutArray[2]); 
+
+			if(cinArray=="") {
+				$("#period").val("예약 시작일을 입력하세요.");
+				return;
+			}
+			
+			if(coutArray=="") {
+				$("#period").val("예약 종료일을 입력하세요.");
+				return;
+			}
+			
+			
+			var betweenDay = (coutObj.getTime() - cinObj.getTime())/1000/60/60/24;
+
+			return $("#period").val(betweenDay+s);
+			
+		});
+	});
+	
 </script>
 
 <section class="about-section-top">
@@ -79,7 +135,7 @@
 						<i class="fa fa-info-circle fa-lg"></i>
 					</div>
 					<div class="content-checkin-data" style="margin:0 auto; width:60%" align="center">
-						<i class="fa fa-calendar infield"></i><input name="checkin" type="text" id="checkin" value="${dto.checkIn}" style="margin:0 auto; width:100%;" class="form-control checkin" placeholder="Check-in" />
+						<i class="fa fa-calendar infield"></i><input name="checkin" type="text" id="checkin" value="${dto.checkIn}" style="margin:0 auto; width:100%;" class="form-control checkin" placeholder="ex: 2000/01/01" />
 					</div>
 					</div>
 					</div>
@@ -90,26 +146,56 @@
 						<i class="fa fa-info-circle fa-lg"> </i>
 					</div>
 					<div class="content-checkin-data" style="margin:0 auto; width:60%" align="center">
-						<i class="fa fa-calendar infield"></i> <input name="checkout" type="text" id="checkout" value="${dto.checkOut}" style="margin:0 auto; width:100%;" class="form-control checkout" placeholder="Check-out" />
+						<i class="fa fa-calendar infield"></i> <input name="checkout" type="text" id="checkout" value="${dto.checkOut}" style="margin:0 auto; width:100%;" class="form-control checkout" placeholder="ex: 2000/01/01" />
 					</div>
 					</div>
 					</div>
 					</div>
 					
-					<!-- checkIn, checkOut이 선택될 경우 -->
-					<div class="form-group" style="margin:0 auto; width:60%" align="center">		               															
-						<!-- 몇박 --><input type="text" readonly="readonly" id="period" name="period" value="${dto.check_day}박" style="color:#8C8C8C; border: 0px; text-align:center"/>
+					<!-- 몇박 -->				
+					<c:if test="${mode=='created'}">
+					<div class="form-group" style="margin:0 auto; width:60%;" align="center">		               															
+						<input type="text" readonly="readonly" id="period" name="period" value="" style="color:#8C8C8C; border: 0px; text-align:center"/>
 					</div>
+					</c:if>
+					
+					<c:if test="${mode=='update'}">
+					<div class="form-group" style="margin:0 auto; width:60%;" align="center">		               															
+						<input type="text" readonly="readonly" id="period" name="period" value="${dto.check_day}박" style="color:#8C8C8C; border: 0px; text-align:center"/>
+					</div>
+					</c:if>
 				</div>
-		
-				<!-- 펫수 -->
-				<div class="col-sm-4 step-check">				
+				
 					<div class="separator" style="width:100%"></div>
+
+				<!-- 펫 종류 -->
+				<div class="col-sm-4 step-check">				
 					<div class="col-sm-4 step-who" style="padding-left: 0">
-						<h3>맡길 펫 수</h3>											
-					<div class="col-sm-4 step-check">				
-					<div class="form-group" >
-					<div class="guests-select" style="margin:0 auto; width:25%" align="center">
+						<h3>펫 정보</h3>											
+					<div class="col-sm-6 cc-in" style="padding-left: 0">			
+					<div class="form-group">
+						<label for="checkin">펫 종류</label>
+					<div class="guests-select" style="margin:0 auto; width:60%" align="center">
+						<select name="pet_type" id="pet_type" class="form-control">
+							<c:if test="${mode=='created'}">
+								<option value="" disabled="disabled" selected="selected">선택</option>
+							</c:if>
+							<c:if test="${mode=='update'}">
+								<option value="${dto.pet_su}" disabled="disabled" selected="selected">${dto.pet_su}</option>
+							</c:if>
+								<option value="개">개</option>
+								<option value="고양이">고양이</option>
+						</select>
+					</div>
+					</div>
+					</div>
+	
+				
+				<!-- 펫수 -->			
+					<div class="col-sm-6 cc-out" style="padding-left: 0">											
+					<div class="form-group">
+						<label for="checkin">맡길 펫 수</label>
+					<div class="guests-select" style="margin:0 auto; width:60%" align="center">
 						<select name="pet_su" id="pet_su" class="form-control">
 							<c:if test="${mode=='created'}">
 								<option value="" disabled="disabled" selected="selected">선택</option>
@@ -126,8 +212,8 @@
 					</div>
 					</div>
 					</div>
-					</div>
 				</div>	
+				</div>
                     		
 				<!-- 가격 -->					
 				<div class="col-sm-4 fly-who">
