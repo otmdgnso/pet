@@ -18,6 +18,6 @@ public interface AdoptService {
 	
 	// ´ñ±Û
 	public int insertPreReply(Reply dto);
-	public int dataCountPreReply(int preSaleNum);
+	public int dataCountPreReply(Map<String, Object> map);
 	public List<Reply> listPreReply(Map<String, Object> map);
 }

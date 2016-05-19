@@ -145,6 +145,10 @@ public class AdoptController {
 		// 조회수 증가
 		service.preUpdateHitCount(preSaleNum);
 		
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("preSaleNum", preSaleNum);
+		
+		int dataCountReply=service.dataCountPreReply(map);
 		// 해당 레코드 가져오기
 		Adopt dto = service.readPreSale(preSaleNum);
 		if(dto==null)
@@ -165,7 +169,7 @@ public class AdoptController {
 		ModelAndView mav= new ModelAndView(".adopt.article");
 		mav.addObject("dto",dto);
 		mav.addObject("readPreFile",readPreFile);
-		
+		mav.addObject("dataCountReply", dataCountReply);
 		mav.addObject("page",page);
 		mav.addObject("params",params);
 		
@@ -263,7 +267,7 @@ public class AdoptController {
 		
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter out=resp.getWriter();
-		out.println(job.toString());
+		out.print(job.toString());
 	}
 	
 	// 댓글 리스트
@@ -276,17 +280,17 @@ public class AdoptController {
 		int total_page=0;
 		int dataCount=0;
 		
-		dataCount=service.dataCountPreReply(preSaleNum);
+		Map<String, Object> map= new HashMap<String, Object>();
+		map.put("preSaleNum", preSaleNum);
+		
+		dataCount=service.dataCountPreReply(map);
 		total_page=myutil.pageCount(numPerPage, dataCount);
 		if(current_page>total_page)
 			total_page=current_page;
 		
+		// 리스트에 출력할 데이터
 		int start=(current_page-1)*numPerPage+1;
 		int end=current_page*numPerPage;
-		
-		// 리스트에 출력할 데이터
-		Map<String, Object> map= new HashMap<String, Object>();
-		map.put("preSaleNum", preSaleNum);
 		map.put("start", start);
 		map.put("end", end);
 		List<Reply> list=service.listPreReply(map);
@@ -305,11 +309,31 @@ public class AdoptController {
 		// jsp로 넘길 데이터
 		mav.addObject("list",list);
 		mav.addObject("pageNo",current_page);
-		mav.addObject("dataCount",dataCount);
+		mav.addObject("dataCountReply",dataCount);
 		mav.addObject("paging",paging);
 		
 		return mav;
 	}
 	
+	@RequestMapping(value="/adopt/postReplyCount",method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> postReplyCount(
+			@RequestParam(value="preSaleNum") int preSaleNum
+			) throws Exception {
+		// AJAX(JSON) - 댓글 개수 (댓글 등록하면 갯수가 바로 바뀜)
+		System.out.println("ss");
+		int count=0;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("preSaleNum", preSaleNum);
+		
+		count=service.dataCountPreReply(map);
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		model.put("count", count);
+		
+		return model;
+	}
 	
 }

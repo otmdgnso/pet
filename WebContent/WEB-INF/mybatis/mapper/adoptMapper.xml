@@ -116,7 +116,7 @@
 	</insert>
 	
 	<select id="dataCountPreReply" resultType="Integer"
-			parameterType="Integer">
+			parameterType="map">
 	SELECT NVL(COUNT(*),0)
 		FROM preSaleReply WHERE preSaleNum=#{preSaleNum}
 	</select>
