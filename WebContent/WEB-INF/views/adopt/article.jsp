@@ -7,12 +7,27 @@
 %>
 
 <script type="text/javascript">
+
+//댓글 보기 닫기
+$(function(){
+	$("#reply-open-close").click(function(){
+		  if($("#reply-content").is(':visible')) {
+			  $("#reply-content").fadeOut(100);
+			  $("#reply-open-close").text("댓글 ▼");
+		  } else {
+			  $("#reply-content").fadeIn(100);
+			  $("#reply-open-close").text("댓글 ▲");
+		  }
+	});
+})
+
 // 댓글 리스트
 $(function(){
 	listPage(1);
 });
 
 function listPage(page) {
+	
 	var url="<%=cp%>/adopt/listReply";
 	var preSaleNum="${dto.preSaleNum}";
 	$.post(url, {preSaleNum:preSaleNum, pageNo:page}, function(data){
@@ -24,20 +39,17 @@ function listPage(page) {
 function sendReply() {
 	var uid="${sessionScope.member.userId}";
 	if (! uid) {
-		return false;
+		return;
 	}
-	
 	var preSaleNum="${dto.preSaleNum}"; // 해당 게시물의 번호
 	var content=$.trim($('#content').val());
 	if(! content ) {
 		alert("내용을 입력하세요!!!");
 		$("#content").focus();
-		return false;
+		return;
 	}
-	
 	var params="preSaleNum=" +preSaleNum;
 	params+="&content="+content;
-	
 	$.ajax({
 		type:"post"
 		,url:"<%=cp%>/adopt/insertReply"
@@ -49,6 +61,7 @@ function sendReply() {
 			var state=data.state;
 			if(state=="true") {
 				listPage(1);
+				postReplyCount();
 			} else if(state=="false") {
 				alert("댓글을 등록하지 못했습니다. !!!");
 			} 
@@ -57,10 +70,37 @@ function sendReply() {
 	});
 }
 
+// 댓글 개수
+function postReplyCount() {
+	var preSaleNum="${dto.preSaleNum}"; // 해당 게시물의 번호
+	var url="<%=cp%>/adopt/postReplyCount";
+	$.post (url, {preSaleNum:preSaleNum}, function(data) {
+		var count=data.count;
+		$("#postReplyCountView").text("("+count+"개)");
+	}, "JSON");
+}
+
 function deletePreSale(preSaleNum) {
 	if(confirm("분양 게시글을 삭제 하시겠습니까?")) {
 		var url="<%=cp%>/adopt/delete?preSaleNum="+preSaleNum+"&page=${page}";
 		location.href=url;
+	}
+}
+
+// 댓글 삭제
+function deleteReply(replyNum, page, userId) {
+	var uid="${sessionScope.member.userId}";
+	if(! uid) {
+		return false;
+	}
+	
+	if(confirm("댓글을 삭제 하시겠습니까?")) {
+		var url="<%=cp%>/adopt/deleteReply";
+		$.post(url, {replyNum:replyNum, userId:userId},
+		function(data){
+			var state=data.state;
+			listPage(page);
+		}, "json");
 	}
 }
 </script>
@@ -115,11 +155,16 @@ function deletePreSale(preSaleNum) {
 	</li>
 	</ul>
 </form>
-	<a>댓글보기</a>
+
+	<a id="reply-open-close">댓글 ▼</a>
+	<span id="postReplyCountView" style="color: blue">(${dataCountReply}개)</span>
+	
 	<div class="col-md-12 details-hotel" id="replyList">
-	<p><textarea id="content" cols="140" rows="4"></textarea> <a id="btnSend" onclick="javascript:location.href=sendReply()">등록</a></p>
-	<p id="listReply">
-	</p>
+	<p><textarea id="content" cols="140" rows="4"></textarea> <a id="btnSend" onclick="sendReply();">등록</a></p>
+		<div id="reply-content" style="display: none;">
+			<p id="listReply">
+			</p>
+		</div>
 	</div>
 </div>
 </section>
