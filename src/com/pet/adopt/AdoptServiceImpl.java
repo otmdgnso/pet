@@ -200,10 +200,10 @@ public class AdoptServiceImpl implements AdoptService {
 	}
 
 	@Override
-	public int dataCountPreReply(int preSaleNum) {
+	public int dataCountPreReply(Map<String, Object> map) {
 		int result=0;
 		try {
-			result=dao.getIntValue("adopt.dataCountPreReply", preSaleNum);
+			result=dao.getIntValue("adopt.dataCountPreReply", map);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
@@ -219,6 +219,17 @@ public class AdoptServiceImpl implements AdoptService {
 			System.out.println(e.toString());
 		}
 		return list;
+	}
+
+	@Override
+	public int deletePreReply(int replyNum) {
+		int result=0;
+		try {
+			result=dao.deleteData("adopt.deletePreReply", replyNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
 	}
 
 }

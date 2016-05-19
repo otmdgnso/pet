@@ -14,7 +14,7 @@
 
 function loginSend(){
     var url="<%=cp%>/member/login";       
-    var params="userId="+$("#userId").val()+"&pwd="+$("#pwd").val()
+    var params="louserId="+$("#louserId").val()+"&lopwd="+$("#lopwd").val()
      $.ajax({
     	url:url
     	,data:params
@@ -47,7 +47,7 @@ function registerMember(){
     	,dataType:"json"
     	,success:function(data){
     		if(data.state=="false") {
-    			
+    		
     		} else {     		  			
     			location.href="<%=cp%>";
     		}
@@ -55,6 +55,33 @@ function registerMember(){
     	}
      });
 }
+
+function userIdCheck(){
+	var userId=$("#userId").val();
+	if(!/^[a-z][a-z0-9_]{4,9}$/i.test(userId)) { 
+		shakeModalMember("아이디는 5~10자 이내이며, 첫글자는 영문자로 시작해야 합니다.");
+		$("#userId").focus();
+		return false;
+	}
+	
+	var url="<%=cp%>/memeber/userIdCheck";
+	var params="userId="+userId;
+	$.ajax({
+		url:url
+		,type:"POST"
+		,data:params
+		,dataType:"json"
+		,success:function(data){
+			if(data.passed=="true"){
+				
+			}else{
+				shakeModalMember(userId+"아이디는 사용이 불가능합니다.");
+				$("#userId").focus();
+			}
+		}
+	});
+}
+
 function checked() {
 	var f=$("form")[2];
 	var str;
@@ -66,9 +93,9 @@ function checked() {
 	}
 	
 	str=f.userId.value;
-	if(!/^[a-z][a-z0-9_]{4,9}$/i.test(str)) { 
+	if(!/^[a-z][a-z0-9_]{4,9}$/i.test(str)) {		
 		f.userId.focus();
-		shakeModalMember('아이디는 영문과 숫자를 조합하세요');
+		userIdCheck();
 		return false;
 	}
 	
@@ -278,8 +305,8 @@ function shakeModalMember(msg){
                                 <div class="error"></div>
                                 <div class="form loginBox">
                                     <form>
-                                    <input id="userId" class="form-control" type="text" placeholder="userId" name="userId">
-                                    <input id="pwd" class="form-control" type="password" placeholder="pwd" name="pwd">
+                                    <input id="louserId" class="form-control" type="text" placeholder="userId" name="userId">
+                                    <input id="lopwd" class="form-control" type="password" placeholder="pwd" name="pwd">
                                     <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginSend()">
                                     </form>
                                 </div>
@@ -288,7 +315,7 @@ function shakeModalMember(msg){
                         <div class="box">
                             <div class="content registerBox" style="display:none;">
                              <div class="form">
-                                <form id="joinForm" enctype="multipart/form-data">
+                                <form id="joinForm" enctype="multipart/form-data" method="post">
                               		<div class="card wizard-card ct-wizard-orange" id="wizardProfile">
 		                                     <div class="picture-container">
 		                                          <div class="picture">
@@ -298,7 +325,7 @@ function shakeModalMember(msg){
 		                                          <h6>Choose Picture</h6>
 		                                     </div>
 		                              <!--   <input id="wizard-picture" class="form-control" type="text" placeholder="id" name="wizard-picture"> -->
-		                                <input id="userId" class="form-control" type="text" placeholder="아이디는 5~10자, 첫글자는 영문자" name="userId">
+		                                <input id="userId" class="form-control" type="text" placeholder="아이디는 5~10자, 첫글자는 영문자" name="userId" onchange="userIdCheck();">
 		                                <input id="pwd" class="form-control" type="password" placeholder="하나 이상의 숫자나 특수문자가 포함" name="pwd">
 		                                <input id="pwd_confirm" class="form-control" type="password" placeholder="Repeat Password" name="pwd_confirm">
 		                                <input id="userName" class="form-control" type="text" placeholder="이름" name="userName">
