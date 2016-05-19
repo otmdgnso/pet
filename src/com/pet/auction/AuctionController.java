@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.pet.adopt.Adopt;
 import com.pet.common.MyUtil;
 import com.pet.member.SessionInfo;
 
@@ -184,6 +185,25 @@ public class AuctionController {
 		return "redirect:/auction/list?page="+page;
 		
 	}
+	@RequestMapping(value="/auction/update",method=RequestMethod.GET)
+	public ModelAndView updateForm(
+			@RequestParam(value="auctionNum") int auctionNum,
+			@RequestParam(value="page") String page
+			) throws Exception {
+		Auction dto = service.readAuction(auctionNum);
+		if(dto==null)
+			return new ModelAndView("redirect:.auction.list?page="+page);
+		
+		List<Auction> readAuctionFile = service.readAuctionFile(auctionNum);
+		
+		ModelAndView mav=new ModelAndView(".auction.created");
+		mav.addObject("mode","update");
+		mav.addObject("page",page);
+		mav.addObject("dto",dto);
+		mav.addObject("readAuctionFile",readAuctionFile);
+		return mav;
+	}
+	
 	
 	@RequestMapping(value="/auction/update", method=RequestMethod.POST)
 	public String updateSubmit(
