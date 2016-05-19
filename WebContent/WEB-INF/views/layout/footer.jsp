@@ -5,7 +5,6 @@
 <%
 	String cp=request.getContextPath();
 %>
-
 <script type="text/javascript">
 
 function deleteMember(){
@@ -42,11 +41,11 @@ function submitSend(){
 }
 
 function shakeModalsubmit(){
-    $('#loginModal .modal-dialog').addClass('shake');
+    $('#submitModal .modal-dialog').addClass('shake');
              $('.error').addClass('alert alert-danger').html("패스워드가 일치하지 않습니다.");
              $('input[type="password"]').val('');
              setTimeout( function(){ 
-                $('#loginModal .modal-dialog').removeClass('shake'); 
+                $('#submitModal .modal-dialog').removeClass('shake'); 
     }, 1000 ); 
 }
 </script>
@@ -112,11 +111,9 @@ function shakeModalsubmit(){
 							<div class="form loginBox">
 								<form name="subForm">
 									<input id="userId2" class="form-control" type="text"
-										value="${sessionScope.member.userId}" name="userId"
-										readonly="readonly"> <input id="pwd2"
-										class="form-control" type="password" placeholder="pwd"
-										name="pwd"> <input class="btn btn-default btn-login"
-										type="button" value="Login" onclick="submitSend()">
+										value="${sessionScope.member.userId}" name="userId"	readonly="readonly">
+								    <input id="pwd2" class="form-control" type="password" placeholder="pwd" name="pwd">
+								    <input class="btn btn-default btn-login" type="button" value="Login" onclick="submitSend()">
 								</form>
 							</div>
 						</div>

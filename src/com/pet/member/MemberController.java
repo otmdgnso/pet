@@ -1,9 +1,12 @@
 package com.pet.member;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.pet.member.SessionInfo;
 
+import net.sf.json.JSONObject;
+
 @Controller("member.memberController")
 public class MemberController {
    @Autowired
@@ -25,8 +30,8 @@ public class MemberController {
    @ResponseBody
    public Map<String, Object> loginSubmit(
          HttpSession session,
-         @RequestParam(value="userId") String userId,
-         @RequestParam(value="pwd") String pwd
+         @RequestParam(value="louserId") String userId,
+         @RequestParam(value="lopwd") String pwd
          ) throws Exception{
 
       Member dto=service.readMember(userId);
@@ -94,14 +99,19 @@ public class MemberController {
    @ResponseBody
    public Map<String, Object> update(
          Member dto,
-         HttpSession session
+         HttpSession session,
+         @RequestParam String checking1
          ) throws Exception{
       
       String root=session.getServletContext().getRealPath("/");
       String pathname=root+File.separator+"uploads"+File.separator+"profile";
-            
+       
+      String checkresult="true";
       int result=0;
-      result=service.updateMember(dto, pathname);
+     
+      if(checking1.equals(checkresult))         
+    	  result=service.updateMember(dto, pathname);
+      
       String state="true";
       if(result==0){
          state="false";
@@ -152,7 +162,7 @@ public class MemberController {
 
    @RequestMapping(value="/member/theme")
    @ResponseBody
-   public ModelAndView themeprofile(
+   public Map<String, Object> themeprofile(
          HttpSession session,
          Member dto
          ) throws Exception{
@@ -170,11 +180,31 @@ public class MemberController {
       if(result==0){
          state="false";
       }
-      ModelAndView mav= new ModelAndView(".member.blog");
-      return mav;      
+     Map<String, Object> model=new HashMap<>();
+     model.put("state", state);
+     return model;      
    }
    
-
+   @RequestMapping(value="/memeber/userIdCheck", method=RequestMethod.POST)
+   public void userIdCheck(
+		   HttpServletResponse resp,
+		   @RequestParam String userId
+		   ) throws Exception{
+	   
+	   String passed="false";
+	   Member dto=service.readMember(userId);
+	   if(dto==null)
+		   passed="true";
+	   
+	   JSONObject job=new JSONObject();
+	   job.put("passed", passed);	   
+	   
+	   resp.setContentType("text/html;charset=utf-8");
+	   PrintWriter out=resp.getWriter();
+	   out.print(job.toString());
+   }
    
    
 }
+
+
