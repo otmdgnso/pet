@@ -11,8 +11,6 @@
 function deleteMember(){
 	if(confirm("정말로 탈퇴하시겠습니까?"))
 		openSubmitModal();
-		
-		<%-- location.href="<%=cp%>/member/delete"; --%>
 }
 
 function openSubmitModal(){
@@ -24,7 +22,6 @@ function openSubmitModal(){
 }
 
 function submitSend(){
-	<%-- location.href="<%=cp%>/member/delete"; --%>
 	var url="<%=cp%>/member/delete";
 	var params="pwd="+$("#pwd2").val();
 	

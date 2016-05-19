@@ -200,10 +200,7 @@ function sendTheme(){
 
 												<td><h4>
 														<a href="javascript:void(0)" onclick="openUpdateModal();">수정하기</a>
-													</h4></td>
-												<!-- <td><h6>
-													<a href="javascript:void(0)" onclick="deleteMember();">회원탈퇴</a>
-												</h6></td> -->
+													</h4></td>												
 											</tr>
 										</table>
 										</div>
@@ -586,18 +583,7 @@ function sendTheme(){
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="forgot login-footer">
-                            <span>Looking to 
-                                 <a href="javascript: showRegisterForm();">create an account</a>
-                            ?</span>
-                        </div>
-                        <div class="forgot register-footer" style="display:none">
-                             <span>Already have an account?</span>
-                             <a href="javascript: showLoginForm();">Login</a>
-                        </div>
-                    </div>        
+                    </div>                        
                 </div>
             </div>
         </div>
