@@ -14,6 +14,8 @@
 <script type="text/javascript">
 function searchList() {
 	var f=document.searchForm;
+	
+	alert(searchvalue);
 	f.action="<%=cp%>/reservation/list";
 	f.submit();
 }
@@ -62,17 +64,17 @@ function updateReservation(reservationNum) {
 	<div class="separator" style="width:100%"></div>       
 		<h3>예약목록</h3>
 	<div class="separator" style="width:100%"></div>  
-		<div class="form-group" style="margin:0 auto; width:70%;" align="center">
+		<div class="form-group" style="margin:0 auto; width:100%;" align="center">
 			<form name="searchForm" action="" method="post">
-			<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
+			<table style="width: 70%; margin: 0px auto; border-spacing: 0px;">
 				<tr align="center" height="50px">
 					<td align="center" width="40%">
 							<i class="fa fa-smile-o" aria-hidden="true"></i><label>호스트명 : </label>
 							<input type="text" name="searchValue" class="boxTF">
-					</td>
+					</td>	
 					<td align="center" width="15%"><input type="checkbox" name="searchValue" value="wait" checked="checked"><label>wait</label></td>
 					<td align="center" width="15%"><input type="checkbox" name="searchValue" value="accept" checked="checked"><label>accept</label></td>
-					<td align="center" width="20%"><input type="button" value="검색" class="btn" onclick="searchList()"></td>
+					<td align="center" width="15%"><input type="button" value="검색" class="btn" onclick="searchList()"></td>
 				</tr>
 			</table>
 			</form>		
@@ -96,7 +98,7 @@ function updateReservation(reservationNum) {
 	              <td align="center" width="15%" style="color: #A6A6A6;">${dto.userName}</td>
 	              <td align="center" width="20%" style="color: #A6A6A6;">${dto.checkIn}~${dto.checkOut}</td>
 	              <c:if test="${dto.accept != 'wait'}">
-	              	<td align="center" width="10%" style="color: #A6A6A6;"><a onclick='deleteReservation($	{dto.reservationNum});'>삭제</a></td>
+	              	<td align="center" width="10%" style="color: #A6A6A6;"><a onclick='deleteReservation(${dto.reservationNum});'>삭제</a></td>
 	              </c:if>
 	              <c:if test="${dto.accept == 'wait'}">
 	              	<td align="center" width="10%" style="color: #A6A6A6;"><a onclick='updateReservation(${dto.reservationNum});'>변경</a></td>

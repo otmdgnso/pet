@@ -119,17 +119,89 @@ $(function () {
                   <a data-slide-index="6" href=""><img src="http://placehold.it/100x55" alt=""/></a>
                   <a data-slide-index="7" href=""><img src="http://placehold.it/100x55" alt=""/></a>
                 </div>
-			</div><!-- /main -->
-            <div class="col-md-12 details-hotel" style="height: 600px;">
+			</div>
+
+            <div class="col-md-12 details-hotel" style="min-height: 300px; padding-bottom: 50px;">
               <p><i class="fa fa-map-o" aria-hidden="true"></i> 주소</p>
               <div class="separator" style="width:100%"></div>
               <p><i class="fa fa-krw" aria-hidden="true"></i> 비용</p>
               <div class="separator" style="width:100%"></div>
-              <p><i class="fa fa-paw" aria-hidden="true"></i> 시설</p>
+              <p><i class="fa fa-paw" aria-hidden="true"></i> 수용 가능 펫 수</p>
+              <div class="separator" style="width:100%"></div>	
+              <p><i class="fa fa-home" aria-hidden="true"></i> 시설</p>
               <div class="separator" style="width:100%"></div>	
               <p><i class="fa fa-check-square-o" aria-hidden="true"></i> 내용</p>
             </div>
-           </div><!--Close col 12 -->
+            
+            <div class="col-md-12 details-hotel" style="min-height: 300px; padding-top: 30px; padding-bottom: 50px;">
+              	<span style="color: #3EA9CD; font-weight: bold; font-size: 20px;">후기 3개 </span>
+              			<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+              			<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+              			<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+              			<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+              			<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+              <div class="separator" style="width:100%; padding: 0px;"></div>
+              <table style="width: 80%; margin: 0px auto; padding: 0px;">
+              	<tr>
+              		<td align="center" width="10%"><p>청결도</p></td>
+              		<td align="center" width="20%">
+              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
+              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
+              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
+              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
+              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
+              		</td>           		              		
+
+              		<td align="center" width="10%"><p>가격</p></td>
+              		<td align="center" width="20%">
+              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
+              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
+              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
+              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
+              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
+              		</td>       
+
+              		<td align="center" width="10%"><p>친절도</p></td>
+              		<td align="center" width="20%">
+              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
+              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
+              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
+              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
+              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
+              		</td>       
+              	</tr>
+              </table>
+
+              <div class="separator" style="width:100%; padding: 0px;"></div>
+              
+              	<div style="clear:both; margin-top:5px; padding: 10px; border-bottom:  #d5d5d5 solid 1px; min-height: 150px;">
+       			<div style="clear: both;">
+       				<table style="width: 100%; 	margin: 0px auto; border-spacing: 10px;">
+                	<tr>
+						<td align="center" width="20%">
+							<img src="<%=cp%>/uploads/profile/20160518162814458843974403881.GIF" class="avatar img-circle img-thumbnail" width="70px;">
+						</td>
+						<td align="left" width="70%" style="margin-bottom:  5px;">
+							Sean is a nice n helpful host, replied any question before n during the trip instantly. The location of the flat is perfect, so easy to getting around. The flat is clean n tidy, exactly as the pictures Sean show. Will come back again on my next visit.
+						</td>
+						<td width="10%"></td>
+					</tr>
+					<tr>
+						<td align="center" width="20%">솜사탕</td>
+						<td align="left" width="70%">2016/05/15</td>
+						<td width="10%">삭제</td>
+					</tr>
+				</table>
+
+            </div>
+            </div>
+            
+            <div style="clear: both; padding-top: 10px; text-align: center;">
+            	1
+            </div>
+            
+           </div>
           </div>
+        </div>
         </div>
 </section>      
