@@ -136,7 +136,9 @@
 	]]>
 	</select>
 	
-	
+	<delete id="deletePreReply" parameterType="Integer">
+	DELETE preSaleReply WHERE replyNum=#{replyNum}
+	</delete>
 	
 	
 	

@@ -20,4 +20,5 @@ public interface AdoptService {
 	public int insertPreReply(Reply dto);
 	public int dataCountPreReply(Map<String, Object> map);
 	public List<Reply> listPreReply(Map<String, Object> map);
+	public int deletePreReply(int replyNum);
 }

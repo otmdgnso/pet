@@ -221,4 +221,15 @@ public class AdoptServiceImpl implements AdoptService {
 		return list;
 	}
 
+	@Override
+	public int deletePreReply(int replyNum) {
+		int result=0;
+		try {
+			result=dao.deleteData("adopt.deletePreReply", replyNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
 }

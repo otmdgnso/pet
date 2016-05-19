@@ -336,4 +336,31 @@ public class AdoptController {
 		return model;
 	}
 	
+	// 댓글 삭제
+	@RequestMapping(value="/adopt/deleteReply",method=RequestMethod.POST)
+	public void deleteReply(
+			HttpServletResponse resp,
+			HttpSession session,
+			@RequestParam(value="replyNum") int replyNum,
+			@RequestParam(value="userId") String userId
+			) throws Exception {
+		SessionInfo info=(SessionInfo) session.getAttribute("member");
+		
+		String state="false";
+		if(info==null) {
+			state="loginFail";
+		} else if(info.getUserId().equals("admin")
+				|| info.getUserId().equals(userId)) {
+			service.deletePreReply(replyNum);
+			state="true";
+		}
+		
+		// 작업 결과를 json으로 전송
+		JSONObject job=new JSONObject();
+		job.put("state", state);
+		
+		resp.setContentType("text/html;charset=utf-8");
+		PrintWriter out=resp.getWriter();
+		out.print(job.toString());
+	}
 }

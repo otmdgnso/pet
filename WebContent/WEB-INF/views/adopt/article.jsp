@@ -86,6 +86,23 @@ function deletePreSale(preSaleNum) {
 		location.href=url;
 	}
 }
+
+// 댓글 삭제
+function deleteReply(replyNum, page, userId) {
+	var uid="${sessionScope.member.userId}";
+	if(! uid) {
+		return false;
+	}
+	
+	if(confirm("댓글을 삭제 하시겠습니까?")) {
+		var url="<%=cp%>/adopt/deleteReply";
+		$.post(url, {replyNum:replyNum, userId:userId},
+		function(data){
+			var state=data.state;
+			listPage(page);
+		}, "json");
+	}
+}
 </script>
 
 <body>
