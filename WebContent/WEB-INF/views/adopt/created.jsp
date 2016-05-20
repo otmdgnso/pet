@@ -85,7 +85,7 @@ function deleteFile(saveFilename, photoNum) {
 	<div class="row">
 	<div class="col-md-12">
 	<div class="page-title pull-left">
-		<h2 class="title-about">분양 등록</h2>
+		<h2 class="title-about">분양</h2>
 	</div>
 	</div>
 	</div>
@@ -220,7 +220,7 @@ function deleteFile(saveFilename, photoNum) {
                      
 					<div class="col-sm-4 fly-who">
 					<div class="separator" style="width:100%"></div>
-						<h3>사진 첨부</h3>
+						<h3>사진</h3>
 						
 	<div id="tbFile">
 	<h3><input type="file" name="upload"></h3>
