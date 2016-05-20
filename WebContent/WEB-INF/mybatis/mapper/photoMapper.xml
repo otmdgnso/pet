@@ -8,8 +8,8 @@
 	</select>
 
 	<insert id="insertPhoto" parameterType="com.pet.photo.Photo">
-	  INSERT INTO photoGal photoNum, species, saveFilename, subject, content, num
-	  VALUES (#{photoGal}, #{species}, #{saveFilename}, #{subject}, #{content},#{num})
+	  INSERT INTO photoGal (photoNum, species, saveFilename, subject, content, num)
+	  VALUES (#{photoNum}, #{species}, #{saveFilename}, #{subject}, #{content},#{num})
 	</insert>
 
 

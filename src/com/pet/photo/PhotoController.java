@@ -27,7 +27,16 @@ public class PhotoController {
 	}
 	
 	@RequestMapping(value="/photo/created", method=RequestMethod.GET)
-	public ModelAndView createdSubmit(
+	public ModelAndView created() throws Exception{
+			
+		ModelAndView mav=new ModelAndView(".photo.created");
+		mav.addObject("mode","created");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/photo/created", method=RequestMethod.POST)
+	public String createdSubmit(
 			HttpSession session,
 			Photo dto
 			) throws Exception{
@@ -37,10 +46,9 @@ public class PhotoController {
 		String root=session.getServletContext().getRealPath("/");
 		String pathname=root+File.separator+"uploads"+File.separator+"photo";
 		
-		String state="true";		
+		dto.setNum(info.getMemberNum());
+		service.insertPhoto(dto, pathname);
 		
-		ModelAndView mav=new ModelAndView(".photo.created");
-				
-		return mav;
+		return "redirect:/photo/photo";
 	}
 }
