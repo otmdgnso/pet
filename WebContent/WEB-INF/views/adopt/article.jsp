@@ -221,7 +221,7 @@ function deleteReply(replyNum, page, userId) {
 					<div class="separator" style="width:100%"></div>
 						<h3>사진</h3>
 						<c:forEach var="vo" items="${readPreFile}">
-						<img src="<%=cp%>/uploads/adopt/${vo.saveFilename}">
+						<img src="<%=cp%>/uploads/adopt/${vo.saveFilename}" align="left">
 						</c:forEach>
 					
                      </div>
@@ -235,12 +235,13 @@ function deleteReply(replyNum, page, userId) {
 							<button type="button" class="btn btn-primary btn-block" style="float: right; width: 33%;" onclick="javascript:location.href='<%=cp%>/adopt/update?preSaleNum=${dto.preSaleNum}&page=${page}';">수정</button>
 						</div>
                     	<div class="separator" style="width:100%"></div>
-                    	<h3 id="reply-open-close" align="left">
-                    	댓글 ▼
-                    	</h3>
-                    	<h3 id="postReplyCountView" align="left">(${dataCountReply}개)</h3>
                     	</div>	
-			
+                    	<div align="left">
+                    	<font id="reply-open-close" color="#ff590b" style="font-size: 16px;">
+                    	댓글 ▼
+                    	</font>
+                    	<font id="postReplyCountView" color="#ff590b" style="font-size: 16px;">(${dataCountReply}개)</font>
+						</div>
 				
 				</form>
 				</div>
