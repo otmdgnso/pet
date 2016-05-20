@@ -6,18 +6,6 @@
 	String cp=request.getContextPath();
 %>
 <script type="text/javascript">
-$(function(){
-	$("body").on("change", "input[name='upload']", function(){
-		if(! $(this).val())
-			return;
-		
-		var s;
-		s="<h3><input type='file' name='upload'></h3>";
-		
-		$("#tbFile").append(s);
-	});
-});
-
 function photoCheck() {
 	var f=document.photoForm;
 	
@@ -38,9 +26,8 @@ function photoCheck() {
 		f.content.focus();
 		return false;
 	}		
-	alert(f.saveFilename.value);
 	var mode="${mode}";
-
+	
 	if(mode=="created")
 		f.action="<%=cp%>/photo/created";
 	else if(mode=="update")

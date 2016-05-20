@@ -6,7 +6,15 @@ public class Photo {
 	private int photoNum, hitCount, listNum, num;
 	private String species, subject, saveFilename, content, created;
 	private String userId, userName;	
-	private MultipartFile photoUpload;
+	private MultipartFile upload;
+
+	public MultipartFile getUpload() {
+		return upload;
+	}
+
+	public void setUpload(MultipartFile upload) {
+		this.upload = upload;
+	}
 
 	public int getPhotoNum() {
 		return photoNum;
@@ -96,13 +104,5 @@ public class Photo {
 		this.userName = userName;
 	}
 
-	public MultipartFile getPhotoUpload() {
-		return photoUpload;
-	}
-
-	public void setPhotoUpload(MultipartFile photoUpload) {
-		this.photoUpload = photoUpload;
-	}
-	
 	
 }

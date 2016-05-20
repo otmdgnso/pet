@@ -18,15 +18,15 @@ public class PhotoServiceImpl implements PhotoService{
 	
 	@Override
 	public int insertPhoto(Photo dto, String pathname) {
+		System.out.println(dto.getUpload());
 		int result=0;
-		try {
-			int seq=dao.getIntValue("photo.seq");
-			dto.setPhotoNum(seq);			
-			
-			if(dto.getPhotoUpload()!=null&& !dto.getPhotoUpload().isEmpty()){
-				String saveFilename=fileManager.doFileUpload(dto.getPhotoUpload(), pathname);
+		try {				
+			if(dto.getUpload()!=null &&!dto.getUpload().isEmpty()){
+				
+				String saveFilename=fileManager.doFileUpload(dto.getUpload(), pathname);
 				dto.setSaveFilename(saveFilename);
 			}
+			
 			result=dao.insertData("photo.insertPhoto", dto);
 		} catch (Exception e) {
 			System.out.println(e.toString());
