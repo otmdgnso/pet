@@ -57,7 +57,8 @@
 				                <li data-filter=".cat1"><a href="#">Countries</a></li> 
 				                <li data-filter=".cat2"><a href="#">Beach</a></li> 
 				                <li data-filter=".cat3"><a href="#">Island</a></li> 
-				                <li data-filter=".cat4"><a href="#">Adventure</a></li> 
+				                <li data-filter=".cat4"><a href="#">Adventure</a></li>
+				                <li><a href="<%=cp%>/photo/created">등록하기</a></li> 
 			                </ul> 
 		                </dd>
 	                </dl>
