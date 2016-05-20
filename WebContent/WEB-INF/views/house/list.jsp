@@ -5,6 +5,95 @@
 <%
 	String cp=request.getContextPath();
 %>
+
+
+<script src="<%=cp%>/res/js/modernizr.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/jquery.easing.1.3.js"></script>
+<!-- waypoint -->
+<script type="text/javascript" src="<%=cp%>/res/js/waypoints.min.js"></script>
+
+
+<script type="text/javascript" src="<%=cp%>/res/js/bootstrap.min.js"></script> 
+<script src="<%=cp%>/res/js/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<!--Carousel-->
+<script src="<%=cp%>/res/js/carousel/modernizr.custom.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/carousel/jquery.cbpContentSlider.min.js" type="text/javascript"></script>
+ <script>
+$(function () {
+    "use strict";
+    $('#cbp-contentslider').cbpContentSlider();
+});
+</script>
+<!--List-->
+<script src="<%=cp%>/res/js/list/cbpViewModeSwitch.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/list/classie.js" type="text/javascript"></script>
+<script src="<%=cp%>/res/js/script.js" type="text/javascript"></script>
+
+<script src="<%=cp%>/res/js/list/jquery.mixitup.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function () {
+    "use strict";
+    $('#Grid').mixItUp();
+});
+</script>
+ <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<script>
+$(function () {
+    "use strict";
+    $("#slider-range").slider({
+        range: true,
+        min: 0,
+        max: 500,
+        values: [75, 300],
+        slide: function (event, ui) {
+            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+        }
+    });
+    $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+    " - $" + $("#slider-range").slider("values", 1));
+});
+</script>
+
+<script>
+$(function () {
+    "use strict";
+    // Clickable Dropdown
+    $('.click-nav > ul').toggleClass('no-js js');
+    $('.click-nav .js ul').hide();
+    $('.click-nav .js').click(function (e) {
+        $('.click-nav .js ul').slideToggle(200);
+        $('.clicker').toggleClass('active');
+        e.stopPropagation();
+    });
+    $(document).click(function () {
+        if ($('.click-nav .js ul').is(':visible')) {
+            $('.click-nav .js ul', this).slideUp();
+            $('.clicker').removeClass('active');
+        }
+    });
+
+    $('.click-nav-location > ul').toggleClass('no-js js');
+    $('.click-nav-location .js ul').hide();
+    $('.click-nav-location .js').click(function (e) {
+        $('.click-nav-location .js ul').slideToggle(200);
+        $('.clicker').toggleClass('active');
+        e.stopPropagation();
+    });
+    $(document).click(function () {
+        if ($('.click-nav-location .js ul').is(':visible')) {
+            $('.click-nav-location .js ul', this).slideUp();
+            $('.clicker').removeClass('active');
+        }
+    });
+});
+</script>
+
+
+
+
         <!--List-->
         <link href="<%=cp%>/res/css/list/component.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/layout2.css" rel="stylesheet" type="text/css" />
@@ -135,7 +224,7 @@
 						<li class="mix category-3" data-value="1250">
 							<figure>
                                 <div class="cbp-vm-image img">
-                                    <img src="<%=cp%>/uploads/profile/20160518162814458843974403881.GIF" style="width:338px; height:180px">
+                                    <img src="<%=cp%>/uploads/profile/${dto.profile}" style="width:338px; height:180px">
                                     <div class="overlay">
                                         <a href="#" class="expand">+</a>
                                         <a class="close-overlay hidden">x</a>
@@ -143,10 +232,10 @@
                                 </div>
 								
 								<figcaption>
-                                    <h3>솜사탕</h3><img class="star-level" src="<%=cp%>/res/images/5star.png" alt="" />
+                                    <h3>${dto.userName}</h3><img class="star-level" src="<%=cp%>/res/images/5star.png" alt="" />
                                     <div class="clear"></div>
-                                    <p style="min-height: 30px;">강아지 동산</p>
-                                    <div class="price-night"><span>수용가능 1마리</span><span class="price-n">10000원</span></div>   
+                                    <p style="min-height: 30px;">${dto.subject}</p>
+                                    <div class="price-night"><span>수용가능 ${dto.capacity}마리</span><span class="price-n">${dto.cost}원</span></div>   
                                     <a href="javascript:location.href='<%=cp%>/house/houseinfo';" class="btn btn-primary btn-gallery">Read More</a>
                                 </figcaption>
 							</figure>
@@ -367,87 +456,3 @@
           </div>
         </div>
 </section>      
-
-<script src="<%=cp%>/res/js/modernizr.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/jquery-1.10.1.min.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/jquery.easing.1.3.js"></script>
-<!-- waypoint -->
-<script type="text/javascript" src="<%=cp%>/res/js/waypoints.min.js"></script>
-
-
-<script type="text/javascript" src="<%=cp%>/res/js/bootstrap.min.js"></script> 
-<script src="<%=cp%>/res/js/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-<!--Carousel-->
-<script src="<%=cp%>/res/js/carousel/modernizr.custom.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/carousel/jquery.cbpContentSlider.min.js" type="text/javascript"></script>
- <script>
-$(function () {
-    "use strict";
-    $('#cbp-contentslider').cbpContentSlider();
-});
-</script>
-<!--List-->
-<script src="<%=cp%>/res/js/list/cbpViewModeSwitch.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/list/classie.js" type="text/javascript"></script>
-<script src="<%=cp%>/res/js/script.js" type="text/javascript"></script>
-
-<script src="<%=cp%>/res/js/list/jquery.mixitup.js" type="text/javascript"></script>
-<script type="text/javascript">
-$(function () {
-    "use strict";
-    $('#Grid').mixItUp();
-});
-</script>
- <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-<script>
-$(function () {
-    "use strict";
-    $("#slider-range").slider({
-        range: true,
-        min: 0,
-        max: 500,
-        values: [75, 300],
-        slide: function (event, ui) {
-            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-        }
-    });
-    $("#amount").val("$" + $("#slider-range").slider("values", 0) +
-    " - $" + $("#slider-range").slider("values", 1));
-});
-</script>
-
-<script>
-$(function () {
-    "use strict";
-    // Clickable Dropdown
-    $('.click-nav > ul').toggleClass('no-js js');
-    $('.click-nav .js ul').hide();
-    $('.click-nav .js').click(function (e) {
-        $('.click-nav .js ul').slideToggle(200);
-        $('.clicker').toggleClass('active');
-        e.stopPropagation();
-    });
-    $(document).click(function () {
-        if ($('.click-nav .js ul').is(':visible')) {
-            $('.click-nav .js ul', this).slideUp();
-            $('.clicker').removeClass('active');
-        }
-    });
-
-    $('.click-nav-location > ul').toggleClass('no-js js');
-    $('.click-nav-location .js ul').hide();
-    $('.click-nav-location .js').click(function (e) {
-        $('.click-nav-location .js ul').slideToggle(200);
-        $('.clicker').toggleClass('active');
-        e.stopPropagation();
-    });
-    $(document).click(function () {
-        if ($('.click-nav-location .js ul').is(':visible')) {
-            $('.click-nav-location .js ul', this).slideUp();
-            $('.clicker').removeClass('active');
-        }
-    });
-});
-</script>
