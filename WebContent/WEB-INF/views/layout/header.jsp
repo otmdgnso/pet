@@ -210,7 +210,7 @@ function shakeModalMember(msg){
                                             <h3>메뉴</h3>
                                             <ul>
                                               <li><a href="<%=cp%>/reservation/list">예약</a></li>
-                                              <li><a href="<%=cp%>/auction/auction">경매</a></li>
+                                              <li><a href="<%=cp%>/auction/list">경매</a></li>
                                               <li><a href="<%=cp%>/adopt/list">분양</a></li>
                                             </ul>
 									</section>

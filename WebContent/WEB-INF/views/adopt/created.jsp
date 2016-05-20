@@ -12,7 +12,7 @@ $(function(){
 			return;
 		
 		var s;
-		s+="<input type='file' name='upload' class='boxTF'  size='61' style='height: 20px; color: blue;'>";
+		s="<h3><input type='file' name='upload'></h3>";
 		
 		$("#tbFile").append(s);
 	});
@@ -61,7 +61,7 @@ function check() {
 	if(mode=="created")
 		f.action="<%=cp%>/adopt/created";
 	else if(mode=="update")
-		f.action="<%=cp%>/adopt/update"
+		f.action="<%=cp%>/adopt/update";
 	
 	f.submit();
 }
@@ -80,94 +80,192 @@ function deleteFile(saveFilename, photoNum) {
 
 <body>
 
-<section id="gallery">
-   <div class="container">
-<form name="boardForm" method="post" enctype="multipart/form-data">
-<input type="text" class="form-control" placeholder="제목" name="subject" size="200px" value="${dto.subject}"/>
-<br>
-<textarea rows="20" cols="160" placeholder="내용" name="content">${dto.content}</textarea>
+<section class="about-section-top">
+	<div class="container">
+	<div class="row">
+	<div class="col-md-12">
+	<div class="page-title pull-left">
+		<h2 class="title-about">분양 등록</h2>
+	</div>
+	</div>
+	</div>
+	</div>
+</section>
 
-<br>
-	<font color="blue">종류</font>
-	<select name="species">
-		<option value="개" ${dto.species=="개"?"selected='selected'" : ""}>
-		개
-		</option>
-		<option value="고양이" ${dto.species=="고양이"?"selected='selected'" : ""}>
-		고양이
-		</option>
-	</select>
-	
-	<font color="blue">품종</font>
-	<input type="text" placeholder="개 혹은 고양이의 품종" name="type" value="${dto.type}">
-	
-	<font color="blue">암수</font>
-	<select name="gender">
-		<option value="암" ${dto.gender=="암"?"selected='selected'" : ""}>
-		암
-		</option>
-		<option value="수" ${dto.gender=="수"?"selected='selected'" : ""}>
-		수
-		</option>
-	</select>
-	
-	<font color="blue">혈통서</font>
-	<select name="lineage">
-		<option value="유" ${dto.lineage=="유"?"selected='selected'" : ""}>
-		유
-		</option>
-		<option value="무" ${dto.lineage=="무"?"selected='selected'" : ""}>
-		무
-		</option>
-	</select>
-	
-	<font color="blue">개월수</font>
-	<input type="text" placeholder="숫자 입력" name="month" value="${dto.month}">
-	
-	<font color="blue">예방접종</font>
-	<select name="vaccin">
-		<option value="유" ${dto.vaccin=="유"?"selected='selected'" : ""}>
-		유
-		</option>
-		<option value="무" ${dto.vaccin=="무"?"selected='selected'" : ""}>
-		무
-		</option>
-	</select>
-	
-	<br>
-	
-	<font color="blue">가격</font>
-	<input type="text" placeholder="숫자 입력" name="price" value="${dto.price}">
-	
-	<font color="blue">보증금</font>
-	<input type="text" placeholder="숫자 입력" name="deposit" value="${dto.deposit}">
-	<br>
-	
+<section class="top-we-are">
+	<div class="container">
+	<div class="row" style="margin:0 auto; width:80%;" align="center">
+	<div class="col-md-12 effect-5 effects no-border-img" style="margin:0 auto; width:90%;" align="center">
+	<div class="text-center top-txt-title" align="center">
+
+	<!-- Reservation form -->
+		<section id="reservation-form" class="reservation-color-form pos-middle resv-plus-meteo">
+			<div class="container-form-chose">
+			<div class="col-md-12">
+			<div class="reservation-tabs command-tabs">
+			
+			<div class="row"><ul class="nav nav-tabs search-opt"></ul></div>
+			</div>
+			
+			<div class="tab-content">
+				<form class="tab-pane form-inline reservation-hotel active" method="post" name="boardForm" enctype="multipart/form-data">
+				<!-- 제목, 내용 -->
+				<div class="col-sm-4 fly-who">
+					
+						<h3>게시글</h3>
+						
+					<div class="form-group" style="margin:0 auto;" align="center">
+                    	<table style="width: 700px; margin: 0px auto; border-spacing: 0px; padding: 0px;">
+                    		<tr height="40%">
+                    			<td align="center" width="10%"><label>제목</label></td>
+                     			<td align="center" width="90%"><input class="form-control" type="text" name="subject" value="${dto.subject}" style="text-align:center"></td>
+                    		</tr>
+                    		<tr align="center" height="40%">
+                    			<td align="center" width="10%"><label>내용</label></td>
+                     			<td align="center" width="90%"><textarea rows="10" cols="34" class="form-control" name="content" style="text-align:center;">${dto.content}</textarea></td>
+                    		</tr>                                     		           
+                    	</table>                                     
+                     </div>
+                     </div>
+				<!-- 분양 정보 -->
+				<div class="col-sm-4 step-check">	
+							
+					<div class="col-sm-4 step-who" style="padding-left: 0">
+					<div class="separator" style="width:100%"></div>
+						<h3>분양 정보</h3>											
+					<div class="col-sm-6 cc-in" style="padding-left: 0">			
+					<div class="form-group">
+						<label for="checkin">종류</label>
+					<div class="guests-select" style="margin:0 auto; width:60%" align="center">
+						<select name="species" class="form-control">
+								<option value="개" ${dto.species=="개"?"selected='selected'" : ""}>
+									개
+								</option>
+								<option value="고양이" ${dto.species=="고양이"?"selected='selected'" : ""}>
+									고양이
+								</option>
+						</select>
+					</div>
+					</div>
+					</div>
+			
+					<div class="col-sm-6 cc-out" style="padding-left: 0">											
+					<div class="form-group">
+						<label for="checkin">성별</label>
+					<div class="guests-select" style="margin:0 auto; width:60%" align="center">
+						<select name="gender" class="form-control">
+								<option value="암" ${dto.gender=="암"?"selected='selected'" : ""}>
+									암
+								</option>
+								<option value="수" ${dto.gender=="수"?"selected='selected'" : ""}>
+									수
+								</option>
+						</select>
+					</div>
+					</div>
+					</div>
+					
+					<div class="col-sm-6 cc-in" style="padding-left: 0">			
+					<div class="form-group">
+						<label for="checkin">혈통서</label>
+					<div class="guests-select" style="margin:0 auto; width:60%" align="center">
+						<select name="lineage" class="form-control">
+								<option value="유" ${dto.lineage=="유"?"selected='selected'" : ""}>
+									유
+								</option>
+								<option value="무" ${dto.lineage=="무"?"selected='selected'" : ""}>
+									무
+								</option>
+						</select>
+					</div>
+					</div>
+					</div>
+					
+					<div class="col-sm-6 cc-out" style="padding-left: 0">											
+					<div class="form-group">
+						<label for="checkin">예방접종</label>
+					<div class="guests-select" style="margin:0 auto; width:60%" align="center">
+						<select name="vaccin" class="form-control">
+							<option value="유" ${dto.vaccin=="유"?"selected='selected'" : ""}>
+								유
+							</option>
+							<option value="무" ${dto.vaccin=="무"?"selected='selected'" : ""}>
+								무
+							</option>
+						</select>
+					</div>
+					</div>
+					</div>
+					</div>
+					<div class="form-group">
+                    	<table style="width: 700px; margin: 0px auto; border-spacing: 0px; padding: 0px;">
+                    		<tr height="40%">
+                    			<td align="center" width="10%"><label>품종</label></td>
+                     			<td align="center" width="90%"><input class="form-control" type="text" name="type" value="${dto.type}" style="text-align:center" placeholder="개 혹은 고양이의 품종"></td>
+                    		</tr>
+                    		<tr height="40%">
+                    			<td align="center" width="10%"><label>개월수</label></td>
+                     			<td align="center" width="90%"><input class="form-control" type="text" name="month" value="${dto.month}" style="text-align:center;" placeholder="숫자 입력"></td>
+                    		</tr>
+                    		<tr height="40%">
+                    			<td align="center" width="10%"><label>가격</label></td>
+                     			<td align="center" width="90%"><input class="form-control" type="text" name="price" value="${dto.price}" style="text-align:center;" placeholder="숫자 입력"></td>
+                    		</tr>     
+                    		<tr height="40%">
+                    			<td align="center" width="10%"><label>보증금</label></td>
+                     			<td align="center" width="90%"><input class="form-control" type="text" name="deposit" value="${dto.deposit}" style="text-align:center;" placeholder="숫자 입력"></td>
+                    		</tr>                                   		           
+                    	</table>                                     
+                     </div>
+                     
+					<div class="col-sm-4 fly-who">
+					<div class="separator" style="width:100%"></div>
+						<h3>사진 첨부</h3>
+						
 	<div id="tbFile">
-	<font color="blue">첨부 (첫번째 사진이 대표사진)</font><br>
-	<input type="file" name="upload" id="file0" class="boxTF" size="61" style="height: 20px; color: blue;">
+	<h3><input type="file" name="upload"></h3>
 	</div>
 	
 	<c:if test="${mode=='update'}">
-	<font color="blue">첨부된 파일(사진 클릭시 삭제가능!!)</font><br>
+	<h3>첨부된 파일(사진 클릭시 삭제가능!!)</h3><br>
 		<c:forEach var="vo" items="${readPreFile}">
 		   <div id="fileview${vo.photoNum}">
 			 <img src="<%=cp%>/uploads/adopt/${vo.saveFilename}"  onclick="deleteFile('${vo.saveFilename}', ${vo.photoNum});">
 			</div>
 		</c:forEach>
 	</c:if>
-	
-	<br>
-	<button type="button" class="btn btn-primary btn-block" style="width: 100px" onclick="check();">
-			등록하기
-	</button>
-	
-	<c:if test="${mode=='update'}">
-		<input type="hidden" name="preSaleNum" value="${dto.preSaleNum}">
-		<input type="hidden" name="page" value="${page}">
-	</c:if>
-</form>
-</div>
+					
+                     </div>
+			
+				</div>
+                    		
+			
+				<c:if test="${mode=='created'}">
+				<div class="col-sm-2 colbtn">
+					<button type="button" class="btn btn-primary btn-block" onclick="check();">등록하기</button>
+				</div>
+				</c:if>
+				
+				<c:if test="${mode=='update'}">
+				<div class="col-sm-2 colbtn">
+					<button type="button" class="btn btn-primary btn-block" style="float: left; width: 50%;" onclick="check();">수정하기</button>
+					<button type="button" class="btn btn-primary btn-block" style="float: right; width: 50%;" onclick="javascript:location.href='<%=cp%>/adopt/list';">취소</button>
+					<input type="hidden" name="preSaleNum" value="${dto.preSaleNum}">
+					<input type="hidden" name="page" value="${page}">		
+				</div>
+				</c:if>
+				
+				</form>
+				</div>
+				<!--Close tab-content form-->
+				</div>
+				</div>
+		</section>
+	<!-- Reservation form -->
+				
+	</div>
+	</div>
+	</div>
+	</div>
 </section>
-
 </body>

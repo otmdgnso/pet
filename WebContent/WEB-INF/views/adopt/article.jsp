@@ -110,10 +110,19 @@ function deleteReply(replyNum, page, userId) {
 <section id="gallery">
    <div class="container">
 <form name="boardForm" method="post" enctype="multipart/form-data">
-<input type="text" class="form-control" name="subject" size="200px" readonly="readonly" value="제목:${dto.subject} 아이디:${dto.userId} 날짜:${dto.created} 조회수:${dto.hitCount}"/>
+<font color="red">제목</font>
+<font color="blue">${dto.subject}</font>
+<font color="red">아이디</font>
+<font color="blue">${dto.userId}</font>
+<font color="red">날짜</font>
+<font color="blue">${dto.created}</font>
+<font color="red">조회수</font>
+<font color="blue">${dto.hitCount}</font>
 <br>
-<textarea rows="20" cols="160" name="content" readonly="readonly">${dto.content}</textarea>
-
+<font color="red">내용</font>
+<br>
+<font color="blue">${dto.content}</font>
+	
 <br>
 	<font color="blue">종류</font>
 	<input type="text" name="species" readonly="readonly" value="${dto.species}">
@@ -148,10 +157,13 @@ function deleteReply(replyNum, page, userId) {
 	<a class="clicker" href="<%=cp%>/adopt/list?page=${page}">목록으로</a>
 	</li>
 	<li class="current">
+	<a class="clicker" href="<%=cp%>/adopt/update?preSaleNum=${dto.preSaleNum}&page=${page}">수정</a>
+	</li>
+	<li class="current">
 	<a class="clicker" href="javascript:deletePreSale(${dto.preSaleNum});">삭제</a>
 	</li>
 	<li class="current">
-	<a class="clicker" href="<%=cp%>/adopt/update?preSaleNum=${dto.preSaleNum}&page=${page}">수정</a>
+	<a class="clicker" href="">분양 신청</a>
 	</li>
 	</ul>
 </form>

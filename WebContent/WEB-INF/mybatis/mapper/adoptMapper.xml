@@ -30,7 +30,7 @@
 		#{gender},#{lineage},#{month},#{price},#{deposit},#{vaccin},#{num})
 	</insert>
 	
-	<insert id="insertPreSalePhoto">
+	<insert id="insertPreSalePhoto" parameterType="com.pet.adopt.Adopt">
 		INSERT INTO PreSalePhoto(photoNum, saveFilename, preSaleNum)
 		VALUES(preSalePhoto_seq.NEXTVAL,#{saveFilename},#{preSaleNum})
 	</insert>
