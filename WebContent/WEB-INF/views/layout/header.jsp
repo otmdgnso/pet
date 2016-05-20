@@ -196,7 +196,7 @@ function shakeModalMember(msg){
 				</li>	
                 <!-- 호스팅버튼 -->
 				<li class="weather">
-					<a class="top-menu-txt" href="#"></i>호스팅하기</a>
+					<a class="top-menu-txt" href="#">호스팅하기</a>
 				</li>
 				<!--/ 호스팅버튼 -->
 				
