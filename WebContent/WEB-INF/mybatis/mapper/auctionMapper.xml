@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="auction">
+
+<sql id="auction-where-list">
+		<if test = "searchKey == 'name'">
+			name = #{searchValue}
+		</if>
+		<if test="searchKey == 'subject'">
+			subject LIKE '%' || #{searchValue} || '%'
+		</if>
+		<if test="searchKey == 'content'">
+			INSTR(content, #{searchValue}) &gt; 0
+		</if>
+		<if test="searchKey == 'created'">
+			TO_CHAR(a.created, 'YYYY-MM-DD') = #{searchValue}
+	          OR TO_CHAR(a.created, 'YYYYMMDD') = #{searchValue}
+		</if>
+	</sql>
+
+<select id="aucseq" resultType="Integer">
+		SELECT auction_seq.NEXTVAL FROM dual
+	</select>
+	
+	<!-- 글등록 -->
+	<insert id="insertAuction" parameterType="com.pet.auction.Auction">
+             INSERT INTO auction
+            (auctionNum, minPrice,buyPrice,aucEnd,amount,species, subject, content,categoryNum,num)  
+            VALUES 
+            (#{auctionNum}, #{minPrice},#{buyPrice},#{aucEnd},#{amount},#{species},#{subject},#{content},#{categoryNum},#{num})
+    </insert>
+
+	<!-- 사진등록 -->
+    <insert id="insertAuctionPhoto">
+		INSERT INTO auctionPhoto(photoNum, saveFilename, auctionNum)
+		VALUES(auctionPhoto_seq.NEXTVAL,#{saveFilename},#{auctionNum})
+	</insert>
+	
+	<!-- 데이터 카운트 -->
+	<select id="auctiondataCount" resultType="Integer" parameterType="map">
+		SELECT NVL(COUNT(*), 0) FROM auction
+		<where>
+			<if test="searchValue != null and searchValue != '' ">
+				<include refid="auction-where-list"/>
+			</if>
+		</where>
+	</select>
+	
+	<!-- 경매 화면 리스트 -->
+	<select id="listAuction" resultType="com.pet.auction.Auction" parameterType="map">
+	SELECT * FROM (
+  		SELECT ROWNUM rnum, tb.* FROM (
+    		SELECT auctionNum, subject, userId,content,species,hitCount
+    		FROM auction a JOIN
+    		member m ON a.num=m.num
+    		 <where>
+                         <if test="searchValue != null and searchValue != ''">
+			                  <include refid="auction-where-list"/>
+		                 </if>
+	                </where>
+    		ORDER BY auctionNum DESC
+   	<![CDATA[
+  		) tb WHERE ROWNUM <= #{end}
+	) WHERE rnum >= #{start}
+	]]>
+	
+	</select>
+	
+	<!-- 경매 사진 리스트 -->
+	<select id="listPhoto" resultType="com.pet.auction.Auction" parameterType="Integer">
+	SELECT tb1. * FROM(
+  		SELECT saveFilename
+  		FROM auctionPhoto
+  		WHERE  auctionNum=#{auctionNum}
+  		ORDER BY auctionNum
+  	<![CDATA[
+  	)tb1 WHERE ROWNUM =1
+  	]]>
+	
+	</select>
+	
+	<!-- 경매 글 상세보기 -->
+	<select id="readAuction" resultType="com.pet.auction.Auction" parameterType="Integer">
+	SELECT auctionNum, subject, m.userId, content, 
+  		TO_CHAR(a.created, 'YYYY-MM-DD') created, 
+  		species,minPrice,buyPrice,aucEnd,
+  		categoryNum, 
+  		a.num, hitCount
+	FROM auction a JOIN member m ON a.num=m.num
+	WHERE auctionNum=#{auctionNum}
+	</select>
+	
+	<!-- 경매 사진 상세보기 -->
+	<select id="readAuctionFile" parameterType="Integer" resultType="com.pet.auction.Auction">
+	SELECT photoNum, saveFilename, auctionNum
+	FROM auctionPhoto
+	WHERE auctionNum=#{auctionNum}
+	</select>
+	<!-- 조회수증가 -->
+	<update id="auctionUpdateHitCount" parameterType="Integer">
+	UPDATE auction SET hitCount=hitCount+1
+	WHERE auctionNum=#{auctionNum}
+	</update>
+	<!-- 글삭제 -->
+	<delete id="deleteAuction" parameterType="Integer">
+	DELETE FROM auction WHERE auctionNum=#{auctionNum}
+	</delete>
+	
+	<!-- 경매 글 수정 -->
+	<update id="updateAuction" parameterType="com.pet.auction.Auction">
+		UPDATE auction SET minPrice=#{minPrice}, buyPrice=#{buyPrice},
+		aucEnd=#{aucEnd}, amount=#{amount}, species=#{species}, subject=#{subject},
+		content=#{content}
+		WHERE auctionNum=#{auctionNum}
+	</update>
+	
+	<!-- 경매 파일 삭제 -->
+	<delete id="deleteAuctionFile" parameterType="String">
+		DELETE FROM auctionPhoto WHERE saveFilename=#{saveFilename}
+	</delete>
+	
+</mapper>
