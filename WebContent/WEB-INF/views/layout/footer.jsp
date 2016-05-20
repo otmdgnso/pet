@@ -12,8 +12,7 @@ function deleteMember(){
 		openSubmitModal();
 }
 
-function openSubmitModal(){
-	
+function openSubmitModal(){	
     setTimeout(function(){
         $('#submitModal').modal('show');    
     }, 230);
