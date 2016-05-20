@@ -83,7 +83,7 @@ $(function () {
 				
 			<div class="separator" style="width:100%"></div>
 				<section class="ac-container">
-                <div style="width: 100%; height: 40px;"><button type="button" class="btn btn-danger" style="width: 100%; height: 50px;"><i class="fa fa-bolt" aria-hidden="true"></i> 	예약하기</button></div>
+                <div style="width: 100%; height: 40px;"><button type="button" class="btn btn-danger" onclick="javascript:location.href='<%=cp%>/reservation/created';" style="width: 100%; height: 50px;"><i class="fa fa-bolt" aria-hidden="true"></i> 	예약하기</button></div>
                 </section>
                 
                 <section class="ac-container">
