@@ -80,6 +80,180 @@ function deleteFile(saveFilename, photoNum) {
 
 <body>
 
+<section class="about-section-top">
+	<div class="container">
+	<div class="row">
+	<div class="col-md-12">
+	<div class="page-title pull-left">
+		<h2 class="title-about">분양 등록</h2>
+	</div>
+	</div>
+	</div>
+	</div>
+</section>
+
+<section class="top-we-are">
+	<div class="container">
+	<div class="row" style="margin:0 auto; width:80%;" align="center">
+	<div class="col-md-12 effect-5 effects no-border-img" style="margin:0 auto; width:90%;" align="center">
+	<div class="text-center top-txt-title" align="center">
+
+	<!-- Reservation form -->
+		<section id="reservation-form" class="reservation-color-form pos-middle resv-plus-meteo">
+			<div class="container-form-chose">
+			<div class="col-md-12">
+			<div class="reservation-tabs command-tabs">
+			
+			<div class="row"><ul class="nav nav-tabs search-opt"></ul></div>
+			</div>
+			
+			<div class="tab-content">
+				<form id="hotels-tab" class="tab-pane form-inline reservation-hotel active" method="post" name="reservationform" onsubmit="return check();">
+				<div class="row">
+					
+					<!-- 날짜 -->
+					<div class="col-sm-4 step-check">
+						<h3>날짜</h3>
+					<div class="col-sm-6 cc-in" style="padding-left: 0">
+					<div class="form-group">
+						<label for="checkin">예약 시작일</label>
+					<div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="맡길 날짜를 선택하세요.">
+						<i class="fa fa-info-circle fa-lg"></i>
+					</div>
+					<div class="content-checkin-data" style="margin:0 auto; width:60%" align="center">
+						<i class="fa fa-calendar infield"></i><input name="checkin" type="text" id="checkin" value="${dto.checkIn}" style="margin:0 auto; width:100%;" class="form-control checkin" placeholder="ex: 2000/01/01" />
+					</div>
+					</div>
+					</div>
+					<div class="col-sm-6 cc-out" style="padding-left: 0">
+					<div class="form-group">
+						<label for="checkout">예약 종료일</label>
+					<div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="데려갈 날짜를 선택하세요.">
+						<i class="fa fa-info-circle fa-lg"> </i>
+					</div>
+					<div class="content-checkin-data" style="margin:0 auto; width:60%" align="center">
+						<i class="fa fa-calendar infield"></i> <input name="checkout" type="text" id="checkout" value="${dto.checkOut}" style="margin:0 auto; width:100%;" class="form-control checkout" placeholder="ex: 2000/01/01" />
+					</div>
+					</div>
+					</div>
+					</div>
+					
+					<!-- 몇박 -->				
+					<c:if test="${mode=='created'}">
+					<div class="form-group" style="margin:0 auto; width:60%;" align="center">		               															
+						<input type="text" readonly="readonly" id="period" name="period" value="" style="color:#8C8C8C; border: 0px; text-align:center"/>
+					</div>
+					</c:if>
+					
+					<c:if test="${mode=='update'}">
+					<div class="form-group" style="margin:0 auto; width:60%;" align="center">		               															
+						<input type="text" readonly="readonly" id="period" name="period" value="${dto.check_day}박" style="color:#8C8C8C; border: 0px; text-align:center"/>
+					</div>
+					</c:if>
+				</div>
+				
+					<div class="separator" style="width:100%"></div>
+
+				<!-- 펫 종류 -->
+				<div class="col-sm-4 step-check">				
+					<div class="col-sm-4 step-who" style="padding-left: 0">
+						<h3>펫 정보</h3>											
+					<div class="col-sm-6 cc-in" style="padding-left: 0">			
+					<div class="form-group">
+						<label for="checkin">펫 종류</label>
+					<div class="guests-select" style="margin:0 auto; width:60%" align="center">
+						<select name="pet_type" id="pet_type" class="form-control">
+							<c:if test="${mode=='created'}">
+								<option value="" disabled="disabled" selected="selected">선택</option>
+							</c:if>
+							<c:if test="${mode=='update'}">
+								<option value="${dto.pet_su}" disabled="disabled" selected="selected">${dto.pet_su}</option>
+							</c:if>
+								<option value="개">개</option>
+								<option value="고양이">고양이</option>
+						</select>
+					</div>
+					</div>
+					</div>
+	
+				
+				<!-- 펫수 -->			
+					<div class="col-sm-6 cc-out" style="padding-left: 0">											
+					<div class="form-group">
+						<label for="checkin">맡길 펫 수</label>
+					<div class="guests-select" style="margin:0 auto; width:60%" align="center">
+						<select name="pet_su" id="pet_su" class="form-control">
+							<c:if test="${mode=='created'}">
+								<option value="" disabled="disabled" selected="selected">선택</option>
+							</c:if>
+							<c:if test="${mode=='update'}">
+								<option value="${dto.pet_su}" disabled="disabled" selected="selected">${dto.pet_su}</option>
+							</c:if>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+						</select>
+					</div>
+					</div>
+					</div>
+				</div>	
+				</div>
+                    		
+				<!-- 가격 -->					
+				<div class="col-sm-4 fly-who">
+					<div class="separator" style="width:100%"></div>
+						<h3>가격</h3>
+						
+					<div class="form-group" style="margin:0 auto; width:40%" align="center">
+                    	<table style="width: 400px; margin: 0px auto; border-spacing: 0px;">
+                    		<tr align="center" height="40%">
+                    			<td align="center" width="30%"><label>기본료</label></td>
+                     			<td align="center" width="70%"><input class="form-control" type="text" name="pay" id="pay" value="${dto.pay}" style="text-align:center" readonly="readonly"></td>
+                    		</tr>
+                    		<tr align="center" height="40%">
+                    			<td align="center" width="30%"><label>서비스 수수료</label></td>
+                     			<td align="center" width="70%"><input class="form-control" type="text" name="tax" id="tax" value="${tax}" style="text-align:center;" readonly="readonly"></td>
+                    		</tr>
+                    		<tr align="center" height="40%">
+                    			<td align="center" width="30%"><label>총합계</label></td>
+                     			<td align="center" width="70%"><input class="form-control" type="text" name="totalPrice" id="totalPrice" value="${total}" style="text-align:center" readonly="readonly"></td>
+                    		</tr>                                       		           
+                    	</table>                                     
+                     </div>
+                     </div>
+                     
+				<input type="hidden" name="num" value="${dto.num}">
+                <input type="hidden" name="hostNum" value="${dto.hostNum}">
+
+				<c:if test="${mode=='created'}">
+				<div class="col-sm-2 colbtn">
+					<button type="submit" class="btn btn-primary btn-block">예약하기</button>
+				</div>
+				</c:if>
+				
+				<c:if test="${mode=='update'}">
+				<div class="col-sm-2 colbtn">
+					<button type="submit" class="btn btn-primary btn-block" style="float: left; width: 50%;">수정하기</button>
+					<button type="button" class="btn btn-primary btn-block" style="float: right; width: 50%;" onclick="javascript:location.href='<%=cp%>/reservation/list';">취소</button>		
+				</div>
+				</c:if>
+				
+				</form>
+				</div>
+				<!--Close tab-content form-->
+				</div>
+				</div>
+		</section>
+	<!-- Reservation form -->
+				
+	</div>
+	</div>
+	</div>
+	</div>
+</section>
+
 <section id="gallery">
    <div class="container">
 <form name="boardForm" method="post" enctype="multipart/form-data">
