@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adopt">
+
+	<sql id="where-list">
+		<if test = "searchKey == 'name'">
+			name = #{searchValue}
+		</if>
+		<if test="searchKey == 'subject'">
+			<!-- instr로 수정 subject LIKE '%' || #{searchValue} || '%'-->
+		</if>
+		<if test="searchKey == 'content'">
+			INSTR(content, #{searchValue}) &gt; 0
+		</if>
+		<if test="searchKey == 'created'">
+			TO_CHAR(created, 'YYYY-MM-DD') = #{searchValue}
+	          OR TO_CHAR(created, 'YYYYMMDD') = #{searchValue}
+		</if>
+	</sql>
+	<!-- Mapper 수정 필요  
+	<insert id="insertHouseInfo" parameterType="com.pet.house.House">
+		INSERT INTO host (houstNum, address, cost, capacity, searchOn, subject, content)
+		VALUES(#{houseNum}, #{address}, #{cost}, #{capacity}, #{searchOn}, #{subject}, #{content})
+	</insert>
+	
+	<insert id="insertHousePic" parameterType="com.pet.house.House">
+		INSERT INTO hostHousePic (picNum, saveFileName, hostNum)
+		VALUES(hostHousePic_seq.NEXTVAL, #{saveFileName}, #{hostNum})
+	</insert>
+	<insert id="insertHostPetInfo" parameterType="com.pet.house.House">
+		INSERT INTO hostHousePic (picNum, species, hostNum)
+		VALUES(hostHousePetInfo_seq.NEXTVAL, #{species}, #{hostNum})
+	</insert>
+	-->
+</mapper>

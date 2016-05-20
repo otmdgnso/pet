@@ -25,9 +25,35 @@ public class HouseServiceImpl implements HouseService{
 	}
 
 	@Override
+	public int insertHostPic(House dto) {
+		int result=0;
+		try {
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+	
+	@Override
+	public int insertHostPetInfo(House dto) {
+		int result=0;
+		try {
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+	@Override
 	public int updateHouseInfo() {
-		// TODO Auto-generated method stub
-		return 0;
+		int result=0;
+		try {
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
 	}
 
 	@Override
@@ -41,5 +67,6 @@ public class HouseServiceImpl implements HouseService{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 
 }
