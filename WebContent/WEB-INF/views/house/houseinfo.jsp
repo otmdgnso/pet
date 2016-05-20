@@ -75,7 +75,7 @@ $(function () {
 						<td align="center" width="30%">
 						<img src="<%=cp%>/uploads/profile/20160518162814458843974403881.GIF" class="avatar img-circle img-thumbnail" width="100px;">
 						</td>
-						<td align="center" width="70%"><h3 style="color:tomato;">subject</h3></td>
+						<td align="center" width="70%"><h3 style="color:tomato;">강아지 동산</h3></td>
 					</tr>
 				</table>
 				</div>
@@ -121,19 +121,18 @@ $(function () {
                 </div>
 			</div>
 
-            <div class="col-md-12 details-hotel" style="min-height: 300px; padding-bottom: 50px;">
-              <p><i class="fa fa-map-o" aria-hidden="true"></i> 주소</p>
+            <div class="col-md-12 details-hotel" style="min-height: 300px; padding: 50px;">
+              <div><i class="fa fa-map-o" aria-hidden="true"></i> 주소</div><div align="right" style="text-align: center;"><input type="text" style="border: 0px; text-align: center;" readonly="readonly" value="서울시 강남구"></div>
               <div class="separator" style="width:100%"></div>
-              <p><i class="fa fa-krw" aria-hidden="true"></i> 비용</p>
+              <div><i class="fa fa-krw" aria-hidden="true"></i> 비용 (1마리 기준) </div><div align="right" style="text-align: center;"><input type="text" style="border: 0px; text-align: center;" readonly="readonly" value="10000원"></div>
               <div class="separator" style="width:100%"></div>
-              <p><i class="fa fa-paw" aria-hidden="true"></i> 수용 가능 펫 수</p>
+              <div><i class="fa fa-paw" aria-hidden="true"></i> 수용 가능 펫 수</div><div align="right" style="text-align: center;"><input type="text" style="border: 0px; text-align: center;" readonly="readonly" value="1마리"></div>
               <div class="separator" style="width:100%"></div>	
-              <p><i class="fa fa-home" aria-hidden="true"></i> 시설</p>
-              <div class="separator" style="width:100%"></div>	
-              <p><i class="fa fa-check-square-o" aria-hidden="true"></i> 내용</p>
+              <div><i class="fa fa-check-square-o" aria-hidden="true"></i> 집 소개</div><div align="right" style="text-align: center;"><textarea rows="10%" cols="60%" readonly="readonly" style="border: #8C8C8C; text-align: left;">We are located in Gangnam(near Gangnam station(10min by walk), Yeoksam station(5min by walk), Apgujung(10min by bus). and it is easily accessible from Coex, Teheranro.
+              </textarea></div>
             </div>
             
-            <div class="col-md-12 details-hotel" style="min-height: 300px; padding-top: 30px; padding-bottom: 50px;">
+            <div class="col-md-12 details-hotel" style="min-height: 300px; padding: 50px;">
               	<span style="color: #3EA9CD; font-weight: bold; font-size: 20px;">후기 3개 </span>
               			<img src="<%=cp%>/res/image/staryellow.png" width="20px">
               			<img src="<%=cp%>/res/image/staryellow.png" width="20px">
