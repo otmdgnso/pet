@@ -70,6 +70,8 @@ function updateMember(){
    var f=document.upForm;   
    var formData=new FormData(f);
 	
+   updateCheck();
+   
    $.ajax({
       url:url
       ,type:"post"
@@ -86,6 +88,47 @@ function updateMember(){
       }
    });
 }
+
+function updateCheck(){
+	 var f=document.upForm;  
+	 var str;
+	 
+	 str = f.pwd1.value;
+		if(!/^(?=.*[a-z])(?=.*[!@#$%^*+=-]|.*[0-9]).{5,10}$/i.test(str)) { 
+			f.pwd1.focus();
+			shakeModalMember('패스워드는 5~10자이며 하나 이상의 숫자나 특수문자가 포함되어야합니다!');
+			return false;
+		}
+		
+		if(f.pwd_confirm1.value != str) {
+			f.pwd_confirm1.focus();
+			shakeModalMember('비밀번호를 동일하게 입력하세요!');
+			return false;
+		} 
+		
+		str = f.email11.value;
+	    if(!isValidEmail(str)) {
+	        f.email.focus();
+	        shakeModalMember('이메일 형식이 잘못되었습니다!');
+	        return false;
+	    }
+	    str = f.birth1.value;
+	    if(!isValidDateFormat(str)) {
+	        f.birth.focus();
+	        shakeModalMember('생일형식이 잘못 되었습니다. "1991-12-23" 이렇게 입력!');
+	        return false;
+	    }
+	    str = f.phone1.value;
+	    if(!/^\d{3}-\d{3,4}-\d{4}$/.test(str)) {
+	        f.phone.focus();
+	        shakeModalMember('전화 번호 형식을 확인하세요!');
+	        return false;
+	    }    
+	    
+	    f.checking1.value="true";
+	    return true;
+		
+}
 function sendTheme(){
    
    var url="<%=cp%>/member/theme";
@@ -100,11 +143,24 @@ function sendTheme(){
       ,data:formData
       ,dataType:"json"
       ,success:function(data){
+    	  if(data.state=="false"){
          alert("ssg");
+    	  }else{
+    		  location.href="<%=cp%>/member/blog";
+    	  }
       }
    });
 	
 }
+
+function shakeModalMember(msg){
+    $('#updateModal .modal-dialog').addClass('shake');
+             $('.error').addClass('alert alert-danger').html(msg);
+             setTimeout( function(){ 
+                $('#updateModal .modal-dialog').removeClass('shake'); 
+    }, 1000 ); 
+}
+
 
 </script>
 
@@ -200,10 +256,7 @@ function sendTheme(){
 
 												<td><h4>
 														<a href="javascript:void(0)" onclick="openUpdateModal();">수정하기</a>
-													</h4></td>
-												<!-- <td><h6>
-													<a href="javascript:void(0)" onclick="deleteMember();">회원탈퇴</a>
-												</h6></td> -->
+													</h4></td>												
 											</tr>
 										</table>
 										</div>
@@ -541,7 +594,8 @@ function sendTheme(){
                 <div class="modal-content">
                    <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">회원 정보 수정</h4>
+                        
+                        <h4>회원 정보 수정</h4>
                     </div>
                     <div class="modal-body">  
                         <div class="box">
@@ -549,8 +603,8 @@ function sendTheme(){
                                 <div class="error"></div>
                                 <div class="form loginBox">
                                     <form>
-                                    <input id="userId" class="form-control" type="text" placeholder="userId" name="userId">
-                                    <input id="pwd" class="form-control" type="password" placeholder="pwd" name="pwd">
+                                    <input class="form-control" type="text" placeholder="userId" name="userId">
+                                    <input class="form-control" type="password" placeholder="pwd" name="pwd">
                                     <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginSend()">
                                     </form>
                                 </div>
@@ -577,7 +631,7 @@ function sendTheme(){
                                       <input id="email11" class="form-control" type="text" value="${dto.email}" name="email">
                                       <input id="birth1" class="form-control" type="text" value="${dto.birth}" name="birth">
                                       <input id="phone1" class="form-control" type="text" value="${dto.phone}" name="phone">
-                                       <input id="checking1" type="hidden" name="checking">
+                                       <input id="checking1" type="hidden" name="checking1">
                                        <input name="profile" type="hidden" value="${dto.profile}"> 
                                            </div>
                                 <input class="btn btn-default btn-register" onclick="updateMember();" value="수정 완료">
@@ -586,18 +640,7 @@ function sendTheme(){
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="forgot login-footer">
-                            <span>Looking to 
-                                 <a href="javascript: showRegisterForm();">create an account</a>
-                            ?</span>
-                        </div>
-                        <div class="forgot register-footer" style="display:none">
-                             <span>Already have an account?</span>
-                             <a href="javascript: showLoginForm();">Login</a>
-                        </div>
-                    </div>        
+                    </div>                        
                 </div>
             </div>
         </div>
