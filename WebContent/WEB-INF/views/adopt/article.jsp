@@ -107,69 +107,154 @@ function deleteReply(replyNum, page, userId) {
 
 <body>
 
-<section id="gallery">
-   <div class="container">
-<form name="boardForm" method="post" enctype="multipart/form-data">
-<font color="red">제목</font>
-<font color="blue">${dto.subject}</font>
-<font color="red">아이디</font>
-<font color="blue">${dto.userId}</font>
-<font color="red">날짜</font>
-<font color="blue">${dto.created}</font>
-<font color="red">조회수</font>
-<font color="blue">${dto.hitCount}</font>
-<br>
-<font color="red">내용</font>
-<br>
-<font color="blue">${dto.content}</font>
-	
-<br>
-	<font color="blue">종류</font>
-	<input type="text" name="species" readonly="readonly" value="${dto.species}">
-	
-	<font color="blue">품종</font>
-	<input type="text" name="type" readonly="readonly" value="${dto.type}">
-	
-	<font color="blue">암수</font>
-	<input type="text" name="gender" readonly="readonly" value="${dto.gender}">
-	
-	<font color="blue">혈통서</font>
-	<input type="text" name="lineage" readonly="readonly" value="${dto.lineage}">
-	
-	<font color="blue">개월수</font>
-	<input type="text" name="month" readonly="readonly" value="${dto.month}">
-	<br>
-	<font color="blue">예방접종</font>
-	<input type="text" name="vaccin" readonly="readonly" value="${dto.vaccin}">	
-	
-	<font color="blue">가격</font>
-	<input type="text" name="price" readonly="readonly" value="${dto.price}">
-	
-	<font color="blue">보증금</font>
-	<input type="text" name="deposit" readonly="readonly" value="${dto.deposit}">
-	<br>
-	
-	<c:forEach var="vo" items="${readPreFile}">
-	<img src="<%=cp%>/uploads/adopt/${vo.saveFilename}">
-	</c:forEach>
-	<ul class="filter group albumFilter">
-	<li class="current">
-	<a class="clicker" href="<%=cp%>/adopt/list?page=${page}">목록으로</a>
-	</li>
-	<li class="current">
-	<a class="clicker" href="<%=cp%>/adopt/update?preSaleNum=${dto.preSaleNum}&page=${page}">수정</a>
-	</li>
-	<li class="current">
-	<a class="clicker" href="javascript:deletePreSale(${dto.preSaleNum});">삭제</a>
-	</li>
-	<li class="current">
-	<a class="clicker" href="">분양 신청</a>
-	</li>
-	</ul>
-</form>
+<section class="about-section-top">
+	<div class="container">
+	<div class="row">
+	<div class="col-md-12">
+	<div class="page-title pull-left">
+		<h2 class="title-about">분양</h2>
+	</div>
+	</div>
+	</div>
+	</div>
+</section>
 
-	<a id="reply-open-close">댓글 ▼</a>
-	<span id="postReplyCountView" style="color: blue">(${dataCountReply}개)</span>
+<section class="top-we-are">
+	<div class="container">
+	<div class="row" style="margin:0 auto; width:80%;" align="center">
+	<div class="col-md-12 effect-5 effects no-border-img" style="margin:0 auto; width:90%;" align="center">
+	<div class="text-center top-txt-title" align="center">
+
+	<!-- Reservation form -->
+		<section id="reservation-form" class="reservation-color-form pos-middle resv-plus-meteo">
+			<div class="container-form-chose">
+			<div class="col-md-12">
+			<div class="reservation-tabs command-tabs">
+			
+			<div class="row"><ul class="nav nav-tabs search-opt"></ul></div>
+			</div>
+			
+			<div class="tab-content">
+				<form class="tab-pane form-inline reservation-hotel active" method="post" name="boardForm" enctype="multipart/form-data">
+				<!-- 제목, 내용 -->
+				<div class="col-sm-4 fly-who">
+					
+						<h3>게시글</h3>
+						
+					<div class="form-group" style="margin:0 auto;" align="center">
+                    	<table style="width: 700px; margin: 0px auto; border-spacing: 0px; padding: 0px;">
+                    		<tr height="40%">
+                    			<td align="center" width="10%"><label>제목</label></td>
+                     			<td align="center" width="90%"><input class="form-control" type="text" name="subject" value="${dto.subject}" style="text-align:center" readonly="readonly"></td>
+                    		</tr>
+                    		<tr align="center" height="40%">
+                    			<td align="center" width="10%"><label>내용</label></td>
+                     			<td align="center" width="90%"><textarea rows="10" cols="34" class="form-control" name="content" style="text-align:center;" readonly="readonly">${dto.content}</textarea></td>
+                    		</tr>                                     		           
+                    	</table>                                     
+                     </div>
+                     </div>
+				<!-- 분양 정보 -->
+				<div class="col-sm-4 step-check">	
+							
+					<div class="col-sm-4 step-who" style="padding-left: 0">
+					<div class="separator" style="width:100%"></div>
+						<h3>분양 정보</h3>											
+					<div class="col-sm-6 cc-in" style="padding-left: 0">			
+					<div class="form-group">
+						<label for="checkin">종류</label>
+					<div class="guests-select" style="margin:0 auto; width:60%" align="center">
+						<input type="text" name="species" readonly="readonly" value="${dto.species}" style="text-align:center" class="form-control">
+					</div>
+					</div>
+					</div>
+			
+					<div class="col-sm-6 cc-out" style="padding-left: 0">											
+					<div class="form-group">
+						<label for="checkin">성별</label>
+					<div class="guests-select" style="margin:0 auto; width:60%" align="center">
+						<input type="text" name="gender" readonly="readonly" value="${dto.gender}" style="text-align:center" class="form-control">
+					</div>
+					</div>
+					</div>
+					
+					<div class="col-sm-6 cc-in" style="padding-left: 0">			
+					<div class="form-group">
+						<label for="checkin">혈통서</label>
+					<div class="guests-select" style="margin:0 auto; width:60%" align="center">
+						<input type="text" name="lineage" readonly="readonly" value="${dto.lineage}" style="text-align:center" class="form-control">
+					</div>
+					</div>
+					</div>
+					
+					<div class="col-sm-6 cc-out" style="padding-left: 0">											
+					<div class="form-group">
+						<label for="checkin">예방접종</label>
+					<div class="guests-select" style="margin:0 auto; width:60%" align="center">
+						<input type="text" name="vaccin" readonly="readonly" value="${dto.vaccin}" style="text-align:center" class="form-control">
+					</div>
+					</div>
+					</div>
+					</div>
+					<div class="form-group">
+                    	<table style="width: 700px; margin: 0px auto; border-spacing: 0px; padding: 0px;">
+                    		<tr height="40%">
+                    			<td align="center" width="10%"><label>품종</label></td>
+                     			<td align="center" width="90%"><input class="form-control" type="text" name="type" value="${dto.type}" style="text-align:center" placeholder="개 혹은 고양이의 품종" readonly="readonly"></td>
+                    		</tr>
+                    		<tr height="40%">
+                    			<td align="center" width="10%"><label>개월수</label></td>
+                     			<td align="center" width="90%"><input class="form-control" type="text" name="month" value="${dto.month}" style="text-align:center;" placeholder="숫자 입력" readonly="readonly"></td>
+                    		</tr>
+                    		<tr height="40%">
+                    			<td align="center" width="10%"><label>가격</label></td>
+                     			<td align="center" width="90%"><input class="form-control" type="text" name="price" value="${dto.price}" style="text-align:center;" placeholder="숫자 입력" readonly="readonly"></td>
+                    		</tr>     
+                    		<tr height="40%">
+                    			<td align="center" width="10%"><label>보증금</label></td>
+                     			<td align="center" width="90%"><input class="form-control" type="text" name="deposit" value="${dto.deposit}" style="text-align:center;" placeholder="숫자 입력" readonly="readonly"></td>
+                    		</tr>                                   		           
+                    	</table>                                     
+                     </div>
+                     
+					<div class="col-sm-4 fly-who">
+					<div class="separator" style="width:100%"></div>
+						<h3>사진</h3>
+						<c:forEach var="vo" items="${readPreFile}">
+						<img src="<%=cp%>/uploads/adopt/${vo.saveFilename}">
+						</c:forEach>
+					
+                     </div>
+			
+				</div>
+				
+                    	<div class="col-sm-4 fly-who">
+                    	<div class="col-sm-2 colbtn">
+							<button type="button" class="btn btn-primary btn-block" style="float: left; width: 34%;" onclick="javacript:location.href='<%=cp%>/adopt/list?page=${page}';">목록</button>
+							<button type="button" class="btn btn-primary btn-block" style="float: right; width: 33%;" onclick="deletePreSale(${dto.preSaleNum});">삭제</button>
+							<button type="button" class="btn btn-primary btn-block" style="float: right; width: 33%;" onclick="javascript:location.href='<%=cp%>/adopt/update?preSaleNum=${dto.preSaleNum}&page=${page}';">수정</button>
+						</div>
+                    	<div class="separator" style="width:100%"></div>
+                    	<h3 id="reply-open-close" align="left">
+                    	댓글 ▼
+                    	</h3>
+                    	<h3 id="postReplyCountView" align="left">(${dataCountReply}개)</h3>
+                    	</div>	
+			
+				
+				</form>
+				</div>
+				<!--Close tab-content form-->
+				</div>
+				</div>
+		</section>
+	<!-- Reservation form -->
+				
+	</div>
+	</div>
+	</div>
+	</div>
+</section>
 	
 	<div class="col-md-12 details-hotel" id="replyList">
 	<p><textarea id="content" cols="140" rows="4"></textarea> <a id="btnSend" onclick="sendReply();">등록</a></p>
@@ -178,7 +263,5 @@ function deleteReply(replyNum, page, userId) {
 			</p>
 		</div>
 	</div>
-</div>
-</section>
 
 </body>
