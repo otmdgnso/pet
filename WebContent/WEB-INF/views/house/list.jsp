@@ -173,7 +173,7 @@
 						<li class="mix category-3" data-value="700">
 							<figure>
                                 <div class="cbp-vm-image img">
-                                    <img src="<%=cp%>/uploads/profile/20160518162814458843974403881.GIF" style="width:338px; height:180px">
+                                    <img src="<%=cp%>/uploads/profile/201605201713179163811251872.JPG" style="width:338px; height:180px">
                                     <div class="overlay">
                                         <a href="#" class="expand">+</a>
                                         <a class="close-overlay hidden">x</a>
