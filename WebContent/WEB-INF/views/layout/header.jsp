@@ -189,9 +189,11 @@ function shakeModalMember(msg){
       <!-- mega menu -->
 			<ul class="travel-mega-menu travel-mega-menu-anim-scale travel-mega-menu-response-to-icons">		
                 <li class="line-logo">
-					<a class="logo" href="<%=cp%>"><img src="<%=cp%>/res/images/icon/dog.JPG" width="40" alt=""/></a>
+					<a class="logo" href="<%=cp%>"><img src="<%=cp%>/res/images/icon/dog.JPG" width="40"/></a>
+				</li>
+				<li class="line-logo">	
+					<a class="logo" href="<%=cp%>"><img src="<%=cp%>/res/images/icon/title.jpg" height="40px"/></a>
 				</li>	
-					
                 <!-- 호스팅버튼 -->
 				<li class="weather">
 					<a class="top-menu-txt" href="#"></i>호스팅하기</a>
@@ -209,7 +211,7 @@ function shakeModalMember(msg){
 											<img src="<%=cp%>/res/images/icon/menu.JPG" width="40" alt="" />
                                             <h3>메뉴</h3>
                                             <ul>
-                                              <li><a href="<%=cp%>/reservation/list">예약</a></li>
+                                              <li><a href="<%=cp%>/house/list">예약</a></li>
                                               <li><a href="<%=cp%>/auction/list">경매</a></li>
                                               <li><a href="<%=cp%>/adopt/list">분양</a></li>
                                             </ul>

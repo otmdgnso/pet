@@ -28,12 +28,17 @@
    <div class="container">
       <div class="row">
          <div class="col-sm-4 col-md-3">
-                <div class="search-results-title"><i class="fa fa-search"></i><p>1,322</p> <p>results found.</p></div>
+                <form name="searchForm" method="post" class="form-inline">
+                <div class="search-results-title" style="padding-top: 20px;"><i class="fa fa-search"></i>
+                		<input type="text" style="width: 70%" class="form-control input-sm input-search" name="searchValue">
+                		<button type="button" class="btn btn-info btn-sm btn-search" onclick="searchList();">검색</button>
+                </div>
+                </form>
                 <section class="ac-container">
-                    <h3 class="desc-filter">Save time with filters:</h3>
+                    <h3 class="desc-filter">필터</h3>
 				    <div>
 					    <input id="ac-1" name="accordion-1" type="checkbox" />
-					    <label for="ac-1">Price range <i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></label>
+					    <label for="ac-1">가격 범위 <i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></label>
 					    <article class="ac-small">
 						    <p>
                               <!--<label for="amount">Price range:</label>-->
@@ -45,7 +50,7 @@
 				    </div>
 				    <div>
 					    <input id="ac-2" name="accordion-1" type="checkbox" checked/>
-					    <label for="ac-2">Star rating <i class="fa fa-angle-down"></i> <i class="fa fa-angle-up"></i></label>
+					    <label for="ac-2">평점 <i class="fa fa-angle-down"></i> <i class="fa fa-angle-up"></i></label>
 					    <article class="ac-medium">
 						    <div class="rating-trip"><i class="fa fa-check-square-o"></i><img src="<%=cp%>/res/images/star.png" alt="1 Star"/><p>(975) result</p></div>
                             <div class="rating-trip"><i class="fa fa-check-square-o"></i><img src="<%=cp%>/res/images/2star.png" alt="2 Star"/><p>(1335) result</p></div>
@@ -56,11 +61,10 @@
 				    </div>
 				    <div>
 					    <input id="ac-3" name="accordion-1" type="checkbox" />
-					    <label for="ac-3">Meals <i class="fa fa-angle-down"></i> <i class="fa fa-angle-up"></i></label>
+					    <label for="ac-3">펫 종류 <i class="fa fa-angle-down"></i> <i class="fa fa-angle-up"></i></label>
 					    <article class="ac-small">
-						    <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>Breakfast included (1458)</p></div>
-                            <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>Half board (367)</p></div>
-                            <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>Self catering (678)</p></div>
+						    <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>강아지</p></div>
+                            <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>고양이</p></div>                          
 					    </article>
 				    </div>
 				    <div>
@@ -92,11 +96,11 @@
          <div class="col-sm-8 col-md-9 effect-5 effects">
             <div class="main-switcher">
 				<div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid">
-                    <div class="txt-sort"><p>Sort result:</p></div>  
+                    <div class="txt-sort"><p>정렬:</p></div>  
                                 <div class="click-nav">
 			                        <ul class="no-js">
 				                        <li>
-					                        <a class="clicker">Price</a>
+					                        <a class="clicker">가격</a>
 					                        <ul>
 						                        <li><span class="btn sort active" data-sort="random">Random</span></li>
 						                        <li><span class="btn sort" data-sort="value:asc">Ascending</span></li>
@@ -108,7 +112,7 @@
                                 <div class="click-nav-location">
 			                        <ul class="no-js">
 				                        <li>
-					                        <a class="clicker">Location</a>
+					                        <a class="clicker">위치</a>
 					                        <ul>
                                                 <li><span class="btn filter active" data-filter="all">All</span></li>
 						                        <li><span class="btn filter" data-filter=".category-1">City</span></li>
@@ -122,12 +126,16 @@
 						<a href="#" class="cbp-vm-icon cbp-vm-grid cbp-vm-selected" data-view="cbp-vm-view-grid"><i class="fa fa-th-large"></i></a>
 						<a href="#" class="cbp-vm-icon cbp-vm-list" data-view="cbp-vm-view-list"><i class="fa fa-th-list"></i></a>
 					</div>
+					
+					<!-- 왼쪽메뉴 -->
+					
+					<!-- 본문 -->
                     
 					<ul id="Grid" class="sandbox">
 						<li class="mix category-3" data-value="1250">
 							<figure>
                                 <div class="cbp-vm-image img">
-                                    <img src="http://placehold.it/600x338" alt="img01"/>
+                                    <img src="<%=cp%>/uploads/profile/20160518162814458843974403881.GIF" style="width:338px; height:180px">
                                     <div class="overlay">
                                         <a href="#" class="expand">+</a>
                                         <a class="close-overlay hidden">x</a>
@@ -135,18 +143,18 @@
                                 </div>
 								
 								<figcaption>
-                                    <h3>Polinesia</h3><img class="star-level" src="<%=cp%>/res/images/5star.png" alt="" />
+                                    <h3>솜사탕</h3><img class="star-level" src="<%=cp%>/res/images/5star.png" alt="" />
                                     <div class="clear"></div>
-                                    <p>Chillwave hoodie ea gentrify aute sriracha consequat, cursus libero purus ac congue ar lorem.</p>
-                                    <div class="price-night"><span>7 Night</span><span class="price-n">$1250</span></div>   
-                                    <a href="#" class="btn btn-primary btn-gallery">Read More</a>
+                                    <p style="min-height: 30px;">강아지 동산</p>
+                                    <div class="price-night"><span>수용가능 1마리</span><span class="price-n">10000원</span></div>   
+                                    <a href="javascript:location.href='<%=cp%>/house/houseinfo';" class="btn btn-primary btn-gallery">Read More</a>
                                 </figcaption>
 							</figure>
 						</li>
 						<li class="mix category-2" data-value="850">
 							<figure>
                                 <div class="cbp-vm-image img">
-                                    <img src="http://placehold.it/600x338" alt="img01"/>
+                                    <img src="<%=cp%>/uploads/profile/20160518162814458843974403881.GIF" style="width:338px; height:180px">
                                     <div class="overlay">
                                         <a href="#" class="expand">+</a>
                                         <a class="close-overlay hidden">x</a>
@@ -154,10 +162,10 @@
                                 </div>
 								
 								<figcaption>
-                                    <h3>Gran Canaria</h3><img class="star-level" src="<%=cp%>/res/images/3star.png" alt="" />
+                                    <h3>솜사탕</h3><img class="star-level" src="<%=cp%>/res/images/5star.png" alt="" />
                                     <div class="clear"></div>
-                                    <p>Chillwave hoodie ea gentrify aute sriracha consequat, cursus libero purus ac congue ar lorem.</p>
-                                    <div class="price-night"><span>7 Night</span><span class="price-n">$850</span></div>
+                                    <p style="min-height: 30px;">강아지 동산</p>
+                                    <div class="price-night"><span>수용가능 1마리</span><span class="price-n">10000원</span></div>   
                                     <a href="#" class="btn btn-primary btn-gallery">Read More</a>
                                 </figcaption>
 							</figure>
@@ -165,7 +173,7 @@
 						<li class="mix category-3" data-value="700">
 							<figure>
                                 <div class="cbp-vm-image img">
-                                    <img src="http://placehold.it/600x338" alt="img01"/>
+                                    <img src="<%=cp%>/uploads/profile/20160518162814458843974403881.GIF" style="width:338px; height:180px">
                                     <div class="overlay">
                                         <a href="#" class="expand">+</a>
                                         <a class="close-overlay hidden">x</a>
@@ -173,10 +181,10 @@
                                 </div>
 								
 								<figcaption>
-                                    <h3>Fashion Palace</h3><img class="star-level" src="<%=cp%>/res/images/4star.png" alt="" />
+                                    <h3>솜사탕</h3><img class="star-level" src="<%=cp%>/res/images/5star.png" alt="" />
                                     <div class="clear"></div>
-                                    <p>Chillwave hoodie ea gentrify aute sriracha consequat, cursus libero purus ac congue ar lorem.</p>
-                                    <div class="price-night"><span>7 Night</span><span class="price-n">$700</span></div>
+                                    <p style="min-height: 30px;">강아지 동산</p>
+                                    <div class="price-night"><span>수용가능 1마리</span><span class="price-n">10000원</span></div>   
                                     <a href="#" class="btn btn-primary btn-gallery">Read More</a>
                                 </figcaption>
 							</figure>

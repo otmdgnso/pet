@@ -39,7 +39,7 @@
           <div class="row">
              <div class="col-md-12">
                <div class="page-title pull-left">
-                    <h2 class="title-about">분양 게시판</h2>
+                    <h2 class="title-about">분양</h2>
                 </div>
              </div>
           </div>
