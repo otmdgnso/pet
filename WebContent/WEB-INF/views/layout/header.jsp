@@ -189,9 +189,11 @@ function shakeModalMember(msg){
       <!-- mega menu -->
 			<ul class="travel-mega-menu travel-mega-menu-anim-scale travel-mega-menu-response-to-icons">		
                 <li class="line-logo">
-					<a class="logo" href="<%=cp%>"><img src="<%=cp%>/res/images/icon/dog.JPG" width="40" alt=""/></a>
+					<a class="logo" href="<%=cp%>"><img src="<%=cp%>/res/images/icon/dog.JPG" width="40"/></a>
+				</li>
+				<li class="line-logo">	
+					<a class="logo" href="<%=cp%>"><img src="<%=cp%>/res/images/icon/title.jpg" height="40px"/></a>
 				</li>	
-					
                 <!-- 호스팅버튼 -->
 				<li class="weather">
 					<a class="top-menu-txt" href="#"></i>호스팅하기</a>
