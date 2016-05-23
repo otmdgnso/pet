@@ -71,7 +71,7 @@ public class HouseController {
         }
         
         if(params.length()!=0) {
-        	urlList=cp+"/houst/list?"+params;
+        	urlList=cp+"/house/list?"+params;
         	urlHouseinfo=cp+"/house/houseinfo?page="+current_page+"&"+params;
         }
         

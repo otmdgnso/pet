@@ -221,6 +221,7 @@ $(function () {
 					<!-- 본문 -->
                     
 					<ul id="Grid" class="sandbox">
+						<c:forEach var="dto" items="${list}">
 						<li class="mix category-3" data-value="1250">
 							<figure>
                                 <div class="cbp-vm-image img">
@@ -240,216 +241,22 @@ $(function () {
                                 </figcaption>
 							</figure>
 						</li>
-						<li class="mix category-2" data-value="850">
-							<figure>
-                                <div class="cbp-vm-image img">
-                                    <img src="<%=cp%>/uploads/profile/20160518162814458843974403881.GIF" style="width:338px; height:180px">
-                                    <div class="overlay">
-                                        <a href="#" class="expand">+</a>
-                                        <a class="close-overlay hidden">x</a>
-                                    </div>
-                                </div>
-								
-								<figcaption>
-                                    <h3>솜사탕</h3><img class="star-level" src="<%=cp%>/res/images/5star.png" alt="" />
-                                    <div class="clear"></div>
-                                    <p style="min-height: 30px;">강아지 동산</p>
-                                    <div class="price-night"><span>수용가능 1마리</span><span class="price-n">10000원</span></div>   
-                                    <a href="#" class="btn btn-primary btn-gallery">Read More</a>
-                                </figcaption>
-							</figure>
-						</li>
-						<li class="mix category-3" data-value="700">
-							<figure>
-                                <div class="cbp-vm-image img">
-                                    <img src="<%=cp%>/uploads/profile/201605201713179163811251872.JPG" style="width:338px; height:180px">
-                                    <div class="overlay">
-                                        <a href="#" class="expand">+</a>
-                                        <a class="close-overlay hidden">x</a>
-                                    </div>
-                                </div>
-								
-								<figcaption>
-                                    <h3>솜사탕</h3><img class="star-level" src="<%=cp%>/res/images/5star.png" alt="" />
-                                    <div class="clear"></div>
-                                    <p style="min-height: 30px;">강아지 동산</p>
-                                    <div class="price-night"><span>수용가능 1마리</span><span class="price-n">10000원</span></div>   
-                                    <a href="#" class="btn btn-primary btn-gallery">Read More</a>
-                                </figcaption>
-							</figure>
-						</li>
-						<li class="mix category-1" data-value="1050">
-							<figure>
-                                <div class="cbp-vm-image img">
-                                    <img src="http://placehold.it/600x338" alt="img01"/>
-                                    <div class="overlay">
-                                        <a href="#" class="expand">+</a>
-                                        <a class="close-overlay hidden">x</a>
-                                    </div>
-                                </div>
-								
-								<figcaption>
-                                    <h3>Playa Hotel</h3><img class="star-level" src="<%=cp%>/res/images/4star.png" alt="" />
-                                    <div class="clear"></div>
-                                    <p>Chillwave hoodie ea gentrify aute sriracha consequat, cursus libero purus ac congue ar lorem.</p>
-                                   <div class="price-night"><span>7 Night</span><span class="price-n">$1050</span></div>
-                                    <a href="#" class="btn btn-primary btn-gallery">Read More</a>
-                                </figcaption>
-							</figure>
-						</li>
-						<li class="mix category-1" data-value="330">
-							<figure>
-                                <div class="cbp-vm-image img">
-                                    <img src="http://placehold.it/600x338" alt="img01"/>
-                                    <div class="overlay">
-                                        <a href="#" class="expand">+</a>
-                                        <a class="close-overlay hidden">x</a>
-                                    </div>
-                                </div>
-								
-								<figcaption>
-                                    <h3>PORTALS PALACE</h3><img class="star-level" src="<%=cp%>/res/images/star.png" alt="" />
-                                    <div class="clear"></div>
-                                    <p>Chillwave hoodie ea gentrify aute sriracha consequat, cursus libero purus ac congue ar lorem.</p>
-                                    <div class="price-night"><span>7 Night</span><span class="price-n">$330</span></div>
-                                    <a href="#" class="btn btn-primary btn-gallery">Read More</a>
-                                </figcaption>
-							</figure>
-						</li>
-						<li class="mix category-1" data-value="480">
-							<figure>
-                                <div class="cbp-vm-image img">
-                                    <img src="http://placehold.it/600x338" alt="img01"/>
-                                    <div class="overlay">
-                                        <a href="#" class="expand">+</a>
-                                        <a class="close-overlay hidden">x</a>
-                                    </div>
-                                </div>
-								
-								<figcaption>
-                                    <h3>BEACH RESORT</h3><img class="star-level" src="<%=cp%>/res/images/2star.png" alt="" />
-                                    <div class="clear"></div>
-                                    <p>Chillwave hoodie ea gentrify aute sriracha consequat, cursus libero purus ac congue ar lorem.</p>
-                                    <div class="price-night"><span>7 Night</span><span class="price-n">$480</span></div>
-                                    <a href="#" class="btn btn-primary btn-gallery">Read More</a>
-                                </figcaption>
-							</figure>
-						</li>
-						<li class="mix category-2" data-value="1100">
-							<figure>
-                                <div class="cbp-vm-image img">
-                                    <img src="http://placehold.it/600x338" alt="img01"/>
-                                    <div class="overlay">
-                                        <a href="#" class="expand">+</a>
-                                        <a class="close-overlay hidden">x</a>
-                                    </div>
-                                </div>
-								
-								<figcaption>
-                                    <h3>BAOBAB Place</h3><img class="star-level" src="<%=cp%>/res/images/5star.png" alt="" />
-                                    <div class="clear"></div>
-                                    <p>Chillwave hoodie ea gentrify aute sriracha consequat, cursus libero purus ac congue ar lorem.</p>
-                                    <div class="price-night"><span>7 Night</span><span class="price-n">$1100</span></div>
-                                    <a href="#" class="btn btn-primary btn-gallery">Read More</a>
-                                </figcaption>
-							</figure>
-						</li>
-						<li class="mix category-3" data-value="560">
-							<figure>
-                                <div class="cbp-vm-image img">
-                                    <img src="http://placehold.it/600x338" alt="img01"/>
-                                    <div class="overlay">
-                                        <a href="#" class="expand">+</a>
-                                        <a class="close-overlay hidden">x</a>
-                                    </div>
-                                </div>
-								
-								<figcaption>
-                                    <h3>ROULETTE </h3><img class="star-level" src="<%=cp%>/res/images/3star.png" alt="" />
-                                    <div class="clear"></div>
-                                    <p>Chillwave hoodie ea gentrify aute sriracha consequat, cursus libero purus ac congue ar lorem.</p>
-                                    <div class="price-night"><span>7 Night</span><span class="price-n">$560</span></div>
-                                    <a href="#" class="btn btn-primary btn-gallery">Read More</a>
-                                </figcaption>
-							</figure>
-						</li>
-						<li class="mix category-1" data-value="510">
-							<figure>
-                                <div class="cbp-vm-image img">
-                                    <img src="http://placehold.it/600x338" alt="img01"/>
-                                    <div class="overlay">
-                                        <a href="#" class="expand">+</a>
-                                        <a class="close-overlay hidden">x</a>
-                                    </div>
-                                </div>
-								
-								<figcaption>
-                                    <h3>CORAL RESORT </h3><img class="star-level" src="<%=cp%>/res/images/3star.png" alt="" />
-                                    <div class="clear"></div>
-                                    <p>Chillwave hoodie ea gentrify aute sriracha consequat, cursus libero purus ac congue ar lorem.</p>
-                                    <div class="price-night"><span>7 Night</span><span class="price-n">$510</span></div>
-                                    <a href="#" class="btn btn-primary btn-gallery">Read More</a>
-                                </figcaption>
-							</figure>
-						</li>
-						<li class="mix category-2" data-value="1300">
-							<figure>
-                                <div class="cbp-vm-image img">
-                                    <img src="http://placehold.it/600x338" alt="img01"/>
-                                    <div class="overlay">
-                                        <a href="#" class="expand">+</a>
-                                        <a class="close-overlay hidden">x</a>
-                                    </div>
-                                </div>
-								
-								<figcaption>
-                                    <h3>BLUE HOTEL</h3><img class="star-level" src="<%=cp%>/res/images/4star.png" alt="" />
-                                    <div class="clear"></div>
-                                    <p>Chillwave hoodie ea gentrify aute sriracha consequat, cursus libero purus ac congue ar lorem.</p>
-                                    <div class="price-night"><span>7 Night</span><span class="price-n">$1300</span></div>
-                                    <a href="#" class="btn btn-primary btn-gallery">Read More</a>
-                                </figcaption>
-							</figure>
-						</li>
-						<li class="mix category-2" data-value="650">
-							<figure>
-                                <div class="cbp-vm-image img">
-                                    <img src="http://placehold.it/600x338" alt="img01"/>
-                                    <div class="overlay">
-                                        <a href="#" class="expand">+</a>
-                                        <a class="close-overlay hidden">x</a>
-                                    </div>
-                                </div>
-								
-								<figcaption>
-                                    <h3>DONG OCEAN</h3><img class="star-level" src="<%=cp%>/res/images/2star.png" alt="" />
-                                    <div class="clear"></div>
-                                    <p>Chillwave hoodie ea gentrify aute sriracha consequat, cursus libero purus ac congue ar lorem.</p>
-                                    <div class="price-night"><span>7 Night</span><span class="price-n">$650</span></div>
-                                    <a href="#" class="btn btn-primary btn-gallery">Read More</a>
-                                </figcaption>
-							</figure>
-						</li>
-						<li class="mix category-1" data-value="970">
-							<figure>
-                                <div class="cbp-vm-image img">
-                                    <img src="http://placehold.it/600x338" alt="img01"/>
-                                    <div class="overlay">
-                                        <a href="#" class="expand">+</a>
-                                        <a class="close-overlay hidden">x</a>
-                                    </div>
-                                </div>
-								
-								<figcaption>
-                                    <h3>Paul Place</h3><img class="star-level" src="<%=cp%>/res/images/3star.png" alt="" />
-                                    <div class="clear"></div>
-                                    <p>Chillwave hoodie ea gentrify aute sriracha consequat, cursus libero purus ac congue ar lorem.</p>
-                                    <div class="price-night"><span>7 Night</span><span class="price-n">$970</span></div>
-                                    <a href="#" class="btn btn-primary btn-gallery">Read More</a>
-                                </figcaption>
-							</figure>
-						</li>
+						</c:forEach>
 					</ul>
+					
+					<div class="cbp-vm-switcher cbp-vm-view-list">
+						<div class="form-group" style="margin:0 auto; width:80%; height:60px " align="center">
+						<div class="paging" style="text-align: center; min-height: 50px; line-height: 50px; color: #A6A6A6;">
+				            <c:if test="${dataCount==0 }">
+				                  	등록된 게시물이 없습니다.
+				            </c:if>
+				            <c:if test="${dataCount!=0 }">
+				                ${paging}
+				            </c:if>
+				        </div>   
+				        </div>    
+					</div>
+					
 				</div>
 			</div><!-- /main -->
            </div><!--Close col 12 -->

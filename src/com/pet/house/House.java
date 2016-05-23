@@ -4,10 +4,27 @@ public class House {
 	int hostNum, cost, capacity, num, picNum;
 	String category1, category2, category3;
 	String address, searchOn, subject, content, created, species;
-	String saveFileNum;
+	String saveFileNum, profile, userName;
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 	public int getHostNum() {
 		return hostNum;
 	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
 	public void setHostNum(int hostNum) {
 		this.hostNum = hostNum;
 	}
