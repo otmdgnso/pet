@@ -33,4 +33,22 @@
 		VALUES(hostHousePetInfo_seq.NEXTVAL, #{species}, #{hostNum})
 	</insert>
 	-->
+	
+	<!-- 글 리스트 -->
+	<select id="listHouse" parameterType="map">
+		SELECT * FROM (
+		    SELECT ROWNUM rnum, tb.* FROM (
+			     SELECT hostNum, address, cost, capacity, subject, content, userName, profile
+			        FROM host h JOIN member m ON h.hostNum=m.num
+			  <where>
+              	<if test="searchValue != null and searchValue != ''">
+			  		<include refid="where-list"/>
+		      	</if>
+	          </where>
+              ORDER BY hostNum DESC
+    <![CDATA[
+	        ) tb WHERE ROWNUM <= #{end}
+	    ) WHERE rnum >= #{start}
+	]]>	    
+	</select>
 </mapper>
