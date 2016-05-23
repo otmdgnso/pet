@@ -171,6 +171,55 @@ public class PhotoController {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="/photo/update", method=RequestMethod.GET)
+	public ModelAndView updateForm(
+			@RequestParam(value="photoNum") int photoNum,
+			@RequestParam(value="page") String page
+			) throws Exception{
+		
+		Photo dto=service.readPhoto(photoNum);
+		if(dto==null)
+			return new ModelAndView("redirect/:.photo.photo?page="+page);
+		
+		ModelAndView mav=new ModelAndView(".photo.created");
+		mav.addObject("mode","update");
+		mav.addObject("page",page);
+		mav.addObject("dto",dto);	
+		return mav;
+	}
+	
+	@RequestMapping(value="/photo/update",method=RequestMethod.POST)
+	public String updateSubmit(
+			HttpSession session,
+			Photo dto,
+			@RequestParam(value="page") String page
+			) throws Exception{
+		
+		String root=session.getServletContext().getRealPath("/");
+		String pathname=root+File.separator+"uploads"+File.separator+"photo";
+		
+		//수정하기
+		service.updatePhoto(dto, pathname);
+		
+		return "redirect:/photo/photo?page="+page;
+	}
+	
+	@RequestMapping(value="/photo/delete")
+	public String delete(
+			HttpSession session
+			,@RequestParam(value="saveFilename") String saveFilename
+			,@RequestParam(value="photoNum") int photoNum
+			,@RequestParam(value="page") String page
+			) throws Exception{
+				
+		String root=session.getServletContext().getRealPath("/");
+		String pathname=root+File.separator+"uploads"+File.separator+"photo";
+		
+		service.deletePhoto(photoNum, pathname, saveFilename);
+		
+		return "redirect:/photo/photo?page="+page;
+	}
 }
 
 

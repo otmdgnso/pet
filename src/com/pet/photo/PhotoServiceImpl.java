@@ -18,7 +18,6 @@ public class PhotoServiceImpl implements PhotoService{
 	
 	@Override
 	public int insertPhoto(Photo dto, String pathname) {
-		System.out.println(dto.getUpload());
 		int result=0;
 		try {				
 			if(dto.getUpload()!=null &&!dto.getUpload().isEmpty()){
@@ -80,14 +79,30 @@ public class PhotoServiceImpl implements PhotoService{
 
 	@Override
 	public int updatePhoto(Photo dto, String pathname) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result=0;
+		try {
+			if(dto.getUpload()!=null && !dto.getUpload().isEmpty()){
+				String saveFilename=fileManager.doFileUpload(dto.getUpload(), pathname);
+				dto.setSaveFilename(saveFilename);
+			}
+			result=dao.updateData("photo.updatePhoto", dto);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
 	}
 
 	@Override
-	public int deletePhoto(int photoNum) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deletePhoto(int photoNum, String pathname, String saveFilename) {
+		int result=0;		
+		try {
+			fileManager.doFileDelete(saveFilename, pathname);
+			
+			result=dao.deleteData("photo.deletePhoto", photoNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
 	}
 
 }
