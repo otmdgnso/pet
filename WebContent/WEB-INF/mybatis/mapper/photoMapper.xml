@@ -52,7 +52,7 @@
 	</select>
 	
 	<select id="readPhoto" parameterType="Integer" resultType="com.pet.photo.Photo">
-		SELECT photoNum, species, saveFilename, subject, content, m.userName,
+		SELECT photoNum, species, saveFilename, subject, content, m.userName, m.userId,
   			  TO_CHAR(p.created,'YYYY-MM-DD') created, hitCount
 		FROM photoGal p JOIN member m ON p.num=m.num
    			WHERE photoNum=#{photoNum}
@@ -62,6 +62,14 @@
 	   UPDATE photoGal SET hitCount=hitCount+1
 	   	WHERE photoNum=#{photoNum}
 	</update>
-
+	
+	<update id="updatePhoto" parameterType="com.pet.photo.Photo">
+		UPDATE photoGal SET species=#{species}, subject=#{subject}, content=#{content},
+		  saveFilename=#{saveFilename}  WHERE photoNum=#{photoNum}
+	</update>
+	
+	<delete id="deletePhoto" parameterType="Integer">
+		DELETE FROM photoGal WHERE photoNum=#{photoNum}
+	</delete>
 
 </mapper>

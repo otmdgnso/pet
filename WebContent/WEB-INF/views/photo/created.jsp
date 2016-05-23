@@ -6,13 +6,6 @@
 	String cp=request.getContextPath();
 %>
 <script type="text/javascript">
-/* $(function(){
-	var mode="${mode}";
-	if(mode=="login"){
-		openLoginModal();
-	}
-		
-}); */
 
 function photoCheck() {
 	var f=document.photoForm;
@@ -35,18 +28,19 @@ function photoCheck() {
 		return false;
 	}		
 	
-	var str=f.upload.value;
-	if(!str){
-		return false;
-	}
-	
 	var mode="${mode}";
 	
-	if(mode=="created")
+	if(mode=="created"){
+	var str=f.upload.value;
+		if(!str){
+		return false;
+		}
 		f.action="<%=cp%>/photo/created";
-	else if(mode=="update")
-		f.action="<%=cp%>/photo/update";
+	}
 	
+	else if(mode=="update"){
+		f.action="<%=cp%>/photo/update";
+	}
 	f.submit();
 }
 
@@ -145,10 +139,11 @@ function deleteFile(saveFilename, photoNum) {
 				
 				<c:if test="${mode=='update'}">
 				<div class="col-sm-2 colbtn">
-					<button type="button" class="btn btn-primary btn-block" style="float: left; width: 50%;" onclick="check();">수정하기</button>
-					<button type="button" class="btn btn-primary btn-block" style="float: right; width: 50%;" onclick="javascript:location.href='<%=cp%>/adopt/list';">취소</button>
-					<input type="hidden" name="preSaleNum" value="${dto.preSaleNum}">
+					<button type="button" class="btn btn-primary btn-block" style="float: left; width: 50%;" onclick="photoCheck();">수정하기</button>
+					<button type="button" class="btn btn-primary btn-block" style="float: right; width: 50%;" onclick="javascript:location.href='<%=cp%>/photo/photo';">취소</button>
+					<input type="hidden" name="photoNum" value="${dto.photoNum}">
 					<input type="hidden" name="page" value="${page}">		
+					<input type="hidden" name="saveFilename" value="${dto.saveFilename}"> 
 				</div>
 				</c:if>
 				
