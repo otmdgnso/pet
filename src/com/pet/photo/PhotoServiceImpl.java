@@ -36,26 +36,46 @@ public class PhotoServiceImpl implements PhotoService{
 
 	@Override
 	public int dataCount(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result=0;
+		try {
+			result=dao.getIntValue("photo.dataCount",map);		
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
 	}
 
 	@Override
 	public List<Photo> listPhoto(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Photo> list=null;
+		try {
+			list=dao.getListData("photo.listPhoto",map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return list;
 	}
 
 	@Override
 	public Photo readPhoto(int photoNum) {
-		// TODO Auto-generated method stub
-		return null;
+		Photo dto=null;
+		try {
+			dto=dao.getReadData("photo.readPhoto", photoNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return dto;
 	}
 
 	@Override
 	public int photoHitCount(int photoNum) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result=0;
+		try {
+			result=dao.updateData("photo,photoUpdateHitCount", photoNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
 	}
 
 	@Override
