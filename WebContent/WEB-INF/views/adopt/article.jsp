@@ -242,7 +242,7 @@ function deleteReply(replyNum, page, userId) {
                     	</font>
                     	<font id="postReplyCountView" color="#ff590b" style="font-size: 16px;">(${dataCountReply}개)</font>
 						</div>
-				
+						
 				</form>
 				</div>
 				<!--Close tab-content form-->
@@ -258,7 +258,7 @@ function deleteReply(replyNum, page, userId) {
 </section>
 	
 	<div class="col-md-12 details-hotel" id="replyList">
-	<p><textarea id="content" cols="140" rows="4"></textarea> <a id="btnSend" onclick="sendReply();">등록</a></p>
+	<p><textarea id="content" cols="100" rows="4"></textarea> <a id="btnSend" onclick="sendReply();">등록</a></p>
 		<div id="reply-content" style="display: none;">
 			<p id="listReply">
 			</p>
