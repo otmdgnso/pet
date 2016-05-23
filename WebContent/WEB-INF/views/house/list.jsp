@@ -89,6 +89,11 @@ $(function () {
         }
     });
 });
+
+function checkHouseinfo(hostNum) {
+	var url="<%=cp%>/house/houseinfo";
+	location.href=url+"?hostNum="+hostNum;
+}
 </script>
 
 
@@ -155,45 +160,23 @@ $(function () {
 						    <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>강아지</p></div>
                             <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>고양이</p></div>                          
 					    </article>
-				    </div>
-				    <div>
-					    <input id="ac-4" name="accordion-1" type="checkbox" />
-					    <label for="ac-4">Property type <i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></label>
-					    <article class="ac-large">
-						    <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>All (1458)</p></div>
-                            <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>Hotels (367)</p></div>
-                            <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>Hostels (638)</p></div>
-                            <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>Aparments (232)</p></div>
-                            <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>Guest houses (128)</p></div>
-                            <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>Bed and breakfasts (78)</p></div>
-					    </article>
-				    </div>
-                    <div>
-					    <input id="ac-5" name="accordion-1" type="checkbox" />
-					    <label for="ac-5">Facility <i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></label>
-					    <article class="ac-large">
-						    <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>WiFi (1458)</p></div>
-                            <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>Parking (667)</p></div>
-                            <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>Terrace (238)</p></div>
-                            <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>Spa Bath (232)</p></div>
-                            <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>Pool (628)</p></div>
-                            <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>Bed and breakfasts (78)</p></div>
-					    </article>
-				    </div>
+				    </div>				    
 			    </section>
             </div>
          <div class="col-sm-8 col-md-9 effect-5 effects">
             <div class="main-switcher">
+            
 				<div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid">
+				<div class="cbp-vm-options" style="width: 100%; height: 64px;">
                     <div class="txt-sort"><p>정렬:</p></div>  
                                 <div class="click-nav">
 			                        <ul class="no-js">
 				                        <li>
 					                        <a class="clicker">가격</a>
 					                        <ul>
-						                        <li><span class="btn sort active" data-sort="random">Random</span></li>
-						                        <li><span class="btn sort" data-sort="value:asc">Ascending</span></li>
-						                        <li><span class="btn sort" data-sort="value:desc">Descending</span></li>
+						                        <li><span class="btn sort active" data-sort="random">All</span></li>
+						                        <li><span class="btn sort" data-sort="value:asc">높은 가격순</span></li>
+						                        <li><span class="btn sort" data-sort="value:desc">낮은 가격순</span></li>
 					                        </ul>
 				                        </li>
 			                        </ul>
@@ -204,16 +187,13 @@ $(function () {
 					                        <a class="clicker">위치</a>
 					                        <ul>
                                                 <li><span class="btn filter active" data-filter="all">All</span></li>
-						                        <li><span class="btn filter" data-filter=".category-1">City</span></li>
-						                        <li><span class="btn filter" data-filter=".category-2">Sea</span></li>
-                                                <li><span class="btn filter" data-filter=".category-3">Middle</span></li>
+						                        <li><span class="btn filter" data-filter=".category-1">서울</span></li>
+						                        <li><span class="btn filter" data-filter=".category-2">경기</span></li>
+                                                <li><span class="btn filter" data-filter=".category-3">인천</span></li>
 					                        </ul>
 				                        </li>
 			                        </ul>
-		                        </div>
-					<div class="cbp-vm-options">
-						<a href="#" class="cbp-vm-icon cbp-vm-grid cbp-vm-selected" data-view="cbp-vm-view-grid"><i class="fa fa-th-large"></i></a>
-						<a href="#" class="cbp-vm-icon cbp-vm-list" data-view="cbp-vm-view-list"><i class="fa fa-th-list"></i></a>
+		                        </div>			
 					</div>
 					
 					<!-- 왼쪽메뉴 -->
@@ -227,17 +207,24 @@ $(function () {
                                 <div class="cbp-vm-image img">
                                     <img src="<%=cp%>/uploads/profile/${dto.profile}" style="width:338px; height:180px">
                                     <div class="overlay">
-                                        <a href="#" class="expand">+</a>
+                                        <a onclick='checkHouseinfo(${dto.hostNum});' class="expand">+</a>
                                         <a class="close-overlay hidden">x</a>
                                     </div>
                                 </div>
 								
 								<figcaption>
-                                    <h3>${dto.userName}</h3><img class="star-level" src="<%=cp%>/res/images/5star.png" alt="" />
+                                    <h3>${dto.subject}</h3>
                                     <div class="clear"></div>
-                                    <p style="min-height: 30px;">${dto.subject}</p>
-                                    <div class="price-night"><span>수용가능 ${dto.capacity}마리</span><span class="price-n">${dto.cost}원</span></div>   
-                                    <a href="javascript:location.href='<%=cp%>/house/houseinfo';" class="btn btn-primary btn-gallery">Read More</a>
+                                    <span style="color : #8C8C8C">${dto.userName}, ${dto.address}</span>
+                                    <div class="price-night"><span style="color : #8C8C8C">수용가능 ${dto.capacity}마리</span><span class="price-n">${dto.cost}원</span></div>   
+                                    
+                                    <table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
+                                    	<tr>
+                                    		<td align="left" width="50%" style="color:#8C8C8C"><img class="star-level" src="<%=cp%>/res/images/5star.png"/> (4)</td>                                 		
+                                    		<td align="right" width="50%" rowspan="2"><a onclick='checkHouseinfo(${dto.hostNum});' class="btn btn-primary btn-gallery" style="float: right;">더보기</a></td>
+                                    	</tr>
+                                    </table>
+                                    
                                 </figcaption>
 							</figure>
 						</li>

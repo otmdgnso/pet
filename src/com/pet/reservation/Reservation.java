@@ -5,7 +5,7 @@ public class Reservation {
 	private String reservationDate, checkIn, checkOut, check_day, accept, acceptDate;
 	
 	private String address, userName;
-	private int pay;
+	private int cost;
 	
 	
 	public String getCheck_day() {
@@ -14,12 +14,12 @@ public class Reservation {
 	public void setCheck_day(String check_day) {
 		this.check_day = check_day;
 	}
-	public int getPay() {
-		return pay;
+	public int getCost() {
+		return cost;
 	}
-	public void setPay(int pay) {
-		this.pay = pay;
-	}	
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
 	public int getListNum() {
 		return listNum;
 	}
