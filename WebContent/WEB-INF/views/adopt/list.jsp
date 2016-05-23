@@ -33,7 +33,25 @@
         <link href="<%=cp%>/res/css/responsive.css" rel="stylesheet" type="text/css" />
 </head>
 <script type="text/javascript">
-
+$(function(){
+	var s=location.href;
+	if(s=="http://localhost:9090/pet/adopt/list?orderList=hitCount") {
+	$('.albumFilter .current').removeClass('current');
+	$('.albumFilter .5').addClass('current');
+	} else if(s=="http://localhost:9090/pet/adopt/list?orderList=priceH") {
+		$('.albumFilter .current').removeClass('current');
+		$('.albumFilter .3').addClass('current');
+	} else if(s=="http://localhost:9090/pet/adopt/list?orderList=priceL") {
+		$('.albumFilter .current').removeClass('current');
+		$('.albumFilter .4').addClass('current');
+	} else if(s=="http://localhost:9090/pet/adopt/list?searchKey=species&searchValue=%EA%B0%9C") {
+		$('.albumFilter .current').removeClass('current');
+		$('.albumFilter .1').addClass('current');
+	} else if(s=="http://localhost:9090/pet/adopt/list?searchKey=species&searchValue=%EA%B3%A0%EC%96%91%EC%9D%B4") {
+		$('.albumFilter .current').removeClass('current');
+		$('.albumFilter .2').addClass('current');
+	}
+});
 </script>
 	<body>
 
@@ -57,11 +75,12 @@
                         <dt></dt>
 		                <dd>
 			                <ul class="filter group albumFilter"> 
+				                <li data-filter=".cat1" class="1"><a href="<%=cp%>/adopt/list?searchKey=species&searchValue=개">강아지만</a></li> 
+				                <li data-filter=".cat2" class="2"><a href="<%=cp%>/adopt/list?searchKey=species&searchValue=고양이">고양이만</a></li> 
 				                <li data-filter="*" class="current"><a href="<%=cp%>/adopt/list">최신순</a></li> 
-				                <li data-filter=".cat1"><a href="<%=cp%>/adopt/list?searchKey=species&searchValue=개">강아지</a></li> 
-				                <li data-filter=".cat2"><a href="<%=cp%>/adopt/list?searchKey=species&searchValue=고양이">고양이</a></li> 
-				                <li data-filter=".cat3"><a href="#">가격별</a></li> 
-				                <li data-filter=".cat4"><a href="#">조회순</a></li> 
+				                <li data-filter=".cat3" class="3"><a href="<%=cp%>/adopt/list?orderList=priceH">가격 높은순</a></li>
+				                <li data-filter=".cat4" class="4"><a href="<%=cp%>/adopt/list?orderList=priceL">가격 낮은순</a></li>  
+				                <li data-filter=".cat5" class="5"><a href="<%=cp%>/adopt/list?orderList=hitCount">조회순</a></li> 
 				                <li><a href="<%=cp%>/adopt/created">등록하기</a></li>
 			                </ul> 
 		                </dd>

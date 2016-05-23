@@ -63,7 +63,8 @@ public class AdoptController {
 	public ModelAndView list(HttpServletRequest req,
 			@RequestParam(value="page", defaultValue="1") int current_page,
 			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
-			@RequestParam(value="searchValue", defaultValue="") String searchValue
+			@RequestParam(value="searchValue", defaultValue="") String searchValue,
+			@RequestParam(value="orderList", defaultValue="") String orderList
 			) throws Exception {
 		String cp = req.getContextPath();
 		
@@ -79,7 +80,7 @@ public class AdoptController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchKey", searchKey);
 		map.put("searchValue", searchValue);
-		System.out.println(searchKey);
+		map.put("orderList", orderList);
 		dataCount = service.dataCount(map);
 		if (dataCount != 0)
 			total_page= myutil.pageCount(numPerPage, dataCount);
