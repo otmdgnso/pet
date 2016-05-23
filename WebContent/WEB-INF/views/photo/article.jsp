@@ -52,13 +52,17 @@ function deletePreSale(preSaleNum) {
 				<!-- 제목, 내용 -->
 				<div class="col-sm-4 fly-who">
 				
+				
 				<div style="font-size: 14pt; color: orange;" >
+				<div class="col-sm-6 cc-in" style="padding-left: 0; text-align: left;">
 			<%-- <h3 style="font-size: 14pt; text-align: left;">${dto.subject} &nbsp;| <font style="font-size: 10pt;">포토 갤러리</font>
 			<font style="font-size:10pt;">${dto.created}</font> </h3>  --%>
-			<span style="text-align: left; size: 14pt;">${dto.subject} &nbsp;| <font style="font-size: 10pt;">포토 갤러리</font></span>
-
+			${dto.subject} &nbsp;| <font style="font-size: 10pt;">포토 갤러리</font>
+			</div>
+			<div class="col-sm-6 cc-in" style="padding-left: 0; text-align: right;">
 			<font style="font-size:10pt; text-align: right;">${dto.created}</font>
 			
+			</div>
 			</div>
 			
 				<hr style="width: 100%;">
