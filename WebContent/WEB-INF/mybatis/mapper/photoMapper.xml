@@ -7,6 +7,61 @@
 	  INSERT INTO photoGal (photoNum, species, saveFilename, subject, content, num)
 	  VALUES (photoGal_seq.NEXTVAL, #{species}, #{saveFilename}, #{subject}, #{content},#{num})
 	</insert>
+	
+	<sql id="where-list">
+		<if test="searchKey=='userName'">
+			userName=#{searchValue}
+		</if>
+		<if test="searchKey=='subject'">
+			INSTR(subject,#{searchValue})&gt;0
+		</if>
+		<if test="searchKey=='content'">
+			DBMS_LOB.INSTR(content,#{searchValue})&gt;0
+		</if>
+		<if test="searchKey=='created'">
+			TO_CHAR(created,'YYYY-MM-DD')=#{searchValue}
+			OR TO_CHAR(created,'YYYY-MM-DD')=#{searchValue}
+		</if>
+	</sql>
+	
+	<select id="dataCount" resultType="Integer" parameterType="map">
+		SELECT NVL(COUNT(*),0) FROM photoGal
+		<where>
+			<if test="searchValue!=null and searchValue!='' ">
+				<include refid="where-list"/>
+			</if>
+		</where>
+	</select>
+	
+	<select id="listPhoto" parameterType="map" resultType="com.pet.photo.Photo">
+		SELECT*FROM(
+   			 SELECT ROWNUM rnum,tb.* FROM(
+        		SELECT photoNum, species, saveFilename, subject, content, m.userName,
+          			TO_CHAR(p.created, 'YYYY-MM-DD') created, hitCount 
+        		 FROM photoGal p JOIN member m ON p.num=m.num
+        <where>
+        	<if test="searchValue !=null and searchValue !='' ">
+        		<include refid="where-list"/>
+        	</if>        
+        </where>        		   
+     	    	 ORDER BY photoNum DESC
+     	  <![CDATA[  	 
+     		 )tb WHERE ROWNUM<=#{end}
+  		)WHERE RNUM >= #{start}
+  		]]>    
+	</select>
+	
+	<select id="readPhoto" parameterType="Integer" resultType="com.pet.photo.Photo">
+		SELECT photoNum, species, saveFilename, subject, content, m.userName,
+  			  TO_CHAR(p.created,'YYYY-MM-DD') created, hitCount
+		FROM photoGal p JOIN member m ON p.num=m.num
+   			WHERE photoNum=#{photoNum}
+	</select>
+	
+	<update id="photoUpdateHitCount" parameterType="Integer">
+	   UPDATE photoGal SET hitCount=hitCount+1
+	   	WHERE photoNum=#{photoNum}
+	</update>
 
 
 </mapper>

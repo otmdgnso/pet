@@ -6,6 +6,14 @@
 	String cp=request.getContextPath();
 %>
 <script type="text/javascript">
+/* $(function(){
+	var mode="${mode}";
+	if(mode=="login"){
+		openLoginModal();
+	}
+		
+}); */
+
 function photoCheck() {
 	var f=document.photoForm;
 	
@@ -26,6 +34,12 @@ function photoCheck() {
 		f.content.focus();
 		return false;
 	}		
+	
+	var str=f.upload.value;
+	if(!str){
+		return false;
+	}
+	
 	var mode="${mode}";
 	
 	if(mode=="created")
