@@ -61,4 +61,11 @@
 	    ) WHERE rnum >= #{start}
 	]]>	    
 	</select>
+	
+	<!-- 글보기 -->
+	<select id="readHouseinfo" resultType="com.pet.house.House" parameterType="Integer">
+		SELECT hostNum, userName, profile, address, capacity, cost, subject, content
+		FROM host h JOIN member m ON h.hostNum=m.num
+		WHERE num=#{num}
+	</select>
 </mapper>
