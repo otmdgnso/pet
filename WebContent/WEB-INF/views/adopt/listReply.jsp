@@ -6,12 +6,12 @@
 	String cp=request.getContextPath();
 %>
 
-<table style='width: 999px;  border-spacing: 0px; border-collapse: collapse;'>
+<table style='width: 788px;  border-spacing: 0px; border-collapse: collapse;'>
 
 <c:forEach var="dto" items="${list}">
 <tr height='30' bgcolor='#EEEEEE' style='border: 1px solid #DBDBDB;'>
     <td width='50%' style='padding-left: 5px;'>
-        ${dto.userId}
+       작성자: ${dto.userId}
     </td>
     <td width='50%' align='right' style='padding-right: 5px;'>
         ${dto.created} |

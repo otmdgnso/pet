@@ -7,6 +7,7 @@
 %>
 <!doctype html>
 
+
 <html>
 	<head>
     <title>Travego</title>
@@ -31,6 +32,27 @@
         <link href="<%=cp%>/res/css/layout2.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/responsive.css" rel="stylesheet" type="text/css" />
 </head>
+<script type="text/javascript">
+$(function(){
+	var s=location.href;
+	if(s=="http://localhost:9090/pet/adopt/list?orderList=hitCount") {
+	$('.albumFilter .current').removeClass('current');
+	$('.albumFilter .5').addClass('current');
+	} else if(s=="http://localhost:9090/pet/adopt/list?orderList=priceH") {
+		$('.albumFilter .current').removeClass('current');
+		$('.albumFilter .3').addClass('current');
+	} else if(s=="http://localhost:9090/pet/adopt/list?orderList=priceL") {
+		$('.albumFilter .current').removeClass('current');
+		$('.albumFilter .4').addClass('current');
+	} else if(s=="http://localhost:9090/pet/adopt/list?searchKey=species&searchValue=%EA%B0%9C") {
+		$('.albumFilter .current').removeClass('current');
+		$('.albumFilter .1').addClass('current');
+	} else if(s=="http://localhost:9090/pet/adopt/list?searchKey=species&searchValue=%EA%B3%A0%EC%96%91%EC%9D%B4") {
+		$('.albumFilter .current').removeClass('current');
+		$('.albumFilter .2').addClass('current');
+	}
+});
+</script>
 	<body>
 
     <div class="clear"></div>
@@ -53,11 +75,12 @@
                         <dt></dt>
 		                <dd>
 			                <ul class="filter group albumFilter"> 
-				                <li data-filter="*" class="current"><a href="#">SHOWALL</a></li> 
-				                <li data-filter=".cat1"><a href="#">Countries</a></li> 
-				                <li data-filter=".cat2"><a href="#">Beach</a></li> 
-				                <li data-filter=".cat3"><a href="#">Island</a></li> 
-				                <li data-filter=".cat4"><a href="#">Adventure</a></li> 
+				                <li data-filter=".cat1" class="1"><a href="<%=cp%>/adopt/list?searchKey=species&searchValue=개">강아지만</a></li> 
+				                <li data-filter=".cat2" class="2"><a href="<%=cp%>/adopt/list?searchKey=species&searchValue=고양이">고양이만</a></li> 
+				                <li data-filter="*" class="current"><a href="<%=cp%>/adopt/list">최신순</a></li> 
+				                <li data-filter=".cat3" class="3"><a href="<%=cp%>/adopt/list?orderList=priceH">가격 높은순</a></li>
+				                <li data-filter=".cat4" class="4"><a href="<%=cp%>/adopt/list?orderList=priceL">가격 낮은순</a></li>  
+				                <li data-filter=".cat5" class="5"><a href="<%=cp%>/adopt/list?orderList=hitCount">조회순</a></li> 
 				                <li><a href="<%=cp%>/adopt/created">등록하기</a></li>
 			                </ul> 
 		                </dd>
@@ -67,14 +90,14 @@
                 		<c:forEach var="dto" items="${list}">
 	                        <div class="cat3 col-md-4 gallery-view view-fifth">
                                    <div class="img">
-                                        <img src="<%=cp%>/uploads/adopt/${dto.saveFilename}"/>
+                                        <img src="<%=cp%>/uploads/adopt/${dto.saveFilename}" style="width: 380px; height: 300px"/>
                                         <div class="overlay">
                                             <a href="${articleUrl}&preSaleNum=${dto.preSaleNum}" class="expand">+</a>
                                             <a class="close-overlay hidden">x</a>
                                         </div>
                                     </div>
                                     <div class="gallery-img-title">
-                                      <h3>${dto.subject} - ${dto.userId}</h3>
+                                      <h3>제목:${dto.subject} 작성자:${dto.userId} 작성일:${dto.created} 조회수${dto.hitCount}</h3>
                                      
                                     </div>
                             </div>

@@ -124,7 +124,7 @@ function deleteReply(replyNum, page, userId) {
 	<div class="row" style="margin:0 auto; width:80%;" align="center">
 	<div class="col-md-12 effect-5 effects no-border-img" style="margin:0 auto; width:90%;" align="center">
 	<div class="text-center top-txt-title" align="center">
-
+<h3 style="font-size: 30px">게시글</h3>
 	<!-- Reservation form -->
 		<section id="reservation-form" class="reservation-color-form pos-middle resv-plus-meteo">
 			<div class="container-form-chose">
@@ -133,16 +133,14 @@ function deleteReply(replyNum, page, userId) {
 			
 			<div class="row"><ul class="nav nav-tabs search-opt"></ul></div>
 			</div>
-			
 			<div class="tab-content">
 				<form class="tab-pane form-inline reservation-hotel active" method="post" name="boardForm" enctype="multipart/form-data">
 				<!-- 제목, 내용 -->
 				<div class="col-sm-4 fly-who">
-					
-						<h3>게시글</h3>
+						<h3>작성일:${dto.created} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;조회수:${dto.hitCount}</h3>
 						
 					<div class="form-group" style="margin:0 auto;" align="center">
-                    	<table style="width: 700px; margin: 0px auto; border-spacing: 0px; padding: 0px;">
+                    	<table style="width: 70%; margin: 0px auto; border-spacing: 0px; padding: 0px;">
                     		<tr height="40%">
                     			<td align="center" width="10%"><label>제목</label></td>
                      			<td align="center" width="90%"><input class="form-control" type="text" name="subject" value="${dto.subject}" style="text-align:center" readonly="readonly"></td>
@@ -197,7 +195,7 @@ function deleteReply(replyNum, page, userId) {
 					</div>
 					</div>
 					<div class="form-group">
-                    	<table style="width: 700px; margin: 0px auto; border-spacing: 0px; padding: 0px;">
+                    	<table style="width: 70%; margin: 0px auto; border-spacing: 0px; padding: 0px;">
                     		<tr height="40%">
                     			<td align="center" width="10%"><label>품종</label></td>
                      			<td align="center" width="90%"><input class="form-control" type="text" name="type" value="${dto.type}" style="text-align:center" placeholder="개 혹은 고양이의 품종" readonly="readonly"></td>
@@ -221,7 +219,7 @@ function deleteReply(replyNum, page, userId) {
 					<div class="separator" style="width:100%"></div>
 						<h3>사진</h3>
 						<c:forEach var="vo" items="${readPreFile}">
-						<img src="<%=cp%>/uploads/adopt/${vo.saveFilename}">
+						<img src="<%=cp%>/uploads/adopt/${vo.saveFilename}" align="left">
 						</c:forEach>
 					
                      </div>
@@ -235,18 +233,34 @@ function deleteReply(replyNum, page, userId) {
 							<button type="button" class="btn btn-primary btn-block" style="float: right; width: 33%;" onclick="javascript:location.href='<%=cp%>/adopt/update?preSaleNum=${dto.preSaleNum}&page=${page}';">수정</button>
 						</div>
                     	<div class="separator" style="width:100%"></div>
-                    	<h3 id="reply-open-close" align="left">
-                    	댓글 ▼
-                    	</h3>
-                    	<h3 id="postReplyCountView" align="left">(${dataCountReply}개)</h3>
                     	</div>	
-			
-				
+                    	<div align="left">
+                    	<font id="reply-open-close" color="#ff590b" style="font-size: 16px;">
+                    	댓글 ▼
+                    	</font>
+                    	<font id="postReplyCountView" color="#ff590b" style="font-size: 16px;">(${dataCountReply}개)</font>
+                    	<br>
+                    	<br>
+						</div>
+						
 				</form>
 				</div>
+				
 				<!--Close tab-content form-->
 				</div>
+				
+				<div class="col-md-12 details-hotel" id="replyList">
+	<p><textarea rows="6" cols="95" id="content" style="width: 200%;"></textarea> <a id="btnSend" onclick="sendReply();">등록</a></p>
+		<div id="reply-content" style="display: none;">
+			<p id="listReply">
+			</p>
+		</div>
+	</div>
+				
 				</div>
+				
+				
+				
 		</section>
 	<!-- Reservation form -->
 				
@@ -255,13 +269,5 @@ function deleteReply(replyNum, page, userId) {
 	</div>
 	</div>
 </section>
-	
-	<div class="col-md-12 details-hotel" id="replyList">
-	<p><textarea id="content" cols="140" rows="4"></textarea> <a id="btnSend" onclick="sendReply();">등록</a></p>
-		<div id="reply-content" style="display: none;">
-			<p id="listReply">
-			</p>
-		</div>
-	</div>
 
 </body>
