@@ -34,8 +34,18 @@
 	</insert>
 	-->
 	
+	<!-- 글 개수 -->
+	<select id="dataCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*),0) FROM host 
+		<where>
+			<if test="searchValue != null and searchValue != ''">
+			  		<include refid="where-list"/>
+		    </if>
+		</where>
+	</select>
+	
 	<!-- 글 리스트 -->
-	<select id="listHouse" parameterType="map">
+	<select id="listHouse" parameterType="map" resultType="com.pet.house.House">
 		SELECT * FROM (
 		    SELECT ROWNUM rnum, tb.* FROM (
 			     SELECT hostNum, address, cost, capacity, subject, content, userName, profile
@@ -50,5 +60,12 @@
 	        ) tb WHERE ROWNUM <= #{end}
 	    ) WHERE rnum >= #{start}
 	]]>	    
+	</select>
+	
+	<!-- 글보기 -->
+	<select id="readHouseinfo" resultType="com.pet.house.House" parameterType="Integer">
+		SELECT hostNum, userName, profile, address, capacity, cost, subject, content
+		FROM host h JOIN member m ON h.hostNum=m.num
+		WHERE num=#{num}
 	</select>
 </mapper>

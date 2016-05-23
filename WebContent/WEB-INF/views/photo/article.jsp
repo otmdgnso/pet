@@ -37,6 +37,7 @@ function deletePreSale(preSaleNum) {
 	<div class="col-md-12 effect-5 effects no-border-img" style="margin:0 auto; width:90%;" align="center">
 	<div class="text-center top-txt-title" align="center">
 
+						<h3>게시글</h3>
 	<!-- Reservation form -->
 		<section id="reservation-form" class="reservation-color-form pos-middle resv-plus-meteo">
 			<div class="container-form-chose">
@@ -50,12 +51,26 @@ function deletePreSale(preSaleNum) {
 				<form class="tab-pane form-inline reservation-hotel active" method="post" name="boardForm" enctype="multipart/form-data">
 				<!-- 제목, 내용 -->
 				<div class="col-sm-4 fly-who">
-					
-						<h3>게시글</h3>
-						조회수 : <input type="text" readonly="readonly" value="${dto.hitCount}">
+				
+				
+				<div style="font-size: 14pt; color: orange;" >
+				<div class="col-sm-6 cc-in" style="padding-left: 0; text-align: left;">
+			<%-- <h3 style="font-size: 14pt; text-align: left;">${dto.subject} &nbsp;| <font style="font-size: 10pt;">포토 갤러리</font>
+			<font style="font-size:10pt;">${dto.created}</font> </h3>  --%>
+			${dto.subject} &nbsp;| <font style="font-size: 10pt;">포토 갤러리</font>
+			</div>
+			<div class="col-sm-6 cc-in" style="padding-left: 0; text-align: right;">
+			<font style="font-size:10pt; text-align: right;">${dto.created}</font>
+			
+			</div>
+			</div>
+			
+				<hr style="width: 100%;">
+							
+									
 					<div class="form-group" style="margin:0 auto;" align="center">
 					<img src="<%=cp%>/uploads/photo/${dto.saveFilename}"><br><br>
-                    	<table style="width: 700px; margin: 0px auto; border-spacing: 0px; padding: 0px;">                    		
+                    	<table style="width: 70%; margin: 0px auto; border-spacing: 0px; padding: 0px;">                    		
                     		
                     		<tr height="40%">
                     			<td align="center" width="10%"><label>종별</label></td>

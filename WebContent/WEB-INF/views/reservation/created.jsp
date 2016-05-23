@@ -221,7 +221,7 @@
 						<h3>가격</h3>
 						
 					<div class="form-group" style="margin:0 auto; width:40%" align="center">
-                    	<table style="width: 400px; margin: 0px auto; border-spacing: 0px;">
+                    	<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
                     		<tr align="center" height="40%">
                     			<td align="center" width="30%"><label>기본료</label></td>
                      			<td align="center" width="70%"><input class="form-control" type="text" name="pay" id="pay" value="${dto.pay}" style="text-align:center" readonly="readonly"></td>
