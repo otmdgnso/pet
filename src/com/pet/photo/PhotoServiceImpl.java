@@ -71,7 +71,7 @@ public class PhotoServiceImpl implements PhotoService{
 	public int photoHitCount(int photoNum) {
 		int result=0;
 		try {
-			result=dao.updateData("photo,photoUpdateHitCount", photoNum);
+			result=dao.updateData("photo.photoUpdateHitCount", photoNum);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
