@@ -54,7 +54,7 @@
 	<!-- 글보기 -->
 	<select id="readReservation" parameterType="Integer" resultType="com.pet.reservation.Reservation">
 		SELECT reservationNum, TO_CHAR(checkIn,'YYYY/MM/DD') checkIn, TO_CHAR(checkOut,'YYYY/MM/DD') checkOut, pet_su, r.num, r.hostNum,
-		(checkOut-checkIn) check_day, pay
+		(checkOut-checkIn) check_day, cost
 		 From reservation r JOIN host h ON r.hostNum=h.hostNum
 		WHERE reservationNum=#{reservationNum}
 	</select>

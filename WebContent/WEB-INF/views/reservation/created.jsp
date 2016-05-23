@@ -183,7 +183,7 @@
 							<c:if test="${mode=='update'}">
 								<option value="${dto.pet_su}" disabled="disabled" selected="selected">${dto.pet_su}</option>
 							</c:if>
-								<option value="개">개</option>
+								<option value="강아지">강아지</option>
 								<option value="고양이">고양이</option>
 						</select>
 					</div>
@@ -220,11 +220,11 @@
 					<div class="separator" style="width:100%"></div>
 						<h3>가격</h3>
 						
-					<div class="form-group" style="margin:0 auto; width:40%" align="center">
+					<div class="form-group" style="margin:0 auto; width:50%" align="center">
                     	<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
                     		<tr align="center" height="40%">
                     			<td align="center" width="30%"><label>기본료</label></td>
-                     			<td align="center" width="70%"><input class="form-control" type="text" name="pay" id="pay" value="${dto.pay}" style="text-align:center" readonly="readonly"></td>
+                     			<td align="center" width="70%"><input class="form-control" type="text" name="pay" id="pay" value="${dto.cost}" style="text-align:center" readonly="readonly"></td>
                     		</tr>
                     		<tr align="center" height="40%">
                     			<td align="center" width="30%"><label>서비스 수수료</label></td>
@@ -240,19 +240,17 @@
                      
 				<input type="hidden" name="num" value="${dto.num}">
                 <input type="hidden" name="hostNum" value="${dto.hostNum}">
-
-				<c:if test="${mode=='created'}">
-				<div class="col-sm-2 colbtn">
-					<button type="submit" class="btn btn-primary btn-block">예약하기</button>
-				</div>
-				</c:if>
 				
-				<c:if test="${mode=='update'}">
 				<div class="col-sm-2 colbtn">
+				<c:if test="${mode=='created'}">		
+					<button type="submit" class="btn btn-primary btn-block" style="float: left; width: 50%;">예약하기</button>
+					<button type="button" class="btn btn-primary btn-block" style="float: right; width: 50%;" onclick="javascript:location.href='<%=cp%>/house/list';">취소</button>
+				</c:if>
+				<c:if test="${mode=='update'}">
 					<button type="submit" class="btn btn-primary btn-block" style="float: left; width: 50%;">수정하기</button>
 					<button type="button" class="btn btn-primary btn-block" style="float: right; width: 50%;" onclick="javascript:location.href='<%=cp%>/reservation/list';">취소</button>		
-				</div>
 				</c:if>
+				</div>
 				
 				</form>
 				</div>

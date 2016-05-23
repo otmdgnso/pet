@@ -103,7 +103,4 @@ public class HouseServiceImpl implements HouseService{
 		
 		return list;
 	}
-
-	
-
 }

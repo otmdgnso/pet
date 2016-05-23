@@ -48,7 +48,7 @@
 	<select id="listHouse" parameterType="map" resultType="com.pet.house.House">
 		SELECT * FROM (
 		    SELECT ROWNUM rnum, tb.* FROM (
-			     SELECT hostNum, address, cost, capacity, subject, content, userName, profile
+			     SELECT hostNum, address, cost, capacity, subject, content, userName, profile 
 			        FROM host h JOIN member m ON h.hostNum=m.num
 			  <where>
               	<if test="searchValue != null and searchValue != ''">
@@ -66,6 +66,6 @@
 	<select id="readHouseinfo" resultType="com.pet.house.House" parameterType="Integer">
 		SELECT hostNum, userName, profile, address, capacity, cost, subject, content
 		FROM host h JOIN member m ON h.hostNum=m.num
-		WHERE num=#{num}
+		WHERE hostNum=#{hostNum}
 	</select>
 </mapper>

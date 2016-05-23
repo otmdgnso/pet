@@ -129,8 +129,8 @@ public class ReservationController {
 		dto.setUserName(info.getUserName());
 		
 		dto=(Reservation)service.readReservation(reservationNum);
-		int tax=(int)((double)dto.getPay()*0.1);
-		int total=(int)(tax+(double)dto.getPay());
+		int tax=(int)((double)dto.getCost()*0.1);
+		int total=(int)(tax+(double)dto.getCost());
 		
 		
 		ModelAndView mav=new ModelAndView(".reservation.created");
