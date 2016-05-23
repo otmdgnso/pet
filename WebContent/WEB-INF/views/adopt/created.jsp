@@ -115,7 +115,7 @@ function deleteFile(saveFilename, photoNum) {
 						<h3>게시글</h3>
 						
 					<div class="form-group" style="margin:0 auto;" align="center">
-                    	<table style="width: 700px; margin: 0px auto; border-spacing: 0px; padding: 0px;">
+                    	<table style="width: 70%; margin: 0px auto; border-spacing: 0px; padding: 0px;">
                     		<tr height="40%">
                     			<td align="center" width="10%"><label>제목</label></td>
                      			<td align="center" width="90%"><input class="form-control" type="text" name="subject" value="${dto.subject}" style="text-align:center"></td>
@@ -198,7 +198,7 @@ function deleteFile(saveFilename, photoNum) {
 					</div>
 					</div>
 					<div class="form-group">
-                    	<table style="width: 700px; margin: 0px auto; border-spacing: 0px; padding: 0px;">
+                    	<table style="width: 70%; margin: 0px auto; border-spacing: 0px; padding: 0px;">
                     		<tr height="40%">
                     			<td align="center" width="10%"><label>품종</label></td>
                      			<td align="center" width="90%"><input class="form-control" type="text" name="type" value="${dto.type}" style="text-align:center" placeholder="개 혹은 고양이의 품종"></td>

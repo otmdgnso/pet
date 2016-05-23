@@ -4,8 +4,8 @@
 <mapper namespace="adopt">
 
 	<sql id="where-list">
-		<if test = "searchKey == 'name'">
-			name = #{searchValue}
+		<if test = "searchKey == 'species'">
+			species = #{searchValue}
 		</if>
 		<if test="searchKey == 'subject'">
 			subject LIKE '%' || #{searchValue} || '%'
@@ -48,6 +48,7 @@
 	SELECT * FROM (
   		SELECT ROWNUM rnum, tb.* FROM (
     		SELECT preSaleNum, subject, userId
+    		, hitCount, TO_CHAR(p.created,'YYYY-MM-DD') created
     		FROM preSale p JOIN
     		member m ON p.num=m.num
     		 <where>

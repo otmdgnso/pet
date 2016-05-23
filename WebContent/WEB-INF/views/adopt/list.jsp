@@ -7,6 +7,7 @@
 %>
 <!doctype html>
 
+
 <html>
 	<head>
     <title>Travego</title>
@@ -31,6 +32,9 @@
         <link href="<%=cp%>/res/css/layout2.css" rel="stylesheet" type="text/css" />
         <link href="<%=cp%>/res/css/responsive.css" rel="stylesheet" type="text/css" />
 </head>
+<script type="text/javascript">
+
+</script>
 	<body>
 
     <div class="clear"></div>
@@ -53,11 +57,11 @@
                         <dt></dt>
 		                <dd>
 			                <ul class="filter group albumFilter"> 
-				                <li data-filter="*" class="current"><a href="#">SHOWALL</a></li> 
-				                <li data-filter=".cat1"><a href="#">Countries</a></li> 
-				                <li data-filter=".cat2"><a href="#">Beach</a></li> 
-				                <li data-filter=".cat3"><a href="#">Island</a></li> 
-				                <li data-filter=".cat4"><a href="#">Adventure</a></li> 
+				                <li data-filter="*" class="current"><a href="<%=cp%>/adopt/list">최신순</a></li> 
+				                <li data-filter=".cat1"><a href="<%=cp%>/adopt/list?searchKey=species&searchValue=개">강아지</a></li> 
+				                <li data-filter=".cat2"><a href="<%=cp%>/adopt/list?searchKey=species&searchValue=고양이">고양이</a></li> 
+				                <li data-filter=".cat3"><a href="#">가격별</a></li> 
+				                <li data-filter=".cat4"><a href="#">조회순</a></li> 
 				                <li><a href="<%=cp%>/adopt/created">등록하기</a></li>
 			                </ul> 
 		                </dd>
@@ -67,14 +71,14 @@
                 		<c:forEach var="dto" items="${list}">
 	                        <div class="cat3 col-md-4 gallery-view view-fifth">
                                    <div class="img">
-                                        <img src="<%=cp%>/uploads/adopt/${dto.saveFilename}"/>
+                                        <img src="<%=cp%>/uploads/adopt/${dto.saveFilename}" style="width: 380px; height: 300px"/>
                                         <div class="overlay">
                                             <a href="${articleUrl}&preSaleNum=${dto.preSaleNum}" class="expand">+</a>
                                             <a class="close-overlay hidden">x</a>
                                         </div>
                                     </div>
                                     <div class="gallery-img-title">
-                                      <h3>${dto.subject} - ${dto.userId}</h3>
+                                      <h3>제목:${dto.subject} 작성자:${dto.userId} 작성일:${dto.created} 조회수${dto.hitCount}</h3>
                                      
                                     </div>
                             </div>

@@ -79,7 +79,7 @@ public class AdoptController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchKey", searchKey);
 		map.put("searchValue", searchValue);
-		
+		System.out.println(searchKey);
 		dataCount = service.dataCount(map);
 		if (dataCount != 0)
 			total_page= myutil.pageCount(numPerPage, dataCount);
