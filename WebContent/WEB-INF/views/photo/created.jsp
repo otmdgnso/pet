@@ -78,8 +78,8 @@ function deleteFile(saveFilename, photoNum) {
 
 <section class="top-we-are">
 	<div class="container">
-	<div class="row" style="margin:0 auto; width:80%;" align="center">
-	<div class="col-md-12 effect-5 effects no-border-img" style="margin:0 auto; width:90%;" align="center">
+	<div class="row" style="margin:0 auto;  width:100%;" align="center">
+	<div class="col-md-12 effect-5 effects no-border-img" style="margin:0 auto; width:100%;" align="center">
 	<div class="text-center top-txt-title" align="center">
 
 	<!-- Reservation form -->
@@ -99,7 +99,7 @@ function deleteFile(saveFilename, photoNum) {
 						<h3>게시글</h3>
 						
 					<div class="form-group" style="margin:0 auto;" align="center">
-                    	<table style="width: 700px; margin: 0px auto; border-spacing: 0px; padding: 0px;">
+                    	<table style="width: 70%; margin: 0px auto; border-spacing: 0px; padding: 0px;">
                     	
                     	<tr height="40%">
                     			<td align="center" width="10%"><label>종별</label></td>
