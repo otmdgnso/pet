@@ -5,8 +5,6 @@
 <%
 	String cp=request.getContextPath();
 %>
-
-
         <link href="<%=cp%>/res/css/bootstrap.css" rel="stylesheet" type="text/css" />
         <!--List-->
         <link href="<%=cp%>/res/css/list/component.css" rel="stylesheet" type="text/css" />
