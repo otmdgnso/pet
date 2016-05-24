@@ -71,5 +71,33 @@
 	<delete id="deletePhoto" parameterType="Integer">
 		DELETE FROM photoGal WHERE photoNum=#{photoNum}
 	</delete>
+	
+	
+	
+	<insert id="insertPhotoReply" parameterType="com.pet.photo.Reply">
+		INSERT INTO photoGalReply (replyNum, photoNum, num, content)
+			VALUES(photoGalReply_seq.NEXTVAL, #{photoNum}, #{num}, #{content})
+	</insert>
+	
+	<select id="dataCountPhotoReply" resultType="Integer" parameterType="map">
+		SELECT NVL(COUNT(replyNum),0) FROM photoGalReply WHERE photoNum=#{photoNum}
+	</select>
+	
+	<delete id="deletePhotoReply" parameterType="Integer">
+		DELETE FROM photoGalReply WHERE replyNum=#{replyNum}
+	</delete>
+	
+	<select id="listPhotoReply" resultType="com.pet.photo.Reply" parameterType="map">
+		select*from(
+		    select ROWNUM rnum, tb.* from(
+   			     select replyNum, p.photoNum,m.num, userName, userId, p.created, p.content
+         	    from photoGalReply p JOIN photoGal g ON p.photoNum=g.photoNum
+         		    JOIN member m ON g.num=m.num
+         	   ORDER BY replyNum DESC
+   		<![CDATA[
+   			 ) tb WHERE ROWNUM<=#{end}
+		) WHERE RNUM >= #{start}
+		]]>
+	</select>
 
 </mapper>
