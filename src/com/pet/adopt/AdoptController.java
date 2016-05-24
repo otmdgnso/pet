@@ -64,9 +64,12 @@ public class AdoptController {
 			@RequestParam(value="page", defaultValue="1") int current_page,
 			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
 			@RequestParam(value="searchValue", defaultValue="") String searchValue,
-			@RequestParam(value="orderList", defaultValue="") String orderList
+			@RequestParam(value="orderList", defaultValue="") String orderList,
+			HttpSession session
 			) throws Exception {
 		String cp = req.getContextPath();
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		
 		int numPerPage = 9;
 		int total_page = 0;
@@ -120,7 +123,7 @@ public class AdoptController {
 			articleUrl = cp+"/adopt/article?page=" +current_page;
 		} else {
 			listUrl = cp+"adopt/list?" +params;
-			articleUrl = cp+"adopt/article?page=" + current_page + "&" +params;
+			articleUrl = cp+"/adopt/article?page=" + current_page + "&" +params;
 		}
 		
 		ModelAndView mav = new ModelAndView(".adopt.list");
@@ -129,6 +132,7 @@ public class AdoptController {
 		mav.addObject("page",current_page);
 		mav.addObject("dataCount",dataCount);
 		mav.addObject("paging",myutil.paging(current_page, total_page, listUrl));
+		mav.addObject("info",info);
 		
 		return mav;
 	}
