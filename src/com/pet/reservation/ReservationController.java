@@ -87,17 +87,20 @@ public class ReservationController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/reservation/created", method=RequestMethod.GET)
+	@RequestMapping(value="/reservation/createdform", method=RequestMethod.POST)
 	public ModelAndView createdForm(
-			HttpSession session
-			,Reservation dto
+			HttpSession session,
+			Reservation dto
 			) throws Exception {
-
-		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		dto.setUserName(info.getUserName());
 		
+		int tax=(int)((double)dto.getCost()*0.1);
+		int total=(int)(tax+(double)dto.getCost());
+
 		ModelAndView mav=new ModelAndView(".reservation.created");
 		mav.addObject("mode", "created");
+		mav.addObject("dto", dto);
+		mav.addObject("tax", tax);
+		mav.addObject("total", total);
 		
 		return mav;
 	}
@@ -110,15 +113,14 @@ public class ReservationController {
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		dto.setUserName(info.getUserName());
-		
-		dto.setNum(info.getMemberNum());
+
 		service.insertReservation(dto, "created");
 
 		return "/reservation/list";
 	}
 	
 	@RequestMapping(value="/reservation/update", method=RequestMethod.GET)
-	public ModelAndView updateReservation(
+	public ModelAndView updateForm(
 			HttpSession session
 			,Reservation dto
 			,@RequestParam(value="reservationNum") int reservationNum
@@ -129,10 +131,16 @@ public class ReservationController {
 		dto.setUserName(info.getUserName());
 		
 		dto=(Reservation)service.readReservation(reservationNum);
-		int tax=(int)((double)dto.getCost()*0.1);
-		int total=(int)(tax+(double)dto.getCost());
 		
+		if(dto==null) {
+			return new ModelAndView("redirect:/reservation/list?page="+page);
+		}
 		
+		int cost = dto.getCost();
+		int pet_su = dto.getPet_su();
+		int tax= (int)((double)cost*(double)pet_su*0.1);
+		int total= tax+cost;
+
 		ModelAndView mav=new ModelAndView(".reservation.created");
 		mav.addObject("mode", "update");
 		mav.addObject("page", page);
@@ -144,9 +152,15 @@ public class ReservationController {
 	
 	@RequestMapping(value="/reservation/update", method=RequestMethod.POST)
 	public ModelAndView updateSubmit(
-			Reservation dto
+			HttpSession session
+			,Reservation dto
 			,@RequestParam(value="page") String page
 			) throws Exception {
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		if(info==null) {
+			return new ModelAndView("redirect:/");
+		}
 		
 		service.updateReservation(dto);
 		
