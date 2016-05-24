@@ -345,7 +345,7 @@ function shakeModalMember(msg){
 			
 	<div class="cbp-vm-switcher cbp-vm-view-list">
 	<div class="separator" style="width:100%"></div>       
-		<h3>예약목록</h3>
+		<h5>예약목록</h5>
 	<div class="separator" style="width:100%"></div>  
 		<div class="form-group" style="margin:0 auto; width:100%;" align="center">
 			<form name="searchForm" action="" method="post">
