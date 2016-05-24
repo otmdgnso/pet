@@ -29,15 +29,24 @@
 		}
 		
 		var mode="${mode}";
+		var page="${page}";
 		if(mode=="created")
 			f.action="<%=cp%>/reservation/created";
 		else if(mode=="update")
-			f.action="<%=cp%>/reservation/update";
+			f.action="<%=cp%>/reservation/update?page="+page;
 			
 		return true;
 	}
 	
 	$(function(){
+		$("#pet_su").change(function() {
+			var cost = $("#cost").val().trim().split("/");
+			var pet_su = $("#pet_su").val().trim().split("/");
+			var tax= cost*pet_su*0.1;
+			var total= tax+cost*1;
+			return $("#tax").val(tax), $("#total").val(total);
+		});
+		
 		$("#checkin").change(function() {
 			
 			var s="박";
@@ -135,7 +144,7 @@
 						<i class="fa fa-info-circle fa-lg"></i>
 					</div>
 					<div class="content-checkin-data" style="margin:0 auto; width:60%" align="center">
-						<i class="fa fa-calendar infield"></i><input name="checkin" type="text" id="checkin" value="${dto.checkIn}" style="margin:0 auto; width:100%;" class="form-control checkin" placeholder="ex: 2000/01/01" />
+						<i class="fa fa-calendar infield"></i><input name="checkin" type="text" id="checkin" value="2000/01/01" style="margin:0 auto; width:100%;" class="form-control checkin" placeholder="ex: 2000/01/01" />
 					</div>
 					</div>
 					</div>
@@ -146,7 +155,7 @@
 						<i class="fa fa-info-circle fa-lg"> </i>
 					</div>
 					<div class="content-checkin-data" style="margin:0 auto; width:60%" align="center">
-						<i class="fa fa-calendar infield"></i> <input name="checkout" type="text" id="checkout" value="${dto.checkOut}" style="margin:0 auto; width:100%;" class="form-control checkout" placeholder="ex: 2000/01/01" />
+						<i class="fa fa-calendar infield"></i> <input name="checkout" type="text" id="checkout" value="2000/01/01" style="margin:0 auto; width:100%;" class="form-control checkout" placeholder="ex: 2000/01/01" />
 					</div>
 					</div>
 					</div>
@@ -181,7 +190,7 @@
 								<option value="" disabled="disabled" selected="selected">선택</option>
 							</c:if>
 							<c:if test="${mode=='update'}">
-								<option value="${dto.pet_su}" disabled="disabled" selected="selected">${dto.pet_su}</option>
+								<option value="${dto.pet_type}" disabled="disabled" selected="selected">${dto.pet_type}</option>
 							</c:if>
 								<option value="강아지">강아지</option>
 								<option value="고양이">고양이</option>
@@ -224,7 +233,7 @@
                     	<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
                     		<tr align="center" height="40%">
                     			<td align="center" width="30%"><label>기본료</label></td>
-                     			<td align="center" width="70%"><input class="form-control" type="text" name="pay" id="pay" value="${dto.cost}" style="text-align:center" readonly="readonly"></td>
+                     			<td align="center" width="70%"><input class="form-control" type="text" name="cost" id="cost" value="${dto.cost}" style="text-align:center" readonly="readonly"></td>
                     		</tr>
                     		<tr align="center" height="40%">
                     			<td align="center" width="30%"><label>서비스 수수료</label></td>
@@ -232,7 +241,7 @@
                     		</tr>
                     		<tr align="center" height="40%">
                     			<td align="center" width="30%"><label>총합계</label></td>
-                     			<td align="center" width="70%"><input class="form-control" type="text" name="totalPrice" id="totalPrice" value="${total}" style="text-align:center" readonly="readonly"></td>
+                     			<td align="center" width="70%"><input class="form-control" type="text" name="total" id="total" value="${total}" style="text-align:center" readonly="readonly"></td>
                     		</tr>                                       		           
                     	</table>                                     
                      </div>
@@ -251,6 +260,7 @@
 					<button type="button" class="btn btn-primary btn-block" style="float: right; width: 50%;" onclick="javascript:location.href='<%=cp%>/reservation/list';">취소</button>		
 				</c:if>
 				</div>
+
 				
 				</form>
 				</div>

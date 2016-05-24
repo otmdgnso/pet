@@ -2,12 +2,16 @@ package com.pet.reservation;
 
 public class Reservation {
 	private int listNum, reservationNum, pet_su, num, hostNum;
-	private String reservationDate, checkIn, checkOut, check_day, accept, acceptDate;
-	
+	private String reservationDate, checkIn, checkOut, check_day, accept, acceptDate, pet_type;
 	private String address, userName;
 	private int cost;
 	
-	
+	public String getPet_type() {
+		return pet_type;
+	}
+	public void setPet_type(String pet_type) {
+		this.pet_type = pet_type;
+	}	
 	public String getCheck_day() {
 		return check_day;
 	}

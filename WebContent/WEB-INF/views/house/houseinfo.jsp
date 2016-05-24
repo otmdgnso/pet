@@ -46,6 +46,18 @@ $(function () {
     $("#amount").val("$" + $("#slider-range").slider("values", 0) +
     " - $" + $("#slider-range").slider("values", 1));
 });
+
+function checkCreated(hostNum) {
+	var url="<%=cp%>/reservation/created";
+	location.href=url+"?hostNum="+hostNum;
+}
+
+function checkCreated2() {
+	var f = document.frmInof;
+	f.action= "<%=cp%>/reservation/createdform";
+	f.submit();
+}
+
 </script>
 
 <div class="clear"></div>
@@ -86,7 +98,7 @@ $(function () {
 				
 			<div class="separator" style="width:100%"></div>
 				<section class="ac-container">
-                <div style="width: 100%; height: 40px;"><button type="button" class="btn btn-danger" onclick="javascript:location.href='<%=cp%>/reservation/created';" style="width: 100%; height: 50px;"><i class="fa fa-bolt" aria-hidden="true"></i> 	예약하기</button></div>
+                <div style="width: 100%; height: 40px;"><button type="button" class="btn btn-danger" onclick="checkCreated2()" style="width: 100%; height: 50px;"><i class="fa fa-bolt" aria-hidden="true"></i> 	예약하기</button></div>
                 </section>
                 
                 <section class="ac-container">
@@ -207,4 +219,8 @@ $(function () {
           </div>
         </div>
         </div>
-</section>      
+</section>
+<form name="frmInof" method="post">
+	<input type="hidden" name="hostNum" value="${dto.hostNum}" />
+	<input type="hidden" name="cost" value="${dto.cost}" />
+</form>      
