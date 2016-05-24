@@ -100,6 +100,7 @@ function deleteReply(replyNum, page, userId) {
 		function(data){
 			var state=data.state;
 			listPage(page);
+			postReplyCount();
 		}, "json");
 	}
 }
