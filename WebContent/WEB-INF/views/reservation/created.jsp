@@ -100,7 +100,6 @@
 			
 		});
 	});
-	
 </script>
 
 <section class="about-section-top">
@@ -185,6 +184,7 @@
 					<div class="form-group">
 						<label for="checkin">펫 종류</label>
 					<div class="guests-select" style="margin:0 auto; width:60%" align="center">
+						
 						<select name="pet_type" id="pet_type" class="form-control">
 							<c:if test="${mode=='created'}">
 								<option value="" disabled="disabled" selected="selected">선택</option>
@@ -195,6 +195,7 @@
 								<option value="강아지">강아지</option>
 								<option value="고양이">고양이</option>
 						</select>
+						
 					</div>
 					</div>
 					</div>

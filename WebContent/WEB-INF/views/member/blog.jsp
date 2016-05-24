@@ -31,6 +31,33 @@
 </style>
 
 <script type="text/javascript">
+function searchList() {
+	var f=document.searchForm;
+	
+	alert(searchvalue);
+	f.action="<%=cp%>/reservation/list";
+	f.submit();
+}
+
+function deleteReservation(reservationNum) {
+	var page="${page}";
+	var params="reservationNum="+reservationNum+"&page="+page;
+	var url="<%=cp%>/reservation/delete?"+params;
+	
+	if(confirm("정말 삭제할까요?")) {
+		location.href=url;
+	}
+}
+
+function updateReservation(reservationNum) {
+	var page="${page}";
+	var params="reservationNum="+reservationNum+"&page="+page;
+	var url="<%=cp%>/reservation/update?"+params; 
+	
+	location.href=url;
+}
+//예약목록
+
 $(document).ready(function(){
 
       $("#wizard-picture1").change(function(){
@@ -307,59 +334,83 @@ function shakeModalMember(msg){
                            Praesent semper semper nisi, eu cursus augue.</p>
                      </div>
                   </div>
-                  <div id="tab-3">
-                     <div class="col-md-3 histo-img">
-                        <img src="http://placehold.it/300x200" alt="" />
-                        <p class="local-name">El Birro Disco Pub</p>
-                        <p>Every day: 8:00pm to 3:00am</p>
-                     </div>
-                     <div class="col-md-3 histo-img">
-                        <img src="http://placehold.it/300x200" alt="" />
-                        <p class="local-name">After Dinner</p>
-                        <p>Every day: 8:00pm to 3:00am</p>
-                     </div>
-                     <div class="col-md-3 histo-img">
-                        <img src="http://placehold.it/300x200" alt="" />
-                        <p class="local-name">After Dinner</p>
-                        <p>Every day: 8:00pm to 3:00am</p>
-                     </div>
-                     <div class="col-md-3 histo-img">
-                        <img src="http://placehold.it/300x200" alt="" />
-                        <p class="local-name">Il Barocco</p>
-                        <p>Every day: 8:00pm to 3:00am</p>
-                     </div>
+                  
+                  
+<div id="tab-3">
+<section class="top-we-are" style="height:780px;">
+	<div class="container">
+	<div class="row" style="margin:0 auto; width:80%;" align="center">
+	<div class="col-md-12 effect-5 effects no-border-img" style="margin:0 auto; width:100%;" align="center">		
 
-                     <div class="night-desc">
-                        <p>Mauris facilisis elit ut sem eleifend accumsan molestie
-                           sit amet dolor. Pellentesque dapibus arcu eu lorem laoreet,
-                           vitae cursus metus mattis. Nullam eget porta enim, eu rutrum
-                           magna. Duis quis tincidunt sem, sit amet faucibus magna.
-                           Integer commodo, turpis consequat fermentum egestas, leo odio
-                           posuere dui, elementum placerat eros erat id augue. Nullam at
-                           eros eget urna vestibulum malesuada vitae eu mauris. Aliquam
-                           interdum rhoncus velit, quis scelerisque leo viverra non.
-                           Suspendisse id feugiat dui. Nulla in aliquet leo. Proin vel
-                           magna sed est gravida rhoncus. Mauris lobortis condimentum
-                           nibh, vitae bibendum tortor vehicula ac. Curabitur posuere arcu
-                           eros.</p>
-                     </div>
+			
+	<div class="cbp-vm-switcher cbp-vm-view-list">
+	<div class="separator" style="width:100%"></div>       
+		<h3>예약목록</h3>
+	<div class="separator" style="width:100%"></div>  
+		<div class="form-group" style="margin:0 auto; width:100%;" align="center">
+			<form name="searchForm" action="" method="post">
+			<table style="width: 70%; margin: 0px auto; border-spacing: 0px;">
+				<tr align="center" height="50px">
+					<td align="center" width="40%">
+							<i class="fa fa-smile-o" aria-hidden="true"></i><label>호스트명 : </label>
+							<input type="text" name="searchValue" class="boxTF">
+					</td>	
+					<td align="center" width="15%"><input type="checkbox" name="searchValue" value="wait" checked="checked"><label>wait</label></td>
+					<td align="center" width="15%"><input type="checkbox" name="searchValue" value="accept" checked="checked"><label>accept</label></td>
+					<td align="center" width="15%"><input type="button" value="검색" class="btn" onclick="searchList()"></td>
+				</tr>
+			</table>
+			</form>		
+		</div>
+		<div class="form-group" style="margin:0 auto; width:80%;" align="center">
+			<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
+	           <tr align="center" height="50px">
+	           	  <td align="center" width="5%"><label>번호</label></td>
+	              <td align="center" width="15%"><label>상태</label></td>
+	              <td align="center" width="20%"><label>위치</label></td>
+	              <td align="center" width="15%"><label>호스트</label></td>
+	              <td align="center" width="20%"><label>날짜</label></td>              
+	              <td align="center" width="10%"></td>
+	           </tr>
+	           
+	           <c:forEach var="dto" items="${list}">
+	           <tr align="center" height="50px">
+	           	  <td align="center" width="5%" style="color: #A6A6A6;">${dto.listNum}</td>
+	              <td align="center" width="15%" style="color: #6ABC64;">${dto.accept}</td>
+	              <td align="center" width="20%" style="color: #A6A6A6;">${dto.address}</td>
+	              <td align="center" width="15%" style="color: #A6A6A6;"><a href="<%=cp%>/house/houseinfo?hostNum=${dto.hostNum}">${dto.userName}</a></td>	          
+	              <td align="center" width="20%" style="color: #A6A6A6;">${dto.checkIn}~${dto.checkOut}</td>
+	              <c:if test="${dto.accept != 'wait'}">
+	              	<td align="center" width="10%" style="color: #A6A6A6;"><a onclick='deleteReservation(${dto.reservationNum});'>삭제</a></td>
+	              </c:if>
+	              <c:if test="${dto.accept == 'wait'}">
+	              	<td align="center" width="10%" style="color: #A6A6A6;"><a onclick='updateReservation(${dto.reservationNum});'>변경</a></td>
+	              </c:if>
+	           </tr>
 
-                     <div class="night-desc">
-                        <h3>Warnings</h3>
-                        <p>Mauris facilisis elit ut sem eleifend accumsan molestie
-                           sit amet dolor. Pellentesque dapibus arcu eu lorem laoreet,
-                           vitae cursus metus mattis. Nullam eget porta enim, eu rutrum
-                           magna. Duis quis tincidunt sem, sit amet faucibus magna.
-                           Integer commodo, turpis consequat fermentum egestas, leo odio
-                           posuere dui, elementum placerat eros erat id augue. Nullam at
-                           eros eget urna vestibulum malesuada vitae eu mauris. Aliquam
-                           interdum rhoncus velit, quis scelerisque leo viverra non.
-                           Suspendisse id feugiat dui. Nulla in aliquet leo. Proin vel
-                           magna sed est gravida rhoncus. Mauris lobortis condimentum
-                           nibh, vitae bibendum tortor vehicula ac. Curabitur posuere arcu
-                           eros.</p>
-                     </div>
-                  </div>
+	           </c:forEach>  
+	           
+	        </table>          
+		</div>
+	</div>
+	<div class="cbp-vm-switcher cbp-vm-view-list">
+		<div class="form-group" style="margin:0 auto; width:80%; height:60px " align="center">
+		<div class="paging" style="text-align: center; min-height: 50px; line-height: 50px; color: #A6A6A6;">
+            <c:if test="${dataCount==0 }">
+                  	등록된 게시물이 없습니다.
+            </c:if>
+            <c:if test="${dataCount!=0 }">
+                ${paging}
+            </c:if>
+        </div>   
+        </div>    
+	</div>
+	</div>
+	</div>
+	</div>  
+</section>   
+                     
+</div>
                   <div id="tab-4">
                      <div class="col-md-3 histo-img">
                         <img src="http://placehold.it/300x200" alt="" />
