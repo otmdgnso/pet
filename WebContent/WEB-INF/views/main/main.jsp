@@ -5,34 +5,14 @@
 <%
 	String cp=request.getContextPath();
 %>
-<script type="text/javascript">
-	var nowTemp = new Date();
-	var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp
-			.getDate(), 0, 0, 0, 0);
-
-	var checkin = $('#dpd1').datepicker({
-		onRender : function(date) {
-			return date.valueOf() < now.valueOf() ? 'disabled' : '';
-		}
-	}).on('changeDate', function(ev) {
-		if (ev.date.valueOf() > checkout.date.valueOf()) {
-			var newDate = new Date(ev.date)
-			newDate.setDate(newDate.getDate() + 1);
-			checkout.setValue(newDate);
-		}
-		checkin.hide();
-		$('#dpd2')[0].focus();
-	}).data('datepicker');
-	var checkout = $('#dpd2').datepicker({
-		onRender : function(date) {
-			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-		}
-	}).on('changeDate', function(ev) {
-		checkout.hide();
-	}).data('datepicker');
-	
-	$('.datepicker').datepicker();
-</script>
+    <style>
+    
+  
+      #locationField {
+        height: 20px;
+        margin-bottom: 2px;
+      }
+    </style>
 
 <section class="top-content">
         <div class="container-slider removeslide">
@@ -65,8 +45,8 @@
                                             <h3><img alt="" src="<%=cp%>/res/img/book.png"> Where?</h3>
                                             <label for="adress">주소 입력</label>
                                             <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="본인의 주소를 입력하세요. 시, 도, 구까지 입력"> <i class="fa fa-info-circle fa-lg"> </i> </div>
-                                            <input type="text" class="form-control" placeholder="City, region" id="adress" name="destination">
-                                          </div>
+                                            <!-- 자동완성 -->
+                                            <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text" class="form-control"></input>                                          </div>
                                         </div>
                                         <div class="col-sm-4 step-check">
                                           <h3><img alt="" src="<%=cp%>/res/img/clock.png"> When?</h3>
@@ -129,7 +109,6 @@
                                       </div>
                                     </form>
                                   
-                                    $(document).ready(function() {
 ​
                                     <!--********************* 경매 검색 ********************-->
                                     <form id="auction-tab" class="tab-pane form-inline reservation-flight" method="post" name="auctionSearch">
@@ -219,11 +198,6 @@
                     <video autoplay="" loop="" class="fillWidth fadeIn animated" poster="https://s3-us-west-2.amazonaws.com/coverr/poster/Traffic-blurred2.jpg" id="video-background" style="width: 100%; height: 100%;">
 					    <source src="<%=cp%>/res/video/puppy.mp4"  type="video/mp4">
 					</video>
-					
-					 <video autoplay="" loop="" class="fillWidth fadeIn animated" poster="https://s3-us-west-2.amazonaws.com/coverr/poster/Traffic-blurred2.jpg" id="video-background">
-					    <source src="https://s3-us-west-2.amazonaws.com/coverr/mp4/Traffic-blurred2.mp4" type="video/mp4">
-					</video>
-						
 						<ul>
                         
                         
@@ -663,4 +637,70 @@
         </div>
     </div>
 </section>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBL_yUn3yTe4MywkHS94ZkWiqxam9JF5nI&signed_in=true&libraries=places&callback=initAutocomplete"
+        async defer></script>
+<script>
+function initAutocomplete() {
+	  /* var map = new google.maps.Map(document.getElementById('map'), {
+	    center: {lat: -33.8688, lng: 151.2195},
+	    zoom: 13,
+	    mapTypeId: google.maps.MapTypeId.ROADMAP
+	  }); */
+
+	  // Create the search box and link it to the UI element.
+	  var input = document.getElementById('autocomplete');
+	  var searchBox = new google.maps.places.SearchBox(input);
+	  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+	  // Bias the SearchBox results towards current map's viewport.
+	  map.addListener('bounds_changed', function() {
+	    searchBox.setBounds(map.getBounds());
+	  });
+
+	  var markers = [];
+	  // Listen for the event fired when the user selects a prediction and retrieve
+	  // more details for that place.
+	  searchBox.addListener('places_changed', function() {
+	    var places = searchBox.getPlaces();
+
+	    if (places.length == 0) {
+	      return;
+	    }
+
+	    // Clear out the old markers.
+	    markers.forEach(function(marker) {
+	      marker.setMap(null);
+	    });
+	    markers = [];
+
+	    // For each place, get the icon, name and location.
+	    var bounds = new google.maps.LatLngBounds();
+	    places.forEach(function(place) {
+	      var icon = {
+	        url: place.icon,
+	        size: new google.maps.Size(71, 71),
+	        origin: new google.maps.Point(0, 0),
+	        anchor: new google.maps.Point(17, 34),
+	        scaledSize: new google.maps.Size(25, 25)
+	      };
+
+	      // Create a marker for each place.
+	      markers.push(new google.maps.Marker({
+	        map: map,
+	        icon: icon,
+	        title: place.name,
+	        position: place.geometry.location
+	      }));
+
+	      if (place.geometry.viewport) {
+	        // Only geocodes have viewport.
+	        bounds.union(place.geometry.viewport);
+	      } else {
+	        bounds.extend(place.geometry.location);
+	      }
+	    });
+	    map.fitBounds(bounds);
+	  });
+	}
+</script>
 
