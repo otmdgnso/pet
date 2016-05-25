@@ -27,6 +27,7 @@ public class HouseController {
 	@RequestMapping(value="house/list")
 	public ModelAndView list(
 			HttpServletRequest req,
+			//@RequestParam(value="hostNum") int hostNum,
 			@RequestParam(value="page", defaultValue="1") int current_page,
 			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
 			@RequestParam(value="searchValue", defaultValue="") String searchValue
@@ -71,9 +72,10 @@ public class HouseController {
         }
         
         if(params.length()!=0) {
-        	urlList=cp+"/houst/list?"+params;
+        	urlList=cp+"/house/list?"+params;
         	urlHouseinfo=cp+"/house/houseinfo?page="+current_page+"&"+params;
         }
+        
         
         ModelAndView mav=new ModelAndView(".house.list");
         mav.addObject("list", list);
@@ -115,13 +117,23 @@ public class HouseController {
 		return model;
 	}*/
 	
-	// 호스팅한 집 정보(블로그형식으로 수정 필요)
+	// 호스팅한 집 정보
 	@RequestMapping(value="house/houseinfo")
-	public ModelAndView houseInfo() throws Exception{
+	public ModelAndView houseInfo(
+			@RequestParam(value="hostNum") int hostNum
+			) throws Exception{
+
+		House dto=service.readHouseInfo(hostNum);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("hostNum", dto.getNum());
+		
 		ModelAndView mav = new ModelAndView(".house.houseinfo");
+		mav.addObject("dto", dto);
+		
 		return mav;
 	}
-	// 호스팅한 집, 예약 받은 정보(블로그형식으로 수정 필요)
+	// 호스팅한 집, 예약 받은 정보
 	@RequestMapping(value="house/house_reservation")
 	public ModelAndView houseReservationInfo() throws Exception{
 		ModelAndView mav = new ModelAndView(".house.house_reservation");

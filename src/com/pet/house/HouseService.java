@@ -10,7 +10,7 @@ public interface HouseService {
 	
 	public int updateHouseInfo();
 	
-	public House readHouseInfo();
+	public House readHouseInfo(int hostNum);
 	
 	public int deleteHouseInfo();
 	

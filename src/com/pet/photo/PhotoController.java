@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pet.common.MyUtil;
@@ -170,6 +171,155 @@ public class PhotoController {
 		mav.addObject("params",params);
 		
 		return mav;
+	}
+	
+	@RequestMapping(value="/photo/update", method=RequestMethod.GET)
+	public ModelAndView updateForm(
+			@RequestParam(value="photoNum") int photoNum,
+			@RequestParam(value="page") String page
+			) throws Exception{
+		
+		Photo dto=service.readPhoto(photoNum);
+		if(dto==null)
+			return new ModelAndView("redirect/:.photo.photo?page="+page);
+		
+		ModelAndView mav=new ModelAndView(".photo.created");
+		mav.addObject("mode","update");
+		mav.addObject("page",page);
+		mav.addObject("dto",dto);	
+		return mav;
+	}
+	
+	@RequestMapping(value="/photo/update",method=RequestMethod.POST)
+	public String updateSubmit(
+			HttpSession session,
+			Photo dto,
+			@RequestParam(value="page") String page
+			) throws Exception{
+		
+		String root=session.getServletContext().getRealPath("/");
+		String pathname=root+File.separator+"uploads"+File.separator+"photo";
+		
+		//수정하기
+		service.updatePhoto(dto, pathname);
+		
+		return "redirect:/photo/photo?page="+page;
+	}
+	
+	@RequestMapping(value="/photo/delete")
+	public String delete(
+			HttpSession session
+			,@RequestParam(value="saveFilename", defaultValue="") String saveFilename
+			,@RequestParam(value="photoNum") int photoNum
+			,@RequestParam(value="page") String page
+			) throws Exception{
+						
+		System.out.println(saveFilename);
+		
+		String root=session.getServletContext().getRealPath("/");
+		String pathname=root+File.separator+"uploads"+File.separator+"photo";
+		
+		service.deletePhoto(photoNum, pathname, saveFilename);
+		
+		return "redirect:/photo/photo?page="+page;
+	}
+	
+	//댓글
+	@RequestMapping(value="/photo/insertReply", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertReply(
+			Reply dto,
+			HttpSession session
+			) throws Exception{
+				
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+				
+		String state="false";
+		int result=0;
+		dto.setNum(info.getMemberNum());
+		result=service.insertPhotoReply(dto);
+		if(result==1)
+			state="true";
+		
+		Map<String, Object> model=new HashMap<>();
+		model.put("state", state);
+		return model;		
+	}
+	
+	@RequestMapping(value="/photo/listReply")
+	public ModelAndView listReply(
+			@RequestParam int photoNum
+			,@RequestParam(value="pageNo", defaultValue="1") int current_page
+			) throws Exception{
+		
+		int numPerPage=5;
+		int total_page=0;
+		int dataCount=0;
+		
+		Map<String, Object> map=new HashMap<>();
+		map.put("photoNum", photoNum);
+		
+		dataCount=service.dataCountPhotoReply(map);
+		total_page=util.pageCount(numPerPage, dataCount);
+		if(current_page>total_page)
+			total_page=current_page;
+		
+		//리스트에 출력 데이터
+		int start=(current_page-1)*numPerPage+1;
+		int end=current_page*numPerPage;
+		map.put("start", start);
+		map.put("end", end);
+		List<Reply> list=service.listPhotoReply(map);
+		
+		//엔터처리
+		Iterator<Reply> it=list.iterator();
+		while(it.hasNext()){
+			Reply dto=it.next();
+			dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
+		}
+		String paging=util.paging(current_page, total_page);
+				
+		ModelAndView mav=new ModelAndView("photo/listReply");
+		mav.addObject("list",list);
+		mav.addObject("pageNo",current_page);
+		mav.addObject("dataCountReply",dataCount);
+		mav.addObject("paging",paging);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/photo/photoReplyCount", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> replyCount(
+			@RequestParam(value="photoNum") int photoNum
+			) throws Exception{
+		
+		int count=0;
+		Map<String, Object> map=new HashMap<>();
+		map.put("photoNum", photoNum);
+		count=service.dataCountPhotoReply(map);
+		
+		Map<String, Object> model=new HashMap<>();
+		model.put("count", count);
+		return model;
+	}
+	
+	@RequestMapping(value="/photo/deleteReply", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deleteReply(
+			@RequestParam(value="replyNum") int replyNum,
+			@RequestParam(value="userId") String userId
+			) throws Exception{
+		
+		String state="false";
+		int result=0;
+		result=service.deletePhotoReply(replyNum);
+		if(result==1)
+			state="true";
+		
+		Map<String, Object> model=new HashMap<>();
+		model.put("state", state);
+		return model;
 	}
 }
 

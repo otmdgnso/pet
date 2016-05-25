@@ -46,6 +46,18 @@ $(function () {
     $("#amount").val("$" + $("#slider-range").slider("values", 0) +
     " - $" + $("#slider-range").slider("values", 1));
 });
+
+function checkCreated(hostNum) {
+	var url="<%=cp%>/reservation/created";
+	location.href=url+"?hostNum="+hostNum;
+}
+
+function checkCreated2() {
+	var f = document.frmInof;
+	f.action= "<%=cp%>/reservation/createdform";
+	f.submit();
+}
+
 </script>
 
 <div class="clear"></div>
@@ -66,24 +78,27 @@ $(function () {
       
       
       <!-- 왼쪽 메뉴 -->
+      
          <div class="col-sm-4 col-md-3">
-                
+               
            <div>
                 <div style="width: 100%; height: 100px;">
                 <table style="width: 100%; 	margin: 0px auto; border-spacing: 10px;">
                 	<tr>
-						<td align="center" width="30%">
-						<img src="<%=cp%>/uploads/profile/20160518162814458843974403881.GIF" class="avatar img-circle img-thumbnail" width="100px;">
+						<td rowspan="2" align="center" width="30%">
+						<img src="<%=cp%>/uploads/profile/${dto.profile}" class="avatar img-circle img-thumbnail" width="100px;">
 						</td>
-						<td align="center" width="70%"><h3 style="color:tomato;">강아지 동산</h3></td>
+						<td align="center" width="70%"><h3 style="color:tomato;">${dto.subject}</h3></td>
 					</tr>
+					<tr>
+						<td align="center" width="70%" style="color: #8C8C8C;">${dto.userName}</td>
 				</table>
 				</div>
 			</div>
 				
 			<div class="separator" style="width:100%"></div>
 				<section class="ac-container">
-                <div style="width: 100%; height: 40px;"><button type="button" class="btn btn-danger" onclick="javascript:location.href='<%=cp%>/reservation/created';" style="width: 100%; height: 50px;"><i class="fa fa-bolt" aria-hidden="true"></i> 	예약하기</button></div>
+                <div style="width: 100%; height: 40px;"><button type="button" class="btn btn-danger" onclick="checkCreated2()" style="width: 100%; height: 50px;"><i class="fa fa-bolt" aria-hidden="true"></i> 	예약하기</button></div>
                 </section>
                 
                 <section class="ac-container">
@@ -120,19 +135,19 @@ $(function () {
                   <a data-slide-index="7" href=""><img src="http://placehold.it/100x55" alt=""/></a>
                 </div>
 			</div>
-
-            <div class="col-md-12 details-hotel" style="min-height: 300px; padding: 50px;">
-              <div><i class="fa fa-map-o" aria-hidden="true"></i> 주소</div><div align="right" style="text-align: center;"><input type="text" style="border: 0px; text-align: center;" readonly="readonly" value="서울시 강남구"></div>
+		
+            <div class="col-md-12 details-hotel" style="min-height: 100px; padding: 50px;">
+              <div><i class="fa fa-map-o" aria-hidden="true"></i> 주소</div><div align="right" style="text-align: center;"><input type="text" style="border: 0px; text-align: center;" readonly="readonly" value="${dto.address}"></div>
               <div class="separator" style="width:100%"></div>
-              <div><i class="fa fa-krw" aria-hidden="true"></i> 비용 (1마리 기준) </div><div align="right" style="text-align: center;"><input type="text" style="border: 0px; text-align: center;" readonly="readonly" value="10000원"></div>
+              <div><i class="fa fa-krw" aria-hidden="true"></i> 비용 (1마리 기준) </div><div align="right" style="text-align: center;"><input type="text" style="border: 0px; text-align: center;" readonly="readonly" value="${dto.cost}원"></div>
               <div class="separator" style="width:100%"></div>
-              <div><i class="fa fa-paw" aria-hidden="true"></i> 수용 가능 펫 수</div><div align="right" style="text-align: center;"><input type="text" style="border: 0px; text-align: center;" readonly="readonly" value="1마리"></div>
+              <div><i class="fa fa-paw" aria-hidden="true"></i> 수용 가능 펫 수</div><div align="right" style="text-align: center;"><input type="text" style="border: 0px; text-align: center;" readonly="readonly" value="${dto.capacity}마리"></div>
               <div class="separator" style="width:100%"></div>	
-              <div><i class="fa fa-check-square-o" aria-hidden="true"></i> 집 소개</div><div align="right" style="text-align: center;"><textarea rows="10%" cols="60%" readonly="readonly" style="border: #8C8C8C; text-align: left;">We are located in Gangnam(near Gangnam station(10min by walk), Yeoksam station(5min by walk), Apgujung(10min by bus). and it is easily accessible from Coex, Teheranro.
+              <div><i class="fa fa-check-square-o" aria-hidden="true"></i> 집 소개</div><div align="right" style="text-align: center;"><textarea rows="5%" cols="60%" readonly="readonly" style="border: #8C8C8C; text-align: center;">${dto.content}
               </textarea></div>
             </div>
-            
-            <div class="col-md-12 details-hotel" style="min-height: 300px; padding: 50px;">
+
+            <div class="col-md-12 details-hotel" style="min-height: 100px; padding: 50px;">
               	<span style="color: #3EA9CD; font-weight: bold; font-size: 20px;">후기 3개 </span>
               			<img src="<%=cp%>/res/image/staryellow.png" width="20px">
               			<img src="<%=cp%>/res/image/staryellow.png" width="20px">
@@ -200,7 +215,12 @@ $(function () {
             </div>
             
            </div>
+           
           </div>
         </div>
         </div>
-</section>      
+</section>
+<form name="frmInof" method="post">
+	<input type="hidden" name="hostNum" value="${dto.hostNum}" />
+	<input type="hidden" name="cost" value="${dto.cost}" />
+</form>      

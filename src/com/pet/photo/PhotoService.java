@@ -10,5 +10,10 @@ public interface PhotoService {
 		public Photo readPhoto(int photoNum);
 		public int photoHitCount(int photoNum);
 		public int updatePhoto(Photo dto, String pathname);
-		public int deletePhoto(int photoNum);
+		public int deletePhoto(int photoNum,String pathname, String saveFilename);
+		//´ñ±Û
+		public int insertPhotoReply(Reply dto);
+		public int dataCountPhotoReply(Map<String, Object> map);
+		public List<Reply> listPhotoReply(Map<String, Object> map);
+		public int deletePhotoReply(int replyNum);
 }

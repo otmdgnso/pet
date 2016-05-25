@@ -35,8 +35,8 @@
 	<select id="listReservation" parameterType="map" resultType="com.pet.reservation.Reservation">
 		SELECT * FROM (
 			SELECT ROWNUM rnum, tb.* FROM (
-				SELECT reservationNum, r.num, r.hostNum, accept, address, userName, TO_CHAR(checkIn,'YYYY/MM/DD') checkIn, TO_CHAR(checkOut,'YYYY/MM/DD') checkOut
-				from reservation r JOIN host h ON r.hostNum=h.hostNum JOIN member m ON m.num=r.num  
+				SELECT h.hostNum, userName, address, reservationNum, accept, TO_CHAR(checkIn,'YYYY/MM/DD') checkIn, TO_CHAR(checkOut,'YYYY/MM/DD') checkOut 
+				FROM reservation r JOIN host h ON h.hostNum=r.hostNum JOIN member m ON m.num=h.hostNum
 
 				<where>
 			     	<if test="searchValue!=null and searchValue!='' ">
@@ -53,15 +53,15 @@
 	
 	<!-- 글보기 -->
 	<select id="readReservation" parameterType="Integer" resultType="com.pet.reservation.Reservation">
-		SELECT reservationNum, TO_CHAR(checkIn,'YYYY/MM/DD') checkIn, TO_CHAR(checkOut,'YYYY/MM/DD') checkOut, pet_su, r.num, r.hostNum,
-		(checkOut-checkIn) check_day, pay
+		SELECT reservationNum, TO_CHAR(checkIn,'YYYY/MM/DD') checkIn, TO_CHAR(checkOut,'YYYY/MM/DD') checkOut, pet_su, r.num, r.hostNum, pet_type,
+		(checkOut-checkIn) check_day, cost
 		 From reservation r JOIN host h ON r.hostNum=h.hostNum
 		WHERE reservationNum=#{reservationNum}
 	</select>
 	
 	<!-- 수정 -->	
 	<update id="updateReservation" parameterType="com.pet.reservation.Reservation">
-		UPDATE reservation SET checkIn='#{checkIn, jdbcType=VARCHAR}', checkOut='#{checkOut, jdbcType=VARCHAR}', pet_su=#{pet_su}
+		UPDATE reservation SET checkIn='#{checkIn, jdbcType=VARCHAR}', checkOut='#{checkOut, jdbcType=VARCHAR}', pet_su=#{pet_su}, pet_type=#{pet_type}
 		WHERE reservationNum=#{reservationNum}
 	</update>
 	

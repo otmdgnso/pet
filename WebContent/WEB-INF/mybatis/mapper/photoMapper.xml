@@ -52,7 +52,7 @@
 	</select>
 	
 	<select id="readPhoto" parameterType="Integer" resultType="com.pet.photo.Photo">
-		SELECT photoNum, species, saveFilename, subject, content, m.userName,
+		SELECT photoNum, species, saveFilename, subject, content, m.userName, m.userId,
   			  TO_CHAR(p.created,'YYYY-MM-DD') created, hitCount
 		FROM photoGal p JOIN member m ON p.num=m.num
    			WHERE photoNum=#{photoNum}
@@ -62,6 +62,42 @@
 	   UPDATE photoGal SET hitCount=hitCount+1
 	   	WHERE photoNum=#{photoNum}
 	</update>
-
+	
+	<update id="updatePhoto" parameterType="com.pet.photo.Photo">
+		UPDATE photoGal SET species=#{species}, subject=#{subject}, content=#{content},
+		  saveFilename=#{saveFilename}  WHERE photoNum=#{photoNum}
+	</update>
+	
+	<delete id="deletePhoto" parameterType="Integer">
+		DELETE FROM photoGal WHERE photoNum=#{photoNum}
+	</delete>
+	
+	
+	
+	<insert id="insertPhotoReply" parameterType="com.pet.photo.Reply">
+		INSERT INTO photoGalReply (replyNum, photoNum, num, content)
+			VALUES(photoGalReply_seq.NEXTVAL, #{photoNum}, #{num}, #{content})
+	</insert>
+	
+	<select id="dataCountPhotoReply" resultType="Integer" parameterType="map">
+		SELECT NVL(COUNT(replyNum),0) FROM photoGalReply WHERE photoNum=#{photoNum}
+	</select>
+	
+	<delete id="deletePhotoReply" parameterType="Integer">
+		DELETE FROM photoGalReply WHERE replyNum=#{replyNum}
+	</delete>
+	
+	<select id="listPhotoReply" resultType="com.pet.photo.Reply" parameterType="map">
+		select*from(
+		    select ROWNUM rnum, tb.* from(
+   			     select replyNum, p.photoNum,m.num, userName, userId, p.created, p.content
+         	    from photoGalReply p JOIN photoGal g ON p.photoNum=g.photoNum
+         		    JOIN member m ON g.num=m.num
+         	   ORDER BY replyNum DESC
+   		<![CDATA[
+   			 ) tb WHERE ROWNUM<=#{end}
+		) WHERE RNUM >= #{start}
+		]]>
+	</select>
 
 </mapper>

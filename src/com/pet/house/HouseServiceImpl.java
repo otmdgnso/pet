@@ -60,9 +60,16 @@ public class HouseServiceImpl implements HouseService{
 	}
 
 	@Override
-	public House readHouseInfo() {
-		// TODO Auto-generated method stub
-		return null;
+	public House readHouseInfo(int hostNum) {
+		House dto=null;
+		
+		try {
+			dto=dao.getReadData("house.readHouseinfo", hostNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return dto;
 	}
 
 	@Override
@@ -96,6 +103,4 @@ public class HouseServiceImpl implements HouseService{
 		
 		return list;
 	}
-
-
 }
