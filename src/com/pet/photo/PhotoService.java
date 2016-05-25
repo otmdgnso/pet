@@ -16,4 +16,9 @@ public interface PhotoService {
 		public int dataCountPhotoReply(Map<String, Object> map);
 		public List<Reply> listPhotoReply(Map<String, Object> map);
 		public int deletePhotoReply(int replyNum);
+		//¡¡æ∆ø‰
+		public int insertPhotoLike(Photo dto);
+		public int photoCountLike(Map<String, Object> map);
+		public int deletePhotoLike(Photo dto);
+		
 }

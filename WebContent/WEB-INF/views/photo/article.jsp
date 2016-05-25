@@ -20,6 +20,7 @@ function deletePhoto(photoNum) {
 $(function(){
 	listPage(1);
 	photoReplyCount();
+	CountLike();	
 });
 
 function listPage(page){
@@ -70,7 +71,7 @@ function photoReplyCount(){
 	var url="<%=cp%>/photo/photoReplyCount";
 	$.post(url, {photoNum:photoNum}, function(data){
 		var count=data.count;
-		$("#photoReplyCountView").text("("+count+"개)");
+		$("#photoReplyCountView").text("댓글 "+count);
 	},"json");
 }	
 
@@ -84,13 +85,56 @@ function deleteReply(replyNum, page,userId){
 		var url="<%=cp%>/photo/deleteReply";
 		$.post(url,{replyNum:replyNum, userId:userId},function(data){
 			var state=data.state;
-			if(state=="true")
+			if(state=="true"){
 			listPage(page);
 			photoReplyCount();
+			}
 		},"json");
 	}
 }
+
+//좋아요
+function photoLike(){
+	var url="<%=cp%>/photo/photoLike";
+	var params="photoNum="+${dto.photoNum}+"&num="+${num};
 	
+	$.ajax({
+		url:url
+		,type:"post"
+		,data:params
+		,dataType:"json"
+		,success:function(data){
+			var like=data.like;
+			if(like=="0") {
+				$("#likeTitleId").text("좋아요");
+			} else {
+				$("#likeTitleId").text("좋아요 취소");
+			}
+			if(data.state=="true"){			
+				CountLike();
+			}
+		}
+	});
+}
+	
+function CountLike(){
+	var url="<%=cp%>/photo/countLike";
+	var params="photoNum="+${dto.photoNum};
+	$.ajax({
+		url:url
+		,type:"post"
+		,data:params
+		,dataType:"json"
+		,success:function(data){
+			if(data.state=="true"){
+				var count=data.count;
+				$("#likeCountId").text(count);
+			}else if(data.de=="true"){
+				
+			}
+		}
+	});
+}
 </script>
 
 <body>
@@ -133,7 +177,7 @@ function deleteReply(replyNum, page,userId){
          ${dto.subject} &nbsp;| <font style="font-size: 10pt;">종별 : ${dto.species}</font>
          </div>
          <div class="col-sm-6 cc-in" style="padding-left: 0; text-align: right;">
-         <font style="font-size:10pt; text-align: right;">조회수: ${dto.hitCount} &nbsp;&nbsp;|&nbsp;&nbsp;${dto.created}</font>
+         <font style="font-size:10pt; text-align: right;">${dto.created}</font>
          
         	 </div>
          </div>
@@ -153,11 +197,15 @@ function deleteReply(replyNum, page,userId){
                     	                                
                      </div>
                      </div>		
-				
-						  <div>
+					
+						  <div style="padding-top: 100px;">
 							  <div align="left">								
 									<font id="photoReplyCountView" color="#ff590b"
-										style="font-size: 16px;">(${dataCountReply}개)</font>								
+										style="font-size: 14px; font-weight:bold;">(댓글 ${dataCountReply}개)</font>	|
+									<font color="black" style="font-size: 14px;">조회수 ${dto.hitCount}</font> | &nbsp;
+								
+								    <a href="#" onclick="photoLike();"><font id="likeTitleId" style="color: black; font-size: 10pt;">좋아요</font></a>
+								    <font id="likeCountId" style="color: black; font-size: 10pt;">${count}</font>							
 							  </div>
 								<div id="listReply"></div>
 								<div>

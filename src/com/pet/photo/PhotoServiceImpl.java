@@ -151,4 +151,37 @@ public class PhotoServiceImpl implements PhotoService{
 		return result;
 	}
 
+	@Override
+	public int insertPhotoLike(Photo dto) {
+		int result=0;
+		try {
+			result=dao.insertData("photo.insertLike", dto);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	@Override
+	public int photoCountLike(Map<String, Object> map) {
+		int result=0;
+		try {
+			result=dao.getIntValue("photo.countLike",map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	@Override
+	public int deletePhotoLike(Photo dto) {
+		int result=0;
+		try {
+			result=dao.deleteData("photo.deleteLike", dto);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
 }
