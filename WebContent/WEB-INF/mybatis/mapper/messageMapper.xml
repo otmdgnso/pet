@@ -33,7 +33,7 @@
 		</where>
 	</select>
 	
-	<select id="listRecive" parameterType="map" resultType="com.pet.message.Message">
+	<select id="listReceive" parameterType="map" resultType="com.pet.message.Message">
 	SELECT * FROM (
 		SELECT ROWNUM rnum, tb.* FROM (
           SELECT messageNum, subject, content, sendUserId, 
@@ -50,7 +50,7 @@
           ORDER BY messageNum DESC
     <![CDATA[
       	) tb WHERE ROWNUM <= #{end}
-	) WHERE rnum >= #{start};
+	) WHERE rnum >= #{start}
 	]]>
 	</select>
 	

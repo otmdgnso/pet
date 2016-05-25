@@ -110,6 +110,8 @@
     		}
     	});
     	}
+
+    
    </script>
 
 <body>
@@ -150,16 +152,30 @@
 									</td>
 									
 								</tr>
+								</table>
 								
+								<table style="width: 100%;">
 								<tr>
-									<td>
-									<input type="checkbox" id="chkAll">
+									<td style="width: 20%;">
+									<input type="checkbox" id="chkAll" style="width: 20%">
 									</td>
-									<td>보낸사람</td>
-									<td>받은날짜</td>
-									<td>확인날짜</td>
+									<td style="width: 20%;">보낸사람</td>
+									<td style="width: 20%;">제목</td>
+									<td style="width: 20%;">받은날짜</td>
+									<td style="width: 20%;">확인날짜</td>
 								</tr>
 								
+								<c:forEach var="dto" items="${list}">
+								<tr>
+									<td style="width: 20%;">
+									<input type="checkbox" id="chkAll" style="width: 20%">
+									</td>
+									<td style="width: 20%;">${dto.sendUserId}</td>
+									<td style="width: 20%;">${dto.subject}</td>
+									<td style="width: 20%;">${dto.sendCreated}</td>
+									<td style="width: 20%;">${dto.confirmCreated}</td>
+								</tr>
+								</c:forEach>
 							</table>
 						</form>
 										</div>
