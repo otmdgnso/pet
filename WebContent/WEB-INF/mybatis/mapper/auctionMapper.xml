@@ -51,7 +51,7 @@
 	<select id="listAuction" resultType="com.pet.auction.Auction" parameterType="map">
 	SELECT * FROM (
   		SELECT ROWNUM rnum, tb.* FROM (
-    		SELECT auctionNum, subject, userId,content,species,hitCount
+    		SELECT auctionNum, subject, userId,content,species,hitCount,amount
     		FROM auction a JOIN
     		member m ON a.num=m.num
     		 <where>
@@ -82,7 +82,7 @@
 	
 	<!-- 경매 글 상세보기 -->
 	<select id="readAuction" resultType="com.pet.auction.Auction" parameterType="Integer">
-	SELECT auctionNum, subject, m.userId, content, 
+	SELECT auctionNum, subject, m.userId, content, amount,
   		TO_CHAR(a.created, 'YYYY-MM-DD') created, 
   		species,minPrice,buyPrice,aucEnd,
   		categoryNum, 
