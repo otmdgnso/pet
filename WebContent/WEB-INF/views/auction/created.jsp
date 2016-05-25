@@ -36,23 +36,38 @@ function check() {
 	var str= f.subject.value;
 	if(!str) {
 		f.subject.focus();
+		alert("제목을 입력 하세요")
+
 		return false;
 	}
 	
 	var str= f.content.value;
 	if(!str) {
+		alert("내용을 입력 하세요")
 		f.content.focus();
 		return false;
 	}
 	
+	
 	var str= f.minPrice.value;
+	if(str < 1000) {
+		alert("최소가격은 1000원부터 입니다")
+		return false;
+	}
 	if(!str) {
 		f.minPrice.focus();
 		return false;
 	}
+	
+	var min=f.minPrice.value;
 	var str= f.buyPrice.value;
+	if(min > str) {
+		alert("최소구매가 보다 커야합니다")
+		return false;
+	}
 	if(!str) {
 		f.buyPrice.focus();
+		alert("최소구매가를 입력하세요")
 		return false;
 	}
 	
@@ -66,6 +81,11 @@ function check() {
 	var str= f.amount.value;
 	if(!str) {
 		f.amount.focus();
+		alert("물건 갯수를 입력하세요")
+		return false;
+	}
+	if(str < 1 || str > 100){
+		alert("갯수는 1~100개까지 가능합니다")
 		return false;
 	}
 	
@@ -107,87 +127,147 @@ function deleteFile(saveFilename, photoNum) {
 <title>Insert title here</title>
 </head>
 <body>
-
-<section id="gallery">
+<section class="top-we-are">
 	<div class="container">
-
-<form name="boardForm" method="post" enctype="multipart/form-data">
-
-<input type="text" class="form-control" placeholder="제목" name="subject"/>
-<br>
-
-<textarea rows="20" cols="160" placeholder="내용" name="content"></textarea>
-
-<br>
-	<font color="blue">최소가격</font>
-	<input type="text" placeholder="최소가격을 입력하세요" name="minPrice">
+	<div class="row" style="margin:0 auto; width:80%;" align="center">
+	<div class="col-md-12 effect-5 effects no-border-img" style="margin:0 auto; width:90%;" align="center">
+	<div class="text-center top-txt-title" align="center">
 	
-	<font color="blue">즉시구입가</font>
-	<input type="text" placeholder="즉시구입가를 입력하세요" name="buyPrice">
-	
-	<font color="blue">경매 끝나는날</font>
-	<input type="text" placeholder="YYYY-MM-DD HH:mm:ss" name="aucEnd">
-
-	
-	<font color="blue">수량</font>
-	<input type="text" placeholder="1~100" name="amount">
-	
-	<font color="blue">종</font>
-	<select name="species">
-		<option value="개">
-		개
-		</option>
-		<option value="고양이">
-		고양이
-		</option>
-	</select>
-	
-	<font color="blue">카테고리명</font>
-	<select name="categoryName">
-		<option value="사료">
-		사료
-		</option>
-		<option value="미용">
-		미용
-		</option>
-		<option value="위생">
-		위생
-		</option>
-	</select>
-	<br>
-	
-	<font color="blue">카테고리번호</font>
-	<input type="text" placeholder="1(사료),2(미용),3(위생)" name="categoryNum">
-	
-	
+		<section id="reservation-form" class="reservation-color-form pos-middle resv-plus-meteo">
+			<div class="container-form-chose">
+			<div class="col-md-12">
+			<div class="reservation-tabs command-tabs">
+			
+			<div class="row"><ul class="nav nav-tabs search-opt"></ul></div>
+			</div>
+			
+			<div class="tab-content">
+				<form class="tab-pane form-inline reservation-hotel active" method="post" name="boardForm" enctype="multipart/form-data">
+				<!-- 제목, 내용 -->
+				<div class="col-sm-4 fly-who">
+					
+						<h3>경매 등록</h3>
+						
+					<div class="form-group" style="margin:0 auto;" align="center">
+                    	<table style="width: 700px; margin: 0px auto; border-spacing: 0px; padding: 0px;">
+                    		<tr height="40%">
+                    			<td align="center" width="10%"><label>제목</label></td>
+                     			<td align="center" width="90%"><input class="form-control" type="text" name="subject" value="${dto.subject}" style="text-align:center"></td>
+                    		</tr>
+                    		<tr align="center" height="40%">
+                    			<td align="center" width="10%"><label>내용</label></td>
+                     			<td align="center" width="90%"><textarea rows="10" cols="34" class="form-control" name="content" style="text-align:center;">${dto.content}</textarea></td>
+                    		</tr>      
+                    	</table>                                     
+                     </div>
+                     </div>
+						<!-- 분양 정보 -->
+				<div class="col-sm-4 step-check">	
+							
+					<div class="col-sm-4 step-who" style="padding-left: 0">
+					<div class="separator" style="width:100%"></div>
+						<h3>경매 정보</h3>											
+					<div class="col-sm-6 cc-in" style="padding-left: 0">			
+					<div class="form-group">
+						<label for="checkin">종류</label>
+					<div class="guests-select" style="margin:0 auto; width:60%" align="center">
+																<select name="species">
+																	<option value="개">개</option>
+																	<option value="고양이">고양이</option>
+																</select>
+															</div>
+					</div>
+					</div>
+						<div class="col-sm-6 cc-out" style="padding-left: 0">											
+					<div class="form-group">
+						<label for="checkin">카테고리명</label>
+					<div class="guests-select" style="margin:0 auto; width:60%" align="center">
+																<select name="categoryName">
+																	<option value="사료">사료</option>
+																	<option value="미용">미용</option>
+																	<option value="위생">위생</option>
+																</select>
+															</div>
+					</div>
+					</div>
+					
+					</div>
+					<div class="form-group">
+                    	<table style="width: 700px; margin: 0px auto; border-spacing: 0px; padding: 0px;">
+                    		<tr height="40%">
+                    			<td align="center" width="10%"><label>카테고리번호</label></td>
+                     			<td align="center" width="90%"><input class="form-control" type="text" name="categoryNum" value="${dto.categoryNum}" style="text-align:center" placeholder="1(사료),2(미용),3(위생)"></td>
+                    		</tr>
+                    		<tr height="40%">
+                    			<td align="center" width="10%"><label>최소가격</label></td>
+                     			<td align="center" width="90%"><input class="form-control" type="text" name="minPrice" value="${dto.minPrice}" style="text-align:center" placeholder="1000원 이상"></td>
+                    		</tr>
+                    		<tr height="40%">
+                    			<td align="center" width="10%"><label>즉시구입가</label></td>
+                     			<td align="center" width="90%"><input class="form-control" type="text" name="buyPrice" value="${dto.buyPrice}" style="text-align:center;" placeholder="즉시 구매할 수 있는 금액"></td>
+                    		</tr>
+                    		<tr height="40%">
+                    			<td align="center" width="10%"><label>경매 종료일</label></td>
+                     			<td align="center" width="90%"><input class="form-control" type="text" name="aucEnd" value="${dto.aucEnd}" style="text-align:center;" placeholder="2016-06-22"></td>
+                    		</tr>     
+                    		<tr height="40%">
+                    			<td align="center" width="10%"><label>물건 수량</label></td>
+                     			<td align="center" width="90%"><input class="form-control" type="text" name="amount" value="${dto.amount}" style="text-align:center;" placeholder="숫자 입력"></td>
+                    		</tr>                                   		           
+                    	</table>                                     
+                     </div>
+                     
+					<div class="col-sm-4 fly-who">
+					<div class="separator" style="width:100%"></div>
+						<h3>사진</h3>
+						
 	<div id="tbFile">
-	<font color="blue">이미지첨부</font><br>
-	<input type="file" name="upload" class="boxTF" size="61" style="height: 20px; color: blue;">
+	<h3><input type="file" name="upload"></h3>
 	</div>
 	
-	<!-- 사진 눌럿을때 삭제가능 (수정에서)-->
 	<c:if test="${mode=='update'}">
-	<font color="blue">첨부된 파일(사진 클릭시 삭제가능!!)</font><br>
+	<h3>첨부된 파일(사진 클릭시 삭제가능!!)</h3><br>
 		<c:forEach var="vo" items="${readAuctionFile}">
 		   <div id="fileview${vo.photoNum}">
 			 <img src="<%=cp%>/uploads/auction/${vo.saveFilename}"  onclick="deleteFile('${vo.saveFilename}', ${vo.photoNum});">
 			</div>
 		</c:forEach>
 	</c:if>
-	
-	
-	<br>
-	<button type="button" onclick="check();" class="btn btn-primary btn-block" style="width: 100px">
-			등록하기
-	</button>
-	
-	
-	<c:if test="${mode=='update'}">
-		<input type="hidden" name="auctionNum" value="${dto.auctionNum}">
-		<input type="hidden" name="page" value="${page}">
-	</c:if>
-</form>
+   </div>
 </div>
-</section>
+                    		
+			
+				<c:if test="${mode=='created'}">
+				<div class="col-sm-2 colbtn">
+					<button type="button" class="btn btn-primary btn-block" onclick="check();">등록하기</button>
+				</div>
+				</c:if>
+				
+				<c:if test="${mode=='update'}">
+				<div class="col-sm-2 colbtn">
+					<button type="button" class="btn btn-primary btn-block" style="float: left; width: 50%;" onclick="check();">수정하기</button>
+					<button type="button" class="btn btn-primary btn-block" style="float: right; width: 50%;" onclick="javascript:location.href='<%=cp%>/auction/list';">취소</button>
+					<input type="hidden" name="auctionNum" value="${dto.auctionNum}">
+					<input type="hidden" name="page" value="${page}">		
+				</div>
+				</c:if>
+				
+				</form>
+				</div>
+				<!--Close tab-content form-->
+				</div>
+				</div>
+		</section>
+	<!-- Reservation form -->
+				
+	</div>
+	</div>
+	</div>
+	</div>
+</section>	
+	
+	
+	
+
 </body>
 </html>
