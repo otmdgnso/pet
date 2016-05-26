@@ -28,7 +28,12 @@ public class MessageController {
 	@Autowired
 	private MyUtil myUtil;
 	
-	@RequestMapping(value="/message/send", method=RequestMethod.POST)
+	@RequestMapping(value="/message/send")
+	public String send() throws Exception {
+		return "message/send";
+	}
+	
+	@RequestMapping(value="/message/send_ok", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> sendSubmit(
 			HttpSession session, Message dto) throws Exception {
@@ -51,7 +56,27 @@ public class MessageController {
 			@RequestParam(value="searchValue", defaultValue="") String searchValue,
 			Message dto
 			) throws Exception {
-		// 받은 쪽지 리스트
+		SessionInfo info = (SessionInfo) session.getAttribute("member");
+		
+		if(searchKey.length()==0) {
+			searchKey="sendUserId";
+		}
+
+		ModelAndView mav=new ModelAndView(".message.list");
+		mav.addObject("page", current_page);
+		mav.addObject("searchKey", searchKey);
+		mav.addObject("searchValue", searchValue);
+		return mav;
+	}
+
+	@RequestMapping(value="/message/receive")
+	public ModelAndView receive(HttpServletRequest req,
+			HttpSession session,
+			@RequestParam(value="mode")String mode,
+			@RequestParam(value="page",defaultValue="1")int current_page,
+			@RequestParam(value="searchKey", defaultValue="") String searchKey,
+			@RequestParam(value="searchValue", defaultValue="") String searchValue
+			) throws Exception {
 		String cp = req.getContextPath();
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
@@ -59,6 +84,7 @@ public class MessageController {
 		int numPerPage = 10;
 		int total_page = 0;
 		int dataCount = 0;
+		List<Message> list=null;
 		
 		if(req.getMethod().equalsIgnoreCase("GET")) { // GET 방식인 경우
 			searchValue = URLDecoder.decode(searchValue, "utf-8");
@@ -69,7 +95,11 @@ public class MessageController {
 		map.put("searchKey", searchKey);
 		map.put("searchValue", searchValue);
 		map.put("userId", info.getUserId());
-		dataCount = service.dataCountReceive(map);
+		if(mode.equals("receive")) {
+			dataCount = service.dataCountReceive(map);
+		} else if(mode.equals("send")) {
+			dataCount = service.dataCountSend(map);
+		}
 		
 		if (dataCount != 0)
 			total_page= myUtil.pageCount(numPerPage, dataCount);
@@ -77,13 +107,17 @@ public class MessageController {
 		// 다른 사람이 자료를 삭제하여 전체 페이지의수가 변화 된 경우
 		if (total_page<current_page)
 			current_page = total_page;
-		System.out.println("ㅇㅇ"+dataCount);
+		
 		// 리스트에 출력할 데이터를 가져오기
 		int start = (current_page - 1) * numPerPage +1;
 		int end = current_page * numPerPage;
 		map.put("start", start);
 		map.put("end", end);
-		List<Message> list = service.listReceive(map);
+		if(mode.equals("receive")) {
+			list = service.listReceive(map);
+		} else if(mode.equals("send")) {
+			list = service.listSend(map);
+		}
 		
 		String params ="";
 		String listUrl;
@@ -101,7 +135,7 @@ public class MessageController {
 			articleUrl = cp+"/message/article?page=" + current_page + "&" +params;
 		}
 		
-		ModelAndView mav = new ModelAndView(".message.list");
+		ModelAndView mav=new ModelAndView("/message/receive");
 		mav.addObject("list",list);
 		mav.addObject("articleUrl",articleUrl);
 		mav.addObject("page",current_page);
@@ -109,73 +143,10 @@ public class MessageController {
 		mav.addObject("paging",myUtil.paging(current_page, total_page, listUrl));
 		mav.addObject("searchKey",searchKey);
 		mav.addObject("searchValue",searchValue);
+		mav.addObject("mode",mode);
 		return mav;
 	}
-	
-	/*// 받은 쪽지 리스트 / 보낸 쪽지 리스트
-	@RequestMapping(value="/message/listMessage")
-	@ResponseBody
-	public Map<String, Object>  listMessage(HttpSession session,
-			@RequestParam(value="mode", defaultValue="listReceive") String mode,
-			@RequestParam(value="pageNo",defaultValue="1")int current_page,
-			@RequestParam(value="searchKey", defaultValue="") String searchKey,
-			@RequestParam(value="searchValue", defaultValue="") String searchValue
-			) throws Exception {
-		// 보낸 쪽지 리스트
-		SessionInfo info = (SessionInfo) session.getAttribute("member");
-		
-		// 페이징 처리
-		int numPerPage=10;
-		int total_page=0;
-		int dataCount=0;
-		
-		// 전체 게시물의 수
-		Map<String, Object> map= new HashMap<String,Object>();
-		map.put("searchKey", searchKey);
-	    map.put("searchValue", searchValue);
-	    map.put("userId", info.getUserId());
-	    
-	    if(mode.equals("listReceive")) {
-	    	dataCount=service.dataCountReceive(map);
-	    }
-	    
-	    // 전체 페이지 수
-	    total_page=myUtil.pageCount(numPerPage, dataCount);
-	    
-	    if(current_page>total_page)
-	    	current_page=total_page;
-	    
-	    // 리스트
-	    int start=numPerPage*(current_page)+1;
-	    int end=numPerPage*current_page;
-	    
-	    map.put("start", start);
-	    map.put("end", end);
-	    
-	    List<Message> list=null;
-	    if(mode.equals("listReceive")) {
-	    	list=service.listReceive(map);
-	    }
-	    for(Message dto:list) {
-	    	if(dto.getConfirmCreated()==null)
-	    		dto.setConfirmCreated("");
-	    }
-	    
-	    String paging=myUtil.paging(current_page, total_page);
-	    
-	    // 작업 결과를 JSON으로 전송
-	    Map<String, Object> model= new HashMap<>();
-	    model.put("mode", mode);
-	    model.put("list", list);
-	    model.put("dataCount", dataCount);
-	    model.put("pageNO", current_page);
-	    model.put("paging", paging);
-	    model.put("searchKey", searchKey);
-	    model.put("searchValue", searchValue);
-	    
-	    return model;
-	}
-	*/
+
 	
 	
 	

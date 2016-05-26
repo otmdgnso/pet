@@ -20,5 +20,6 @@ public interface PhotoService {
 		public int insertPhotoLike(Photo dto);
 		public int photoCountLike(Map<String, Object> map);
 		public int deletePhotoLike(Photo dto);
+		public Photo readPhotoLike(Map<String, Object> map);
 		
 }

@@ -5,9 +5,13 @@
 <%
 	String cp=request.getContextPath();
 %>
-<STYLE> 
+<style> 
 .dot {color:red;border-style:dotted;}
-</STYLE>
+
+span{
+	
+}
+</style>
 
 <script type="text/javascript">
 function deletePhoto(photoNum) {
@@ -20,7 +24,6 @@ function deletePhoto(photoNum) {
 $(function(){
 	listPage(1);
 	photoReplyCount();
-	CountLike();	
 });
 
 function listPage(page){
@@ -104,19 +107,20 @@ function photoLike(){
 		,data:params
 		,dataType:"json"
 		,success:function(data){
-			var like=data.like;
-			if(like=="0") {
+			var likee=data.likee;
+			if(likee=="0") {
 				$("#likeTitleId").text("좋아요");
 			} else {
 				$("#likeTitleId").text("좋아요 취소");
 			}
+			// like(likee);
 			if(data.state=="true"){			
 				CountLike();
 			}
 		}
 	});
 }
-	
+
 function CountLike(){
 	var url="<%=cp%>/photo/countLike";
 	var params="photoNum="+${dto.photoNum};
@@ -204,7 +208,7 @@ function CountLike(){
 										style="font-size: 14px; font-weight:bold;">(댓글 ${dataCountReply}개)</font>	|
 									<font color="black" style="font-size: 14px;">조회수 ${dto.hitCount}</font> | &nbsp;
 								
-								    <a href="#" onclick="photoLike();"><font id="likeTitleId" style="color: black; font-size: 10pt;">좋아요</font></a>
+								    <a style="cursor: pointer;" onclick="photoLike();"><font id="likeTitleId" style="color: black; font-size: 10pt;">${likee=="true" ? "좋아요 취소":"좋아요"}</font></a>
 								    <font id="likeCountId" style="color: black; font-size: 10pt;">${count}</font>							
 							  </div>
 								<div id="listReply"></div>

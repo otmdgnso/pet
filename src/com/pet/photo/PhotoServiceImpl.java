@@ -184,4 +184,15 @@ public class PhotoServiceImpl implements PhotoService{
 		return result;
 	}
 
+	@Override
+	public Photo readPhotoLike(Map<String, Object> map) {
+		Photo vo=null;
+		try {
+			vo=dao.getReadData("photo.readLike",map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return vo;
+	}
+
 }

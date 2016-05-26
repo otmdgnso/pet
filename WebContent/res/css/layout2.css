@@ -952,6 +952,7 @@ div.radio .checked {
             SECTION TOP OFFERTS
  ********************************************/
 .top-txt-title{position:relative;}
+/*
 .top-txt-title span{
     font-size: 140px;
     position: absolute;
@@ -968,7 +969,7 @@ div.radio .checked {
     opacity: .03;
     color: #2d3e52;
 }
- 
+*/ 
 .top-we-are{padding-bottom:80px;}
 
 #top-offerts{padding-bottom:80px;}

@@ -27,7 +27,7 @@
 
 <tr height='30pt' style="color:black;">
     <td colspan='2' align='center'>
-    ${paging}
+   ${paging}
     </td>
 </tr>    
 
