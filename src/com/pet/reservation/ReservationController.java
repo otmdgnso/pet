@@ -79,7 +79,6 @@ public class ReservationController {
 			n++;
 		}
 		
-		//ModelAndView mav=new ModelAndView(".reservation.list");
 		ModelAndView mav=new ModelAndView("/reservation/list");
 		mav.addObject("list",list);
 		mav.addObject("page",current_page);

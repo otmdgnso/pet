@@ -105,11 +105,11 @@ public class HouseServiceImpl implements HouseService{
 	}
 
 	@Override
-	public int insertReview(Review dto) {
+	public int insertReview(HouseReview dto) {
 		int result=0;
 		
 		try {
-			result=dao.insertData("house.insertReview", dto);
+			dao.insertData("house.insertReview", dto);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
@@ -118,11 +118,11 @@ public class HouseServiceImpl implements HouseService{
 	}
 
 	@Override
-	public List<Review> listReview(Map<String, Object> map) {
-		List<Review> list=null;
+	public List<HouseReview> listReview(Map<String, Object> map) {
+		List<HouseReview> list=null;
 		
 		try {
-			list=dao.getListData("house.houseReview", map);
+			list=dao.getListData("house.listReview", map);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
@@ -135,7 +135,7 @@ public class HouseServiceImpl implements HouseService{
 		int result=0;
 		
 		try {
-			result=dao.getIntValue("house.houseReview", map);
+			result=dao.getIntValue("house.reviewDataCount", map);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}

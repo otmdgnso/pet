@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pet.common.MyUtil;
+import com.pet.member.SessionInfo;
 
 @Controller("house.houseController")
 public class HouseController {
@@ -143,15 +145,20 @@ public class HouseController {
 	//댓글 리스트
 	@RequestMapping(value="/house/listReview") 
 	public ModelAndView listReview(
-			@RequestParam(value="num") int num,
-			@RequestParam(value="pageNo", defaultValue="1") int current_page
+			HttpSession session
+			,HouseReview dto
+			,@RequestParam(value="pageNo", defaultValue="1") int current_page
 			) throws Exception {
 		int numPerPage=10;
 		int total_page=0;
 		int dataCount=0;
 		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		dto.setNum(info.getMemberNum());
+		dto.setUserName(info.getUserName());
+		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("num", num);
+		map.put("hostNum", dto.getHostNum());
 		
 		dataCount=service.reviewDataCount(map);
 		total_page=myUtil.pageCount(numPerPage, dataCount);
@@ -163,7 +170,7 @@ public class HouseController {
 		int end=current_page*numPerPage;
 		map.put("start", start);
 		map.put("end", end);
-		List<Review> listReview=service.listReview(map);
+		List<HouseReview> listReview=service.listReview(map);
 		
 		// 페이징처리(인수2개 짜리 js로 처리)
 		String paging=myUtil.paging(current_page, total_page);

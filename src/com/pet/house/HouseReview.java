@@ -1,13 +1,23 @@
 package com.pet.house;
 
-public class Review {
-	private int reviewNum, hostNum, num, completeNum;
+public class HouseReview {
+	private int reviewnum, hostNum, num, completeNum, reservationNum;
 	private String userName, created, content, profile;
+	
 	public int getReviewNum() {
-		return reviewNum;
+		return reviewnum;
 	}
-	public void setReviewNum(int reviewNum) {
-		this.reviewNum = reviewNum;
+	public int getReviewnum() {
+		return reviewnum;
+	}
+	public void setReviewnum(int reviewnum) {
+		this.reviewnum = reviewnum;
+	}
+	public int getReservationNum() {
+		return reservationNum;
+	}
+	public void setReservationNum(int reservationNum) {
+		this.reservationNum = reservationNum;
 	}
 	public int getHostNum() {
 		return hostNum;

@@ -65,52 +65,9 @@ $(function(){
 
 function listPage(page) {
 	var url="<%=cp%>/house/houseReview";
-	var num="${dto.hostNum}";
-	$.post(url, {num:hostNum, pageNo:page}, function(data){
-		$("#houseReview").html(data);
-	});
-}
-
-//댓글 추가
-function sendReply() {
-	var uid="${sessionScope.member.userId}";
-	if(! uid){
-		login();
-		return false;
-	}
-	
-	var num="${dto.hostNum}"; //해당게시물번호
-	var content=$.trim($("#content").val());
-	if(! content) {
-		alert("내용을 입력하세요.");
-		$("#content").focus();
-		return false;
-	}
-	
-	var params="hostNum="+num;
-	params+="&content="+content;
-	params+="&answer=0";
-	
-	$.ajax({
-		type:"POST"
-		,utl:"<%=cp%>/house/createdReply"
-		,data:params
-		,dataType:"json"
-		,success:function(data) {
-			$("#content").val("");
-			
-			var state=data.state;
-			if(state=="true") {
-				listPage(1);
-			} else if(state=="false") {
-				alert("등록에 실패하였습니다.");
-			} else if(state=="loginFail") {
-				login();
-			}
-		}
-		,error:function(e) {
-			alert(e.resposeText);
-		}
+	var hostNum="${dto.hostNum}";
+	$.post(url, {hostNum:hostNum, pageNo:page}, function(data){
+		$("#ajaxHouseReview").html(data);
 	});
 }
 
@@ -209,7 +166,7 @@ function sendReply() {
 
 			<!-- 후기 -->
             <div class="col-md-12 details-hotel" style="min-height: 100px; padding: 50px;">
-              <div id="houseReview"></div>
+              <div id="ajaxHouseReview"></div>
             </div>
            
           </div>

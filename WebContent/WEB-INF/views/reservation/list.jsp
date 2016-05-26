@@ -7,8 +7,6 @@
 %>
 <script type="text/javascript">
 
-
-
 function deleteReservation(reservationNum) {
 	var page="${page}";
 	var params="reservationNum="+reservationNum+"&page="+page;
@@ -88,7 +86,8 @@ function updateReservation(reservationNum) {
 
 	           </c:forEach>  
 	           
-	        </table>          
+	        </table> 
+	        <input type="hidden" value="${dto.hostNum}">         
 		</div>
 	</div>
 	<div class="cbp-vm-switcher cbp-vm-view-list">

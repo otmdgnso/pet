@@ -71,6 +71,15 @@
 </div>
 
 <!-- 페이징처리 -->
-<div style="clear: both; padding-top: 10px; text-align: center;">
-	1
-</div>
+<div class="cbp-vm-switcher cbp-vm-view-list">
+		<div class="form-group" style="margin:0 auto; width:80%; height:60px " align="center">
+		<div class="paging" style="text-align: center; min-height: 50px; line-height: 50px; color: #A6A6A6;">
+            <c:if test="${reviewDataCount==0 }">
+                  	등록된 게시물이 없습니다.
+            </c:if>
+            <c:if test="${reviewDataCount!=0 }">
+               ${paging}
+            </c:if>
+        </div>   
+        </div>    
+	</div>
