@@ -68,4 +68,28 @@
 		FROM host h JOIN member m ON h.hostNum=m.num
 		WHERE hostNum=#{hostNum}
 	</select>
+	
+	<!-- 댓글(리뷰) -->
+	<insert id="insertReview" parameterType="com.pet.house.houseReview">
+		INSERT INTO hostreview(reviewNum, content, HOSTNUM, COMPLETENUM)
+		VALUES (hostReview_seq.NEXTVAL, #{content}, #{hostNum}, #{completeNum}); 
+	</insert>
+	
+	<select id="reviewDataCount" resultType="Integer" parameterType="map">
+		SELECT NVL(COUNT(*), 0) FROM hostreview WHERE reviewNum=#{reviewNum}
+	</select>
+	
+	<select id="listReview" resultType="com.pet.house.houseReview" parameterType="map">
+		SELECT * FROM (
+		    SELECT ROWNUM rnum, tb.* FROM (
+		    
+				SELECT reviewnum, profile, userName, h.created, content
+				FROM hostReview h JOIN reserComplete c ON h.completeNum=c.completeNum JOIN reservation r ON c.reservationNum = r.reservationNum JOIN member m ON r.num=m.num
+			WHERE h.hostNum=#{hostNum}
+		ORDER BY hostNum DESC
+	    <![CDATA[
+		        ) tb WHERE ROWNUM <= #{end}
+		    ) WHERE rnum >= #{start}
+		]]>	    
+	</select>
 </mapper>

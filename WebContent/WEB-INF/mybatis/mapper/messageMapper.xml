@@ -54,6 +54,37 @@
 	]]>
 	</select>
 	
+	<!-- 받은 메시지 리스트 -->
+	<select id="dataCountSend" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0) FROM message
+		<where>
+			<if test="searchValue!=null and searchValue=''">
+				<include refid="where-list"/>
+			</if>
+			AND sendUserId = #{userId}
+			AND sendDelete='N'
+		</where>
+	</select>
 	
+	<select id="listSend" parameterType="map" resultType="com.pet.message.Message">
+	SELECT * FROM (
+		SELECT ROWNUM rnum, tb.* FROM (
+          SELECT messageNum, subject, content, receiveUserId, 
+          TO_CHAR(sendCreated,'YYYY-MM-DD HH24:MI:SS') sendCreated, 
+          NVL2(confirmCreated,TO_CHAR(confirmCreated,'YYYY-MM-DD HH24:MI:SS'), null) confirmCreated, 
+          sendDelete FROM message
+          	<where>
+          		<if test="searchValue!=null and searchValue!='' ">
+	     	    	<include refid="where-list"/>
+	     	    </if>
+	     	    AND sendUserId = #{userId}
+	     	    AND sendDelete='N'
+          	</where>
+          ORDER BY messageNum DESC
+    <![CDATA[
+      	) tb WHERE ROWNUM <= #{end}
+	) WHERE rnum >= #{start}
+	]]>
+	</select>
 
 </mapper>

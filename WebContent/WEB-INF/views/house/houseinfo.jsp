@@ -58,6 +58,62 @@ function checkCreated2() {
 	f.submit();
 }
 
+//댓글 리스트
+$(function(){
+	listPage(1);
+});
+
+function listPage(page) {
+	var url="<%=cp%>/house/houseReview";
+	var num="${dto.hostNum}";
+	$.post(url, {num:hostNum, pageNo:page}, function(data){
+		$("#houseReview").html(data);
+	});
+}
+
+//댓글 추가
+function sendReply() {
+	var uid="${sessionScope.member.userId}";
+	if(! uid){
+		login();
+		return false;
+	}
+	
+	var num="${dto.hostNum}"; //해당게시물번호
+	var content=$.trim($("#content").val());
+	if(! content) {
+		alert("내용을 입력하세요.");
+		$("#content").focus();
+		return false;
+	}
+	
+	var params="hostNum="+num;
+	params+="&content="+content;
+	params+="&answer=0";
+	
+	$.ajax({
+		type:"POST"
+		,utl:"<%=cp%>/house/createdReply"
+		,data:params
+		,dataType:"json"
+		,success:function(data) {
+			$("#content").val("");
+			
+			var state=data.state;
+			if(state=="true") {
+				listPage(1);
+			} else if(state=="false") {
+				alert("등록에 실패하였습니다.");
+			} else if(state=="loginFail") {
+				login();
+			}
+		}
+		,error:function(e) {
+			alert(e.resposeText);
+		}
+	});
+}
+
 </script>
 
 <div class="clear"></div>
@@ -151,74 +207,10 @@ function checkCreated2() {
               </textarea></div>
             </div>
 
+			<!-- 후기 -->
             <div class="col-md-12 details-hotel" style="min-height: 100px; padding: 50px;">
-              	<span style="color: #3EA9CD; font-weight: bold; font-size: 20px;">후기 3개 </span>
-              			<img src="<%=cp%>/res/image/staryellow.png" width="20px">
-              			<img src="<%=cp%>/res/image/staryellow.png" width="20px">
-              			<img src="<%=cp%>/res/image/staryellow.png" width="20px">
-              			<img src="<%=cp%>/res/image/staryellow.png" width="20px">
-              			<img src="<%=cp%>/res/image/staryellow.png" width="20px">
-              <div class="separator" style="width:100%; padding: 0px;"></div>
-              <table style="width: 80%; margin: 0px auto; padding: 0px;">
-              	<tr>
-              		<td align="center" width="10%"><p>청결도</p></td>
-              		<td align="center" width="20%">
-              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-              		</td>           		              		
-
-              		<td align="center" width="10%"><p>가격</p></td>
-              		<td align="center" width="20%">
-              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-              		</td>       
-
-              		<td align="center" width="10%"><p>친절도</p></td>
-              		<td align="center" width="20%">
-              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-              			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-              		</td>       
-              	</tr>
-              </table>
-
-              <div class="separator" style="width:100%; padding: 0px;"></div>
-              
-              	<div style="clear:both; margin-top:5px; padding: 10px; border-bottom:  #d5d5d5 solid 1px; min-height: 150px;">
-       			<div style="clear: both;">
-       				<table style="width: 100%; 	margin: 0px auto; border-spacing: 10px;">
-                	<tr>
-						<td align="center" width="20%">
-							<img src="<%=cp%>/uploads/profile/20160518162814458843974403881.GIF" class="avatar img-circle img-thumbnail" width="70px;">
-						</td>
-						<td align="left" width="70%" style="margin-bottom:  5px;">
-							Sean is a nice n helpful host, replied any question before n during the trip instantly. The location of the flat is perfect, so easy to getting around. The flat is clean n tidy, exactly as the pictures Sean show. Will come back again on my next visit.
-						</td>
-						<td width="10%"></td>
-					</tr>
-					<tr>
-						<td align="center" width="20%">솜사탕</td>
-						<td align="left" width="70%">2016/05/15</td>
-						<td width="10%">삭제</td>
-					</tr>
-				</table>
-
+              <div id="houseReview"></div>
             </div>
-            </div>
-            
-            <div style="clear: both; padding-top: 10px; text-align: center;">
-            	1
-            </div>
-            
-           </div>
            
           </div>
         </div>
