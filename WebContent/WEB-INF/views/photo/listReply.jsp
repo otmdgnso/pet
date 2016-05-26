@@ -6,30 +6,33 @@
 	String cp=request.getContextPath();
 %>
 <div align="center">
-<table style='width: 100%; text-align:left; border-spacing: 0px; border-collapse: collapse;'>
+<table style=' width: 100%; text-align:left; border-spacing: 0px; border-collapse: collapse; background-color: #EEEEEE; '>
 
 <c:forEach var="dto" items="${list}">
-<tr height='30' bgcolor='#EEEEEE' style='color:black; border: 1px solid #DBDBDB;'>
-    <td width='50%' style='padding-left: 5px;'>
+<tr height='30' style='color:black;'>
+    <td width='50%' style='padding-left: 20px; font-weight: bold;'>
        작성자: ${dto.userId}
     </td>
     <td width='50%' align='right' style='padding-right: 5px;'>
-        ${dto.created} | 
-		<a href="#" onclick='deleteReply("${dto.replyNum}", "${pageNo}", "${dto.userId}");'>삭제</a>
+        ${dto.created} 
+      <c:if test="${sessionScope.member.userId=='admin' ||sessionScope.member.userId==dto.userId}">
+		| <a style="cursor: pointer;" onclick='deleteReply("${dto.replyNum}", "${pageNo}", "${dto.userId}");'>삭제</a>
+	  </c:if>	
     </td>
 </tr>
-<tr height='50'>
-    <td colspan='2' style='color:black; padding: 5px;' valign='top'>
+<tr height='50' style="border-bottom: 1px solid #DBDBDB; ">
+    <td colspan='2' style='color:black; padding-left: 20px;' valign='top'>
        ${dto.content}
     </td>
 </tr>
 </c:forEach>
-
-<tr height='30pt' style="color:black;">
-    <td colspan='2' align='center'>
-   ${paging}
-    </td>
-</tr>    
-
 </table>
+
+<div align="center">
+		<div style="clear: both; width: 100%; padding-top: 10px;">
+				<textarea id="content" class="form-control" rows="3"
+								required="required"></textarea>
+		</div>
+</div>
+	<span>${paging}</span>
 </div>

@@ -99,18 +99,18 @@
       <div class="container">
          <div class="row">
             <div class="col-md-12">
-               <div id="horizontalTab">
+               <div id="horizontalTab" >
                   <ul>
                      <li><a href="#tab-0">받은 메시지</a></li>
                      <li><a href="#tab-1">보낸 메시지</a></li>
                      <li><a href="#tab-2">메시지 보내기</a></li>
                      <li><a href="#tab-3">시스템 메시지</a></li>
                   </ul>
-				  <div id="tab-0" style="width: 1074px;"></div>
+				  <div id="tab-0" style="width: 1074px;  min-height: 600px;"></div>
 				  
-                  <div id="tab-1" style="width: 1074px;"></div>
+                  <div id="tab-1" style="width: 1074px; min-height: 600px;"></div>
                   
-                  <div id="tab-2" style="width: 100%;"></div>
+                  <div id="tab-2" style="width: 100%; min-height: 600px;"></div>
 
                   <div id="tab-3">
                      <div class="col-md-3 histo-img">

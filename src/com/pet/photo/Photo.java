@@ -10,7 +10,18 @@ public class Photo {
 	
 	private int photoLike;
 	private int likeCount;
+	private int replyCount;
 	
+	
+	
+	public int getReplyCount() {
+		return replyCount;
+	}
+
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
+
 	public int getPhotoLike() {
 		return photoLike;
 	}
