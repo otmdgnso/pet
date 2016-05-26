@@ -35,8 +35,9 @@ public class PhotoController {
 			HttpServletRequest req,
 			@RequestParam(value="page", defaultValue="1") int current_page,
 			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
-			@RequestParam(value="searchValue", defaultValue="") String searchValue
-			) throws Exception {
+			@RequestParam(value="searchValue", defaultValue="") String searchValue,
+			@RequestParam(value="sortList", defaultValue="") String sortList
+			) throws Exception {		
 		
 		String cp=req.getContextPath();
 		
@@ -52,6 +53,7 @@ public class PhotoController {
 		Map<String, Object> map=new HashMap<>();
 		map.put("searchKey", searchKey);
 		map.put("searchValue", searchValue);
+		map.put("sortList", sortList);
 		
 		dataCount=service.dataCount(map);
 		if(dataCount!=0)
@@ -93,6 +95,7 @@ public class PhotoController {
 			listUrl=cp+"/photo/photo?"+params;
 			articleUrl=cp+"/photo/article?page="+current_page+"&"+params;
 		}
+		
 		
 		ModelAndView mav=new ModelAndView(".photo.photo");
 		mav.addObject("list",list);
@@ -170,10 +173,11 @@ public class PhotoController {
 		
 		map.put("num", num);
 		Photo vo=service.readPhotoLike(map);
+		
 		String likee="true";
 		if(vo==null)
 			likee="false";
-		System.out.println(likee);
+		
 		int count=service.photoCountLike(map);
 		
 		ModelAndView mav=new ModelAndView(".photo.article");

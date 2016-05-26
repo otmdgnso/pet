@@ -5,7 +5,7 @@
 <%
 	String cp=request.getContextPath();
 %>
-</script>
+
 <meta name="description" content="travel, trip, store, shopping, siteweb, cart">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -41,11 +41,11 @@
                         <dt></dt>
 		                <dd>
 			                <ul class="filter group albumFilter"> 
-				                <li data-filter="*" class="current"><a href="#">SHOWALL</a></li> 
-				                <li data-filter=".cat1"><a href="#">Countries</a></li> 
-				                <li data-filter=".cat2"><a href="#">Beach</a></li> 
-				                <li data-filter=".cat3"><a href="#">Island</a></li> 
-				                <li data-filter=".cat4"><a href="#">Adventure</a></li>
+				                <li data-filter="*" class="current"><a href="<%=cp%>/photo/photo?searchKey=species&searchValue=개">강아지만</a></li> 
+				                <li data-filter=".cat1"><a href="<%=cp%>/photo/photo?searchKey=species&searchValue=고양이">고양이만</a></li> 
+				                <li data-filter=".cat2"><a href="<%=cp%>/photo/photo">최신순</a></li> 
+				                <li data-filter=".cat3"><a href="<%=cp%>/photo/photo?sortList=hitCount">조회순</a></li> 
+				                <li data-filter=".cat4"><a href="<%=cp%>/photo/photo?sortList=likeCount">좋아요순</a></li>
 				             	 <li><a href="<%=cp%>/photo/created">등록하기</a></li>
 			                </ul> 
 		                </dd>
@@ -61,9 +61,11 @@
                                             <a class="close-overlay hidden">x</a>
                                         </div>
                                     </div>
-                                    <div class="gallery-img-title">
-                                      <h3>${dto.subject}-${dto.userName}</h3>
-                                     
+                                    <div align="left" class="gallery-img-title">
+                                      <span style="color: black;">제목 : ${dto.subject}</span> &nbsp;
+                                       <span style="color: orange; font-weight: bold;">[${dto.replyCount}]</span><br>
+                                       <span style="color: black;">조회수 ${dto.hitCount}  |  ${dto.created}     |    좋아요 ${dto.likeCount}</span><br>
+                                       <span style="color: black;">${dto.userId}</span>
                                     </div>
                             </div>                           
 					 </c:forEach>
@@ -72,16 +74,20 @@
           </div><!--Close col 12 -->
 
        </div>
+       		<div align="center">
                     <ul class="pagination clearfix">
-                        <li class="prev disabled"><a href="#">Previous</a></li>
+                      <!--   <li class="prev disabled"><a href="#">Previous</a></li>
                         <li class="active"><a href="#">1</a></li>
                         <li><a href="#">2</a></li>
                         <li><a href="#">3</a></li>
                         <li class="disabled"><span>...</span></li>
                         <li><a href="#">5</a></li>
-                        <li class="next"><a href="#">Next</a></li>
+                        <li class="next"><a href="#">Next</a></li> -->
+                        <c:if test="${dataCount!=0}">
+                        	${paging}
+                        </c:if>
                     </ul>
-          
+          </div>
     </div>    
 </section>      
 
