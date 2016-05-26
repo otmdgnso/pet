@@ -9,11 +9,11 @@
 	</insert>
 	
 	<sql id="sort-list">
-		<if test="sortLike=='countLike'">
-			ORDER BY countLike DESC
+		<if test="sortList=='likeCount'">
+			ORDER BY likeCount DESC
 		</if>
-		<if test="sortLike==''">
-		
+		<if test="sortList=='hitCount'">
+			ORDER BY hitCount DESC
 		</if>
 	</sql>
 	
@@ -48,15 +48,34 @@
 	<select id="listPhoto" parameterType="map" resultType="com.pet.photo.Photo">
 		SELECT*FROM(
    			 SELECT ROWNUM rnum,tb.* FROM(
-        		SELECT photoNum, species, saveFilename, subject, content, m.userName,
-          			TO_CHAR(p.created, 'YYYY-MM-DD') created, hitCount 
-        		 FROM photoGal p JOIN member m ON p.num=m.num
+        		SELECT p.photoNum, species, saveFilename, subject, content, m.userName, m.userId,
+          				TO_CHAR(p.created, 'YYYY-MM-DD') created, hitCount, NVL(likeCount,0) likeCount,
+          				 NVL(replyCount,0) replyCount         				            		        	    	 
+        		 FROM photoGal p 
+        		 JOIN member m ON p.num=m.num   
+        		 LEFT OUTER JOIN 
+        		 (
+        		   SELECT photoNum, COUNT(*) likeCount FROM photoLike
+        		   GROUP BY photoNum
+        		 )l ON l.photoNum=p.photoNum   
+            LEFT OUTER JOIN
+             (
+              SELECT photoNum, COUNT(*) replyCount FROM photoGalReply
+              GROUP BY photoNum
+             )r ON r.photoNum=p.photoNum  
+        		 
         <where>
         	<if test="searchValue !=null and searchValue !='' ">
         		<include refid="where-list"/>
         	</if>        
-        </where>        		   
+        </where>        		 
+        
+        <if test="sortList!=null and sortList!='' ">
+        	<include refid="sort-list"/>
+        </if>     
+        <if test="sortList==null or sortList=='' ">     
      	    	 ORDER BY photoNum DESC
+     	</if>    	 
      	  <![CDATA[  	 
      		 )tb WHERE ROWNUM<=#{end}
   		)WHERE RNUM >= #{start}

@@ -113,7 +113,7 @@ function photoLike(){
 			} else {
 				$("#likeTitleId").text("좋아요 취소");
 			}
-			// like(likee);
+		
 			if(data.state=="true"){			
 				CountLike();
 			}
@@ -178,10 +178,10 @@ function CountLike(){
 			
 		<div style="font-size: 14pt; color: orange;" >
             <div class="col-sm-6 cc-in" style="padding-left: 0; text-align: left;">
-         ${dto.subject} &nbsp;| <font style="font-size: 10pt;">종별 : ${dto.species}</font>
+         ${dto.subject} &nbsp;| <span style="font-size: 10pt;">종별 : ${dto.species}</span>
          </div>
          <div class="col-sm-6 cc-in" style="padding-left: 0; text-align: right;">
-         <font style="font-size:10pt; text-align: right;">${dto.created}</font>
+         <span style="font-size:10pt; text-align: right;">${dto.created}</span>
          
         	 </div>
          </div>
@@ -204,21 +204,15 @@ function CountLike(){
 					
 						  <div style="padding-top: 100px;">
 							  <div align="left">								
-									<font id="photoReplyCountView" color="#ff590b"
-										style="font-size: 14px; font-weight:bold;">(댓글 ${dataCountReply}개)</font>	|
-									<font color="black" style="font-size: 14px;">조회수 ${dto.hitCount}</font> | &nbsp;
+									<span id="photoReplyCountView" 
+										style="font-size: 14px; color:orange; font-weight:bold;">(댓글 ${dataCountReply}개)  </span>
+									<span style="color:black; font-size: 14px;"> |   조회수 ${dto.hitCount}  | </span> &nbsp;
 								
-								    <a style="cursor: pointer;" onclick="photoLike();"><font id="likeTitleId" style="color: black; font-size: 10pt;">${likee=="true" ? "좋아요 취소":"좋아요"}</font></a>
-								    <font id="likeCountId" style="color: black; font-size: 10pt;">${count}</font>							
+								    <a style="cursor: pointer;" onclick="photoLike();"><span id="likeTitleId" style="color: black; font-size: 10pt;">${likee=="true" ? "좋아요 취소":"좋아요"}</span></a>
+								    <span id="likeCountId" style="color: black; font-size: 10pt;">${count}</span>							
 							  </div>
 								<div id="listReply"></div>
-								<div>
-									<div align="center">
-										<div style="clear: both; width: 100%; padding-top: 10px;">
-											<textarea id="content" class="form-control" rows="3"
-												required="required"></textarea>
-										</div>
-									</div>
+								<div>									
 									<div style="text-align: right; padding-top: 10px;">
 										<button type="button" onclick="sendPhotoReply();">
 											댓글등록 <span class="glyphicon glyphicon-ok"></span>
