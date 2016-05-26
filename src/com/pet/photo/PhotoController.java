@@ -1,7 +1,6 @@
 package com.pet.photo;
 
 import java.io.File;
-import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -10,11 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,8 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.pet.common.MyUtil;
 import com.pet.member.SessionInfo;
-
-import net.sf.json.JSONObject;
 
 @Controller("photo.photoController")
 public class PhotoController {
@@ -173,11 +168,22 @@ public class PhotoController {
 						"&searchValue="+URLEncoder.encode(searchValue,"utf-8");
 		}
 		
+		map.put("num", num);
+		Photo vo=service.readPhotoLike(map);
+		String likee="true";
+		if(vo==null)
+			likee="false";
+		System.out.println(likee);
+		int count=service.photoCountLike(map);
+		
 		ModelAndView mav=new ModelAndView(".photo.article");
 		mav.addObject("num",num);
 		mav.addObject("dto",dto);
 		mav.addObject("page",page);
 		mav.addObject("params",params);
+		
+		mav.addObject("likee", likee);
+		mav.addObject("count", count);
 		
 		return mav;
 	}
@@ -343,7 +349,7 @@ public class PhotoController {
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		String state="true";
-		int like=0;
+		int likee=0;
 		
 		if(info==null){
 			state="loginFail";
@@ -351,15 +357,15 @@ public class PhotoController {
 			dto.setNum(info.getMemberNum());
 			int result=service.insertPhotoLike(dto);
 			if(result==1){
-				like=1;
+				likee=1;
 			}else if(result==0){
 				service.deletePhotoLike(dto);
-				like=0;				
+				likee=0;				
 			}
 		}
 		Map<String, Object> model=new HashMap<>();
 		model.put("state", state);
-		model.put("like", like);
+		model.put("likee", likee);
 		return model;
 	}
 	

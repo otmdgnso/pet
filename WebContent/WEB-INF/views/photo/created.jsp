@@ -96,8 +96,11 @@ function deleteFile(saveFilename, photoNum) {
                     	<table style="width: 70%; margin: 0px auto; border-spacing: 0px; padding: 0px;">
                     	
                     	<tr height="40%">
-                    			<td align="center" width="10%"><label>종별</label></td>
-                     			<td align="center" width="90%"><input class="form-control" type="text" name="species" value="${dto.species}" style="text-align:center"></td>
+                    			<td align="center" width="10%"><label>종별</label></td>                     			
+                     			<td align="left" width="90%"><select class="form-control" name="species">
+                     												<option value="개" ${dto.species=="개"}>개</option>
+                     												<option value="고양이" ${dto.species=="고양이"}>고양이</option>
+                     												 </select> </td>
                     		</tr>
                     		
                     		<tr height="40%">

@@ -8,7 +8,19 @@
 	  VALUES (photoGal_seq.NEXTVAL, #{species}, #{saveFilename}, #{subject}, #{content},#{num})
 	</insert>
 	
+	<sql id="sort-list">
+		<if test="sortLike=='countLike'">
+			ORDER BY countLike DESC
+		</if>
+		<if test="sortLike==''">
+		
+		</if>
+	</sql>
+	
 	<sql id="where-list">
+		<if test="searchKey=='species'">
+			species=#{searchValue}
+		</if>
 		<if test="searchKey=='userName'">
 			userName=#{searchValue}
 		</if>
@@ -114,5 +126,9 @@
 	
 	<select id="countLike" resultType="Integer" parameterType="map">
 		SELECT NVL(COUNT(*),0) FROM photoLike WHERE photoNum=#{photoNum}
+	</select>
+	
+	<select id="readLike" parameterType="map" resultType="com.pet.photo.Photo">
+		select num, photoNum from photoLike WHERE num=#{num} AND photoNum=#{photoNum}
 	</select>
 </mapper>
