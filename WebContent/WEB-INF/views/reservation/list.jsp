@@ -5,20 +5,9 @@
 <%
 	String cp=request.getContextPath();
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
 <script type="text/javascript">
-function searchList() {
-	var f=document.searchForm;
-	
-	alert(searchvalue);
-	f.action="<%=cp%>/reservation/list";
-	f.submit();
-}
+
+
 
 function deleteReservation(reservationNum) {
 	var page="${page}";
@@ -39,20 +28,7 @@ function updateReservation(reservationNum) {
 }
 </script>
 
-</head>
-<body>
 
-<section class="about-section-top">
-	<div class="container">
-	<div class="row">
-	<div class="col-md-12">
-	<div class="page-title pull-left">
-		<h2 class="title-about">예약</h2>
-	</div>
-	</div>
-	</div>
-	</div>
-</section>
 
 <section class="top-we-are" style="height:780px;">
 	<div class="container">
@@ -62,23 +38,28 @@ function updateReservation(reservationNum) {
 			
 	<div class="cbp-vm-switcher cbp-vm-view-list">
 	<div class="separator" style="width:100%"></div>       
-		<h3>예약목록</h3>
+		<h4>예약목록</h4>
 	<div class="separator" style="width:100%"></div>  
+		<!-- 검색 -->
 		<div class="form-group" style="margin:0 auto; width:100%;" align="center">
-			<form name="searchForm" action="" method="post">
+			<form name="searchForm"  method="post">
 			<table style="width: 70%; margin: 0px auto; border-spacing: 0px;">
 				<tr align="center" height="50px">
 					<td align="center" width="40%">
 							<i class="fa fa-smile-o" aria-hidden="true"></i><label>호스트명 : </label>
-							<input type="text" name="searchValue" class="boxTF">
+							<input type="text" name="searchHost" id="searchHost" class="boxTF">
 					</td>	
-					<td align="center" width="15%"><input type="checkbox" name="searchValue" value="wait" checked="checked"><label>wait</label></td>
-					<td align="center" width="15%"><input type="checkbox" name="searchValue" value="accept" checked="checked"><label>accept</label></td>
+					<td align="center" width="10%"><i class="fa fa-smile-o" aria-hidden="true"></i><label>상태 : </label></td>
+					<td align="center" width="10%"><input type="radio" name="searchState" value="all" checked="checked"><label>all</label></td>
+					<td align="center" width="10%"><input type="radio" name="searchState" value="wait"><label>wait</label></td>
+					<td align="center" width="10%"><input type="radio" name="searchState" value="accept"><label>accept</label></td>
 					<td align="center" width="15%"><input type="button" value="검색" class="btn" onclick="searchList()"></td>
 				</tr>
 			</table>
 			</form>		
 		</div>
+		
+		<!-- 테이블 -->
 		<div class="form-group" style="margin:0 auto; width:80%;" align="center">
 			<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
 	           <tr align="center" height="50px">
@@ -126,5 +107,4 @@ function updateReservation(reservationNum) {
 	</div>
 	</div>  
 </section>
-</body>
-</html>
+

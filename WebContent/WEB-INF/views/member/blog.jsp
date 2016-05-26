@@ -31,12 +31,34 @@
 </style>
 
 <script type="text/javascript">
-function searchList() {
+<%-- function searchList() {
 	var f=document.searchForm;
 	
 	alert(searchvalue);
 	f.action="<%=cp%>/reservation/list";
 	f.submit();
+} --%>
+
+function searchList() {
+<%-- 	var f=document.searchForm;
+	f.action="<%=cp%>/reservation/list";
+	f.submit();
+ --%>	
+ 
+ 	var searchHost = $("#searchHost").val();
+ 	var searchState = "";
+ 	alert($("#searchState").val());
+ 
+	$.ajax({
+	  url: "<%=cp%>/reservation/list"
+	  ,type:"post"
+	  ,data : {searchHost:searchHost,searchState:"wait"}
+	}).done(function(data) {
+		$("#ajaxReserveList").html('');
+		$("#ajaxReserveList").html(data);
+	}); 
+	
+	
 }
 
 function deleteReservation(reservationNum) {
@@ -56,15 +78,24 @@ function updateReservation(reservationNum) {
 	
 	location.href=url;
 }
-//예약목록
 
+//예약목록
 $(document).ready(function(){
+
+	// ajax 처리
+	$.ajax({
+	  url: "<%=cp%>/reservation/list"
+	  //context: document.body
+	}).done(function(data) {
+		$("#ajaxReserveList").html(data);
+	}); 
 
       $("#wizard-picture1").change(function(){
           readURL(this);
       });
 });
-   function readURL(input) {
+
+function readURL(input) {
        if (input.files && input.files[0]) {
            var reader = new FileReader();
 
@@ -219,8 +250,7 @@ function shakeModalMember(msg){
 									<img src="<%=cp%>/uploads/theme/${dto.themeprofile}" alt="" />
 								</c:if>
 
-								<form name="updateTheme" method="post"
-									enctype="multipart/form-data">
+								<form name="updateTheme" method="post" enctype="multipart/form-data">
 									<div class="file_input_div" style="float: right;">
 										<div class="file_input">
 											<label
@@ -337,79 +367,10 @@ function shakeModalMember(msg){
                   
                   
 <div id="tab-3">
-<section class="top-we-are" style="height:780px;">
-	<div class="container">
-	<div class="row" style="margin:0 auto; width:80%;" align="center">
-	<div class="col-md-12 effect-5 effects no-border-img" style="margin:0 auto; width:100%;" align="center">		
-
-			
-	<div class="cbp-vm-switcher cbp-vm-view-list">
-	<div class="separator" style="width:100%"></div>       
-		<h5>예약목록</h5>
-	<div class="separator" style="width:100%"></div>  
-		<div class="form-group" style="margin:0 auto; width:100%;" align="center">
-			<form name="searchForm" action="" method="post">
-			<table style="width: 70%; margin: 0px auto; border-spacing: 0px;">
-				<tr align="center" height="50px">
-					<td align="center" width="40%">
-							<i class="fa fa-smile-o" aria-hidden="true"></i><label>호스트명 : </label>
-							<input type="text" name="searchValue" class="boxTF">
-					</td>	
-					<td align="center" width="15%"><input type="checkbox" name="searchValue" value="wait" checked="checked"><label>wait</label></td>
-					<td align="center" width="15%"><input type="checkbox" name="searchValue" value="accept" checked="checked"><label>accept</label></td>
-					<td align="center" width="15%"><input type="button" value="검색" class="btn" onclick="searchList()"></td>
-				</tr>
-			</table>
-			</form>		
-		</div>
-		<div class="form-group" style="margin:0 auto; width:80%;" align="center">
-			<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
-	           <tr align="center" height="50px">
-	           	  <td align="center" width="5%"><label>번호</label></td>
-	              <td align="center" width="15%"><label>상태</label></td>
-	              <td align="center" width="20%"><label>위치</label></td>
-	              <td align="center" width="15%"><label>호스트</label></td>
-	              <td align="center" width="20%"><label>날짜</label></td>              
-	              <td align="center" width="10%"></td>
-	           </tr>
-	           
-	           <c:forEach var="dto" items="${list}">
-	           <tr align="center" height="50px">
-	           	  <td align="center" width="5%" style="color: #A6A6A6;">${dto.listNum}</td>
-	              <td align="center" width="15%" style="color: #6ABC64;">${dto.accept}</td>
-	              <td align="center" width="20%" style="color: #A6A6A6;">${dto.address}</td>
-	              <td align="center" width="15%" style="color: #A6A6A6;"><a href="<%=cp%>/house/houseinfo?hostNum=${dto.hostNum}">${dto.userName}</a></td>	          
-	              <td align="center" width="20%" style="color: #A6A6A6;">${dto.checkIn}~${dto.checkOut}</td>
-	              <c:if test="${dto.accept != 'wait'}">
-	              	<td align="center" width="10%" style="color: #A6A6A6;"><a onclick='deleteReservation(${dto.reservationNum});'>삭제</a></td>
-	              </c:if>
-	              <c:if test="${dto.accept == 'wait'}">
-	              	<td align="center" width="10%" style="color: #A6A6A6;"><a onclick='updateReservation(${dto.reservationNum});'>변경</a></td>
-	              </c:if>
-	           </tr>
-
-	           </c:forEach>  
-	           
-	        </table>          
-		</div>
-	</div>
-	<div class="cbp-vm-switcher cbp-vm-view-list">
-		<div class="form-group" style="margin:0 auto; width:80%; height:60px " align="center">
-		<div class="paging" style="text-align: center; min-height: 50px; line-height: 50px; color: #A6A6A6;">
-            <c:if test="${dataCount==0 }">
-                  	등록된 게시물이 없습니다.
-            </c:if>
-            <c:if test="${dataCount!=0 }">
-                ${paging}
-            </c:if>
-        </div>   
-        </div>    
-	</div>
-	</div>
-	</div>
-	</div>  
-</section>   
-                     
+	<!-- 예약목록 -->		
+	<!-- http://localhost:9090/pet/reservation/list -->
+	<div id="ajaxReserveList"></div>
+	
 </div>
                   <div id="tab-4">
                      <div class="col-md-3 histo-img">

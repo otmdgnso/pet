@@ -138,12 +138,15 @@ public class PhotoController {
 	
 	@RequestMapping(value="/photo/article", method=RequestMethod.GET)
 	public ModelAndView article(
+			HttpSession session,
 			@RequestParam(value="photoNum") int photoNum,
 			@RequestParam(value="page") String page,
 			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
 			@RequestParam(value="searchValue", defaultValue="") String searchValue
 			) throws Exception{
 		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		int num=info.getMemberNum();
 		searchValue= URLDecoder.decode(searchValue,"utf-8");
 		
 		//조회수 증가
@@ -165,10 +168,22 @@ public class PhotoController {
 						"&searchValue="+URLEncoder.encode(searchValue,"utf-8");
 		}
 		
+		map.put("num", num);
+		Photo vo=service.readPhotoLike(map);
+		String likee="true";
+		if(vo==null)
+			likee="false";
+		System.out.println(likee);
+		int count=service.photoCountLike(map);
+		
 		ModelAndView mav=new ModelAndView(".photo.article");
+		mav.addObject("num",num);
 		mav.addObject("dto",dto);
 		mav.addObject("page",page);
 		mav.addObject("params",params);
+		
+		mav.addObject("likee", likee);
+		mav.addObject("count", count);
 		
 		return mav;
 	}
@@ -285,6 +300,7 @@ public class PhotoController {
 		mav.addObject("dataCountReply",dataCount);
 		mav.addObject("paging",paging);
 		
+	
 		return mav;
 	}
 	
@@ -319,6 +335,56 @@ public class PhotoController {
 		
 		Map<String, Object> model=new HashMap<>();
 		model.put("state", state);
+		return model;
+	}
+	
+	
+	//사진 좋아요 
+	@RequestMapping(value="/photo/photoLike", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> photoLike(
+			Photo dto,
+			HttpSession session
+			) throws Exception{
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		String state="true";
+		int likee=0;
+		
+		if(info==null){
+			state="loginFail";
+		}else{
+			dto.setNum(info.getMemberNum());
+			int result=service.insertPhotoLike(dto);
+			if(result==1){
+				likee=1;
+			}else if(result==0){
+				service.deletePhotoLike(dto);
+				likee=0;				
+			}
+		}
+		Map<String, Object> model=new HashMap<>();
+		model.put("state", state);
+		model.put("likee", likee);
+		return model;
+	}
+	
+	@RequestMapping(value="/photo/countLike", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> countLike(
+			@RequestParam(value="photoNum") int photoNum
+			) throws Exception{
+		
+		String state="true";
+		int count=0;
+		
+		Map<String, Object> map=new HashMap<>();
+		map.put("photoNum", photoNum);
+		count=service.photoCountLike(map);
+		
+		Map<String, Object> model=new HashMap<>();
+		model.put("state", state);
+		model.put("count", count);
 		return model;
 	}
 }

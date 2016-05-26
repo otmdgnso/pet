@@ -34,8 +34,8 @@ public class ReservationController {
 			,Reservation dto
 			,HttpServletRequest req
 			,@RequestParam(value="page", defaultValue="1") int current_page
-			,@RequestParam(defaultValue="reservationNum") String searchKey
-			,@RequestParam(defaultValue="") String searchValue
+			,@RequestParam(defaultValue="all") String searchState
+			,@RequestParam(defaultValue="") String searchHost
 			) throws Exception {
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
@@ -47,13 +47,13 @@ public class ReservationController {
 		int dataCount=0;
 		
 		if(req.getMethod().equalsIgnoreCase("GET")) {
-			searchValue=URLDecoder.decode(searchValue, "utf-8");
+			searchHost=URLDecoder.decode(searchHost, "utf-8");
 		}
 		
 		//전체페이지수
 		Map<String, Object> map=new HashMap<String, Object>();
-		map.put("searchKey", searchKey);
-		map.put("searchValue", searchValue);
+		map.put("searchState", searchState);
+		map.put("searchHost", searchHost);
 		map.put("num", dto.getNum());
 		
 		dataCount=service.dataCount(map);
@@ -79,7 +79,8 @@ public class ReservationController {
 			n++;
 		}
 		
-		ModelAndView mav=new ModelAndView(".reservation.list");
+		//ModelAndView mav=new ModelAndView(".reservation.list");
+		ModelAndView mav=new ModelAndView("/reservation/list");
 		mav.addObject("list",list);
 		mav.addObject("page",current_page);
 		mav.addObject("dataCount",dataCount);

@@ -8,7 +8,19 @@
 	  VALUES (photoGal_seq.NEXTVAL, #{species}, #{saveFilename}, #{subject}, #{content},#{num})
 	</insert>
 	
+	<sql id="sort-list">
+		<if test="sortLike=='countLike'">
+			ORDER BY countLike DESC
+		</if>
+		<if test="sortLike==''">
+		
+		</if>
+	</sql>
+	
 	<sql id="where-list">
+		<if test="searchKey=='species'">
+			species=#{searchValue}
+		</if>
 		<if test="searchKey=='userName'">
 			userName=#{searchValue}
 		</if>
@@ -53,7 +65,7 @@
 	
 	<select id="readPhoto" parameterType="Integer" resultType="com.pet.photo.Photo">
 		SELECT photoNum, species, saveFilename, subject, content, m.userName, m.userId,
-  			  TO_CHAR(p.created,'YYYY-MM-DD') created, hitCount
+  			  TO_CHAR(p.created,'YYYY-MM-DD HH24:MI') created, hitCount
 		FROM photoGal p JOIN member m ON p.num=m.num
    			WHERE photoNum=#{photoNum}
 	</select>
@@ -90,14 +102,33 @@
 	<select id="listPhotoReply" resultType="com.pet.photo.Reply" parameterType="map">
 		select*from(
 		    select ROWNUM rnum, tb.* from(
-   			     select replyNum, p.photoNum,m.num, userName, userId, p.created, p.content
+   			     select replyNum, p.photoNum,P.num, userName, userId, p.created, p.content
          	    from photoGalReply p JOIN photoGal g ON p.photoNum=g.photoNum
-         		    JOIN member m ON g.num=m.num
+         		    JOIN member m ON p.num=m.num
+         		   WHERE p.photoNum=#{photoNum}
          	   ORDER BY replyNum DESC
    		<![CDATA[
    			 ) tb WHERE ROWNUM<=#{end}
 		) WHERE RNUM >= #{start}
 		]]>
 	</select>
-
+	
+	
+	<!-- 사진 좋아요 싫어요 -->
+	<insert id="insertLike" parameterType="com.pet.photo.Photo" >
+		INSERT INTO photoLike (photoNum, num)
+		 VALUES (#{photoNum}, #{num})
+	</insert>
+	
+	<delete id="deleteLike" parameterType="Integer">
+		DELETE FROM photoLike WHERE photoNum=#{photoNum} AND num=#{num}
+	</delete>
+	
+	<select id="countLike" resultType="Integer" parameterType="map">
+		SELECT NVL(COUNT(*),0) FROM photoLike WHERE photoNum=#{photoNum}
+	</select>
+	
+	<select id="readLike" parameterType="map" resultType="com.pet.photo.Photo">
+		select num, photoNum from photoLike WHERE num=#{num} AND photoNum=#{photoNum}
+	</select>
 </mapper>

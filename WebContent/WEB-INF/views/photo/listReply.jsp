@@ -15,7 +15,7 @@
     </td>
     <td width='50%' align='right' style='padding-right: 5px;'>
         ${dto.created} | 
-		<a href="javascript:void(0)" onclick='deleteReply("${dto.replyNum}", "${pageNo}", "${dto.userId}");'>삭제</a>
+		<a href="#" onclick='deleteReply("${dto.replyNum}", "${pageNo}", "${dto.userId}");'>삭제</a>
     </td>
 </tr>
 <tr height='50'>
@@ -25,9 +25,9 @@
 </tr>
 </c:forEach>
 
-<tr height='30' style="color:black;">
+<tr height='30pt' style="color:black;">
     <td colspan='2' align='center'>
-    ${paging}
+   ${paging}
     </td>
 </tr>    
 
