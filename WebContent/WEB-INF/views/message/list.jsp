@@ -30,7 +30,89 @@
 
 </style>
 
+ <script src="<%=cp%>/res/js/tabs/jquery.responsiveTabs.js"
+      type="text/javascript"></script>
+   <script type="text/javascript">
+      $(document)
+            .ready(
+                  function() {
+                     "use strict";
+                     $('#horizontalTab')
+                           .responsiveTabs(
+                                 {
+                                    rotate : false,
+                                    startCollapsed : 'accordion',
+                                    collapsible : 'accordion',
+                                    setHash : true,
+                                    animation : 'slide',
+                                    disabled : [ 4 ],
+                                    activate : function(e, tab) {
+                                       $('.info')
+                                             .html(
+                                                   'Tab <strong>'
+                                                         + tab.id
+                                                         + '</strong> activated!');
+                                    },
+                                    activateState : function(e,
+                                          state) {
+                                       //console.log(state);
+                                       $('.info')
+                                             .html(
+                                                   'Switched from <strong>'
+                                                         + state.oldState
+                                                         + '</strong> state to <strong>'
+                                                         + state.newState
+                                                         + '</strong> state!');
+                                    }
+                                 });
 
+                  });
+      
+      function sendCheck() {
+    		var f=document.sendForm;
+    		
+    		var receiveUserId=f.receiveUserId.value;
+    		if(!receiveUserId) {
+    			f.receiveUserId.focus();
+    			return false;
+    		}
+    		
+    		var subject= f.subject.value;
+    		if(!subject) {
+    			f.subject.focus();
+    			return false;
+    		}
+    		
+    		var content= f.content.value;
+    		if(!content) {
+    			f.content.focus();
+    			return false;
+    		}
+    		
+    		var url="<%=cp%>/message/send";
+    		var params="subject="+subject+"&content="+content +"&receiveUserId=" +receiveUserId;
+    		
+    		$.ajax({
+    			type:"POST",
+    			url:url,
+    			data:params,
+    			dataType:"json",
+    			success:function(data){
+    				
+    			
+    			$("#messageReceiveUserId").val("");
+    			$("#messageContent").val("");
+    			$("#messageSubject").val("");
+    			alert("메시지를 전송했습니다.");
+    		},
+    		error:function(e) {
+    			alert(e.responseText);
+    		}
+    	});
+    	}
+
+    
+   </script>
 
 <body>
    <div class="clear"></div>
@@ -45,43 +127,57 @@
                      <li><a href="#tab-3">메시지 보내기</a></li>
                      <li><a href="#tab-4">시스템 메시지</a></li>
                   </ul>
-						<div id="tab-1" >
+						<div id="tab-1" style="width: 1074px;">
 							<h3 style="text-align: center;"><img alt="" src="<%=cp%>/res/images/asterisk.png"
 											style="width: 64px;"> &nbsp; 받은 메시지</h3>
 							
 							
-						<div align="center">
-						<table style="text-align: left;margin-left: 290px; margin-right: 290px; ">
-											<tr
-												style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
-												<td><h4>
-														<img alt="" src="<%=cp%>/res/images/name.png"
-															style="width: 64px;"> 보낸이 :
-													</h4></td>
-											</tr>
-											
-											<tr
-												style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
-												<td><h4>
-														<img alt="" src="<%=cp%>/res/images/calendar.png"
-															style="width: 64px;"> 받은 날짜 : ${dto.created }
-													</h4></td>
-											</tr>
-											<tr
-												style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
-												<td><h4>
-														<img alt="" src="<%=cp%>/res/images/email.png"
-															style="width: 64px;"> 내용 : ${dto.email }
-													</h4></td>
-											</tr>
-											<tr style="text-align: center;">
-												<!--    <td><h3><input class="btn btn-default btn-register"  type="button" onclick="update();" value="수정하기"></h3> -->
-
-												<td><h4>
-														<a href="javascript:void(0)" onclick="openUpdateModal();">수정하기</a>
-													</h4></td>												
-											</tr>
-										</table>
+						<div align="center" style="width: 100%;">
+						<form>
+							<table style="width: 100%;">
+								<tr>
+									<td style="width: 25%;"><button type="button" class="btn btn-default btn-sm" onclick="deleteListMessage();">삭제</button></td>
+									<td align="right" style="width: 25%;">
+									<select class="form-control input-sm" id="messageSearchKey">
+										<option>보낸사람</option>
+										<option>제목</option>
+										<option>내용</option>
+									</select>
+									</td>
+									<td style="width: 25%;" align="center">
+									<input type="text" class="form-control input-sm input-search" id="messageSearchValue" value="${searchValue}">
+									</td>
+									<td align="left" style="width: 25%;">
+									 <button type="button" class="btn btn-info btn-sm btn-search" onclick="searchListMessage();"><span class="glyphicon glyphicon-search"></span> 검색</button>
+									</td>
+									
+								</tr>
+								</table>
+								
+								<table style="width: 100%;">
+								<tr>
+									<td style="width: 20%;">
+									<input type="checkbox" id="chkAll" style="width: 20%">
+									</td>
+									<td style="width: 20%;">보낸사람</td>
+									<td style="width: 20%;">제목</td>
+									<td style="width: 20%;">받은날짜</td>
+									<td style="width: 20%;">확인날짜</td>
+								</tr>
+								
+								<c:forEach var="dto" items="${list}">
+								<tr>
+									<td style="width: 20%;">
+									<input type="checkbox" id="chkAll" style="width: 20%">
+									</td>
+									<td style="width: 20%;">${dto.sendUserId}</td>
+									<td style="width: 20%;">${dto.subject}</td>
+									<td style="width: 20%;">${dto.sendCreated}</td>
+									<td style="width: 20%;">${dto.confirmCreated}</td>
+								</tr>
+								</c:forEach>
+							</table>
+						</form>
 										</div>
 										
 						</div>
@@ -133,6 +229,7 @@
                   <div id="tab-3" style="width: 100%;">
                      
                      <div class="night-desc">
+                     <form name="sendForm">
                         <h3 style="text-align: center;"><img alt="" src="<%=cp%>/res/images/asterisk.png"
 											style="width: 64px;"> &nbsp; 메시지 보내기</h3>
 											
@@ -145,33 +242,45 @@
 															style="width: 64px;"> 받을 사람 :
 													</h4></td>
 												<td>
-												<input type="text" style="border: none; width: 100%; height: 50%; font-size: 16px;">
+												<input id="messageReceiveUserId" type="text" name="receiveUserId" style="border-color:skyblue; width: 100%; height: 50%; font-size: 16px;">
+												</td>
+											</tr>
+											
+											<tr
+												style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
+												<td><h4>
+														<img alt="" src="<%=cp%>/res/images/email.png"
+															style="width: 64px;"> 제 목 :
+													</h4></td>
+												<td>
+												<input type="text" id="messageSubject" name="subject" style="border-color:skyblue; width: 100%; height: 50%; font-size: 16px;">
 												</td>
 											</tr>
 											
 
 											<tr
-												style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
+												style="border-bottom: 2px; width: 100%; color: navy;">
 												<td><h4>
 														<img alt="" src="<%=cp%>/res/images/email.png"
-															style="width: 64px;"> 내용 : ${dto.email }
+															style="width: 64px;"> 내용 :
 													</h4></td>
 											</tr>
 											<tr
 												style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
-												<td>
-												<textarea rows="4" cols=""></textarea>
+												<td colspan="2">
+												<textarea id="messageContent" name="content" rows="8" cols="50%" style="border-color:skyblue; font-size: 16px;"></textarea>
 												</td>
 												</tr>
 											<tr style="text-align: center;">
 												<!--    <td><h3><input class="btn btn-default btn-register"  type="button" onclick="update();" value="수정하기"></h3> -->
 
 												<td><h4>
-														<a href="javascript:void(0)" onclick="openUpdateModal();">보내기</a>
+														<a onclick="sendCheck();">보내기</a>
 													</h4></td>												
 											</tr>
 										</table>
 										</div>
+										</form>
                      </div>
                   </div>
                   <div id="tab-4">
@@ -250,44 +359,6 @@
    
 
 
-   <script src="<%=cp%>/res/js/tabs/jquery.responsiveTabs.js"
-      type="text/javascript"></script>
-   <script type="text/javascript">
-      $(document)
-            .ready(
-                  function() {
-                     "use strict";
-                     $('#horizontalTab')
-                           .responsiveTabs(
-                                 {
-                                    rotate : false,
-                                    startCollapsed : 'accordion',
-                                    collapsible : 'accordion',
-                                    setHash : true,
-                                    animation : 'slide',
-                                    disabled : [ 4 ],
-                                    activate : function(e, tab) {
-                                       $('.info')
-                                             .html(
-                                                   'Tab <strong>'
-                                                         + tab.id
-                                                         + '</strong> activated!');
-                                    },
-                                    activateState : function(e,
-                                          state) {
-                                       //console.log(state);
-                                       $('.info')
-                                             .html(
-                                                   'Switched from <strong>'
-                                                         + state.oldState
-                                                         + '</strong> state to <strong>'
-                                                         + state.newState
-                                                         + '</strong> state!');
-                                    }
-                                 });
-
-                  });
-   </script>
 
 
       

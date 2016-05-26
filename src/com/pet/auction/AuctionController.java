@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.pet.adopt.Adopt;
 import com.pet.common.MyUtil;
 import com.pet.member.SessionInfo;
 

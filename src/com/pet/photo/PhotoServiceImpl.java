@@ -96,9 +96,88 @@ public class PhotoServiceImpl implements PhotoService{
 	public int deletePhoto(int photoNum, String pathname, String saveFilename) {
 		int result=0;		
 		try {
+			if(saveFilename!=null){
 			fileManager.doFileDelete(saveFilename, pathname);
-			
+			}
 			result=dao.deleteData("photo.deletePhoto", photoNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	@Override
+	public int insertPhotoReply(Reply dto) {
+		int result=0;
+		try {
+			result=dao.insertData("photo.insertPhotoReply", dto);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	@Override
+	public int dataCountPhotoReply(Map<String, Object> map) {
+		int result=0;
+		try {
+			result=dao.getIntValue("photo.dataCountPhotoReply",map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return result;
+	}
+
+	@Override
+	public List<Reply> listPhotoReply(Map<String, Object> map) {
+		List<Reply> list=null;
+		try {
+			list=dao.getListData("photo.listPhotoReply",map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return list;
+	}
+
+	@Override
+	public int deletePhotoReply(int replyNum) {
+		int result=0;
+		try {
+			result=dao.deleteData("photo.deletePhotoReply", replyNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	@Override
+	public int insertPhotoLike(Photo dto) {
+		int result=0;
+		try {
+			result=dao.insertData("photo.insertLike", dto);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	@Override
+	public int photoCountLike(Map<String, Object> map) {
+		int result=0;
+		try {
+			result=dao.getIntValue("photo.countLike",map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	@Override
+	public int deletePhotoLike(Photo dto) {
+		int result=0;
+		try {
+			result=dao.deleteData("photo.deleteLike", dto);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}

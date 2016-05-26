@@ -7,6 +7,25 @@ public class Photo {
 	private String species, subject, saveFilename, content, created;
 	private String userId, userName;	
 	private MultipartFile upload;
+	
+	private int photoLike;
+	private int likeCount;
+	
+	public int getPhotoLike() {
+		return photoLike;
+	}
+
+	public void setPhotoLike(int photoLike) {
+		this.photoLike = photoLike;
+	}
+
+	public int getLikeCount() {
+		return likeCount;
+	}
+
+	public void setLikeCount(int likeCount) {
+		this.likeCount = likeCount;
+	}
 
 	public MultipartFile getUpload() {
 		return upload;

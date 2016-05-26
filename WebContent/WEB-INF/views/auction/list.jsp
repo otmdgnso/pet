@@ -19,12 +19,12 @@
           <div class="row">
              <div class="col-md-12">
                <div class="page-title pull-left">
-                    <h2 class="title-about">Search Results</h2>
+                    <h2 class="title-about">검색 결과</h2>
                 </div>
                 <ul class="breadcrumbs pull-right">
-                    <li><a href="#">HOME</a></li>
+                    <li><a href="<%=cp%>">HOME</a></li>
                     <li>/</li>
-                    <li class="active">Search Results</li>
+                    <li class="active">검색 결과</li>
                 </ul>
              </div>
           </div>
@@ -110,9 +110,14 @@
 				                        </li>
 			                        </ul>
 		                        </div>
-		           <div>
-		                        <a href="<%=cp%>/auction/created">등록하기</a>
-		                        
+		                        <div class="click-nav-location">
+		                        <ul class="no-js">
+		                        <li>
+		                            <a href="<%=cp%>/auction/created" class="clicker">등록하기</a>
+		                            </li>
+		                            </ul>
+		                        </div>
+	                        
 				<!-- 	<div class="cbp-vm-options">
 						<a href="#" class="cbp-vm-icon cbp-vm-grid" data-view="cbp-vm-view-grid"><i class="fa fa-th-large"></i></a>
 						<a href="#" class="cbp-vm-icon cbp-vm-list cbp-vm-selected" data-view="cbp-vm-view-list"><i class="fa fa-th-list"></i></a>
@@ -120,28 +125,27 @@
 			 	</div>
 					 -->
 								
-					
+					<div style="clear: both;">
                     <!--여기서 forEach시작 -->
 					<c:forEach var="dto" items="${list}">
 					
-					<div id="Grid" class="sandbox list-fly">
+					<!--  <div id="Grid" class="sandbox list-fly"> 사진크게나옴--> 
 						<div class="mix category-1" data-value="1250">
-							<figure>
-                                <div class="cbp-vm-image img">
+							<div style="clear:both;">
+							
+                              <div class="cbp-vm-image img" align="left">
                                     <img src="<%=cp%>/uploads/auction/${dto.saveFilename}"/>
-                                </div>
-								
-								<figcaption>
-                                    <h3>제목:${dto.subject }</h3>
-                                    <div class="clear"></div>
-                                    <div class="price-night"><span>조회수:${dto.hitCount }</span><br>
-                                    <span>종:${dto.species }</span><br>
+                              </div>   
+                                 
+                                <div class="price-night" style="border-top: none;" align="left">
+                                    <h3>${dto.subject }</h3>
+                                    <div style="clear:both; ">조회수&nbsp;&nbsp;:&nbsp;&nbsp;${dto.hitCount }</div>
+                                    <div style="clear:both; ">종&nbsp;&nbsp;:&nbsp;&nbsp;${dto.species }</div>
                                     <a href="${articleUrl}&auctionNum=${dto.auctionNum}" class="btn btn-primary btn-gallery">상세보기</a>
-                                    </div>   
-                                </figcaption>
-							</figure>
+                                </div> 
+							</div>
 						</div>
-						</div>
+					<!-- </div> -->
 						
 						</c:forEach>
 						<ul class="pagination clearfix">

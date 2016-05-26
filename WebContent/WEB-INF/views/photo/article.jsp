@@ -11,12 +11,130 @@
 
 <script type="text/javascript">
 function deletePhoto(photoNum) {
-	if(confirm("분양 게시글을 삭제 하시겠습니까?")) {
-		var url="<%=cp%>/photo/delete?photoNum="+photoNum+"&page=${page}";
+	if(confirm("사진 게시글을 삭제 하시겠습니까?")) {
+		var url="<%=cp%>/photo/delete?photoNum="+photoNum+"&page=${page}&saveFilename=${dto.saveFilename}";
 		location.href=url;
 	}
 }
 
+$(function(){
+	listPage(1);
+	photoReplyCount();
+	CountLike();	
+});
+
+function listPage(page){
+	var url="<%=cp%>/photo/listReply";
+	var photoNum="${dto.photoNum}";
+	
+	$.post(url,{photoNum:photoNum, pageNo:page}, function(data){
+		$("#listReply").html(data);		
+	});
+}
+
+function sendPhotoReply(){
+	
+	var photoNum="${dto.photoNum}";
+	var content=$("#content").val().trim();
+	
+	var url="<%=cp%>/photo/insertReply";
+	var params="photoNum="+photoNum+"&content="+content;
+	
+	if(!content){
+		$("#content").focus();
+		return;
+	}
+	
+	$.ajax({
+		url:url
+		,type:"post"
+		,data:params
+		,dataType:"json"
+		,success:function(data){
+			if(data.state=="true"){
+			$("#content").val("");
+			listPage(1);
+			photoReplyCount();
+			}else{
+				alert("오류");
+			}				
+		}
+		,error:function(e){
+			alert(e.responseText);
+		}
+	});
+}
+	
+//댓글 갯수
+function photoReplyCount(){
+	var photoNum="${dto.photoNum}";
+	var url="<%=cp%>/photo/photoReplyCount";
+	$.post(url, {photoNum:photoNum}, function(data){
+		var count=data.count;
+		$("#photoReplyCountView").text("댓글 "+count);
+	},"json");
+}	
+
+//댓글 삭제
+function deleteReply(replyNum, page,userId){
+	var uid="${sessionScope.member.userId}";
+	if(!uid){
+		return false;
+	}
+	if(confirm("댓글을 삭제하시겠습니까?")){
+		var url="<%=cp%>/photo/deleteReply";
+		$.post(url,{replyNum:replyNum, userId:userId},function(data){
+			var state=data.state;
+			if(state=="true"){
+			listPage(page);
+			photoReplyCount();
+			}
+		},"json");
+	}
+}
+
+//좋아요
+function photoLike(){
+	var url="<%=cp%>/photo/photoLike";
+	var params="photoNum="+${dto.photoNum}+"&num="+${num};
+	
+	$.ajax({
+		url:url
+		,type:"post"
+		,data:params
+		,dataType:"json"
+		,success:function(data){
+			var like=data.like;
+			if(like=="0") {
+				$("#likeTitleId").text("좋아요");
+			} else {
+				$("#likeTitleId").text("좋아요 취소");
+			}
+			if(data.state=="true"){			
+				CountLike();
+			}
+		}
+	});
+}
+	
+function CountLike(){
+	var url="<%=cp%>/photo/countLike";
+	var params="photoNum="+${dto.photoNum};
+	$.ajax({
+		url:url
+		,type:"post"
+		,data:params
+		,dataType:"json"
+		,success:function(data){
+			if(data.state=="true"){
+				var count=data.count;
+				$("#likeCountId").text(count);
+			}else if(data.de=="true"){
+				
+			}
+		}
+	});
+}
 </script>
 
 <body>
@@ -59,7 +177,7 @@ function deletePhoto(photoNum) {
          ${dto.subject} &nbsp;| <font style="font-size: 10pt;">종별 : ${dto.species}</font>
          </div>
          <div class="col-sm-6 cc-in" style="padding-left: 0; text-align: right;">
-         <font style="font-size:10pt; text-align: right;">조회수: ${dto.hitCount} &nbsp;&nbsp;|&nbsp;&nbsp;${dto.created}</font>
+         <font style="font-size:10pt; text-align: right;">${dto.created}</font>
          
         	 </div>
          </div>
@@ -69,27 +187,57 @@ function deletePhoto(photoNum) {
 			<br>			
 			<br>			
 					
-		   <div style="color: black; font-size: 11pt; text-align: left;">
-		   	 ${dto.content}
-		   </div>					
 			 <div>	
 				<img style="width: 100%;" src="<%=cp%>/uploads/photo/${dto.saveFilename}"><br><br>
 			 </div>					
+		   <div style="color: black; font-size: 11pt; text-align: left;">
+		   	 ${dto.content}
+		   </div>					
 				<div class="form-group" style="margin:0 auto;" align="center">
                     	                                
                      </div>
-                     </div>				                    
+                     </div>		
+					
+						  <div style="padding-top: 100px;">
+							  <div align="left">								
+									<font id="photoReplyCountView" color="#ff590b"
+										style="font-size: 14px; font-weight:bold;">(댓글 ${dataCountReply}개)</font>	|
+									<font color="black" style="font-size: 14px;">조회수 ${dto.hitCount}</font> | &nbsp;
+								
+								    <a href="#" onclick="photoLike();"><font id="likeTitleId" style="color: black; font-size: 10pt;">좋아요</font></a>
+								    <font id="likeCountId" style="color: black; font-size: 10pt;">${count}</font>							
+							  </div>
+								<div id="listReply"></div>
+								<div>
+									<div align="center">
+										<div style="clear: both; width: 100%; padding-top: 10px;">
+											<textarea id="content" class="form-control" rows="3"
+												required="required"></textarea>
+										</div>
+									</div>
+									<div style="text-align: right; padding-top: 10px;">
+										<button type="button" onclick="sendPhotoReply();">
+											댓글등록 <span class="glyphicon glyphicon-ok"></span>
+										</button>
+									</div>
+								</div>
+
+							</div>
 					
 				</form>
 				</div>
 				<!--Close tab-content form-->
 				</div>
 				</div>
-		</section>
+				
+
+							
+
+
+						</section>
    		
 		<div style="text-align: right;">
 		  <c:if test="${sessionScope.member.userId=='admin'|| sessionScope.member.userId==dto.userId}">
-		   <input type="hidden" name="saveFilename" value="${dto.saveFilename}">
 			<button type="button" style="width: 10%;" onclick="deletePhoto(${dto.photoNum});">삭제</button>		 	
 		  </c:if>	
 		  <c:if test="${sessionScope.member.userId==dto.userId}">
