@@ -98,7 +98,7 @@ function updateReservation(reservationNum) {
                   	등록된 게시물이 없습니다.
             </c:if>
             <c:if test="${dataCount!=0 }">
-                ${paging}
+               ${paging}
             </c:if>
         </div>   
         </div>    

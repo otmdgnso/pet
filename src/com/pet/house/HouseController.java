@@ -140,6 +140,43 @@ public class HouseController {
 		return mav;
 	}
 	
-	
-	
+	//댓글 리스트
+	@RequestMapping(value="/house/listReview") 
+	public ModelAndView listReview(
+			@RequestParam(value="num") int num,
+			@RequestParam(value="pageNo", defaultValue="1") int current_page
+			) throws Exception {
+		int numPerPage=10;
+		int total_page=0;
+		int dataCount=0;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("num", num);
+		
+		dataCount=service.reviewDataCount(map);
+		total_page=myUtil.pageCount(numPerPage, dataCount);
+		if(current_page>total_page)
+			current_page=total_page;
+		
+		//리스트에 출력할 데이터
+		int start=(current_page+1)*numPerPage+1;
+		int end=current_page*numPerPage;
+		map.put("start", start);
+		map.put("end", end);
+		List<Review> listReview=service.listReview(map);
+		
+		// 페이징처리(인수2개 짜리 js로 처리)
+		String paging=myUtil.paging(current_page, total_page);
+		
+		ModelAndView mav=new ModelAndView("house/listReview");
+
+		// jsp로 넘길 데이터
+		mav.addObject("listReply", listReview);
+		mav.addObject("pageNo", current_page);
+		mav.addObject("replyCount", dataCount);
+		mav.addObject("total_page", total_page);
+		mav.addObject("paging", paging);
+		
+		return mav;
+	}
 }
