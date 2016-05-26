@@ -106,10 +106,14 @@ function checkCreated2() {
 				    	<button type="button" class="btn btn-default" style="width: 100%; height: 50px;"><i class="fa fa-heart-o" aria-hidden="true"></i> 위시리스트에 담기</button>				   			
 				    </div>				   
 			    </section>
+			    
+			    <section class="ac-container">
+				    <div style="width: 100%; height: 40px;">
+				    	<button type="button" class="btn btn-default" style="width: 100%; height: 50px;"><i class="fa fa-commenting-o" aria-hidden="true"></i> 메시지 보내기</button>				   			
+				    </div>				   
+			    </section>
             </div>
-            
-            
-            
+             
          <!-- 본문 -->   
          <div class="col-sm-8 col-md-9">
             <div class="main-details bx-about2 noowlf">
@@ -137,7 +141,7 @@ function checkCreated2() {
 			</div>
 		
             <div class="col-md-12 details-hotel" style="min-height: 100px; padding: 50px;">
-              <div><i class="fa fa-map-o" aria-hidden="true"></i> 주소</div><div align="right" style="text-align: center;"><input type="text" style="border: 0px; text-align: center;" readonly="readonly" value="${dto.address}"></div>
+              <div><i class="fa fa-map-o" aria-hidden="true"></i> 주소</div><div align="right" style="text-align: center;"><input type="text" style="border: 0px; text-align: center; width: 40%;" readonly="readonly" value="${dto.address}"></div>
               <div class="separator" style="width:100%"></div>
               <div><i class="fa fa-krw" aria-hidden="true"></i> 비용 (1마리 기준) </div><div align="right" style="text-align: center;"><input type="text" style="border: 0px; text-align: center;" readonly="readonly" value="${dto.cost}원"></div>
               <div class="separator" style="width:100%"></div>
