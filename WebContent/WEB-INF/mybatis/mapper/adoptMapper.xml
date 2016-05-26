@@ -72,7 +72,7 @@
 	        	<if test="orderList !=null and orderList != ''">
 	        		<include refid="order-list"/>
 	        	</if>
-	        	<if test="orderList ==null and orderList == ''">
+	        	<if test="orderList ==null or orderList == ''">
 	        	ORDER BY preSaleNum DESC
 	        	</if>
 
