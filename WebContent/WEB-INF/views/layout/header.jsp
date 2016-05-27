@@ -9,8 +9,84 @@
 <!--  <script type="text/javascript" src="<%=cp%>/res/js/jquery.form.js"></script> -->
 <script type="text/javascript" src="<%=cp%>/res/js/util.js"></script>
 
+<style type="text/css"> 
+/* .zeta-menu-bar {
+  background: hotpink;
+  display: inline-block;
+  width: 100%;
+} */
+.zeta-menu { margin: 0; padding: 0; width: 130px;}
+.zeta-menu li {
+  float: left;
+  list-style:none;
+  position: relative;
+}
+.zeta-menu li:hover { background: pink; }
+.zeta-menu li.expand { background: white; }
+.zeta-menu li.expand>a { color: hotpink; }
+.zeta-menu a {
+  color: white;
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+.zeta-menu li ul li{
+	padding: 20px;
+	width: 100%;
+}
+.zeta-menu ul {
+  background: #eee;
+  border: 1px solid silver;
+  display: none;
+  padding: 0;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  width: 180px;
+  background: white;
+}
+/* .zeta-menu ul li { float: none;  } */
+.zeta-menu ul li.expand { background: #ddd; }
+.zeta-menu ul li.expand a { color: black; }
+.zeta-menu ul a { color: black; }
+
+</style>
 
 <script type="text/javascript">
+/* $(function(){
+	$("ul.sub").hide();
+	  $("ul.menu li").click(function(e){
+		 $("ul:not(:animated)",this).slideDown("fast"); 
+	  },
+	  function(e){
+		$("ul",this).slideUp("fast");  
+	  });
+}); */
+$(function(){
+	$(document).mouseup(function(e) {
+		if ($(e.target).parents('.zeta-menu').length == 0) {
+			$('.zeta-menu li').removeClass('expand');
+			$('.zeta-menu ul').hide();
+		}
+	});
+	$(".zeta-menu>li:has(ul)>a").each( function() {
+		$(this).html( $(this).html()+"▶" );
+	});
+	$(".zeta-menu ul li:has(ul)")
+		.find("a:first")
+		.append("<p style='float:right;margin:-3px'>&#9656;</p>");
+
+	$(".zeta-menu li>a").click(function(){
+		var li = $(this).parent();
+		var ul = li.parent()
+		ul.find('li').removeClass('expand');
+		ul.find('ul').not(li.find('ul')).hide();
+		li.children('ul').toggle();
+		if( li.children('ul').is(':visible') || li.has('ul')) {
+			li.addClass('expand');
+		}
+	});
+});
 
 function loginSend(){
     var url="<%=cp%>/member/login";       
@@ -157,7 +233,6 @@ function shakeModalMember(msg){
     }, 1000 ); 
 }
 
-
 </script>
 
 <div id="loader-wrapper">
@@ -239,6 +314,38 @@ function shakeModalMember(msg){
 				
 				<li>
 					<a class="top-menu-txt" href="#">도움말</a>
+				<div >
+					 <ul class="zeta-menu">	
+					 	<li><a href="#">호스팅방법</a>
+					 		<ul>
+					 			<li><p style="color: black; font-size: 15pt;">
+					 						호스팅 방법? 샬라 샬라 샬라</p></li>
+					 		</ul>
+					 	</li>
+						   
+						<li><a href="#">경매방법</a>
+							<ul>
+								<li><p style="color: black; font-size: 15pt;">
+					 						경매방법 호호호호호호</p></li>
+							</ul>
+						</li>		
+						
+						<li><a href="#">분양방법</a>
+							<ul>
+								<li><p style="color: black; font-size: 15pt;">
+					 						분양방법 호호호호호호</p></li>
+							</ul>
+						</li>	
+						
+						<li><a href="#">예약방법</a>
+							<ul>
+								<li><p style="color: black; font-size: 15pt;">
+					 						예약방법 호호호호호호</p></li>
+							</ul>
+						</li>						    
+				    </ul>	
+				</div>
+				
 				</li>				
 				<!--/ 메뉴 -->		
 			</ul>
@@ -254,7 +361,7 @@ function shakeModalMember(msg){
 
 				<!-- 호스팅버튼 -->
 				<li class="weather">
-					<a class="top-menu-txt" href="#"></i>호스팅하기</a>
+					<a class="top-menu-txt" href="#">호스팅하기</a>
 				</li>
 				<!--/ 호스팅버튼 -->
 				
@@ -292,7 +399,35 @@ function shakeModalMember(msg){
         </div>
     </section>
     
-    <!-- 로그인, 로그아웃 시작 -->    
+	<!-- 모달 팝업 -->
+<div class="container">
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">HELP</h4>
+				</div>
+				<div class="modal-body" style="color: black;">
+					 <table>
+					 	<tr>
+					 	gdgd
+					 	</tr>
+					 </table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 로그인, 로그아웃 시작 -->    
      <div class="container">
 		 <div class="modal fade login" id="loginModal">
 		      <div class="modal-dialog login animated">

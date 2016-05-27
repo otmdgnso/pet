@@ -70,7 +70,6 @@ function searchList() {
 						  <button type="button"  onclick="searchList();"><span ></span> 검색</button>
         		     </form>
         		</div>
-
                 <div class="portfolio albumContainer">
                 	 <c:forEach var="dto" items="${list}">
 	                        <div class="cat3 col-md-4 gallery-view view-fifth">

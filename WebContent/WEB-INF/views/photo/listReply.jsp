@@ -6,7 +6,7 @@
 	String cp=request.getContextPath();
 %>
 <div align="center">
-<table style=' width: 100%; text-align:left; border-spacing: 0px; border-collapse: collapse; background-color: #EEEEEE; '>
+<table style='margin-top:20px; width: 100%; text-align:left; border-spacing: 0px; border-collapse: collapse; background-color: #EEEEEE; '>
 
 <c:forEach var="dto" items="${list}">
 <tr height='30' style='color:black;'>

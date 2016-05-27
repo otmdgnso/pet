@@ -41,7 +41,7 @@ public class PhotoController {
 		
 		String cp=req.getContextPath();
 		
-		int numPerPage=9;
+		int numPerPage=6;
 		int total_page=0;
 		int dataCount=0;
 		
