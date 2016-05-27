@@ -45,6 +45,62 @@ function articleMessage(messageNum) {
 		$(id).html(data);
 	});
 }
+
+function listPage(page) {
+	var mode="${mode}";
+	var searchKey=$("#searchKey").val();
+	var searchValue=$("#searchValue").val();
+	
+	var url="<%=cp%>/message/receive";
+	$.post(url, {mode:mode, page:page, searchKey:searchKey, searchValue:searchValue}, function(data){
+		var idx=1;
+		if(mode=="receive")
+			idx=0;
+		var id=$("#tab-"+idx);
+		id.html(data);
+	});
+}
+
+function deleteListMessage() {
+	var mode="${mode}";
+	var page=$("#page").val();
+	var searchKey=$("#searchKey").val();
+	var searchValue=$("#searchValue").val();
+	
+	var chks = $("input:checked");
+	var cnt = chks.length;
+	if(cnt==0) {
+		alert("삭제할 항목을 먼저 선택 하세요 !!!");
+		return;
+	}
+	
+	if(! confirm("선택한 자료를 삭제 하시겠습니까 ? "))
+		return;
+	
+	var url="<%=cp%>/message/messageDeleteChk";
+	var params="mode="+mode+"&page="+page+"&searchKey="+searchKey+"&searchValue="+searchValue;
+	$.each($(chks), function() {
+		params += "&nums="+$(this).val();
+	});
+	
+	$.ajax({
+		type:"POST",
+		url:url,
+		data:params,
+		dataType:"JSON",
+		success:function(data) {
+			var idx=1;
+			if(mode=="receive")
+				idx=0;
+			var id=$("#tab-"+idx);
+			id.html(data);
+		},
+		error:function(e) {
+			alert(e.responseText);
+		}
+		
+	});
+}
 </script>
 <c:if test="${mode=='receive'}">
 <div id="tbListRecive">
