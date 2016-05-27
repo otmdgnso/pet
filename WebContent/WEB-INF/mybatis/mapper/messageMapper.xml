@@ -87,4 +87,9 @@
 	]]>
 	</select>
 
+	<select id="readMessage" parameterType="Integer" resultType="com.pet.message.Message">
+	SELECT messageNum, sendUserId, receiveUserId, subject, content, sendCreated
+	FROM message WHERE messageNum=#{messageNum}
+	</select>
+	
 </mapper>

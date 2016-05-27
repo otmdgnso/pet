@@ -5,6 +5,13 @@
 <%
 	String cp=request.getContextPath();
 %>
+<script type="text/javascript">
+function searchList() {
+		var f=document.photoSearchForm;
+		f.action="<%=cp%>/photo/photo";
+		f.submit();
+}
+</script>
 
 <meta name="description" content="travel, trip, store, shopping, siteweb, cart">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,6 +57,19 @@
 			                </ul> 
 		                </dd>
 	                </dl>
+	                
+	           <div align="center">
+        		     <form name="photoSearchForm" method="post" class="form-inline">
+						  <select name="searchKey" >
+						      <option value="subject">제목</option>
+						      <option value="userName">작성자</option>
+						      <option value="content">내용</option>
+						      <option value="created">등록일</option>
+						  </select>
+						  <input type="text" name="searchValue">
+						  <button type="button"  onclick="searchList();"><span ></span> 검색</button>
+        		     </form>
+        		</div>
 
                 <div class="portfolio albumContainer">
                 	 <c:forEach var="dto" items="${list}">
@@ -65,7 +85,7 @@
                                       <span style="color: black;">제목 : ${dto.subject}</span> &nbsp;
                                        <span style="color: orange; font-weight: bold;">[${dto.replyCount}]</span><br>
                                        <span style="color: black;">조회수 ${dto.hitCount}  |  ${dto.created}     |    좋아요 ${dto.likeCount}</span><br>
-                                       <span style="color: black;">${dto.userId}</span>
+                                       <span style="color: black;">${dto.userId}  (${dto.userName})</span>
                                     </div>
                             </div>                           
 					 </c:forEach>
