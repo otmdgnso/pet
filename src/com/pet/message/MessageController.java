@@ -140,13 +140,36 @@ public class MessageController {
 		mav.addObject("articleUrl",articleUrl);
 		mav.addObject("page",current_page);
 		mav.addObject("dataCount",dataCount);
-		mav.addObject("paging",myUtil.paging(current_page, total_page, listUrl));
+		mav.addObject("paging",myUtil.paging(current_page, total_page));
 		mav.addObject("searchKey",searchKey);
 		mav.addObject("searchValue",searchValue);
 		mav.addObject("mode",mode);
 		return mav;
 	}
 
+	@RequestMapping(value="/message/article")
+	public ModelAndView article(
+			@RequestParam(value="messageNum") int messageNum,
+			@RequestParam(value="page",defaultValue="1") String page,
+			@RequestParam(value="searchKey", defaultValue="") String searchKey,
+			@RequestParam(value="searchValue", defaultValue="") String searchValue
+			) throws Exception {
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("searchKey", searchKey);
+		map.put("searchValue", searchValue);
+		map.put("messageNum", messageNum);
+		
+		Message dto=null;
+		dto=service.readMessage(messageNum);
+		
+		dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
+		
+		ModelAndView mav=new ModelAndView("message/article");
+		
+		mav.addObject("dto",dto);
+		mav.addObject("page",page);
+		return mav;
+	}
 	
 	
 	

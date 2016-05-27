@@ -67,4 +67,15 @@ public class MessageServiceImpl implements MessageService {
 		}
 		return list;
 	}
+
+	@Override
+	public Message readMessage(int messageNum) {
+		Message dto=null;
+		try {
+			dto=dao.getReadData("message.readMessage",messageNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return dto;
+	}
 }

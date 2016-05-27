@@ -8,18 +8,42 @@
 
 <script type="text/javascript">
 $(function() {
-	$('#chkAll').click(function() {
+	$('#chkAll1').click(function() {
 		if (this.checked) {
-			$("#tbListMessage input[type=checkbox]").each(function() { this.checked = true; });
+			$("input[type=checkbox]").each(function() { this.checked = true; });
 		} else {
-			$("#tbListMessage input[type=checkbox]").each(function() { this.checked = false; });
+			$("input[type=checkbox]").each(function() { this.checked = false; });
+		}
+	});
+	$('#chkAll2').click(function() {
+		if (this.checked) {
+			$("input[type=checkbox]").each(function() { this.checked = true; });
+		} else {
+			$("input[type=checkbox]").each(function() { this.checked = false; });
 		}
 	});
 });
 
 function articleMessage(messageNum) {
-	var mode=$("#mode").val();
-	alert(mode);
+	var mode="${mode}";
+	var page=$("#page").val();
+	var searchKey=$("#searchKey").val();
+	var searchValue=$("#searchValue").val();
+	
+	var url="<%=cp%>/message/article";
+	
+	$.post(url, {messageNum:messageNum, mode:mode, page:page, searchKey:searchKey, searchValue:searchValue}, function(data) {
+		var s=$.trim(data);
+		var id;
+		if(mode=="receive") {
+			id="#tbListRecive";
+			$(id).html("");
+		} else {
+			id="#tbListSend";
+			$(id).html("");
+		}
+		$(id).html(data);
+	});
 }
 </script>
 
@@ -63,24 +87,15 @@ function articleMessage(messageNum) {
 								
 								<div class="separator" style="width:100%"></div>  
 								
-								<table style="width: 100%;" id="tbListMessage">
+								<c:if test="${mode=='receive'}">
+								<table style="width: 100%;" id="tbListRecive">
 								<tr>
 									<td style="width: 20%; height: 50px;">
-									<input type="checkbox" id="chkAll" style="width: 20%">
+									<input type="checkbox" id="chkAll1" style="width: 20%">
 									</td>
-									<c:if test="${mode=='receive'}">
 									<td style="width: 20%; font-weight: bold;">보낸사람</td>
-									</c:if>
-									<c:if test="${mode=='send'}">
-									<td style="width: 20%; font-weight: bold;">받은사람</td>
-									</c:if>
 									<td style="width: 20%; font-weight: bold;">제목</td>
-									<c:if test="${mode=='receive'}">
 									<td style="width: 20%; font-weight: bold;">받은날짜</td>
-									</c:if>
-									<c:if test="${mode=='send'}">
-									<td style="width: 20%; font-weight: bold;">보낸날짜</td>
-									</c:if>
 									<td style="width: 20%; font-weight: bold;">확인날짜</td>
 								</tr>
 								
@@ -89,12 +104,7 @@ function articleMessage(messageNum) {
 									<td style="width: 20%; height: 10px;">
 									<input type="checkbox" value="${dto.messageNum}" style="width: 20%">
 									</td>
-									<c:if test="${mode=='receive'}">
 									<td style="width: 20%; height: 10px;">${dto.sendUserId}</td>
-									</c:if>
-									<c:if test="${mode=='send'}">
-									<td style="width: 20%;">${dto.receiveUserId}</td>
-									</c:if>
 									<td style="width: 20%; cursor: pointer;" onclick="articleMessage(${dto.messageNum});">${dto.subject}</td>
 									<td style="width: 20%;">${dto.sendCreated}</td>
 									<td style="width: 20%;">
@@ -106,6 +116,38 @@ function articleMessage(messageNum) {
 								</tr>
 								</c:forEach>
 							</table>
+							</c:if>
+							
+							<c:if test="${mode=='send'}">
+							<table style="width: 100%;" id="tbListSend">
+								<tr>
+									<td style="width: 20%; height: 50px;">
+									<input type="checkbox" id="chkAll2" style="width: 20%">
+									</td>
+									<td style="width: 20%; font-weight: bold;">받은사람</td>
+									<td style="width: 20%; font-weight: bold;">제목</td>
+									<td style="width: 20%; font-weight: bold;">보낸날짜</td>
+									<td style="width: 20%; font-weight: bold;">확인날짜</td>
+								</tr>
+								
+								<c:forEach var="dto" items="${list}">
+								<tr>
+									<td style="width: 20%; height: 10px;">
+									<input type="checkbox" value="${dto.messageNum}" style="width: 20%">
+									</td>
+									<td style="width: 20%;">${dto.receiveUserId}</td>
+									<td style="width: 20%; cursor: pointer;" onclick="articleMessage(${dto.messageNum});">${dto.subject}</td>
+									<td style="width: 20%;">${dto.sendCreated}</td>
+									<td style="width: 20%;">
+									<c:if test="${dto.confirmCreated==null}">
+									읽지않음
+									</c:if>
+									${dto.confirmCreated}
+									</td>
+								</tr>
+								</c:forEach>
+							</table>
+							</c:if>
 							
 							<div class="separator" style="width:100%"></div> 
 							<div>
@@ -113,4 +155,7 @@ function articleMessage(messageNum) {
 							</div>
 						</form>
 										</div>
-										
+
+<input type="hidden" id="searchKey" value="${searchKey}">
+<input type="hidden" id="searchValue" value="${searchValue}">
+<input type="hidden" id="page" value="${page}">
