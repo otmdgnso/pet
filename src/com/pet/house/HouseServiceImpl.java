@@ -105,7 +105,7 @@ public class HouseServiceImpl implements HouseService{
 	}
 
 	@Override
-	public int insertReview(HouseReview dto) {
+	public int insertReview(Review dto) {
 		int result=0;
 		
 		try {
@@ -118,8 +118,8 @@ public class HouseServiceImpl implements HouseService{
 	}
 
 	@Override
-	public List<HouseReview> listReview(Map<String, Object> map) {
-		List<HouseReview> list=null;
+	public List<Review> listReview(Map<String, Object> map) {
+		List<Review> list=null;
 		
 		try {
 			list=dao.getListData("house.listReview", map);
@@ -144,11 +144,50 @@ public class HouseServiceImpl implements HouseService{
 	}
 
 	@Override
-	public int deleteReview(Map<String, Object> map) {
+	public int deleteReview(int reviewnum) {
 		int result=0;
 		
 		try {
-			result=dao.deleteData("house.deleteReview", map);
+			result=dao.deleteData("house.deleteReview", reviewnum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int insertGrage(Review dto) {
+		int result=0;
+		
+		try {
+			result=dao.insertData("house.insertGrade", dto);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return result;
+	}
+
+	@Override
+	public List<Review> listGrade(Map<String, Object> map) {
+		List<Review> list = null;
+		
+		try {
+			list=dao.getListData("house.listGrade", map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return list;
+	}
+
+	@Override
+	public int gradeDataCount(Map<String, Object> map) {
+		int result=0;
+		
+		try {
+			result=dao.getIntValue("house.gradeDataCount", map);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
