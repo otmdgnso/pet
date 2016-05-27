@@ -39,7 +39,7 @@ $(function () {
     $('#Grid').mixItUp();
 });
 </script>
- <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 <script>
 $(function () {
     "use strict";
@@ -54,6 +54,19 @@ $(function () {
     });
     $("#amount").val("$" + $("#slider-range").slider("values", 0) +
     " - $" + $("#slider-range").slider("values", 1));
+    
+    
+	// ajax 처리
+	$.ajax({
+	  url: "<%=cp%>/reservation/list"
+	  //context: document.body
+	}).done(function(data) {
+		$("#ajaxReserveList").html(data);
+	});
+
+      $("#wizard-picture1").change(function(){
+          readURL(this);
+      });
 });
 </script>
 
@@ -96,18 +109,15 @@ function checkHouseinfo(hostNum) {
 }
 </script>
 
+<!--List-->
+<link href="<%=cp%>/res/css/list/component.css" rel="stylesheet" type="text/css" />
+<link href="<%=cp%>/res/css/layout2.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
+<link href="<%=cp%>/res/css/responsive.css" rel="stylesheet" type="text/css" />
 
 
-
-        <!--List-->
-        <link href="<%=cp%>/res/css/list/component.css" rel="stylesheet" type="text/css" />
-        <link href="<%=cp%>/res/css/layout2.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
-        <link href="<%=cp%>/res/css/responsive.css" rel="stylesheet" type="text/css" />
-
-
-    <div class="clear"></div>
-    <section class="about-section-top">
+<div class="clear"></div>
+<section class="about-section-top">
        <div class="container">
           <div class="row">
              <div class="col-md-12">
@@ -117,7 +127,8 @@ function checkHouseinfo(hostNum) {
              </div>
           </div>
       </div>
-    </section>
+</section>
+
 <section id="top-list-trip">
    <div class="container">
       <div class="row">
@@ -172,7 +183,7 @@ function checkHouseinfo(hostNum) {
                                 <div class="click-nav">
 			                        <ul class="no-js">
 				                        <li>
-					                        <a class="clicker">가격</a>
+					                        <a class="clicker">가격 높은순</a>
 					                        <ul>
 						                        <li><span class="btn sort active" data-sort="random">All</span></li>
 						                        <li><span class="btn sort" data-sort="value:asc">높은 가격순</span></li>
@@ -184,7 +195,7 @@ function checkHouseinfo(hostNum) {
                                 <div class="click-nav-location">
 			                        <ul class="no-js">
 				                        <li>
-					                        <a class="clicker">위치</a>
+					                        <a class="clicker">가격 낮은순</a>
 					                        <ul>
                                                 <li><span class="btn filter active" data-filter="all">All</span></li>
 						                        <li><span class="btn filter" data-filter=".category-1">서울</span></li>
@@ -220,7 +231,7 @@ function checkHouseinfo(hostNum) {
                                     
                                     <table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
                                     	<tr>
-                                    		<td align="left" width="50%" style="color:#8C8C8C"><img class="star-level" src="<%=cp%>/res/images/5star.png"/> (4)</td>                                 		
+                                    		<td align="left" width="50%" style="color:#8C8C8C"><img class="star-level" src="<%=cp%>/res/images/5star.png"/> (${dto.reviewcnt})</td>                                 		
                                     		<td align="right" width="50%" rowspan="2"><a onclick='checkHouseinfo(${dto.hostNum});' class="btn btn-primary btn-gallery" style="float: right;">더보기</a></td>
                                     	</tr>
                                     </table>

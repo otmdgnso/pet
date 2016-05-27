@@ -143,7 +143,7 @@
 						<i class="fa fa-info-circle fa-lg"></i>
 					</div>
 					<div class="content-checkin-data" style="margin:0 auto; width:60%" align="center">
-						<i class="fa fa-calendar infield"></i><input name="checkin" type="text" id="checkin" value="2000/01/01" style="margin:0 auto; width:100%;" class="form-control checkin" placeholder="ex: 2000/01/01" />
+						<i class="fa fa-calendar infield"></i><input name="checkIn" type="text" id="checkin" value="2000/01/01" style="margin:0 auto; width:100%;" class="form-control checkin" placeholder="ex: 2000/01/01" />
 					</div>
 					</div>
 					</div>
@@ -154,7 +154,7 @@
 						<i class="fa fa-info-circle fa-lg"> </i>
 					</div>
 					<div class="content-checkin-data" style="margin:0 auto; width:60%" align="center">
-						<i class="fa fa-calendar infield"></i> <input name="checkout" type="text" id="checkout" value="2000/01/01" style="margin:0 auto; width:100%;" class="form-control checkout" placeholder="ex: 2000/01/01" />
+						<i class="fa fa-calendar infield"></i> <input name="checkOut" type="text" id="checkout" value="2000/01/01" style="margin:0 auto; width:100%;" class="form-control checkout" placeholder="ex: 2000/01/01" />
 					</div>
 					</div>
 					</div>
@@ -250,6 +250,7 @@
                      
 				<input type="hidden" name="num" value="${dto.num}">
                 <input type="hidden" name="hostNum" value="${dto.hostNum}">
+                <input type="hidden" name="totalCost" value="${dto.totalCost}">
 				
 				<div class="col-sm-2 colbtn">
 				<c:if test="${mode=='created'}">		
@@ -261,8 +262,6 @@
 					<button type="button" class="btn btn-primary btn-block" style="float: right; width: 50%;" onclick="javascript:location.href='<%=cp%>/member/blog#tab-3';">취소</button>		
 				</c:if>
 				</div>
-
-				
 				</form>
 				</div>
 				<!--Close tab-content form-->

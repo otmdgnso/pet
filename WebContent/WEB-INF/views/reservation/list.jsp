@@ -5,29 +5,6 @@
 <%
 	String cp=request.getContextPath();
 %>
-<script type="text/javascript">
-
-function deleteReservation(reservationNum) {
-	var page="${page}";
-	var params="reservationNum="+reservationNum+"&page="+page;
-	var url="<%=cp%>/reservation/delete?"+params;
-	
-	if(confirm("정말 삭제할까요?")) {
-		location.href=url;
-	}
-}
-
-function updateReservation(reservationNum) {
-	var page="${page}";
-	var params="reservationNum="+reservationNum+"&page="+page;
-	var url="<%=cp%>/reservation/update?"+params; 
-	
-	location.href=url;
-}
-</script>
-
-
-
 <section class="top-we-are" style="height:780px;">
 	<div class="container">
 	<div class="row" style="margin:0 auto; width:80%;" align="center">

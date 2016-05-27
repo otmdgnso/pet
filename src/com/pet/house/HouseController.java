@@ -7,16 +7,15 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pet.common.MyUtil;
-import com.pet.member.SessionInfo;
 
 @Controller("house.houseController")
 public class HouseController {
@@ -26,10 +25,9 @@ public class HouseController {
 	private MyUtil myUtil;
 	
 	// 검색 결과 창
-	@RequestMapping(value="house/list")
+	@RequestMapping(value="/house/list")
 	public ModelAndView list(
 			HttpServletRequest req,
-			//@RequestParam(value="hostNum") int hostNum,
 			@RequestParam(value="page", defaultValue="1") int current_page,
 			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
 			@RequestParam(value="searchValue", defaultValue="") String searchValue
@@ -50,6 +48,7 @@ public class HouseController {
         map.put("searchValue", searchValue);
 
         dataCount = service.dataCount(map);
+        
         if(dataCount != 0)
             total_page = myUtil.pageCount(numPerPage,  dataCount) ;
 
@@ -120,7 +119,7 @@ public class HouseController {
 	}*/
 	
 	// 호스팅한 집 정보
-	@RequestMapping(value="house/houseinfo")
+	@RequestMapping(value="/house/houseinfo") 
 	public ModelAndView houseInfo(
 			@RequestParam(value="hostNum") int hostNum
 			) throws Exception{
@@ -131,6 +130,7 @@ public class HouseController {
 		map.put("hostNum", dto.getNum());
 		
 		ModelAndView mav = new ModelAndView(".house.houseinfo");
+		mav.addObject("hostNum",hostNum);
 		mav.addObject("dto", dto);
 		
 		return mav;
@@ -143,47 +143,52 @@ public class HouseController {
 	}
 	
 	//댓글 리스트
-	@RequestMapping(value="/house/listReview") 
+	@RequestMapping(value="/house/review") 
 	public ModelAndView listReview(
-			HttpSession session
-			,HouseReview dto
+			@RequestParam(value="hostNum", defaultValue="163") int hostNum
 			,@RequestParam(value="pageNo", defaultValue="1") int current_page
 			) throws Exception {
+		
 		int numPerPage=10;
 		int total_page=0;
 		int dataCount=0;
 		
-		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		dto.setNum(info.getMemberNum());
-		dto.setUserName(info.getUserName());
-		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("hostNum", dto.getHostNum());
+		map.put("hostNum", hostNum);
 		
 		dataCount=service.reviewDataCount(map);
 		total_page=myUtil.pageCount(numPerPage, dataCount);
 		if(current_page>total_page)
 			current_page=total_page;
 		
-		//리스트에 출력할 데이터
-		int start=(current_page+1)*numPerPage+1;
+		//리스트에 출력할 데이터		
+		int start=(current_page-1)*numPerPage+1;
 		int end=current_page*numPerPage;
 		map.put("start", start);
 		map.put("end", end);
-		List<HouseReview> listReview=service.listReview(map);
 		
-		// 페이징처리(인수2개 짜리 js로 처리)
-		String paging=myUtil.paging(current_page, total_page);
-		
-		ModelAndView mav=new ModelAndView("house/listReview");
+		List<Review> list=service.listReview(map);
 
-		// jsp로 넘길 데이터
-		mav.addObject("listReply", listReview);
+		
+		ModelAndView mav=new ModelAndView("/house/review");
+		mav.addObject("listReview", list);
 		mav.addObject("pageNo", current_page);
-		mav.addObject("replyCount", dataCount);
+		mav.addObject("reviewDataCount", dataCount);
 		mav.addObject("total_page", total_page);
-		mav.addObject("paging", paging);
+		mav.addObject("paging", myUtil.paging(current_page, total_page));
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="/house/review/delete") 
+	@ResponseBody
+	public String delete(
+			@RequestParam(value="reviewnum") int reviewnum
+			) throws Exception {
+		
+		service.deleteReview(reviewnum);
+		
+		return "";
+	}
+
 }

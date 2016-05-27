@@ -67,4 +67,29 @@ public class MessageServiceImpl implements MessageService {
 		}
 		return list;
 	}
+
+	@Override
+	public Message readMessage(int messageNum) {
+		Message dto=null;
+		try {
+			dto=dao.getReadData("message.readMessage",messageNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return dto;
+	}
+
+	@Override
+	public int deleteMessage(Map<String, Object> map) {
+		int result=0;
+		try {
+			// 삭제 상태를 Y로 변경
+			result=dao.updateData("message.updateDeleteState", map);
+			// 보낸이와 받은이가 모두 Y이면 DB에서 삭제
+			result=dao.deleteData("message.deleteMessage", map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
 }

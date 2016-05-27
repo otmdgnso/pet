@@ -1,7 +1,14 @@
 package com.pet.house;
 
 public class House {
-	int hostNum, cost, capacity, num, picNum;
+	int hostNum, cost, capacity, num, picNum, reviewcnt;
+	public int getReviewcnt() {
+		return reviewcnt;
+	}
+
+	public void setReviewcnt(int reviewcnt) {
+		this.reviewcnt = reviewcnt;
+	}
 	String category1, category2, category3;
 	String address, searchOn, subject, content, created, species;
 	String saveFileNum, profile, userName;

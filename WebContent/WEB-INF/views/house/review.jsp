@@ -47,15 +47,15 @@
 
 <!-- 리뷰 -->
 <div class="separator" style="width:100%; padding: 0px;"></div>
-<div style="clear:both; margin-top:5px; padding: 10px; border-bottom:  #d5d5d5 solid 1px; min-height: 150px;">
-<div style="clear: both;">
+
+<div style="clear:both; margin-top:5px; padding: 10px; border-bottom: #d5d5d5 solid 1px; min-height: 150px;">
 <c:forEach var="dto" items="${listReview}">
-<table style="width: 100%; 	margin: 0px auto; border-spacing: 10px;">
+<table style="width: 100%; min-height: 100px; margin: 0px auto; border-spacing: 10px;">
 	<tr>
 		<td align="center" width="20%">
 			<img src="<%=cp%>/uploads/profile/${dto.profile}" class="avatar img-circle img-thumbnail" width="70px;">
 		</td>
-		<td align="left" width="70%" style="margin-bottom:  5px;">
+		<td align="left" width="70%" style="margin-bottom:  5px; min-height: 50px;">
 			${dto.content}
 		</td>
 		<td width="10%"></td>
@@ -63,23 +63,30 @@
 	<tr>
 		<td align="center" width="20%">${dto.userName}</td>
 		<td align="left" width="70%">${dto.created}</td>
-		<td width="10%">삭제</td>
+		
+		
+		<td width="10%"><a onclick='deleteReview("${dto.reviewnum}")'>삭제</a></td>
+		
+		<!-- 
+		<c:if test="${sessionScope.member.memberNum==dto.num || sessionScope.member.userId=='admin'}">
+		<td width="10%"><a onclick='deleteReview("${dto.reviewnum}")'>삭제</a></td>
+		</c:if>
+		 -->
 	</tr>
 </table>
+<div class="separator" style="width:100%; padding: 0px;"></div>
 </c:forEach>
-</div>
-</div>
+
 
 <!-- 페이징처리 -->
 <div class="cbp-vm-switcher cbp-vm-view-list">
-		<div class="form-group" style="margin:0 auto; width:80%; height:60px " align="center">
 		<div class="paging" style="text-align: center; min-height: 50px; line-height: 50px; color: #A6A6A6;">
             <c:if test="${reviewDataCount==0 }">
-                  	등록된 게시물이 없습니다.
+                  	등록된 후기가 없습니다.
             </c:if>
-            <c:if test="${reviewDataCount!=0 }">
+            <c:if test="${reviewDataCount!=0 }">			
                ${paging}
             </c:if>
-        </div>   
-        </div>    
-	</div>
+</div>
+</div>     
+</div>
