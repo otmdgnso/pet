@@ -31,22 +31,10 @@
 </style>
 
 <script type="text/javascript">
-<%-- function searchList() {
-	var f=document.searchForm;
-	
-	alert(searchvalue);
-	f.action="<%=cp%>/reservation/list";
-	f.submit();
-} --%>
-
-function searchList() {
-<%-- 	var f=document.searchForm;
-	f.action="<%=cp%>/reservation/list";
-	f.submit();
- --%>	
- 
+function searchList() { 
  	var searchHost = $("#searchHost").val();
  	var searchState = "";
+ 	
  	alert($("#searchState").val());
  
 	$.ajax({
@@ -57,8 +45,6 @@ function searchList() {
 		$("#ajaxReserveList").html('');
 		$("#ajaxReserveList").html(data);
 	}); 
-	
-	
 }
 
 function deleteReservation(reservationNum) {
@@ -88,7 +74,7 @@ $(document).ready(function(){
 	  //context: document.body
 	}).done(function(data) {
 		$("#ajaxReserveList").html(data);
-	}); 
+	});
 
       $("#wizard-picture1").change(function(){
           readURL(this);

@@ -1,8 +1,17 @@
 package com.pet.house;
 
-public class HouseReview {
-	private int reviewnum, hostNum, num, completeNum, reservationNum;
+public class Review {
+	private int reviewnum, hostNum, num, reservationNum, compeleteNum;
 	private String userName, created, content, profile;
+	
+	
+	public int getCompeleteNum() {
+		return compeleteNum;
+	}
+	public void setCompeleteNum(int compeleteNum) {
+		this.compeleteNum = compeleteNum;
+	}
+
 	
 	public int getReviewNum() {
 		return reviewnum;
@@ -30,12 +39,6 @@ public class HouseReview {
 	}
 	public void setNum(int num) {
 		this.num = num;
-	}
-	public int getCompleteNum() {
-		return completeNum;
-	}
-	public void setCompleteNum(int completeNum) {
-		this.completeNum = completeNum;
 	}
 	public String getUserName() {
 		return userName;

@@ -43,8 +43,11 @@ $(function () {
             $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
         }
     });
-    $("#amount").val("$" + $("#slider-range").slider("values", 0) +
-    " - $" + $("#slider-range").slider("values", 1));
+    
+    $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
+    
+    ajaxReviewList();
+    
 });
 
 function checkCreated(hostNum) {
@@ -58,19 +61,25 @@ function checkCreated2() {
 	f.submit();
 }
 
-//댓글 리스트
-$(function(){
-	listPage(1);
-});
+//리뷰
 
-function listPage(page) {
-	var url="<%=cp%>/house/houseReview";
-	var hostNum="${dto.hostNum}";
-	$.post(url, {hostNum:hostNum, pageNo:page}, function(data){
-		$("#ajaxHouseReview").html(data);
+function ajaxReviewList() {
+	var url="<%=cp%>/house/review";
+	var hostNum=${hostNum};
+	var pageNo=1;
+	$.post(url, {hostNum:hostNum, pageNo:1}, function(data){
+		$("#review").html(data);
 	});
 }
 
+function deleteReview(reviewnum, hostNum) {
+	var params="reviewnum="+reviewnum;
+	var url="<%=cp%>/house/review/delete?"+params;
+	
+	if(confirm("정말 삭제할까요?")) {
+		location.href=url;
+	}
+}
 </script>
 
 <div class="clear"></div>
@@ -166,9 +175,14 @@ function listPage(page) {
 
 			<!-- 후기 -->
             <div class="col-md-12 details-hotel" style="min-height: 100px; padding: 50px;">
-              <div id="ajaxHouseReview"></div>
+              <div id="review"></div>
             </div>
-           
+            
+            <!-- 리스트로 돌아가기 -->
+            <div class="col-sm-8 col-md-9" style="margin-top: 30px; float: right;">
+	           	<button type="button" class="btn btn-primary btn-block" style="float: right; width: 10%;" onclick="javascript:location.href='<%=cp%>/house/list';">목록</button>
+	        </div>
+
           </div>
         </div>
         </div>

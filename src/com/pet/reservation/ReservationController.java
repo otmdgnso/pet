@@ -78,7 +78,7 @@ public class ReservationController {
 			data.setListNum(listNum);
 			n++;
 		}
-		
+
 		ModelAndView mav=new ModelAndView("/reservation/list");
 		mav.addObject("list",list);
 		mav.addObject("page",current_page);
@@ -155,7 +155,7 @@ public class ReservationController {
 			HttpSession session
 			,Reservation dto
 			,@RequestParam(value="page") String page
-			) throws Exception {
+			) throws Exception{
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		if(info==null) {
@@ -175,6 +175,6 @@ public class ReservationController {
 
 		service.deleteReservation(reservationNum);
 		
-		return "redirect:/reservation/list?page="+page;
+		return "redirect:/member/blog#tab-3";
 	}
 }
