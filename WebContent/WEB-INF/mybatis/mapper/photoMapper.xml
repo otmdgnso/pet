@@ -22,7 +22,7 @@
 			species=#{searchValue}
 		</if>
 		<if test="searchKey=='userName'">
-			userName=#{searchValue}
+			m.userName=#{searchValue}
 		</if>
 		<if test="searchKey=='subject'">
 			INSTR(subject,#{searchValue})&gt;0
@@ -31,13 +31,24 @@
 			DBMS_LOB.INSTR(content,#{searchValue})&gt;0
 		</if>
 		<if test="searchKey=='created'">
-			TO_CHAR(created,'YYYY-MM-DD')=#{searchValue}
-			OR TO_CHAR(created,'YYYY-MM-DD')=#{searchValue}
+			TO_CHAR(p.created,'YYYY-MM-DD')=#{searchValue}
+			OR TO_CHAR(p.created,'YYYYMMDD')=#{searchValue}
 		</if>
 	</sql>
 	
 	<select id="dataCount" resultType="Integer" parameterType="map">
-		SELECT NVL(COUNT(*),0) FROM photoGal
+		SELECT NVL(COUNT(*),0) FROM photoGal p
+		JOIN member m ON p.num=m.num   
+        		 LEFT OUTER JOIN 
+        		 (
+        		   SELECT photoNum, COUNT(*) likeCount FROM photoLike
+        		   GROUP BY photoNum
+        		 )l ON l.photoNum=p.photoNum   
+            LEFT OUTER JOIN
+             (
+              SELECT photoNum, COUNT(*) replyCount FROM photoGalReply
+              GROUP BY photoNum
+             )r ON r.photoNum=p.photoNum  
 		<where>
 			<if test="searchValue!=null and searchValue!='' ">
 				<include refid="where-list"/>
