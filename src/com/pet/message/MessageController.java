@@ -149,6 +149,7 @@ public class MessageController {
 
 	@RequestMapping(value="/message/article")
 	public ModelAndView article(
+			@RequestParam(value="mode") String mode,
 			@RequestParam(value="messageNum") int messageNum,
 			@RequestParam(value="page",defaultValue="1") String page,
 			@RequestParam(value="searchKey", defaultValue="") String searchKey,
@@ -168,6 +169,7 @@ public class MessageController {
 		
 		mav.addObject("dto",dto);
 		mav.addObject("page",page);
+		mav.addObject("mode",mode);
 		return mav;
 	}
 	
