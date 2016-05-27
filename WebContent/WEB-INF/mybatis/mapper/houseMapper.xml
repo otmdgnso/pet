@@ -96,4 +96,8 @@
 		DELETE FROM hostreview
 		WHERE reviewnum=#{reviewnum}
 	</delete>
+	
+	<select id="listGrade" parameterType="map" resultType="com.pet.house.Review">
+		SELECT * FROM grade;
+	</select>
 </mapper>

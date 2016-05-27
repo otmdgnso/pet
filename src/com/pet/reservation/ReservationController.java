@@ -91,11 +91,16 @@ public class ReservationController {
 	public ModelAndView createdForm(
 			HttpSession session,
 			Reservation dto
-			) throws Exception {
+			) throws Exception {		
 		
 		int tax=(int)((double)dto.getCost()*0.1);
 		int total=(int)(tax+(double)dto.getCost());
-
+		
+		SessionInfo info = (SessionInfo) session.getAttribute("member");
+		dto.setNum(info.getMemberNum());
+		dto.setHostNum(dto.getHostNum());
+		dto.setTotalCost(total);
+		
 		ModelAndView mav=new ModelAndView(".reservation.created");
 		mav.addObject("mode", "created");
 		mav.addObject("dto", dto);
@@ -107,16 +112,12 @@ public class ReservationController {
 	
 	@RequestMapping(value="/reservation/created", method=RequestMethod.POST)
 	public String createdSubmit(
-			HttpSession session
-			,Reservation dto
+			Reservation dto
 			) throws Exception {
-		
-		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		dto.setUserName(info.getUserName());
 
 		service.insertReservation(dto, "created");
 
-		return "/reservation/list";
+		return "redirect:/house/list";
 	}
 	
 	@RequestMapping(value="/reservation/update", method=RequestMethod.GET)

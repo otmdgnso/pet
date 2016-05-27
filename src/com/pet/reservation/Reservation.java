@@ -4,8 +4,15 @@ public class Reservation {
 	private int listNum, reservationNum, pet_su, num, hostNum;
 	private String reservationDate, checkIn, checkOut, check_day, accept, acceptDate, pet_type;
 	private String address, userName;
-	private int cost;
+	private int cost, totalCost;
+
 	
+	public int getTotalCost() {
+		return totalCost;
+	}
+	public void setTotalCost(int totalCost) {
+		this.totalCost = totalCost;
+	}
 	public String getPet_type() {
 		return pet_type;
 	}

@@ -4,7 +4,26 @@ public class Review {
 	private int reviewnum, hostNum, num, reservationNum, compeleteNum;
 	private String userName, created, content, profile;
 	
+	private int clean, price, kind;
 	
+	public int getClean() {
+		return clean;
+	}
+	public void setClean(int clean) {
+		this.clean = clean;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getKind() {
+		return kind;
+	}
+	public void setKind(int kind) {
+		this.kind = kind;
+	}
 	public int getCompeleteNum() {
 		return compeleteNum;
 	}

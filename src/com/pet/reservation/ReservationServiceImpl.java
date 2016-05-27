@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pet.common.dao.CommonDAO;
-import com.pet.house.House;
 
 @Service("reservation.reservationService")
 public class ReservationServiceImpl implements ReservationService {
@@ -19,7 +18,7 @@ public class ReservationServiceImpl implements ReservationService {
 	public int insertReservation(Reservation dto, String mode) {
 		int result=0;
 		try {
-			result=dao.insertData("pet.insertReservation", dto);
+			result=dao.insertData("reservation.insertReservation", dto);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}

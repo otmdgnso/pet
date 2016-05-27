@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pet.common.MyUtil;
@@ -160,10 +161,7 @@ public class HouseController {
 		if(current_page>total_page)
 			current_page=total_page;
 		
-		//리스트에 출력할 데이터
-		//System.out.println("current_page:" + current_page);
-		//System.out.println("numPerPage:" + numPerPage);
-		
+		//리스트에 출력할 데이터		
 		int start=(current_page-1)*numPerPage+1;
 		int end=current_page*numPerPage;
 		map.put("start", start);
@@ -183,13 +181,14 @@ public class HouseController {
 	}
 	
 	@RequestMapping(value="/house/review/delete") 
+	@ResponseBody
 	public String delete(
 			@RequestParam(value="reviewnum") int reviewnum
 			) throws Exception {
 		
 		service.deleteReview(reviewnum);
 		
-		return "redierct:/house/list";
+		return "";
 	}
 
 }

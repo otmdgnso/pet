@@ -155,4 +155,43 @@ public class HouseServiceImpl implements HouseService{
 		
 		return result;
 	}
+
+	@Override
+	public int insertGrage(Review dto) {
+		int result=0;
+		
+		try {
+			result=dao.insertData("house.insertGrade", dto);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return result;
+	}
+
+	@Override
+	public List<Review> listGrade(Map<String, Object> map) {
+		List<Review> list = null;
+		
+		try {
+			list=dao.getListData("house.listGrade", map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return list;
+	}
+
+	@Override
+	public int gradeDataCount(Map<String, Object> map) {
+		int result=0;
+		
+		try {
+			result=dao.getIntValue("house.gradeDataCount", map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return result;
+	}
 }

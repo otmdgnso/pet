@@ -18,4 +18,8 @@ public interface HouseService {
 	public List<Review> listReview(Map<String, Object> map);
 	public int reviewDataCount(Map<String, Object> map);
 	public int deleteReview(int reviewnum);
+	
+	public int insertGrage(Review dto);
+	public List<Review> listGrade(Map<String, Object> map);
+	public int gradeDataCount(Map<String, Object> map);
 }

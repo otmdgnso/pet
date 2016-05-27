@@ -67,17 +67,30 @@ function ajaxReviewList() {
 	var url="<%=cp%>/house/review";
 	var hostNum=${hostNum};
 	var pageNo=1;
-	$.post(url, {hostNum:hostNum, pageNo:1}, function(data){
+	$.post(url, {hostNum:hostNum, pageNo:pageNo}, function(data){
 		$("#review").html(data);
 	});
 }
 
-function deleteReview(reviewnum, hostNum) {
+function deleteReview(reviewnum) {
+	
+	
+	var url="<%=cp%>/house/review/delete";
 	var params="reviewnum="+reviewnum;
-	var url="<%=cp%>/house/review/delete?"+params;
 	
 	if(confirm("정말 삭제할까요?")) {
-		location.href=url;
+		
+		$.ajax({
+	         type:"POST"
+	         ,url:url
+	         ,data:params
+	         ,success:function(data) {
+	        	 ajaxReviewList();
+	         }
+	         ,error:function(e) {
+	            //alert(e.responseText);
+	         }
+	      });
 	}
 }
 </script>
