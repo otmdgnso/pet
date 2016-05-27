@@ -80,7 +80,7 @@ function deleteListMessage() {
 	var url="<%=cp%>/message/messageDeleteChk";
 	var params="mode="+mode+"&page="+page+"&searchKey="+searchKey+"&searchValue="+searchValue;
 	$.each($(chks), function() {
-		params += "&nums="+$(this).val();
+		params += "&messageNums="+$(this).val();
 	});
 	
 	$.ajax({

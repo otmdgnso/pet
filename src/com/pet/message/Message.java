@@ -1,11 +1,20 @@
 package com.pet.message;
 
+import java.util.List;
+
 public class Message {
 	private int messageNum;
 	private String subject, content, sendUserId, userId;
 	private String receiveUserId, sendCreated, confirmCreated;
 	private String sendDelete, receiveDelete;
+	private List<Integer> messageNums;
 	
+	public List<Integer> getMessageNums() {
+		return messageNums;
+	}
+	public void setMessageNums(List<Integer> messageNums) {
+		this.messageNums = messageNums;
+	}
 	public String getUserId() {
 		return userId;
 	}

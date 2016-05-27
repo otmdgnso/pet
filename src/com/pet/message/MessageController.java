@@ -173,7 +173,32 @@ public class MessageController {
 		return mav;
 	}
 	
-	
+	@RequestMapping(value="/message/delete", method=RequestMethod.POST)
+	public ModelAndView delete(HttpServletRequest req,
+			HttpSession session,
+			Message dto,
+			@RequestParam(value="mode") String mode,
+			@RequestParam(value="page", defaultValue="1") String page,
+			@RequestParam(value="searchKey", defaultValue="") String searchKey,
+			@RequestParam(value="searchValue", defaultValue="") String searchValue
+			) throws Exception {
+		Map<String, Object> map=new HashMap<String,Object>();
+		
+		if(mode.equals("receive")) {
+			map.put("field1", "receiveDelete");
+			map.put("field2", "sendDelete");
+		} else {
+			map.put("field1", "sendDelete");
+			map.put("field2", "receiveDelete");
+		}
+		
+		map.put("messageNumList", dto.getMessageNums());
+		
+		service.deleteMessage(map);
+		
+		int current_page = Integer.parseInt(page);
+		return receive(req, session, mode, current_page, searchKey, searchValue);
+	}
 	
 	
 	

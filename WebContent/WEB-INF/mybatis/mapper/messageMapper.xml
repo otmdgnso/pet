@@ -92,4 +92,21 @@
 	FROM message WHERE messageNum=#{messageNum}
 	</select>
 	
+	<!-- 쪽지 삭제 상태를 Y로 변경(업데이트) -->
+	<update id="updateDeleteState" parameterType="map">
+		UPDATE message SET ${filed1} = 'Y' WHERE messageNum IN
+		<foreach item="messageNum" index="index" collection="messageNumList"
+					open="(" separator="," close=")">
+		#{messageNum}
+		</foreach>
+	</update>
+	
+	<!-- 쪽지 삭제상태가 모두 Y면 DB에서 삭제 -->
+	<delete id="deleteMessage" parameterType="map">
+		DELETE FROM message WHERE ${filed2} = 'Y' AND messageNum IN
+		<foreach item="messageNum" index="index" collection="messageNumList"
+					open="(" separator="," close=")">
+		#{messageNum}
+		</foreach>
+	</delete>
 </mapper>
