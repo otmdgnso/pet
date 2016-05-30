@@ -195,4 +195,15 @@ public class PhotoServiceImpl implements PhotoService{
 		return vo;
 	}
 
+	@Override
+	public List<Photo> mainListPhoto(Map<String, Object> map) {
+		List<Photo> list=null;
+		try {
+			list=dao.getListData("photo.mainListPhoto",map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return list;
+	}
+
 }

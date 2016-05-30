@@ -22,4 +22,7 @@ public interface PhotoService {
 		public int deletePhotoLike(Photo dto);
 		public Photo readPhotoLike(Map<String, Object> map);
 		
+		//메인 포토 리스트
+		public List<Photo> mainListPhoto(Map<String, Object> map);
+		
 }

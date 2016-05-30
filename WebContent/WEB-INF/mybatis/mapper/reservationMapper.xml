@@ -53,8 +53,8 @@
 			     	    <include refid="where-state"/>
 			     	</if>
 			     	AND (r.num=#{num})
-	   		   </where>   
-			ORDER BY reservationNum DESC
+	   		   </where>     
+				ORDER BY reservationNum DESC
 	<![CDATA[
 			) tb WHERE ROWNUM <= #{end}
 		) WHERE RNUM >= #{start}

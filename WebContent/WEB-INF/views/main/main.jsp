@@ -5,18 +5,38 @@
 <%
 	String cp=request.getContextPath();
 %>
-    <style>
-    
-  
+<style>  
       #locationField {
         height: 20px;
         margin-bottom: 2px;
       }
-    </style>
+    	
+   #photo{
+   background-image: url('/img/large/3.png');
+   }
+   
+   #main1{
+   opacity: 1;  
+   }
+  
+</style>
+
+<script type="text/javascript">
+$(function(){
+	$('#video').mouseup(function(){		
+		 $('#main1').toggle(); 
+	});
+/* 	$(document).click(function(){
+		alert("ㅎㅇ");
+		$('#main1').show();
+	}); */
+});
+
+</script>
 
 <section class="top-content">
         <div class="container-slider removeslide">
-          <div class="container-reservation inside-slider">
+          <div id="main1" class="container-reservation inside-slider">
            <div class="container">
             <div class="row">
               <div class="col-md-12">
@@ -191,7 +211,7 @@
             </div>
            </div>
            </div>
-           <div class="home-page removeslide">
+           <div id="video" class="home-page removeslide">
              <!-- SLIDER -->
                 <div class="fullwidthbanner-container">
                     <div class="fullwidthbanner">
@@ -225,12 +245,73 @@
 </section>
 
 <!-- 사진 시작 -->
-<section id="top-offerts" class="box-tr-square">
+<section id="photo" style="width: 100%;  margin-top: 100px;" class="box-tr-square">
 <div class="container">
-	  <h2>wqdwqdwqd</h2>	
-</div>
+   <div class="row">
+         <div align="center" class="col-md-12 effect-5 effects">
+	   <span style="font-weight: bold; color: #747474; font-size: 28pt;">Hot Photo</span>
+
+		<div class="portfolio albumContainer">
+			<c:forEach var="dto" items="${list}">
+				<div class="cat3 col-md-4 gallery-view view-fifth" style="width: 31.5%; float: left;">
+					<div class="img">
+						<img src="<%=cp%>/uploads/photo/${dto.saveFilename}"
+							style="width: 400px; height: 350px;"/>
+						<%-- <div class="overlay">
+							<a href="<%=cp%>/photo/article" class="expand">+</a>
+							<a class="close-overlay hidden">x</a>
+						</div> --%>
+					<div class="overlay">
+						<%-- <a href="<%=cp%>/photo/article?photoNum=${dto.photoNum}&page" class="expand">IN</a>
+                                            <a class="close-overlay hidden">x</a> --%>
+                        <a href="<%=cp%>/photo/article?photoNum=${dto.photoNum}&page" class="expand discount">${dto.userName}</a>
+                                <a style="color: #86E57F;" class="expand discount textdisc" >추천 ${dto.likeCount}</a>                    
+					  </div>                                    
+				</div>
+					<div align="left" class="gallery-img-title">
+						<span style="color: black;">제목 : ${dto.subject}</span> &nbsp; <span
+							style="color: orange; font-weight: bold;">[${dto.replyCount}]</span><br>
+						<span style="color: black;">조회수 ${dto.hitCount} |
+							${dto.created} | 좋아요 ${dto.likeCount}</span><br> <span
+							style="color: black;">${dto.userId} (${dto.userName})</span>
+					</div>
+				</div>
+			</c:forEach>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 <!-- 사진 끝 -->
+
+<!-- 분양시작 -->
+<section style="width: 100%;  margin-top: 100px;" class="box-tr-square">
+<div class="container">
+   <div class="row">
+         <div align="center" class="col-md-12 effect-5 effects">
+	  <span style="font-weight: bold; color: #747474; font-size: 28pt;">It's Pet</span>
+		<div class="portfolio albumContainer">
+			<c:forEach var="dto" items="${listAdopt}">
+	                        <div class="cat3 col-md-4 gallery-view view-fifth" style="width: 31.5%; float: left;">
+                                   <div class="img">
+                                        <img src="<%=cp%>/uploads/adopt/${dto.saveFilename}" style="width: 400px; height: 350px;"/>
+                                        <div class="overlay">
+                                            <a href="<%=cp%>/adopt/article?preSaleNum=${dto.preSaleNum}&page" class="expand">IN</a>
+                                            <a class="close-overlay hidden">x</a>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-img-title">
+                                      <h3>제목:${dto.subject} 작성자:${dto.userId} 작성일:${dto.created} 조회수${dto.hitCount}</h3>
+                                     
+                                    </div>
+                            </div>
+						</c:forEach>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- 분양 끝 -->
 
 <!-- TOP OFFERTS -->
 
