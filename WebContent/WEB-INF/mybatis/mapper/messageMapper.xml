@@ -25,7 +25,7 @@
 	<select id="dataCountReceive" parameterType="map" resultType="Integer">
 		SELECT NVL(COUNT(*), 0) FROM message
 		<where>
-			<if test="searchValue!=null and searchValue=''">
+			<if test="searchValue!=null and searchValue!='' ">
 				<include refid="where-list"/>
 			</if>
 			AND receiveUserId = #{userId}

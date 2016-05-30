@@ -103,6 +103,7 @@ public class MessageController {
 		// 전체 페이지 수
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchKey", searchKey);
+		System.out.println(searchValue);
 		map.put("searchValue", searchValue);
 		map.put("userId", info.getUserId());
 		if(mode.equals("receive")) {
@@ -154,6 +155,7 @@ public class MessageController {
 		mav.addObject("searchKey",searchKey);
 		mav.addObject("searchValue",searchValue);
 		mav.addObject("mode",mode);
+
 		return mav;
 	}
 

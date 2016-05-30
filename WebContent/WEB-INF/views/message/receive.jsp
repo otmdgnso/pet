@@ -24,6 +24,21 @@ $(function() {
 	});
 });
 
+function searchListMessage() {
+	var mode="${mode}";
+	var searchKey=$("#messageSearchKey1").val();
+	var searchValue=$("#messageSearchValue1").val();
+	
+	var url="<%=cp%>/message/receive";
+	$.post(url, {mode:mode, searchKey:searchKey, searchValue:searchValue}, function(data){
+		var idx=1;
+		if(mode=="receive")
+			idx=0;
+		var id=$("#tab-"+idx);
+		id.html(data);
+	});
+}
+
 function articleMessage(messageNum) {
 	var mode="${mode}";
 	var page=$("#page").val();
@@ -127,13 +142,13 @@ function deleteListMessage() {
 				<td style="width: 25%;"><button type="button"
 						class="btn btn-default btn-sm" onclick="deleteListMessage();">삭제</button></td>
 				<td align="right" style="width: 25%;"><select
-					class="form-control input-sm" id="messageSearchKey">
-							<option>보낸사람</option>
-						<option>제목</option>
-						<option>내용</option>
+					class="form-control input-sm" id="messageSearchKey1">
+						<option value="sendUserId" ${searchKey=="sendUserId"?"selected='selected' ":"" }>보낸사람</option>
+						<option value="subject">제목</option>
+						<option value="content">내용</option>
 				</select></td>
 				<td style="width: 25%;" align="center"><input type="text"
-					class="form-control input-sm input-search" id="messageSearchValue"
+					class="form-control input-sm input-search" id="messageSearchValue1"
 					value="${searchValue}"></td>
 				<td align="left" style="width: 25%;">
 					<button type="button" class="btn btn-info btn-sm btn-search"
