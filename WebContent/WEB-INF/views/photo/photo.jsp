@@ -11,6 +11,23 @@ function searchList() {
 		f.action="<%=cp%>/photo/photo";
 		f.submit();
 }
+
+$(function(){
+	var s=location.href;
+	if(s=="http://localhost:9090/pet/photo/photo?sortList=hitCount") {
+	$('.albumFilter .current').removeClass('current');
+	$('.albumFilter .3').addClass('current');
+	} else if(s=="http://localhost:9090/pet/photo/photo?sortList=likeCount") {
+		$('.albumFilter .current').removeClass('current');
+		$('.albumFilter .4').addClass('current');
+	}else if(s=="http://localhost:9090/pet/photo/photo?searchKey=species&searchValue=%EA%B0%9C") {
+		$('.albumFilter .current').removeClass('current');
+		$('.albumFilter .2').addClass('current');
+	} else if(s=="http://localhost:9090/pet/photo/photo?searchKey=species&searchValue=%EA%B3%A0%EC%96%91%EC%9D%B4") {
+		$('.albumFilter .current').removeClass('current');
+		$('.albumFilter .1').addClass('current');
+	}
+});
 </script>
 
 <meta name="description" content="travel, trip, store, shopping, siteweb, cart">
@@ -48,11 +65,11 @@ function searchList() {
                         <dt></dt>
 		                <dd>
 			                <ul class="filter group albumFilter"> 
-				                <li data-filter="*" class="current"><a href="<%=cp%>/photo/photo?searchKey=species&searchValue=개">강아지만</a></li> 
-				                <li data-filter=".cat1"><a href="<%=cp%>/photo/photo?searchKey=species&searchValue=고양이">고양이만</a></li> 
-				                <li data-filter=".cat2"><a href="<%=cp%>/photo/photo">최신순</a></li> 
-				                <li data-filter=".cat3"><a href="<%=cp%>/photo/photo?sortList=hitCount">조회순</a></li> 
-				                <li data-filter=".cat4"><a href="<%=cp%>/photo/photo?sortList=likeCount">좋아요순</a></li>
+				                <li data-filter=".cat2" class="2"><a href="<%=cp%>/photo/photo?searchKey=species&searchValue=개">강아지만</a></li> 
+				                <li data-filter=".cat1" class="1"><a href="<%=cp%>/photo/photo?searchKey=species&searchValue=고양이">고양이만</a></li> 
+				                <li data-filter="*" class="current"><a href="<%=cp%>/photo/photo">최신순</a></li> 
+				                <li data-filter=".cat3" class="3"><a href="<%=cp%>/photo/photo?sortList=hitCount">조회순</a></li> 
+				                <li data-filter=".cat4" class="4"><a href="<%=cp%>/photo/photo?sortList=likeCount">좋아요순</a></li>
 				             	 <li><a href="<%=cp%>/photo/created">등록하기</a></li>
 			                </ul> 
 		                </dd>
@@ -76,7 +93,7 @@ function searchList() {
                                    <div class="img">
                                         <img src="<%=cp%>/uploads/photo/${dto.saveFilename}" style="width: 400px; height: 350px; "/>
                                         <div class="overlay">
-                                            <a href="${articleUrl}&photoNum=${dto.photoNum}" class="expand">+</a>
+                                            <a href="${articleUrl}&photoNum=${dto.photoNum}" class="expand">IN</a>
                                             <a class="close-overlay hidden">x</a>
                                         </div>
                                     </div>

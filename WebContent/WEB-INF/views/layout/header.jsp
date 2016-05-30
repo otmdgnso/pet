@@ -40,9 +40,9 @@
   display: none;
   padding: 0;
   position: absolute;
-  left: 100%;
+  right: 100%;
   top: 0;
-  width: 180px;
+  width: 100%;
   background: white;
 }
 /* .zeta-menu ul li { float: none;  } */
@@ -53,15 +53,6 @@
 </style>
 
 <script type="text/javascript">
-/* $(function(){
-	$("ul.sub").hide();
-	  $("ul.menu li").click(function(e){
-		 $("ul:not(:animated)",this).slideDown("fast"); 
-	  },
-	  function(e){
-		$("ul",this).slideUp("fast");  
-	  });
-}); */
 $(function(){
 	$(document).mouseup(function(e) {
 		if ($(e.target).parents('.zeta-menu').length == 0) {
@@ -70,7 +61,7 @@ $(function(){
 		}
 	});
 	$(".zeta-menu>li:has(ul)>a").each( function() {
-		$(this).html( $(this).html()+"▶" );
+		$(this).html( "◀"+$(this).html() );
 	});
 	$(".zeta-menu ul li:has(ul)")
 		.find("a:first")
