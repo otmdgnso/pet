@@ -1,11 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true" %>
+<%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
-	String cp=request.getContextPath();
+	String cp = request.getContextPath();
 %>
 <script type="text/javascript">
+
 function sendCheck() {
 	var f=document.sendForm;
 	
@@ -42,6 +43,10 @@ function sendCheck() {
 		$("#messageContent").val("");
 		$("#messageSubject").val("");
 		alert("메시지를 전송했습니다.");
+		var userId="${userId}";
+		if(userId!="")
+			listPage(page);
+		
 	},
 	error:function(e) {
 		alert(e.responseText);
@@ -50,57 +55,74 @@ function sendCheck() {
 }
 </script>
 
-<div class="night-desc">
-                     <form name="sendForm">
-                        <h3 style="text-align: center;"><img alt="" src="<%=cp%>/res/images/asterisk.png"
-											style="width: 64px;"> &nbsp; 메시지 보내기</h3>
-											
-											<div align="center">
-						<table style="text-align: left;margin-left: 290px; margin-right: 290px; ">
-											<tr
-												style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
-												<td><h4>
-														<img alt="" src="<%=cp%>/res/images/name.png"
-															style="width: 64px;"> 받을 사람 :
-													</h4></td>
-												<td>
-												<input id="messageReceiveUserId" type="text" name="receiveUserId" style="border-color:skyblue; width: 100%; height: 50%; font-size: 16px;">
-												</td>
-											</tr>
-											
-											<tr
-												style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
-												<td><h4>
-														<img alt="" src="<%=cp%>/res/images/email.png"
-															style="width: 64px;"> 제 목 :
-													</h4></td>
-												<td>
-												<input type="text" id="messageSubject" name="subject" style="border-color:skyblue; width: 100%; height: 50%; font-size: 16px;">
-												</td>
-											</tr>
-											
+<div class="night-desc" id="tbListRecive">
+	<form name="sendForm">
+		<c:if test="${userId==''}">
+		<h3 style="text-align: center;">
+			<img alt="" src="<%=cp%>/res/images/asterisk.png"
+				style="width: 64px;"> &nbsp; 메시지 보내기
+		</h3>
+		</c:if>
+		
+		<c:if test="${userId!=''}">
+		<h3 style="text-align: center;">
+			<img alt="" src="<%=cp%>/res/images/asterisk.png"
+				style="width: 64px;"> &nbsp; 답장 보내기
+		</h3>
+		</c:if>
 
-											<tr
-												style="border-bottom: 2px; width: 100%; color: navy;">
-												<td><h4>
-														<img alt="" src="<%=cp%>/res/images/email.png"
-															style="width: 64px;"> 내용 :
-													</h4></td>
-											</tr>
-											<tr
-												style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
-												<td colspan="2">
-												<textarea id="messageContent" name="content" rows="8" cols="50%" style="border-color:skyblue; font-size: 16px;"></textarea>
-												</td>
-												</tr>
-											<tr style="text-align: center;">
-												<!--    <td><h3><input class="btn btn-default btn-register"  type="button" onclick="update();" value="수정하기"></h3> -->
+		<div align="center">
+			<table
+				style="text-align: left; margin-left: 290px; margin-right: 290px;">
+				<tr
+					style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
+					<td><h4>
+							<img alt="" src="<%=cp%>/res/images/name.png"
+								style="width: 64px;"> 받을 사람 :
+						</h4></td>
+					<td><input id="messageReceiveUserId" type="text"
+						name="receiveUserId"
+						style="border-color: skyblue; width: 100%; height: 50%; font-size: 16px;"
+						value="${userId}"></td>
+				</tr>
 
-												<td><h4>
-														<a onclick="sendCheck();">보내기</a>
-													</h4></td>												
-											</tr>
-										</table>
-										</div>
-										</form>
-										</div>
+				<tr
+					style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
+					<td><h4>
+							<img alt="" src="<%=cp%>/res/images/email.png"
+								style="width: 64px;"> 제 목 :
+						</h4></td>
+					<td><input type="text" id="messageSubject" name="subject"
+						style="border-color: skyblue; width: 100%; height: 50%; font-size: 16px;">
+					</td>
+				</tr>
+
+
+				<tr style="border-bottom: 2px; width: 100%; color: navy;">
+					<td><h4>
+							<img alt="" src="<%=cp%>/res/images/email.png"
+								style="width: 64px;"> 내용 :
+						</h4></td>
+				</tr>
+				<tr
+					style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
+					<td colspan="2"><textarea id="messageContent" name="content"
+							rows="8" cols="50%"
+							style="border-color: skyblue; font-size: 16px;"></textarea></td>
+				</tr>
+				<tr style="text-align: center;">
+					<!--    <td><h3><input class="btn btn-default btn-register"  type="button" onclick="update();" value="수정하기"></h3> -->
+
+					<td><h4>
+							<a onclick="sendCheck();">보내기</a>
+						</h4></td>
+					<c:if test="${userId!=''}">
+						<td><h4>
+								<a onclick="listPage(${page});">목록</a>
+							</h4></td>
+					</c:if>
+				</tr>
+			</table>
+		</div>
+	</form>
+</div>

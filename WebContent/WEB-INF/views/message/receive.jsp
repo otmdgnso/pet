@@ -89,11 +89,20 @@ function deleteListMessage() {
 		data:params,
 		dataType:"JSON",
 		success:function(data) {
-			var idx=1;
-			if(mode=="receive")
+			var idx;
+			if(mode=="receive"){
 				idx=0;
+				url="<%=cp%>/message/receive?mode=receive";
+			} else {
+				idx=1;
+				url="<%=cp%>/message/receive?mode=send";
+			}
+				
 			var id=$("#tab-"+idx);
-			id.html(data);
+			
+			$.get(url, {}, function(data){
+				id.html(data);
+			});
 		},
 		error:function(e) {
 			alert(e.responseText);

@@ -19,4 +19,6 @@ public interface MessageService {
 	
 	// 메시지 삭제
 	public int deleteMessage(Map<String, Object> map);
+	// 메시지 확인 날짜
+	public int updateConfirmCreated(int messageNum);
 }

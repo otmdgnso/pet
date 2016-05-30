@@ -29,8 +29,18 @@ public class MessageController {
 	private MyUtil myUtil;
 	
 	@RequestMapping(value="/message/send")
-	public String send() throws Exception {
-		return "message/send";
+	public ModelAndView send(
+			@RequestParam(value="userId", defaultValue="")String userId,
+			@RequestParam(value="page", defaultValue="1") int page,
+			@RequestParam(value="searchKey", defaultValue="") String searchKey,
+			@RequestParam(value="searchValue", defaultValue="") String searchValue
+			) throws Exception {
+			ModelAndView mav = new ModelAndView("/message/send");
+			mav.addObject("userId",userId);
+			mav.addObject("page",page);
+			mav.addObject("searchKey",searchKey);
+			mav.addObject("searchValue",searchValue);
+			return mav;
 	}
 	
 	@RequestMapping(value="/message/send_ok", method=RequestMethod.POST)
@@ -163,6 +173,9 @@ public class MessageController {
 		Message dto=null;
 		dto=service.readMessage(messageNum);
 		
+		if(mode.equals("receive"))
+			service.updateConfirmCreated(messageNum);
+		
 		dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
 		
 		ModelAndView mav=new ModelAndView("message/article");
@@ -173,6 +186,7 @@ public class MessageController {
 		return mav;
 	}
 	
+	// 글보기에서 글삭제
 	@RequestMapping(value="/message/delete", method=RequestMethod.POST)
 	public ModelAndView delete(HttpServletRequest req,
 			HttpSession session,
@@ -200,9 +214,33 @@ public class MessageController {
 		return receive(req, session, mode, current_page, searchKey, searchValue);
 	}
 	
-	
-	
-	
+	// 글보기에서 글삭제
+		@RequestMapping(value="/message/messageDeleteChk", method=RequestMethod.POST)
+		@ResponseBody
+		public Map<String, Object> messageDeleteChk(HttpServletRequest req,
+				HttpSession session,
+				Message dto,
+				@RequestParam(value="mode") String mode,
+				@RequestParam(value="page", defaultValue="1") int current_page,
+				@RequestParam(value="searchKey", defaultValue="") String searchKey,
+				@RequestParam(value="searchValue", defaultValue="") String searchValue
+				) throws Exception {
+			Map<String, Object> map=new HashMap<String,Object>();
+			
+			if(mode.equals("receive")) {
+				map.put("field1", "receiveDelete");
+				map.put("field2", "sendDelete");
+			} else {
+				map.put("field1", "sendDelete");
+				map.put("field2", "receiveDelete");
+			}
+			map.put("messageNumList", dto.getMessageNums());
+			
+			service.deleteMessage(map);
+			
+			
+			return map;
+		}
 	
 	
 	
