@@ -6,7 +6,6 @@
 	String cp=request.getContextPath();
 %>
 
-
 <script src="<%=cp%>/res/js/modernizr.js" type="text/javascript"></script>
 <script src="<%=cp%>/res/js/jquery-1.10.1.min.js" type="text/javascript"></script>
 <script src="<%=cp%>/res/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
@@ -35,74 +34,20 @@ $(function () {
 <script src="<%=cp%>/res/js/list/jquery.mixitup.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(function () {
+	var s=location.href;
+	if(s == "http://localhost:9090/pet/house/list") {
+		$('')
+	}
+});
+
+$(function () {
     "use strict";
     $('#Grid').mixItUp();
 });
 </script>
 <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-<script>
-$(function () {
-    "use strict";
-    $("#slider-range").slider({
-        range: true,
-        min: 0,
-        max: 500,
-        values: [75, 300],
-        slide: function (event, ui) {
-            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-        }
-    });
-    $("#amount").val("$" + $("#slider-range").slider("values", 0) +
-    " - $" + $("#slider-range").slider("values", 1));
-    
-    
-	// ajax 처리
-	$.ajax({
-	  url: "<%=cp%>/reservation/list"
-	  //context: document.body
-	}).done(function(data) {
-		$("#ajaxReserveList").html(data);
-	});
-
-      $("#wizard-picture1").change(function(){
-          readURL(this);
-      });
-});
-</script>
 
 <script>
-$(function () {
-    "use strict";
-    // Clickable Dropdown
-    $('.click-nav > ul').toggleClass('no-js js');
-    $('.click-nav .js ul').hide();
-    $('.click-nav .js').click(function (e) {
-        $('.click-nav .js ul').slideToggle(200);
-        $('.clicker').toggleClass('active');
-        e.stopPropagation();
-    });
-    $(document).click(function () {
-        if ($('.click-nav .js ul').is(':visible')) {
-            $('.click-nav .js ul', this).slideUp();
-            $('.clicker').removeClass('active');
-        }
-    });
-
-    $('.click-nav-location > ul').toggleClass('no-js js');
-    $('.click-nav-location .js ul').hide();
-    $('.click-nav-location .js').click(function (e) {
-        $('.click-nav-location .js ul').slideToggle(200);
-        $('.clicker').toggleClass('active');
-        e.stopPropagation();
-    });
-    $(document).click(function () {
-        if ($('.click-nav-location .js ul').is(':visible')) {
-            $('.click-nav-location .js ul', this).slideUp();
-            $('.clicker').removeClass('active');
-        }
-    });
-});
-
 function checkHouseinfo(hostNum) {
 	var url="<%=cp%>/house/houseinfo";
 	location.href=url+"?hostNum="+hostNum;
@@ -140,19 +85,7 @@ function checkHouseinfo(hostNum) {
                 </div>
                 </form>
                 <section class="ac-container">
-                    <h3 class="desc-filter">필터</h3>
-				    <div>
-					    <input id="ac-1" name="accordion-1" type="checkbox" />
-					    <label for="ac-1">가격 범위 <i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></label>
-					    <article class="ac-small">
-						    <p>
-                              <!--<label for="amount">Price range:</label>-->
-                              <input type="text" id="amount" readonly>
-                            </p>
- 
-                            <div id="slider-range"></div>
-					    </article>
-				    </div>
+                    <h3 class="desc-filter">필터</h3>			  
 				    <div>
 					    <input id="ac-2" name="accordion-1" type="checkbox" checked/>
 					    <label for="ac-2">평점 <i class="fa fa-angle-down"></i> <i class="fa fa-angle-up"></i></label>
@@ -180,29 +113,19 @@ function checkHouseinfo(hostNum) {
 				<div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid">
 				<div class="cbp-vm-options" style="width: 100%; height: 64px;">
                     <div class="txt-sort"><p>정렬:</p></div>  
-                                <div class="click-nav">
-			                        <ul class="no-js">
-				                        <li>
-					                        <a class="clicker">가격 높은순</a>
-					                        <ul>
-						                        <li><span class="btn sort active" data-sort="random">All</span></li>
-						                        <li><span class="btn sort" data-sort="value:asc">높은 가격순</span></li>
-						                        <li><span class="btn sort" data-sort="value:desc">낮은 가격순</span></li>
-					                        </ul>
-				                        </li>
+                                 <div class="click-nav">
+			                        <ul>
+				                        <li><a class="clicker" href="<%=cp%>/house/list">최신순</a></li>
 			                        </ul>
 		                        </div>
-                                <div class="click-nav-location">
-			                        <ul class="no-js">
-				                        <li>
-					                        <a class="clicker">가격 낮은순</a>
-					                        <ul>
-                                                <li><span class="btn filter active" data-filter="all">All</span></li>
-						                        <li><span class="btn filter" data-filter=".category-1">서울</span></li>
-						                        <li><span class="btn filter" data-filter=".category-2">경기</span></li>
-                                                <li><span class="btn filter" data-filter=".category-3">인천</span></li>
-					                        </ul>
-				                        </li>
+                                <div class="click-nav">
+			                        <ul>
+				                        <li><a class="clicker" href="<%=cp%>/house/list?orderList=costH">가격 높은순</a></li>
+			                        </ul>
+		                        </div>
+                                <div class="click-nav">
+			                        <ul>
+				                        <li><a class="clicker" href="<%=cp%>/house/list?orderList=costL">가격 낮은순</a></li>
 			                        </ul>
 		                        </div>			
 					</div>
@@ -218,12 +141,12 @@ function checkHouseinfo(hostNum) {
                                 <div class="cbp-vm-image img">
                                     <img src="<%=cp%>/uploads/profile/${dto.profile}" style="width:338px; height:180px">
                                     <div class="overlay">
-                                        <a onclick='checkHouseinfo(${dto.hostNum});' class="expand">+</a>
+                                        <a onclick='checkHouseinfo(${dto.hostNum});' class="expand"><i class="fa fa-paw" aria-hidden="true"></i></a>
                                         <a class="close-overlay hidden">x</a>
                                     </div>
                                 </div>
 								
-								<figcaption>
+								<figcaption style="height: 200px;">
                                     <h3>${dto.subject}</h3>
                                     <div class="clear"></div>
                                     <span style="color : #8C8C8C">${dto.userName}, ${dto.address}</span>

@@ -34,8 +34,9 @@ public class ReservationController {
 			,Reservation dto
 			,HttpServletRequest req
 			,@RequestParam(value="page", defaultValue="1") int current_page
-			,@RequestParam(defaultValue="all") String searchState
-			,@RequestParam(defaultValue="") String searchHost
+			,@RequestParam(value="searchState", defaultValue="all") String searchState 
+			,@RequestParam(value="searchHost", defaultValue="") String searchHost
+			,@RequestParam(value="oderList", defaultValue="") String orderList
 			) throws Exception {
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
@@ -54,6 +55,7 @@ public class ReservationController {
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("searchState", searchState);
 		map.put("searchHost", searchHost);
+		map.put("orderList", orderList);
 		map.put("num", dto.getNum());
 		
 		dataCount=service.dataCount(map);

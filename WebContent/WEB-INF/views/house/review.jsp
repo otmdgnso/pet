@@ -16,35 +16,45 @@
 <div class="separator" style="width:100%; padding: 0px;"></div>
 
 <!-- 평점 -->
+<c:forEach var="dto" items="${listReview}">
 <table style="width: 80%; margin: 0px auto; padding: 0px;">
-	<tr>
+	<tr>		
 		<td align="center" width="10%"><p>청결도</p></td>
-		<td align="center" width="20%">
-			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-		</td>           		              		
+		<td align="center" width="10%"><p>${dto.clean}</p></td>
+		<c:if test="${dto.clean}>'0'">
+			<c:forEach begin="1" end="${dto.clean}">
+				<td align="center" width="20%">
+					<img src="<%=cp%>/res/image/stargray.png" width="15px">
+				</td>      
+			</c:forEach>  
+		</c:if>
+		<c:if test="${dto.clean}=='0'">
+			<c:forEach begin="1" end="5">
+			<td align="center" width="20%">
+				<img src="<%=cp%>/res/image/stargray.png" width="15px">
+			</td>      
+			</c:forEach> 
+		</c:if>
+		   		              		
 		<td align="center" width="10%"><p>가격</p></td>
 		<td align="center" width="20%">
-			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
+			<img src="<%=cp%>/res/image/stargray.png" width="15px">
+			<img src="<%=cp%>/res/image/stargray.png" width="15px">
+			<img src="<%=cp%>/res/image/stargray.png" width="15px">
+			<img src="<%=cp%>/res/image/stargray.png" width="15px">
+			<img src="<%=cp%>/res/image/stargray.png" width="15px">
 		</td>       
 		<td align="center" width="10%"><p>친절도</p></td>
 		<td align="center" width="20%">
-			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
-			<img src="<%=cp%>/res/image/staryellow.png" width="15px">
+			<img src="<%=cp%>/res/image/stargray.png" width="15px">
+			<img src="<%=cp%>/res/image/stargray.png" width="15px">
+			<img src="<%=cp%>/res/image/stargray.png" width="15px">
+			<img src="<%=cp%>/res/image/stargray.png" width="15px">
+			<img src="<%=cp%>/res/image/stargray.png" width="15px">
 		</td>       
 	</tr>
 </table>
-
+</c:forEach>
 <!-- 리뷰 -->
 <div class="separator" style="width:100%; padding: 0px;"></div>
 
@@ -63,15 +73,10 @@
 	<tr>
 		<td align="center" width="20%">${dto.userName}</td>
 		<td align="left" width="70%">${dto.created}</td>
-		
-		
-		<td width="10%"><a onclick='deleteReview("${dto.reviewnum}")'>삭제</a></td>
-		
-		<!-- 
+
 		<c:if test="${sessionScope.member.memberNum==dto.num || sessionScope.member.userId=='admin'}">
 		<td width="10%"><a onclick='deleteReview("${dto.reviewnum}")'>삭제</a></td>
 		</c:if>
-		 -->
 	</tr>
 </table>
 <div class="separator" style="width:100%; padding: 0px;"></div>
