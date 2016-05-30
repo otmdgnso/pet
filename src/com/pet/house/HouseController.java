@@ -30,7 +30,8 @@ public class HouseController {
 			HttpServletRequest req,
 			@RequestParam(value="page", defaultValue="1") int current_page,
 			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
-			@RequestParam(value="searchValue", defaultValue="") String searchValue
+			@RequestParam(value="searchValue", defaultValue="") String searchValue,
+			@RequestParam(value="orderList", defaultValue="") String orderList
 			) throws Exception {
 		String cp=req.getContextPath();
 		
@@ -46,6 +47,7 @@ public class HouseController {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("searchKey", searchKey);
         map.put("searchValue", searchValue);
+        map.put("orderList", orderList);
 
         dataCount = service.dataCount(map);
         
@@ -145,7 +147,7 @@ public class HouseController {
 	//´ñ±Û ¸®½ºÆ®
 	@RequestMapping(value="/house/review") 
 	public ModelAndView listReview(
-			@RequestParam(value="hostNum", defaultValue="163") int hostNum
+			@RequestParam(value="hostNum", defaultValue="") int hostNum
 			,@RequestParam(value="pageNo", defaultValue="1") int current_page
 			) throws Exception {
 		
@@ -166,6 +168,7 @@ public class HouseController {
 		int end=current_page*numPerPage;
 		map.put("start", start);
 		map.put("end", end);
+		map.put("hostNum", hostNum);
 		
 		List<Review> list=service.listReview(map);
 
@@ -175,8 +178,7 @@ public class HouseController {
 		mav.addObject("pageNo", current_page);
 		mav.addObject("reviewDataCount", dataCount);
 		mav.addObject("total_page", total_page);
-		mav.addObject("paging", myUtil.paging(current_page, total_page));
-		
+		mav.addObject("paging", myUtil.paging(current_page, total_page));		
 		return mav;
 	}
 	
