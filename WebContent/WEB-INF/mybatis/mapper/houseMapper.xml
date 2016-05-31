@@ -31,12 +31,12 @@
 	</insert>
 	
 	<insert id="insertHousePic" parameterType="com.pet.house.House">
-		INSERT INTO hostHousePic (picNum, saveFileName, hostNum)
-		VALUES(hostHousePic_seq.NEXTVAL, #{saveFileName}, #{hostNum})
+		INSERT INTO hostHousePic (picNum, saveFilename, hostNum)
+		VALUES(hostHousePic_seq.NEXTVAL, #{saveFilename}, #{hostNum})
 	</insert>
 	<insert id="insertHostPetInfo" parameterType="com.pet.house.House">
-		INSERT INTO hostHousePic (picNum, species, hostNum)
-		VALUES(hostHousePetInfo_seq.NEXTVAL, #{species}, #{hostNum})
+		INSERT INTO hostPetInfo (num, species, hostNum)
+		VALUES(hostPetInfo_seq.NEXTVAL, #{species}, #{hostNum})
 	</insert>
 	<!-- Mapper 수정 필요  
 	-->
@@ -79,13 +79,14 @@
 		SELECT hostNum, userName, profile, address, capacity, cost, subject, content
 		FROM host h JOIN member m ON h.hostNum=m.num
 		WHERE hostNum=#{hostNum}
-	</select>
+	</select>	
 	
 	<!-- 댓글(리뷰) -->
 	<insert id="insertReview" parameterType="com.pet.house.Review">
 		INSERT INTO hostreview(reviewNum, content, hostNum, completeNum)
-		VALUES (hostReview_seq.NEXTVAL, #{content}, #{hostNum}, #{completeNum}); 
-	</insert>
+		VALUES (hostReview_seq.NEXTVAL, #{content}, #{hostNum}, #{completeNum}) 
+	
+	</insert>	
 	
 	<select id="reviewDataCount" resultType="Integer" parameterType="map">
 		SELECT NVL(COUNT(*), 0) FROM hostreview WHERE hostNum=#{hostNum}
