@@ -23,4 +23,6 @@ public interface MessageService {
 	public int updateConfirmCreated(int messageNum);
 	//아이디 체크
 	public int userIdCheck(String userId);
+	// 읽지 않은 메시지 체크
+	public int userMessageCheck(String userId);
 }

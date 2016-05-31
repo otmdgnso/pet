@@ -121,7 +121,12 @@
 	WHERE userId=#{userId}
 	</select>
 	
-	
+	<select id="userMessageCheck" parameterType="String" resultType="Integer">
+	SELECT NVL(COUNT(*), 0) FROM message
+	WHERE receiveUserId = #{receiveUserId}
+	AND receiveDelete='N'
+	AND confirmCreated IS NULL
+	</select>
 	
 	
 	
