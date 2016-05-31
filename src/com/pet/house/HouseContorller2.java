@@ -19,16 +19,15 @@ public class HouseContorller2 {
 	@Autowired
 	LocationService locationService;
 	
-	@RequestMapping(value="house/join", method=RequestMethod.GET)
+	@RequestMapping(value="/house/joina", method=RequestMethod.GET)
 	public ModelAndView houseJoinInput() throws Exception{
-		List<Location> list = locationService.listCategory1();
-		
+		List<Location> list = locationService.listCategory1();		
 		
 		ModelAndView mav = new ModelAndView(".house.join");
 		mav.addObject("list", list);
 		return mav;
 	}
-	@RequestMapping(value="house/join", method=RequestMethod.POST)
+	@RequestMapping(value="/house/joina", method=RequestMethod.POST)
 	public String houseJoinSubmit(House dto, HttpSession session) throws Exception{
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		

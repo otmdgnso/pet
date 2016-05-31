@@ -19,6 +19,9 @@ public class HouseServiceImpl implements HouseService{
 		int result=0;
 		
 		try {
+			
+			dto.setAddress(dto.category1+dto.category2+dto.category3);
+			System.out.println(dto.getAddress());
 			dao.insertData("house.insertHouseInfo", dto);
 		} catch (Exception e) {
 			System.out.println(e.toString());

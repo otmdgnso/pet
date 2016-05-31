@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pet.common.MyUtil;
+import com.pet.member.SessionInfo;
 
 @Controller("house.houseController")
 public class HouseController {
@@ -95,24 +97,31 @@ public class HouseController {
         
 	}
 	
-	/*// 호스팅 등록
-	@RequestMapping(value="house/join", method=RequestMethod.GET)
+	// 호스팅 등록
+	@RequestMapping(value="/house/join", method=RequestMethod.GET)
 	public ModelAndView houseJoinInput() throws Exception{
-		List<Location> list = locationService.listCategory1();
-		
-		
+		List<Location> list = locationService.listCategory1();	
+				
 		ModelAndView mav = new ModelAndView(".house.join");
 		mav.addObject("list", list);
 		return mav;
 	}
-	@RequestMapping(value="house/join", method=RequestMethod.POST)
-	public ModelAndView houseJoinSubmit() throws Exception{
+	@RequestMapping(value="/house/join", method=RequestMethod.POST)
+	public ModelAndView houseJoinSubmit(
+			House dto,
+			HttpSession session
+			) throws Exception{
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		dto.setHostNum(info.getMemberNum());
+		
+		service.insertHouseInfo(dto);
 		ModelAndView mav = new ModelAndView(".house.join");
 		return mav;
-	}*/
+	}
 	
 	// 호스팅 등록시 필요한 카테고리 
-	@RequestMapping(value="house/listCategory2", method=RequestMethod.POST)
+	@RequestMapping(value="/house/listCategory2", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> listCategory2(String category1) throws Exception{
 		List<Location> list = locationService.listCategory2(category1);
