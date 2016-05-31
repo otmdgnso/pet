@@ -170,7 +170,7 @@ $(function(){
                                           <div class="form-group">
                                             <h3> <img alt="" src="<%=cp%>/res/img/dogplay.png">펫 검색</h3>
                                             <label for="auctionSubject">통합 검색</label>
-                                            <input type="text" class="form-control" placeholder="품종을 입력하세요" id="species" name="species" >
+                                            <input type="text" class="form-control" placeholder="품종을 입력하세요" id="type" name="type" >
                                           </div>
                                         </div>
                                         <div class="col-sm-4 fly-who">

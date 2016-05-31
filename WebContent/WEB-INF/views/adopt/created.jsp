@@ -138,11 +138,11 @@ function deleteFile(saveFilename, photoNum) {
 						<label for="checkin">종류</label>
 					<div class="guests-select" style="margin:0 auto; width:60%" align="center">
 						<select name="species" class="form-control">
-								<option value="개" ${dto.species=="개"?"selected='selected'" : ""}>
-									개
+								<option value="dog" ${dto.species=="dog"?"selected='selected'" : ""}>
+									Dog
 								</option>
-								<option value="고양이" ${dto.species=="고양이"?"selected='selected'" : ""}>
-									고양이
+								<option value="cat" ${dto.species=="cat"?"selected='selected'" : ""}>
+									Cat
 								</option>
 						</select>
 					</div>
