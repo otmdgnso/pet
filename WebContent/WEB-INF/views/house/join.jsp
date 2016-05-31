@@ -345,7 +345,7 @@ function checkHouseJoin() {
                         </div>
                         <div class="wizard-footer">
                             	<div class="pull-right">
-                                    <input type='button' class='btn btn-next btn-fill btn-info btn-wd btn-sm' name='next' value='Next' />
+                                    <input type='button' class='btn btn-next btn-fill btn-info btn-wd btn-sm' name='next' value='Next' onclick="javascript:checkHouseJoin();" />
                                     <input type='button' class='btn btn-finish btn-fill btn-info btn-wd btn-sm' name='finish' value='finish' onclick="javascript:checkHouseJoin();"/>
         
                                 </div>

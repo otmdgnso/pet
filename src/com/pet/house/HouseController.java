@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,6 +24,8 @@ public class HouseController {
 	private HouseService service;
 	@Autowired
 	private MyUtil myUtil;
+	@Autowired
+	private LocationService locationService;
 	
 	// 검색 결과 창
 	@RequestMapping(value="/house/list")
@@ -109,7 +112,7 @@ public class HouseController {
 	}*/
 	
 	// 호스팅 등록시 필요한 카테고리 
-	/*@RequestMapping(value="house/listCategory2", method=RequestMethod.POST)
+	@RequestMapping(value="house/listCategory2", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> listCategory2(String category1) throws Exception{
 		List<Location> list = locationService.listCategory2(category1);
@@ -118,7 +121,7 @@ public class HouseController {
 		model.put("list", list);
 		
 		return model;
-	}*/
+	}
 	
 	// 호스팅한 집 정보
 	@RequestMapping(value="/house/houseinfo") 
