@@ -145,7 +145,7 @@ function checkHouseinfo(hostNum) {
 						<li class="mix category-3" data-value="1250">
 							<figure>
                                 <div class="cbp-vm-image img">
-                                    <img src="<%=cp%>/uploads/profile/${dto.profile}" style="width:338px; height:180px">
+                                    <img src="<%=cp%>/uploads/house/${dto.saveFilename}" style="width:338px; height:180px">
                                     <div class="overlay">
                                         <a onclick='checkHouseinfo(${dto.hostNum});' class="expand"><i class="fa fa-paw" aria-hidden="true"></i></a>
                                         <a class="close-overlay hidden">x</a>

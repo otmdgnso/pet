@@ -39,6 +39,7 @@ public class HouseController {
 			@RequestParam(value="searchValue", defaultValue="") String searchValue,
 			@RequestParam(value="orderList", defaultValue="") String orderList
 			) throws Exception {
+				
 		String cp=req.getContextPath();
 		
 		int numPerPage = 9;
@@ -146,12 +147,16 @@ public class HouseController {
 
 		House dto=service.readHouseInfo(hostNum);
 		
+		//사진파일
+		List<House> readFile=service.readHousePhoto(hostNum);
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("hostNum", dto.getNum());
 		
 		ModelAndView mav = new ModelAndView(".house.houseinfo");
 		mav.addObject("hostNum",hostNum);
 		mav.addObject("dto", dto);
+		mav.addObject("readFile",readFile);
 		
 		return mav;
 	}

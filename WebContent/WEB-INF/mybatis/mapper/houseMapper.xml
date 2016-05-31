@@ -73,6 +73,16 @@
 	    ) WHERE rnum >= #{start}
 	]]>	    
 	</select>
+	<!-- 첫번째 보여줄 사진 -->
+	<select id="housePhoto" resultType="com.pet.house.House" parameterType="Integer">
+		SELECT tb1.* FROM( 
+				SELECT saveFilename FROM hostHousePic
+			     	WHERE hostNum=#{hostNum}
+			     ORDER BY picNum
+			 <![CDATA[
+			 )tb1 WHERE ROWNUM=1
+			 ]]>			 
+	</select>
 	
 	<!-- 글보기 -->
 	<select id="readHouseinfo" resultType="com.pet.house.House" parameterType="Integer">
@@ -80,6 +90,12 @@
 		FROM host h JOIN member m ON h.hostNum=m.num
 		WHERE hostNum=#{hostNum}
 	</select>	
+	<!-- 사진글보기 -->
+	<select id="readHousePhoto" resultType="com.pet.house.House" parameterType="Integer">
+		SELECT picNum, saveFilename, hostNum
+		FROM hostHousePic
+		WHERE hostNum=#{hostNum}
+	</select>
 	
 	<!-- 댓글(리뷰) -->
 	<insert id="insertReview" parameterType="com.pet.house.Review">
