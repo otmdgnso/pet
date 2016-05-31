@@ -120,7 +120,6 @@ function sendReply() {
 		</c:if>
 	</tr>
 </table>
-<div class="separator" style="width:100%; padding: 0px;"></div>
 </c:forEach>
 
 
@@ -132,11 +131,13 @@ function sendReply() {
 <div class="cbp-vm-switcher cbp-vm-view-list">
 		<div class="paging" style="text-align: center; min-height: 50px; line-height: 50px; color: #A6A6A6;">
             <c:if test="${reviewDataCount==0 }">
-                  	등록된 후기가 없습니다.
-                  	<div class="separator" style="width:100%; padding: 0px;"></div>
+                  	등록된 후기가 없습니다.                	
             </c:if>
             
             <!-- 별점 -->
+            
+            <c:if test="${sessionScope.member.memberNum != NULL || sessionScope.member.userId=='admin'}">
+            <div class="separator" style="width:100%; padding: 0px;"></div>
             <div class="bbs-reply">
 	           <div class="bbs-reply-write"> 
 	               <table style="width: 100%; height: 20px;">
@@ -168,8 +169,7 @@ function sendReply() {
 						</td>
 						<td align="center" width="20%"></td>
 					</tr>
-	               </table>            
-		               
+	               </table>            	               
 	               
 	               <table style="width: 100%;">
 					<tr>
@@ -186,6 +186,7 @@ function sendReply() {
 				</table>        
 	           </div>
 	       </div>       
+           </c:if>
             
             <!-- 댓글 페이징 -->	
             <c:if test="${reviewDataCount!=0 }">	
