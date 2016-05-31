@@ -28,6 +28,41 @@
 			$(id).html(data);	
 			});
 		   });
+		
+		$("#btnArticleDelete").click(function(){
+			var messageNum="${dto.messageNum}";
+			
+			if(! confirm("메시지를 삭제 하시 겠습니까?")) {
+				return;
+			}
+			
+			var url="<%=cp%>/message/delete";
+			$.post(url, {messageNums:messageNum,mode:mode,page:page,searchKey:searchKey, searchValue:searchValue}, function(data){
+				var s=$.trim(data);
+				var id;
+				if(mode=="receive") {
+					id="#tbListRecive";
+					$(id).html("");
+				} else {
+					id="#tbListSend";
+					$(id).html("");
+				}
+				$(id).html(data);
+			});
+		});
+		
+		$("#btnArticleReply").click(function(){
+			var userId="${dto.sendUserId}";
+
+			var url="<%=cp%>/message/send";
+			
+			$.post(url,{userId:userId,page:page,searchKey:searchKey, searchValue:searchValue}, function(data){
+				var id;
+				id="#tbListRecive";
+				$(id).html("");
+				$(id).html(data);
+			});
+		});
 	});
 	
 function articleView(messageNum) {
@@ -121,7 +156,13 @@ function articleView(messageNum) {
 					<!--    <td><h3><input class="btn btn-default btn-register"  type="button" onclick="update();" value="수정하기"></h3> -->
 
 					<td><h4>
-							<a id="btnArticleList">목록으로</a>
+							<a id="btnArticleList">목록</a>
+						</h4></td>
+					<td><h4>
+							<a id="btnArticleDelete">삭제</a>
+						</h4></td>
+					<td><h4>
+							<a id="btnArticleReply">답장</a>
 						</h4></td>
 				</tr>
 			</table>
@@ -195,7 +236,10 @@ function articleView(messageNum) {
 					<!--    <td><h3><input class="btn btn-default btn-register"  type="button" onclick="update();" value="수정하기"></h3> -->
 
 					<td><h4>
-							<a id="btnArticleList">목록으로</a>
+							<a id="btnArticleList">목록</a>
+						</h4></td>
+					<td><h4>
+							<a id="btnArticleDelete">삭제</a>
 						</h4></td>
 				</tr>
 			</table>

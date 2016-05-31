@@ -29,14 +29,25 @@ public class MessageController {
 	private MyUtil myUtil;
 	
 	@RequestMapping(value="/message/send")
-	public String send() throws Exception {
-		return "message/send";
+	public ModelAndView send(
+			@RequestParam(value="userId", defaultValue="")String userId,
+			@RequestParam(value="page", defaultValue="1") int page,
+			@RequestParam(value="searchKey", defaultValue="") String searchKey,
+			@RequestParam(value="searchValue", defaultValue="") String searchValue
+			) throws Exception {
+			ModelAndView mav = new ModelAndView("/message/send");
+			mav.addObject("userId",userId);
+			mav.addObject("page",page);
+			mav.addObject("searchKey",searchKey);
+			mav.addObject("searchValue",searchValue);
+			return mav;
 	}
 	
 	@RequestMapping(value="/message/send_ok", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> sendSubmit(
-			HttpSession session, Message dto) throws Exception {
+			HttpSession session, Message dto
+			) throws Exception {
 		// 메시지 보내기
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 
@@ -93,6 +104,7 @@ public class MessageController {
 		// 전체 페이지 수
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchKey", searchKey);
+		System.out.println(searchValue);
 		map.put("searchValue", searchValue);
 		map.put("userId", info.getUserId());
 		if(mode.equals("receive")) {
@@ -144,6 +156,7 @@ public class MessageController {
 		mav.addObject("searchKey",searchKey);
 		mav.addObject("searchValue",searchValue);
 		mav.addObject("mode",mode);
+
 		return mav;
 	}
 
@@ -163,6 +176,9 @@ public class MessageController {
 		Message dto=null;
 		dto=service.readMessage(messageNum);
 		
+		if(mode.equals("receive"))
+			service.updateConfirmCreated(messageNum);
+		
 		dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
 		
 		ModelAndView mav=new ModelAndView("message/article");
@@ -173,6 +189,7 @@ public class MessageController {
 		return mav;
 	}
 	
+	// 글보기에서 글삭제
 	@RequestMapping(value="/message/delete", method=RequestMethod.POST)
 	public ModelAndView delete(HttpServletRequest req,
 			HttpSession session,
@@ -200,11 +217,47 @@ public class MessageController {
 		return receive(req, session, mode, current_page, searchKey, searchValue);
 	}
 	
+	// 글보기에서 글삭제
+		@RequestMapping(value="/message/messageDeleteChk", method=RequestMethod.POST)
+		@ResponseBody
+		public Map<String, Object> messageDeleteChk(HttpServletRequest req,
+				HttpSession session,
+				Message dto,
+				@RequestParam(value="mode") String mode,
+				@RequestParam(value="page", defaultValue="1") int current_page,
+				@RequestParam(value="searchKey", defaultValue="") String searchKey,
+				@RequestParam(value="searchValue", defaultValue="") String searchValue
+				) throws Exception {
+			Map<String, Object> map=new HashMap<String,Object>();
+			
+			if(mode.equals("receive")) {
+				map.put("field1", "receiveDelete");
+				map.put("field2", "sendDelete");
+			} else {
+				map.put("field1", "sendDelete");
+				map.put("field2", "receiveDelete");
+			}
+			map.put("messageNumList", dto.getMessageNums());
+			
+			service.deleteMessage(map);
+			
+			
+			return map;
+		}
 	
-	
-	
-	
-	
+		@RequestMapping(value="/message/userIdCheck", method=RequestMethod.POST)
+		@ResponseBody
+		public Map<String, Object> userIdCheck(
+				HttpSession session, Message dto,
+				@RequestParam(value="receiveUserId",defaultValue="")String userId
+				) throws Exception {
+			int result=service.userIdCheck(userId);
+			
+			Map<String, Object> model = new HashMap<>();
+			model.put("result1", result);
+			return model;
+		
+		}
 	
 	
 	

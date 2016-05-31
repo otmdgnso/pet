@@ -25,7 +25,7 @@
 	<select id="dataCountReceive" parameterType="map" resultType="Integer">
 		SELECT NVL(COUNT(*), 0) FROM message
 		<where>
-			<if test="searchValue!=null and searchValue=''">
+			<if test="searchValue!=null and searchValue!='' ">
 				<include refid="where-list"/>
 			</if>
 			AND receiveUserId = #{userId}
@@ -94,7 +94,7 @@
 	
 	<!-- 쪽지 삭제 상태를 Y로 변경(업데이트) -->
 	<update id="updateDeleteState" parameterType="map">
-		UPDATE message SET ${filed1} = 'Y' WHERE messageNum IN
+		UPDATE message SET ${field1} = 'Y' WHERE messageNum IN
 		<foreach item="messageNum" index="index" collection="messageNumList"
 					open="(" separator="," close=")">
 		#{messageNum}
@@ -103,10 +103,26 @@
 	
 	<!-- 쪽지 삭제상태가 모두 Y면 DB에서 삭제 -->
 	<delete id="deleteMessage" parameterType="map">
-		DELETE FROM message WHERE ${filed2} = 'Y' AND messageNum IN
+		DELETE FROM message WHERE ${field2} = 'Y' AND messageNum IN
 		<foreach item="messageNum" index="index" collection="messageNumList"
 					open="(" separator="," close=")">
 		#{messageNum}
 		</foreach>
 	</delete>
+	
+	<!-- 메시지를 확인 상태로 변경 -->
+	<update id="updateConfirmCreated" parameterType="Integer">
+	UPDATE message SET confirmCreated= SYSDATE
+		WHERE messageNum=#{messageNum} AND confirmCreated IS NULL
+	</update>
+	
+	<select id="userIdCheck" parameterType="String" resultType="Integer">
+	SELECT NVL(COUNT(*),0) FROM member
+	WHERE userId=#{userId}
+	</select>
+	
+	
+	
+	
+	
 </mapper>

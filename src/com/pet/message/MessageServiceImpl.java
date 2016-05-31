@@ -92,4 +92,26 @@ public class MessageServiceImpl implements MessageService {
 		}
 		return result;
 	}
+
+	@Override
+	public int updateConfirmCreated(int messageNum) {
+		int result=0;
+		try {
+			result=dao.updateData("message.updateConfirmCreated", messageNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	@Override
+	public int userIdCheck(String userId) {
+		int result=0;
+		try {
+			result=dao.getIntValue("message.userIdCheck",userId);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
 }
