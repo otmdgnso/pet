@@ -25,10 +25,22 @@ public class HouseServiceImpl implements HouseService{
 		try {			
 			dto.setAddress(dto.getCategory1()+dto.getCategory2()+dto.getCategory3());
 			dao.insertData("house.insertHouseInfo", dto);
-			
-			//파일 업로드
-			String saveFilename=fileManager.doFileUpload(partFile, pathname);
-			
+			// 파일 업로드
+						if (!dto.getUpload().isEmpty()) {
+							for (MultipartFile mf : dto.getUpload()) {
+								if (mf.isEmpty())
+									continue;
+
+								// 업로드한 파일이 존재하는 경우
+								String saveFilename = fileManager.doFileUpload(mf, pathname);
+								if (saveFilename != null) {
+									dto.setSaveFilename(saveFilename);
+									insertHostPic(dto);
+								}
+							}
+
+						}
+		
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
@@ -39,8 +51,8 @@ public class HouseServiceImpl implements HouseService{
 	@Override
 	public int insertHostPic(House dto) {
 		int result=0;
-		try {
-			result=dao.insertData("house.insertHousePic", dto);
+		try {			
+			result=dao.insertData("house.insertHousePic", dto);						
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}

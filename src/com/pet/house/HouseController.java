@@ -1,5 +1,6 @@
 package com.pet.house;
 
+import java.io.File;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -115,8 +116,10 @@ public class HouseController {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		dto.setHostNum(info.getMemberNum());
 		
+		String root=session.getServletContext().getRealPath("/");
+		String pathname=root+File.separator+"uploads"+File.separator+"house";
+		
 		service.insertHouseInfo(dto, pathname);
-		service.insertHostPic(dto);
 		service.insertHostPetInfo(dto);
 		
 		ModelAndView mav = new ModelAndView(".house.join");

@@ -9,7 +9,7 @@ public class House {
 	private String category1, category2;
 	private String category3;
 	private String address, searchOn, subject, content, created, species;
-	private String saveFileNum, profile, userName;
+	private String saveFilename, profile, userName;
 	private List<MultipartFile> upload;
 	
 	
@@ -130,10 +130,13 @@ public class House {
 	public void setSpecies(String species) {
 		this.species = species;
 	}
-	public String getSaveFileNum() {
-		return saveFileNum;
+
+	public String getSaveFilename() {
+		return saveFilename;
 	}
-	public void setSaveFileNum(String saveFileNum) {
-		this.saveFileNum = saveFileNum;
+
+	public void setSaveFilename(String saveFilename) {
+		this.saveFilename = saveFilename;
 	}
+	
 }
