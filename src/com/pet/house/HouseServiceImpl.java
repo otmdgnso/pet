@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.pet.common.FileManager;
 import com.pet.common.dao.CommonDAO;
 
 @Service("house.houseService")
@@ -13,16 +15,20 @@ public class HouseServiceImpl implements HouseService{
 	
 	@Autowired
 	private CommonDAO dao;
+	@Autowired
+	private FileManager fileManager;
 	
 	@Override
-	public int insertHouseInfo(House dto) {
+	public int insertHouseInfo(House dto, String pathname) {
 		int result=0;
 		
-		try {
-			
-			dto.setAddress(dto.category1+dto.category2+dto.category3);
-			System.out.println(dto.getAddress());
+		try {			
+			dto.setAddress(dto.getCategory1()+dto.getCategory2()+dto.getCategory3());
 			dao.insertData("house.insertHouseInfo", dto);
+			
+			//파일 업로드
+			String saveFilename=fileManager.doFileUpload(partFile, pathname);
+			
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
@@ -34,7 +40,7 @@ public class HouseServiceImpl implements HouseService{
 	public int insertHostPic(House dto) {
 		int result=0;
 		try {
-			
+			result=dao.insertData("house.insertHousePic", dto);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
@@ -45,7 +51,7 @@ public class HouseServiceImpl implements HouseService{
 	public int insertHostPetInfo(House dto) {
 		int result=0;
 		try {
-			
+			result=dao.insertData("house.insertHostPetInfo", dto);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}

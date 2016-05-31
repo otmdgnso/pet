@@ -115,7 +115,10 @@ public class HouseController {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		dto.setHostNum(info.getMemberNum());
 		
-		service.insertHouseInfo(dto);
+		service.insertHouseInfo(dto, pathname);
+		service.insertHostPic(dto);
+		service.insertHostPetInfo(dto);
+		
 		ModelAndView mav = new ModelAndView(".house.join");
 		return mav;
 	}

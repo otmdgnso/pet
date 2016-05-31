@@ -5,7 +5,7 @@ import java.util.Map;
 
 public interface HouseService {
 	public int insertHouseInfo(House dto);
-	public int insertHostPic(House dto);
+	public int insertHostPic(House dto, String pathname);
 	public int insertHostPetInfo(House dto);
 	
 	public int updateHouseInfo();
