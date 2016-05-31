@@ -81,16 +81,16 @@ public class HouseServiceImpl implements HouseService{
 	}
 
 	@Override
-	public House readHouseInfo(int hostNum) {
-		House dto=null;
+	public List<House> readHouseInfo(int hostNum) {
+		List<House> list=null;
 		
 		try {
-			dto=dao.getReadData("house.readHouseinfo", hostNum);
+			list=dao.getReadData("house.readHouseinfo", hostNum);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
 		
-		return dto;
+		return list;
 	}
 
 	@Override

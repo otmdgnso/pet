@@ -144,7 +144,8 @@ public class HouseController {
 			@RequestParam(value="hostNum") int hostNum
 			) throws Exception{
 
-		House dto=service.readHouseInfo(hostNum);
+		//House dto=service.readHouseInfo(hostNum);
+		List<House> list=service.readHouseInfo(hostNum);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("hostNum", dto.getNum());

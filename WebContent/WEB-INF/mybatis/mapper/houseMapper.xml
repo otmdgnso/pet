@@ -76,7 +76,7 @@
 	
 	<!-- 글보기 -->
 	<select id="readHouseinfo" resultType="com.pet.house.House" parameterType="Integer">
-		SELECT hostNum, userName, profile, address, capacity, cost, subject, content
+		SELECT hostNum, userName, profile, address, capacity, cost, subject, content,saveFilename
 		FROM host h JOIN member m ON h.hostNum=m.num
 		WHERE hostNum=#{hostNum}
 	</select>	

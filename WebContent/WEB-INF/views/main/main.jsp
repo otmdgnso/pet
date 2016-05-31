@@ -256,7 +256,7 @@ $(function(){
 			<li class="cat3 col-md-4 gallery-view view-fifth" style="width: 31.5%; float: left;">
 				<div>
 					<div class="cbp-vm-image img">
-						<img src="<%=cp%>/uploads/profile/${dto.profile}"
+						<img src="<%=cp%>/uploads/house/${dto.saveFilename}"
 							style="width: 338px; height: 180px">
 						<div class="overlay" style="width: 83%;">
 							<a href="<%=cp%>/house/houseinfo?hostNum=${dto.hostNum}" class="expand"><i

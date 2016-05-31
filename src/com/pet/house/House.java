@@ -10,8 +10,7 @@ public class House {
 	private String category3;
 	private String address, searchOn, subject, content, created, species;
 	private String saveFilename, profile, userName;
-	private List<MultipartFile> upload;
-	
+	private List<MultipartFile> upload;	
 	
 	public List<MultipartFile> getUpload() {
 		return upload;
