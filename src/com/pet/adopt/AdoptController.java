@@ -38,6 +38,12 @@ public class AdoptController {
 	public ModelAndView create(
 			HttpSession session
 			) throws Exception {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		if(info==null){
+			return new ModelAndView("redirect:/");
+		}
+		
 		ModelAndView mav = new ModelAndView(".adopt.created");
 		mav.addObject("mode","created");
 		return mav;
@@ -49,6 +55,9 @@ public class AdoptController {
 			Adopt dto
 			) throws Exception {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		if(info==null){
+			return "redirect:/";
+		}
 		
 		String root=session.getServletContext().getRealPath("/");
 		String pathname=root+File.separator+"uploads"+File.separator+"adopt";
@@ -138,12 +147,17 @@ public class AdoptController {
 	}
 	
 	@RequestMapping(value="adopt/article", method=RequestMethod.GET)
-	public ModelAndView article(
+	public ModelAndView article(HttpSession session,
 			@RequestParam(value="preSaleNum") int preSaleNum,
 			@RequestParam(value="page") String page,
 			@RequestParam(value="searchKey", defaultValue="subject")String searchKey,
 			@RequestParam(value="searchValue", defaultValue="")String searchValue
 			) throws Exception {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		if(info==null){
+			return new ModelAndView("redirect:/");
+		}
 		
 		searchValue = URLDecoder.decode(searchValue, "utf-8");
 		
@@ -187,6 +201,12 @@ public class AdoptController {
 			@RequestParam(value="preSaleNum") int preSaleNum,
 			@RequestParam(value="page") String page
 			) throws Exception {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		if(info==null){
+			return "redirect:/";
+		}
+		
 		String root = session.getServletContext().getRealPath("/");
 		String pathname = root + File.separator + "uploads" +File.separator + "adopt";
 		
@@ -197,10 +217,16 @@ public class AdoptController {
 	}
 	
 	@RequestMapping(value="/adopt/update",method=RequestMethod.GET)
-	public ModelAndView updateForm(
+	public ModelAndView updateForm(HttpSession session,
 			@RequestParam(value="preSaleNum") int preSaleNum,
 			@RequestParam(value="page") String page
 			) throws Exception {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		if(info==null){
+			return new ModelAndView("redirect:/");
+		}
+		
 		Adopt dto = service.readPreSale(preSaleNum);
 		if(dto==null)
 			return new ModelAndView("redirect:.adopt.list?page="+page);
@@ -221,6 +247,12 @@ public class AdoptController {
 			Adopt dto,
 			@RequestParam(value="page") String page
 			) throws Exception {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		if(info==null){
+			return "redirect:/";
+		}
+		
 		String root = session.getServletContext().getRealPath("/");
 		String pathname = root + File.separator + "uploads" +File.separator +"adopt";
 		
@@ -236,6 +268,7 @@ public class AdoptController {
 			HttpSession session,
 			@RequestParam(value="saveFilename") String saveFilename
 			) throws Exception {
+		
 		Map<String, Object> map= new HashMap<>();
 		String root = session.getServletContext().getRealPath("/");
 		String pathname = root + File.separator + "uploads" +File.separator + "adopt";
@@ -326,7 +359,6 @@ public class AdoptController {
 			@RequestParam(value="preSaleNum") int preSaleNum
 			) throws Exception {
 		// AJAX(JSON) - ´ñ±Û °³¼ö (´ñ±Û µî·ÏÇÏ¸é °¹¼ö°¡ ¹Ù·Î ¹Ù²ñ)
-		System.out.println("ss");
 		int count=0;
 		
 		Map<String, Object> map = new HashMap<String, Object>();
