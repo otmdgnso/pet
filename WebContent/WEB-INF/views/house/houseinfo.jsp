@@ -190,7 +190,7 @@ function deleteReview(reviewnum) {
             <div class="col-md-12 details-hotel" style="min-height: 100px; padding: 50px;">
               <div id="review"></div>
             </div>
-            
+           
             <!-- 리스트로 돌아가기 -->
             <div class="col-sm-8 col-md-9" style="margin-top: 30px; float: right;">
 	           	<button type="button" class="btn btn-primary btn-block" style="float: right; width: 10%;" onclick="javascript:location.href='<%=cp%>/house/list';">목록</button>

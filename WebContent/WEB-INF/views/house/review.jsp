@@ -6,6 +6,47 @@
 	String cp=request.getContextPath();
 %>
 
+<script type="text/javascript">
+//댓글 추가
+function sendReply() {
+	var uid="$sessionScope.member.userId}";
+	if(! uid) {
+		login();
+		return false;
+	}
+	
+	var hostNum="${dto.hostNum}";
+	var content=$.trim($("#content").val());
+	if(! content) {
+		alert("내용을 입력하세요.");
+		$("#content").focus();
+		return false;
+	}
+	
+	var params="hostNum="+hostNum;
+	params+="&content="+content;
+	
+	$.ajax({
+		type:"POST"
+		,url:"<%=cp%>/house/createdReply"
+		,dataType:"json"
+		,success:function(data) {
+			$("#content").val("");
+			
+			var state=data.state;
+			if(state=="true") {
+				listPage(1);
+			} else if(state=="false") {
+				alert("댓글을 등록하지 못했습니다.");
+			}
+		}
+		, error:function(e) {
+			alert(e.responseText);
+		}
+	});
+}
+</script>
+
 <!-- 시작 -->
 <span style="color: #3EA9CD; font-weight: bold; font-size: 20px;">후기 3개 </span>
 	<img src="<%=cp%>/res/image/staryellow.png" width="20px">
@@ -83,15 +124,75 @@
 </c:forEach>
 
 
+
+
+
+
 <!-- 페이징처리 -->
 <div class="cbp-vm-switcher cbp-vm-view-list">
 		<div class="paging" style="text-align: center; min-height: 50px; line-height: 50px; color: #A6A6A6;">
             <c:if test="${reviewDataCount==0 }">
                   	등록된 후기가 없습니다.
+                  	<div class="separator" style="width:100%; padding: 0px;"></div>
             </c:if>
-            <c:if test="${reviewDataCount!=0 }">			
+            
+            <!-- 별점 -->
+            <div class="bbs-reply">
+	           <div class="bbs-reply-write"> 
+	               <table style="width: 100%; height: 20px;">
+	               <tr>
+	               		<td align="center" width="20%"></td>
+	               		<td align="center" width="20%">							
+							<label>청결도</label>
+							<img src="<%=cp%>/res/image/stargray.png" width="15px">
+							<img src="<%=cp%>/res/image/stargray.png" width="15px">
+							<img src="<%=cp%>/res/image/stargray.png" width="15px">
+							<img src="<%=cp%>/res/image/stargray.png" width="15px">
+							<img src="<%=cp%>/res/image/stargray.png" width="15px">								     
+						</td>
+						<td align="center" width="20%">							
+							<label>가 격</label>
+							<img src="<%=cp%>/res/image/stargray.png" width="15px">
+							<img src="<%=cp%>/res/image/stargray.png" width="15px">
+							<img src="<%=cp%>/res/image/stargray.png" width="15px">
+							<img src="<%=cp%>/res/image/stargray.png" width="15px">
+							<img src="<%=cp%>/res/image/stargray.png" width="15px">								     
+						</td>
+	               		<td align="center" width="20%">							
+							<label>친절도</label>
+							<img src="<%=cp%>/res/image/stargray.png" width="15px">
+							<img src="<%=cp%>/res/image/stargray.png" width="15px">
+							<img src="<%=cp%>/res/image/stargray.png" width="15px">
+							<img src="<%=cp%>/res/image/stargray.png" width="15px">
+							<img src="<%=cp%>/res/image/stargray.png" width="15px">								     
+						</td>
+						<td align="center" width="20%"></td>
+					</tr>
+	               </table>            
+		               
+	               
+	               <table style="width: 100%;">
+					<tr>
+						<td align="center" width="20%">
+							<img src="<%=cp%>/uploads/profile/${dto.profile}" class="avatar img-circle img-thumbnail" width="70px;">
+						</td>
+						<td align="center" width="70%">
+							<textarea id="content" class="form-control" rows="3" cols="50"></textarea>
+						</td>
+						<td align="center" width="10%">
+							<button type="button" class="btn btn-primary btn-sm" onclick="sendReply();"> 등록 <span class="glyphicon glyphicon-ok"></span></button>
+						</td>
+					</tr>
+				</table>        
+	           </div>
+	       </div>       
+            
+            <!-- 댓글 페이징 -->	
+            <c:if test="${reviewDataCount!=0 }">	
+            <div class="separator" style="width:100%; padding: 0px;"></div>		
                ${paging}
             </c:if>
-</div>
+		</div>
 </div>     
+
 </div>
