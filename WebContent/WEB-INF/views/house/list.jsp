@@ -47,7 +47,13 @@ $(function () {
 </script>
 <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 
-<script>
+<script type="text/javascript">
+function searchList() {
+	var f=document.searchForm;	
+	f.action="<%=cp%>/house/list";
+	f.submit();
+}
+
 function checkHouseinfo(hostNum) {
 	var url="<%=cp%>/house/houseinfo";
 	location.href=url+"?hostNum="+hostNum;

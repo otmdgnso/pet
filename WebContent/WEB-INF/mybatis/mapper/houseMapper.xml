@@ -84,7 +84,10 @@
 	<!-- 댓글(리뷰) -->
 	<insert id="insertReview" parameterType="com.pet.house.Review">
 		INSERT INTO hostreview(reviewNum, content, hostNum, completeNum)
-		VALUES (hostReview_seq.NEXTVAL, #{content}, #{hostNum}, #{completeNum}); 
+		VALUES (hostReview_seq.NEXTVAL, #{content}, #{hostNum}, #{completeNum}) 
+		
+		INSERT INTO grade(hostNum, clean, price, kind, completeNum)
+		VALUES ()
 	</insert>
 	
 	<select id="reviewDataCount" resultType="Integer" parameterType="map">
