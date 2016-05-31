@@ -71,13 +71,17 @@ public class AdoptController {
 	@RequestMapping(value="/adopt/list")
 	public ModelAndView list(HttpServletRequest req,
 			@RequestParam(value="page", defaultValue="1") int current_page,
-			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
+			@RequestParam(value="searchKey", defaultValue="") String searchKey,
 			@RequestParam(value="searchValue", defaultValue="") String searchValue,
 			@RequestParam(value="orderList", defaultValue="") String orderList,
+			@RequestParam(value="typeAdopt", defaultValue="") String type,
+			@RequestParam(value="speciesAdopt", defaultValue="") String species,
+			@RequestParam(value="minPrice",defaultValue="0") int minPrice,
+			@RequestParam(value="maxPrice", defaultValue="0") int maxPrice,
 			HttpSession session
 			) throws Exception {
 		String cp = req.getContextPath();
-		
+		System.out.println(species);
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		
 		int numPerPage = 9;
@@ -93,6 +97,10 @@ public class AdoptController {
 		map.put("searchKey", searchKey);
 		map.put("searchValue", searchValue);
 		map.put("orderList", orderList);
+		map.put("type", type);
+		map.put("species", species);
+		map.put("minPrice", minPrice);
+		map.put("maxPrice", maxPrice);
 		dataCount = service.dataCount(map);
 		if (dataCount != 0)
 			total_page= myutil.pageCount(numPerPage, dataCount);
@@ -142,7 +150,6 @@ public class AdoptController {
 		mav.addObject("dataCount",dataCount);
 		mav.addObject("paging",myutil.paging(current_page, total_page, listUrl));
 		mav.addObject("info",info);
-		
 		return mav;
 	}
 	

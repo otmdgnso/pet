@@ -33,6 +33,18 @@ $(function(){
 	});
 });
 
+function adoptSearch() {
+	var f=document.adoptForm;
+	var typeAdopt=f.typeAdopt.value;
+	var speciesAdopt=f.speciesAdopt.value;
+	alert(speciesAdopt);
+	var minPrice=$("#slider-range").slider("values", 0)*10000;
+	var maxPrice=$("#slider-range").slider("values", 1)*10000;
+	var params="searchValue=main&type="+type+"&species="+species+"&minPrice="+minPrice+"&maxPrice="+maxPrice;
+	f.action="<%=cp%>/adopt/list?"+params;
+	f.submit();
+}
+
 </script>
 
 <section class="top-content">
@@ -125,7 +137,7 @@ $(function(){
                                             </div>
                                         </div>
                                         <div class="col-sm-2 colbtn">
-                                          <button type="submit" class="btn btn-primary btn-block">Search Now</button>
+                                          <button type="button" class="btn btn-primary btn-block">검색</button>
                                         </div>
                                       </div>
                                     </form>
@@ -164,13 +176,13 @@ $(function(){
                                     </form>
                                     
                                         <!--********************* 분양 검색 ********************-->
-                                    <form id="sell-tab" class="tab-pane form-inline reservation-flight" method="post" name="auctionSearch">
+                                    <form id="sell-tab" class="tab-pane form-inline reservation-flight" method="post" name="adoptForm">
                                       <div class="row">
                                         <div class="col-sm-4 flight-where">
                                           <div class="form-group">
                                             <h3> <img alt="" src="<%=cp%>/res/img/dogplay.png">펫 검색</h3>
                                             <label for="auctionSubject">통합 검색</label>
-                                            <input type="text" class="form-control" placeholder="품종을 입력하세요" id="type" name="type" >
+                                            <input type="text" class="form-control" placeholder="품종을 입력하세요" id="type" name="typeAdopt" >
                                           </div>
                                         </div>
                                         <div class="col-sm-4 fly-who">
@@ -180,7 +192,7 @@ $(function(){
                                                 <div class="guests-select">
                                                   <label>Dog or Cat</label>
                                                   
-                                                      <select name="species" id="species" class="form-control">
+                                                      <select name="speciesAdopt" id="species" class="form-control">
                                                         <option value="dog">DOG</option>
                                                         <option value="cat">CAT</option>
                                                       </select>
@@ -199,7 +211,7 @@ $(function(){
                                         </div>
                                            
                                         <div class="col-sm-2 colbtn">
-                                          <button type="submit" class="btn btn-primary btn-block">Search Now</button>
+                                          <button type="button" class="btn btn-primary btn-block" onclick="adoptSearch();">검색</button>
                                         </div>
                                       </div>
                                     </form>
