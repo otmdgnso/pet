@@ -21,4 +21,6 @@ public interface MessageService {
 	public int deleteMessage(Map<String, Object> map);
 	// 메시지 확인 날짜
 	public int updateConfirmCreated(int messageNum);
+	//아이디 체크
+	public int userIdCheck(String userId);
 }

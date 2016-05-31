@@ -116,7 +116,10 @@
 		WHERE messageNum=#{messageNum} AND confirmCreated IS NULL
 	</update>
 	
-	
+	<select id="userIdCheck" parameterType="String" resultType="Integer">
+	SELECT NVL(COUNT(*),0) FROM member
+	WHERE userId=#{userId}
+	</select>
 	
 	
 	

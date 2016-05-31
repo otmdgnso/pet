@@ -6,6 +6,29 @@
 	String cp = request.getContextPath();
 %>
 <script type="text/javascript">
+$(function(){
+	$('#messageReceiveUserId').blur(function(){
+		var receiveUserId=$("#messageReceiveUserId").val();
+		var url="<%=cp%>/message/userIdCheck";
+		var params="receiveUserId=" +receiveUserId;
+		$.ajax({
+			type:"POST",
+			url:url,
+			data:params,
+			dataType:"json",
+			success:function(data){
+			if (data.result1==0) {
+				$("#messageReceiveUserId").val("");
+				$("#messageReceiveUserId").focus();
+			}
+		},
+		error:function(e) {
+			alert(e.responseText);
+		}
+	});
+		
+	});
+});
 
 function sendCheck() {
 	var f=document.sendForm;
@@ -52,6 +75,7 @@ function sendCheck() {
 		alert(e.responseText);
 	}
 });
+	
 }
 </script>
 

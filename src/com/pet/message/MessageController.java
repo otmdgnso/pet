@@ -46,7 +46,8 @@ public class MessageController {
 	@RequestMapping(value="/message/send_ok", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> sendSubmit(
-			HttpSession session, Message dto) throws Exception {
+			HttpSession session, Message dto
+			) throws Exception {
 		// 메시지 보내기
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 
@@ -244,7 +245,19 @@ public class MessageController {
 			return map;
 		}
 	
-	
+		@RequestMapping(value="/message/userIdCheck", method=RequestMethod.POST)
+		@ResponseBody
+		public Map<String, Object> userIdCheck(
+				HttpSession session, Message dto,
+				@RequestParam(value="receiveUserId",defaultValue="")String userId
+				) throws Exception {
+			int result=service.userIdCheck(userId);
+			
+			Map<String, Object> model = new HashMap<>();
+			model.put("result1", result);
+			return model;
+		
+		}
 	
 	
 	
