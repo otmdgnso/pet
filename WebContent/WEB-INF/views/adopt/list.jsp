@@ -96,9 +96,11 @@ $(function(){
                                             <a class="close-overlay hidden">x</a>
                                         </div>
                                     </div>
-                                    <div class="gallery-img-title">
-                                      <h3>제목:${dto.subject} 작성자:${dto.userId} 작성일:${dto.created} 조회수${dto.hitCount}</h3>
-                                     
+                                    <div align="left" class="gallery-img-title">
+                                      <span style="color: black;">제목 : ${dto.subject}</span> &nbsp;
+                                       <span style="color: orange; font-weight: bold;">[${dto.replyCount}]</span><br>
+                                       <span style="color: black;">조회수 ${dto.hitCount}  |  ${dto.created}     </span><br>
+                                       <span style="color: black;">${dto.userId} </span>
                                     </div>
                             </div>
 						</c:forEach>
@@ -109,11 +111,13 @@ $(function(){
                      
                     
           </div><!--Close col 12 -->
+          <div align="center">
           <ul class="pagination clearfix">
                         <c:if test="${dataCount!=0}">
             				${paging}
          				</c:if>
                     </ul>
+                    </div>
 
        </div>
           

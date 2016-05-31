@@ -258,6 +258,20 @@ public class MessageController {
 			return model;
 		
 		}
+		
+		@RequestMapping(value="/message/userMessageCheck", method=RequestMethod.POST)
+		@ResponseBody
+		public Map<String, Object> userMessageCheck(HttpSession session) throws Exception {
+			SessionInfo info = (SessionInfo)session.getAttribute("member");
+			String userId=info.getUserId();
+			
+			int userMessageCount= service.userMessageCheck(userId);
+			
+			Map<String, Object> model = new HashMap<>();
+			model.put("userMessageCount", userMessageCount);
+			return model;
+		
+		}
 	
 	
 	

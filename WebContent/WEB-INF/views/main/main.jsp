@@ -26,10 +26,11 @@ $(function(){
 	$('#video').mouseup(function(){		
 		 $('#main1').toggle(); 
 	});
-/* 	$(document).click(function(){
-		alert("ㅎㅇ");
-		$('#main1').show();
-	}); */
+
+	$(function () {
+	    "use strict";
+	    $('#Grid1').mixItUp();
+	});
 });
 
 </script>
@@ -244,6 +245,59 @@ $(function(){
         </div>
 </section>
 
+<!-- 호스트 시작 -->
+<section style="width: 100%; margin-top: 100px;" class="box-tr-square">
+<div class="container">
+<div class="row">
+  <div align="center" class="col-md-12 effect-5 effects">
+  <span style="font-weight: bold; color: #747474; font-size: 28pt;">Hot House</span>
+	<ul id="Grid1" class="sandbox" style="margin-top: 30px;">
+		<c:forEach var="dto" items="${listHouse}">
+			<li class="cat3 col-md-4 gallery-view view-fifth" style="width: 31.5%; float: left;">
+				<div>
+					<div class="cbp-vm-image img">
+						<img src="<%=cp%>/uploads/profile/${dto.profile}"
+							style="width: 338px; height: 180px">
+						<div class="overlay" style="width: 83%;">
+							<a href="<%=cp%>/house/houseinfo?hostNum=${dto.hostNum}" class="expand"><i
+								class="fa fa-paw" aria-hidden="true"></i></a> <a
+								class="close-overlay hidden">x</a>
+						</div>
+					</div>
+
+					<div style="height: 200px; text-align: left; background-color:white;
+											padding: 20px;">
+						<h3>${dto.subject}</h3>
+						<div class="clear"></div>
+						<span style="color: #8C8C8C">${dto.userName},
+							${dto.address}</span>
+						<div class="price-night">
+							<span style="color: #8C8C8C">수용가능 ${dto.capacity}마리</span><span
+								class="price-n">${dto.cost}원</span>
+						</div>
+
+						<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
+							<tr>
+								<td align="left" width="50%" style="color: #8C8C8C"><img
+									class="star-level" src="<%=cp%>/res/images/5star.png" />
+									(${dto.reviewcnt})</td>
+								<td align="right" width="50%" rowspan="2"><a
+									href="<%=cp%>/house/houseinfo?hostNum=${dto.hostNum}"
+									class="btn btn-primary btn-gallery" style="float: right;">더보기</a></td>
+							</tr>
+						</table>
+
+					</div>
+				</div>
+			</li>
+		</c:forEach>
+	</ul>
+	</div>
+	</div>
+	</div>
+</section>
+<!-- 호스트 끝 -->
+
 <!-- 사진 시작 -->
 <section id="photo" style="width: 100%;  margin-top: 100px;" class="box-tr-square">
 <div class="container">
@@ -251,7 +305,7 @@ $(function(){
          <div align="center" class="col-md-12 effect-5 effects">
 	   <span style="font-weight: bold; color: #747474; font-size: 28pt;">Hot Photo</span>
 
-		<div class="portfolio albumContainer">
+		<ul id="Grid" class="sandbox">
 			<c:forEach var="dto" items="${list}">
 				<div class="cat3 col-md-4 gallery-view view-fifth" style="width: 31.5%; float: left;">
 					<div class="img">
@@ -262,8 +316,6 @@ $(function(){
 							<a class="close-overlay hidden">x</a>
 						</div> --%>
 					<div class="overlay">
-						<%-- <a href="<%=cp%>/photo/article?photoNum=${dto.photoNum}&page" class="expand">IN</a>
-                                            <a class="close-overlay hidden">x</a> --%>
                         <a href="<%=cp%>/photo/article?photoNum=${dto.photoNum}&page" class="expand discount">${dto.userName}</a>
                                 <a style="color: #86E57F;" class="expand discount textdisc" >추천 ${dto.likeCount}</a>                    
 					  </div>                                    
@@ -277,10 +329,11 @@ $(function(){
 					</div>
 				</div>
 			</c:forEach>
+			</ul>
 				</div>
 			</div>
 		</div>
-	</div>
+	
 </section>
 <!-- 사진 끝 -->
 
@@ -292,17 +345,19 @@ $(function(){
 	  <span style="font-weight: bold; color: #747474; font-size: 28pt;">It's Pet</span>
 		<div class="portfolio albumContainer">
 			<c:forEach var="dto" items="${listAdopt}">
-	                        <div class="cat3 col-md-4 gallery-view view-fifth" style="width: 31.5%; float: left;">
+	                        <div class="cat3 col-md-4 gallery-view view-fifth">
                                    <div class="img">
-                                        <img src="<%=cp%>/uploads/adopt/${dto.saveFilename}" style="width: 400px; height: 350px;"/>
+                                        <img src="<%=cp%>/uploads/adopt/${dto.saveFilename}" style="width: 380px; height: 300px"/>
                                         <div class="overlay">
-                                            <a href="<%=cp%>/adopt/article?preSaleNum=${dto.preSaleNum}&page" class="expand">IN</a>
+                                            <a href="<%=cp%>/adopt/article?preSaleNum=${dto.preSaleNum}&page" class="expand">+</a>
                                             <a class="close-overlay hidden">x</a>
                                         </div>
                                     </div>
-                                    <div class="gallery-img-title">
-                                      <h3>제목:${dto.subject} 작성자:${dto.userId} 작성일:${dto.created} 조회수${dto.hitCount}</h3>
-                                     
+                                    <div align="left" class="gallery-img-title">
+                                      <span style="color: black;">제목 : ${dto.subject}</span> &nbsp;
+                                       <span style="color: orange; font-weight: bold;">[${dto.replyCount}]</span><br>
+                                       <span style="color: black;">조회수 ${dto.hitCount}  |  ${dto.created}     </span><br>
+                                       <span style="color: black;">${dto.userId} </span>
                                     </div>
                             </div>
 						</c:forEach>

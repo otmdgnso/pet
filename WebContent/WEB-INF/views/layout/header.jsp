@@ -54,6 +54,20 @@
 
 <script type="text/javascript">
 $(function(){
+	var url="<%=cp%>/message/userMessageCheck";
+	$.ajax({
+		type:"POST",
+		url:url,
+		dataType:"json",
+		success:function(data){
+		if(data.userMessageCount>0)
+			$("#userMessageCount").html("<img src='<%=cp%>/res/images/icon/new.gif' style='width: 15px; height: 15px;'>"+data.userMessageCount);
+	},
+	error:function(e) {
+		
+	}
+});
+	
 	$(document).mouseup(function(e) {
 		if ($(e.target).parents('.zeta-menu').length == 0) {
 			$('.zeta-menu li').removeClass('expand');
@@ -239,7 +253,15 @@ function shakeModalMember(msg){
                     <div class='top-login'><i class="fa fa-plus"></i><a data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Register</a><i class="fa fa-lock"></i> <a data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Log in</a></div>
               </c:if>
               <c:if test="${not empty sessionScope.member}">
-              		 <div class='top-login'><i class="fa fa-plus"><a href="<%=cp%>/message/list">메시지</a></i><span>${sessionScope.member.userName}</span>님
+              		 <div class='top-login'>
+              		 
+              		 
+              		 <i class="fa fa-plus">
+              		 <font color="red" id="userMessageCount" style="font-weight: bold; font-size: 13pt"></font>
+              		 <a href="<%=cp%>/message/list">메시지</a>
+              		 </i>
+              		 
+              		 <span>${sessionScope.member.userName}</span>님
               		 <i class="fa fa-lock"></i> <a href="javascript:void(0)" onclick="location.href='<%=cp%>/member/logout'">Logout</a>
               		<i class="glyphicon glyphicon-user" style="color: white;"></i><a href="<%=cp%>/member/blog">마이페이지</a></div>
               </c:if>
@@ -262,7 +284,7 @@ function shakeModalMember(msg){
 				</li>	
                 <!-- 호스팅버튼 -->
 				<li class="weather">
-					<a class="top-menu-txt" href="#">호스팅하기</a>
+					<a class="top-menu-txt" href="<%=cp%>/house/join">호스팅하기</a>
 				</li>
 				<!--/ 호스팅버튼 -->
 				

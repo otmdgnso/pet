@@ -114,4 +114,15 @@ public class MessageServiceImpl implements MessageService {
 		}
 		return result;
 	}
+
+	@Override
+	public int userMessageCheck(String userId) {
+		int result=0;
+		try {
+			result=dao.getIntValue("message.userMessageCheck",userId);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
 }

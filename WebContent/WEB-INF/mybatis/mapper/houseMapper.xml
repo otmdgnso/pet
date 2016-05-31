@@ -25,10 +25,9 @@
 	          OR TO_CHAR(created, 'YYYYMMDD') = #{searchValue}
 		</if>
 	</sql>
-	<!-- Mapper 수정 필요  
 	<insert id="insertHouseInfo" parameterType="com.pet.house.House">
-		INSERT INTO host (houstNum, address, cost, capacity, searchOn, subject, content)
-		VALUES(#{houseNum}, #{address}, #{cost}, #{capacity}, #{searchOn}, #{subject}, #{content})
+		INSERT INTO host (hostNum, address, cost, capacity, search_On, subject, content)
+		VALUES(#{hostNum}, #{address}, #{cost}, #{capacity}, #{searchOn, jdbcType=VARCHAR}, #{subject}, #{content})
 	</insert>
 	
 	<insert id="insertHousePic" parameterType="com.pet.house.House">
@@ -39,6 +38,7 @@
 		INSERT INTO hostHousePic (picNum, species, hostNum)
 		VALUES(hostHousePetInfo_seq.NEXTVAL, #{species}, #{hostNum})
 	</insert>
+	<!-- Mapper 수정 필요  
 	-->
 	
 	<!-- 글 개수 -->
