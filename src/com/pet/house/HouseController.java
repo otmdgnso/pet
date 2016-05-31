@@ -98,19 +98,22 @@ public class HouseController {
 	/*// 호스팅 등록
 	@RequestMapping(value="house/join", method=RequestMethod.GET)
 	public ModelAndView houseJoinInput() throws Exception{
-		List<Location> list = locationService.listCategory1();
-		
+		List<Location> list = locationService.listCategory1();		
 		
 		ModelAndView mav = new ModelAndView(".house.join");
 		mav.addObject("list", list);
 		return mav;
 	}
 	@RequestMapping(value="house/join", method=RequestMethod.POST)
-	public ModelAndView houseJoinSubmit() throws Exception{
+	public ModelAndView houseJoinSubmit(
+			House dto
+			) throws Exception{
+		
+		service.insertHouseInfo(dto);
 		ModelAndView mav = new ModelAndView(".house.join");
 		return mav;
-	}*/
-	
+	}
+	*/
 	// 호스팅 등록시 필요한 카테고리 
 	@RequestMapping(value="house/listCategory2", method=RequestMethod.POST)
 	@ResponseBody

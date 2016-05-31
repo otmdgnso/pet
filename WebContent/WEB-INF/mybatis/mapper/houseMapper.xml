@@ -26,7 +26,7 @@
 		</if>
 	</sql>
 	<insert id="insertHouseInfo" parameterType="com.pet.house.House">
-		INSERT INTO host (houstNum, address, cost, capacity, searchOn, subject, content)
+		INSERT INTO host (houstNum, address, cost, capacity, search_On, subject, content)
 		VALUES(#{houseNum}, #{address}, #{cost}, #{capacity}, #{searchOn}, #{subject}, #{content})
 	</insert>
 	
