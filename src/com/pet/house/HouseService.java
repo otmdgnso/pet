@@ -9,10 +9,12 @@ public interface HouseService {
 	public int insertHostPetInfo(House dto);
 	
 	public int updateHouseInfo();
-	public List<House> readHouseInfo(int hostNum);
+	public House readHouseInfo(int hostNum);
+	public List<House> readHousePhoto(int hostNum);
 	public int deleteHouseInfo();
 	public int dataCount(Map<String, Object> map);
 	public List<House> listHouse(Map<String, Object> map);
+	public House housePhoto(int hostNum);
 	
 	public int insertReview(Review dto);
 	public List<Review> listReview(Map<String, Object> map);

@@ -81,15 +81,26 @@ public class HouseServiceImpl implements HouseService{
 	}
 
 	@Override
-	public List<House> readHouseInfo(int hostNum) {
-		List<House> list=null;
+	public House readHouseInfo(int hostNum) {
+		House dto=null;
 		
 		try {
-			list=dao.getReadData("house.readHouseinfo", hostNum);
+			dto=dao.getReadData("house.readHouseinfo", hostNum);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
 		
+		return dto;
+	}
+	
+	@Override
+	public List<House> readHousePhoto(int hostNum) {
+		List<House> list=null;
+		try {
+			list=dao.getListData("house.readHousePhoto",hostNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
 		return list;
 	}
 
@@ -118,11 +129,27 @@ public class HouseServiceImpl implements HouseService{
 		
 		try {
 			list=dao.getListData("house.listHouse", map);
+			for(House vo:list){
+				House t=housePhoto(vo.getHostNum());
+				if(t!=null)
+					vo.setSaveFilename(t.getSaveFilename());
+			}
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
 		
 		return list;
+	}
+	
+	@Override
+	public House housePhoto(int hostNum) {
+		House dto=null;
+		try {
+			dto=dao.getReadData("house.housePhoto",hostNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return dto;
 	}
 
 	@Override
@@ -176,4 +203,5 @@ public class HouseServiceImpl implements HouseService{
 		
 		return result;
 	}
+
 }
