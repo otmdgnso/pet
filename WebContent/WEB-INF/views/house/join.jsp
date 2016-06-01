@@ -6,7 +6,7 @@
 	String cp=request.getContextPath();
 %>
 
-	<link href="<%=cp%>/res/assets/css/bootstrap.min.css" rel="stylesheet" />
+	<%-- <link href="<%=cp%>/res/assets/css/bootstrap.min.css" rel="stylesheet" /> --%>
 	<link href="<%=cp%>/res/assets/css/gsdk-base.css" rel="stylesheet" />
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
 

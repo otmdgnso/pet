@@ -95,15 +95,15 @@ function deleteReview(reviewnum) {
 }
 
 function check_star(star){
-	
-	for(var i=1; i<=star;i++){
-			
-		var s = $("#star_"+i);
-		
-		s.src = "<%=cp%>/res/image/staryellow.png";
-	}
-	
-} 
+	   
+	   for(var i=1; i<=star;i++){
+	         
+	      var s = $("#star_"+i);
+	      
+	      s.src = "<%=cp%>/res/image/staryellow.png";
+	   }
+	   
+	} 
 </script>
 
 <div class="clear"></div>
@@ -162,35 +162,24 @@ function check_star(star){
              
          <!-- 본문 -->   
          <div class="col-sm-8 col-md-9">
-            <div class="main-details bx-about2 noowlf">
-            <c:forEach var="dto" items="${readFile}">
-				<ul class="bxslider">
-                  <li><img src="http://placehold.it/840x460" alt=""/></li>
-                  <li><img src="http://placehold.it/840x460" alt=""/></li>
-                  <li><img src="http://placehold.it/840x460" alt=""/></li>
-                  <li><img src="http://placehold.it/840x460" alt=""/></li>
-                  <li><img src="http://placehold.it/840x460" alt=""/></li>
-                  <li><img src="http://placehold.it/840x460" alt=""/></li>
-                  <li><img src="http://placehold.it/840x460" alt=""/></li>
-                  <li><img src="http://placehold.it/840x460" alt=""/></li>
-                </ul>
 
-                <div id="bx-pager">
-                  	
-                  <a data-slide-index="0" href=""><img src="<%=cp%>/uploads/house/${dto.saveFilename}" alt=""/></a>
-                  <a data-slide-index="1" href=""><img src="http://placehold.it/100x55" alt=""/></a>
-                  <a data-slide-index="2" href=""><img src="http://placehold.it/100x55" alt=""/></a>
-                  <a data-slide-index="3" href=""><img src="http://placehold.it/100x55" alt=""/></a>
-                  <a data-slide-index="4" href=""><img src="http://placehold.it/100x55" alt=""/></a>
-                  <a data-slide-index="5" href=""><img src="http://placehold.it/100x55" alt=""/></a>
-                  <a data-slide-index="6" href=""><img src="http://placehold.it/100x55" alt=""/></a>
-                  <a data-slide-index="7" href=""><img src="http://placehold.it/100x55" alt=""/></a>
-                	
-                </div>
-                </c:forEach>
-			</div>
-		
-            <div class="col-md-12 details-hotel" style="min-height: 100px; padding: 50px;">
+				<div class="main-details bx-about2 noowlf">
+					<ul class="bxslider">
+						<c:forEach var="dto" items="${readFile}" >
+							<!-- <li><img src="http://placehold.it/840x460" alt=""/></li> -->
+						<img style="width: 810px; height: 430px;"
+								src="<%=cp%>/uploads/house/${dto.saveFilename}" alt="" />
+						</c:forEach>
+					</ul>
+					<div id="bx-pager">
+						<c:forEach var="dto" items="${readFile}" begin="0" varStatus="status">
+							<a data-slide-index="${status.index}" href=""><img style="width: 150px; height: 105px;"
+								src="<%=cp%>/uploads/house/${dto.saveFilename}" alt="" /></a>
+						</c:forEach>
+					</div>
+				</div>
+
+				<div class="col-md-12 details-hotel" style="min-height: 100px; padding: 50px;">
               <div><i class="fa fa-map-o" aria-hidden="true"></i> 주소</div><div align="right" style="text-align: center;"><input type="text" style="border: 0px; text-align: center; width: 40%;" readonly="readonly" value="${dto.address}"></div>
               <div class="separator" style="width:100%"></div>
               <div><i class="fa fa-krw" aria-hidden="true"></i> 비용 (1마리 기준) </div><div align="right" style="text-align: center;"><input type="text" style="border: 0px; text-align: center;" readonly="readonly" value="${dto.cost}원"></div>
