@@ -30,6 +30,7 @@ public class AuctionController {
 	@Autowired
 	private MyUtil myutil;
 	
+	//글쓰기 get
 	@RequestMapping(value="/auction/created", method=RequestMethod.GET)
 	public ModelAndView created(
 			HttpSession session
@@ -39,7 +40,7 @@ public class AuctionController {
 		mav.addObject("mode", "created");
 		return mav;
 	}
-	
+	//글쓰기 post
 	@RequestMapping(value="/auction/created", method=RequestMethod.POST)
 	public String createdSubmit(
 			HttpSession session,
@@ -55,6 +56,7 @@ public class AuctionController {
 		
 		return "redirect:/auction/list";
 	}
+	//글리스트
 	@RequestMapping(value="/auction/list")
 	public ModelAndView list(
 				HttpServletRequest req,
@@ -130,7 +132,7 @@ public class AuctionController {
 	}
 	
 	//상세보기
-	@RequestMapping(value="auction/article", method=RequestMethod.GET)
+	@RequestMapping(value="/auction/article", method=RequestMethod.GET)
 	public ModelAndView article(
 			@RequestParam(value="auctionNum") int auctionNum,
 			@RequestParam(value="page") String page,
@@ -154,6 +156,9 @@ public class AuctionController {
 		// 파일
 		List<Auction> readAuctionFile=service.readAuctionFile(auctionNum);
 		
+		// 입찰리스트
+		List<Auction> bidList=service.listBid(auctionNum);
+		
 		String params = "page="+page;
 		if(searchValue.length()!=0) {
 			params += "&searchKey=" + searchKey +
@@ -163,12 +168,58 @@ public class AuctionController {
 		ModelAndView mav= new ModelAndView(".auction.article");
 		mav.addObject("dto",dto);
 		mav.addObject("readAuctionFile",readAuctionFile);
-		
+		mav.addObject("listBid", bidList);
 		mav.addObject("page",page);
 		mav.addObject("params",params);
 		
 		return mav;
 	}
+	
+	//실시간 입찰
+		
+		@RequestMapping(value="/auction/information", method=RequestMethod.POST)
+		@ResponseBody
+		public Map<String, Object> information(
+				@RequestParam(value="auctionNum") int auctionNum,
+				@RequestParam(value="bidPrice") int bidPrice
+			) throws Exception {
+			
+			Auction auction = service.readMaxBid(auctionNum);
+			
+			Map<String, Object> model = new HashMap<>();
+			model.put("bidPrice", auction.getBidPrice());
+
+			return model;
+		}
+		
+		
+		//경매입찰저장
+		@RequestMapping(value="/auction/insertBid", method=RequestMethod.POST)
+		@ResponseBody
+		public String insertBid(
+				@RequestParam(value="auctionNum") int auctionNum,
+				@RequestParam(value="bidPrice") int bidPrice,
+				HttpSession session
+			) throws Exception {
+			
+			SessionInfo info =  (SessionInfo)session.getAttribute("member");
+			
+			Map<String, Object> map = new HashMap<>();
+			map.put("bidPrice", bidPrice);
+			map.put("num", info.getMemberNum());
+			map.put("auctionNum", auctionNum);
+			
+			service.insertBid(map);
+
+
+			return "{retcode:00}";
+		}
+	
+	
+	
+	
+	
+	//글삭제
 	@RequestMapping(value="/auction/delete")
 	public String delete(
 				HttpSession session,
@@ -184,6 +235,7 @@ public class AuctionController {
 		return "redirect:/auction/list?page="+page;
 		
 	}
+	//글 수정
 	@RequestMapping(value="/auction/update",method=RequestMethod.GET)
 	public ModelAndView updateForm(
 			@RequestParam(value="auctionNum") int auctionNum,
@@ -203,7 +255,7 @@ public class AuctionController {
 		return mav;
 	}
 	
-	
+	//글 수정
 	@RequestMapping(value="/auction/update", method=RequestMethod.POST)
 	public String updateSubmit(
 				HttpSession session,
@@ -218,6 +270,7 @@ public class AuctionController {
 		return "redirect:/auction/list?page="+page;
 	}
 	
+	//파일 삭제
 	@ResponseBody
 	@RequestMapping(value="/auction/deleteFile")
 	public Map<String, Object> deleteFile(
@@ -229,11 +282,9 @@ public class AuctionController {
 		String pathname = root + File.separator + "uploads" +File.separator +"auction";
 	//해당파일삭제
 		service.deleteAuctionFile(saveFilename, pathname);
-		
 		return map;
 	
 	}
-	
 	
 	
 }

@@ -15,5 +15,8 @@ public interface AuctionService {
 	public int deleteAuction(int auctionNum, String pathname);
 	public int updateAuction(Auction dto, String pathname);
 	public int deleteAuctionFile(String saveFilename, String pathname);
+	public int insertBid(Map<String, Object> map);
+	public Auction readMaxBid(int auctionNum);
+	public List<Auction> listBid(int auctionNum);
 
 }

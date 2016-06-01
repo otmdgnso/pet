@@ -139,6 +139,7 @@
                                  
                                 <div class="price-night" style="border-top: none;" align="left">
                                     <h3>${dto.subject }</h3>
+									<div style="clear:both; ">경매끝나는날&nbsp;&nbsp;:&nbsp;&nbsp;${dto.aucEnd }</div>	
                                     <div style="clear:both; ">조회수&nbsp;&nbsp;:&nbsp;&nbsp;${dto.hitCount }</div>
                                     <div style="clear:both; ">종&nbsp;&nbsp;:&nbsp;&nbsp;${dto.species }</div>
                                     <a href="${articleUrl}&auctionNum=${dto.auctionNum}" class="btn btn-primary btn-gallery">상세보기</a>
