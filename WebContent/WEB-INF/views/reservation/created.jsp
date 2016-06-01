@@ -14,36 +14,53 @@
 <body>
 <script type="text/javascript">
 	function check() {
-		var f=document.reservationform;
 		
-		var str=f.checkin.value;
-		if(!str) {
-			alert("예약 시작일을 선택하세요.");
-			return false;
-		}
-		
-		str=f.checkout.value;
-		if(!str) {
-			alert("예약 종료일을 선택하세요.");
-			return false;
+		if(mode=="created") {
+			var f=document.reservationform;
+			
+			var str=f.checkin.value;
+			if(!str) {
+				alert("예약 시작일을 선택하세요.");
+				return false;
+			}
+			
+			str=f.checkout.value;
+			if(!str) {
+				alert("예약 종료일을 선택하세요.");
+				return false;
+			}
+			
+			str=f.pet_type.value;
+			if(!str) {
+				alert("펫 종류를 선택하세요.");
+				return false;
+			}
+			
+			str=f.pet_su.value;
+			if(!str) {
+				alert("펫 수를 선택하세요.");
+				return false;
+			}
 		}
 		
 		var mode="${mode}";
-		if(mode=="created")
+		if(mode=="created") {
 			f.action="<%=cp%>/reservation/created";
-		else if(mode=="update")
+			alert("예약 신청이 완료되었습니다.");
+		} else if(mode=="update")
 			f.action="<%=cp%>/reservation/update";
-			
+
 		return true;
 	}
 	
 	$(function(){
 		$("#pet_su").change(function() {
-			var cost = $("#cost").val().trim().split("/");
-			var pet_su = $("#pet_su").val().trim().split("/");
+			var cost = $("#cost").val().trim();
+			var pet_su = $("#pet_su").val().trim();
 			var tax= cost*pet_su*0.1;
 			var total= tax+cost*1;
-			return $("#tax").val(tax), $("#total").val(total);
+			return $("#tax").val(tax), $("#total").val(total), $("#totalCost").val(total);
+			
 		});
 		
 		$("#checkin").change(function() {
@@ -189,10 +206,13 @@
 								<option value="" disabled="disabled" selected="selected">선택</option>
 							</c:if>
 							<c:if test="${mode=='update'}">
-								<option value="${dto.pet_type}" disabled="disabled" selected="selected">${dto.pet_type}</option>
+								<option value="${dto.pet_type}" disabled="disabled" selected="selected">
+									<c:if test="${dto.pet_type=='dog'}">강아지</c:if>
+									<c:if test="${dto.pet_type=='cat'}">고양이</c:if>
+								</option>
 							</c:if>
-								<option value="강아지">강아지</option>
-								<option value="고양이">고양이</option>
+								<option value="dog">강아지</option>
+								<option value="cat">고양이</option>
 						</select>
 						
 					</div>
@@ -250,11 +270,16 @@
 				<input type="hidden" name="num" value="${dto.num}">
                 <input type="hidden" name="hostNum" value="${dto.hostNum}">
                 <input type="hidden" name="totalCost" value="${dto.totalCost}">
+                <c:if test="${mode=='update'}">
+                <input type="hidden" name="reservationNum" value="${dto.reservationNum}">
+	            <input type="hidden" name="pet_type" value="${dto.pet_type}">
+	            <input type="hidden" name="pet_su" value="${dto.pet_su}">
+				</c:if>
 				
 				<div class="col-sm-2 colbtn">
 				<c:if test="${mode=='created'}">		
-					<button type="submit" class="btn btn-primary btn-block" style="float: left; width: 50%;">예약하기</button>
-					<button type="button" class="btn btn-primary btn-block" style="float: right; width: 50%;" onclick="javascript:location.href='<%=cp%>/member/blog#tab-3';">취소</button>
+					<button type="button" class="btn btn-primary btn-block" style="float: left; width: 50%;">예약하기</button>
+					<button type="button" class="btn btn-primary btn-block" style="float: right; width: 50%;" onclick="javascript:location.href='<%=cp%>/house/list';">취소</button>
 				</c:if>
 				<c:if test="${mode=='update'}">
 					<button type="submit" class="btn btn-primary btn-block" style="float: left; width: 50%;">수정하기</button>
@@ -267,8 +292,7 @@
 				</div>
 				</div>
 		</section>
-	<!-- Reservation form -->
-				
+	<!-- Reservation form -->							
 	</div>
 	</div>
 	</div>
