@@ -13,6 +13,35 @@
 </head>
 <body>
 <script type="text/javascript">
+
+	function updateReserve(){
+		
+		var url="<%=cp%>/reservation/ajaxUpdate";
+		var data="reservationNum="+$("#reservationNum").val();
+		data += "&totalCost="+$("#totalCost").val();
+		data += "&hostNum="+$("#hostNum").val();
+		data += "&num="+$("#num").val();
+		data += "&pet_su="+$("#pet_su").val();
+		data += "&checkOut="+$("#checkout").val();
+		data += "&checkIn="+$("#checkin").val();
+		data += "&pet_type="+$("#pet_type").val();
+
+		
+		$.ajax({
+			
+			url:url,
+			data:data,
+			type:"POST",
+			success:function(data){
+				alert('수정완료');
+				window.location.href="<%=cp%>/member/blog#tab-3";				
+			},
+			error:function(e){
+				//alert("에러");
+			}
+		});
+	}
+
 	function check() {
 		
 		if(mode=="created") {
@@ -54,12 +83,19 @@
 	}
 	
 	$(function(){
+		
 		$("#pet_su").change(function() {
 			var cost = $("#cost").val().trim();
 			var pet_su = $("#pet_su").val().trim();
 			var tax= cost*pet_su*0.1;
 			var total= tax+cost*1;
-			return $("#tax").val(tax), $("#total").val(total), $("#totalCost").val(total);
+			//return $("#tax").val(tax), $("#total").val(total), $("#totalCost").val(total);
+			
+			$("#tax").val(tax);
+			$("#total").val(total);
+			$("#totalCost").val(total);
+			
+			return;
 			
 		});
 		
@@ -204,17 +240,14 @@
 						<select name="pet_type" id="pet_type" class="form-control">
 							<c:if test="${mode=='created'}">
 								<option value="" disabled="disabled" selected="selected">선택</option>
-							</c:if>
-							<c:if test="${mode=='update'}">
-								<option value="${dto.pet_type}" disabled="disabled" selected="selected">
-									<c:if test="${dto.pet_type=='dog'}">강아지</c:if>
-									<c:if test="${dto.pet_type=='cat'}">고양이</c:if>
-								</option>
-							</c:if>
 								<option value="dog">강아지</option>
 								<option value="cat">고양이</option>
-						</select>
-						
+							</c:if>
+							<c:if test="${mode=='update'}">
+								<option value="dog" <c:if test="${dto.pet_type=='dog'}"> selected="selected" </c:if> > 강아지</option>
+								<option value="cat" <c:if test="${dto.pet_type=='cat'}"> selected="selected" </c:if> >고양이</option>
+							</c:if>							
+						</select>						
 					</div>
 					</div>
 					</div>
@@ -228,15 +261,19 @@
 						<select name="pet_su" id="pet_su" class="form-control">
 							<c:if test="${mode=='created'}">
 								<option value="" disabled="disabled" selected="selected">선택</option>
-							</c:if>
-							<c:if test="${mode=='update'}">
-								<option value="${dto.pet_su}" disabled="disabled" selected="selected">${dto.pet_su}</option>
-							</c:if>
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
 								<option value="4">4</option>
 								<option value="5">5</option>
+							</c:if>
+							<c:if test="${mode=='update'}">						
+								<option value="1" <c:if test="${dto.pet_su=='1'}"> selected="selected" </c:if> >1</option>
+								<option value="2" <c:if test="${dto.pet_su=='2'}"> selected="selected" </c:if> >2</option>
+								<option value="3" <c:if test="${dto.pet_su=='3'}"> selected="selected" </c:if> >3</option>
+								<option value="4" <c:if test="${dto.pet_su=='4'}"> selected="selected" </c:if> >4</option>
+								<option value="5" <c:if test="${dto.pet_su=='5'}"> selected="selected" </c:if> >5</option>
+								</c:if>
 						</select>
 					</div>
 					</div>
@@ -267,13 +304,13 @@
                      </div>
                      </div>
                      
-				<input type="hidden" name="num" value="${dto.num}">
-                <input type="hidden" name="hostNum" value="${dto.hostNum}">
-                <input type="hidden" name="totalCost" value="${dto.totalCost}">
+				<input type="hidden" name="num" id="num" value="${dto.num}">
+                <input type="hidden" name="hostNum" id="hostNum" value="${dto.hostNum}">
+                <input type="hidden" name="totalCost" id="totalCost" value="${dto.totalCost}">
                 <c:if test="${mode=='update'}">
-                <input type="hidden" name="reservationNum" value="${dto.reservationNum}">
-	            <input type="hidden" name="pet_type" value="${dto.pet_type}">
-	            <input type="hidden" name="pet_su" value="${dto.pet_su}">
+                <input type="hidden" name="reservationNum" id="reservationNum" value="${dto.reservationNum}">
+	             	<%-- <c:if test="${dto.pet_type==''}"><input type="hidden" name="pet_type" id="pet_type" value="${dto.pet_type}"></c:if>
+	          	 	<c:if test="${dto.pet_su==''}"> <input type="hidden" name="pet_su" id="pet_su" value="${dto.pet_su}"></c:if> --%>
 				</c:if>
 				
 				<div class="col-sm-2 colbtn">
@@ -282,8 +319,8 @@
 					<button type="button" class="btn btn-primary btn-block" style="float: right; width: 50%;" onclick="javascript:location.href='<%=cp%>/house/list';">취소</button>
 				</c:if>
 				<c:if test="${mode=='update'}">
-					<button type="submit" class="btn btn-primary btn-block" style="float: left; width: 50%;">수정하기</button>
-					<button type="button" class="btn btn-primary btn-block" style="float: right; width: 50%;" onclick="javascript:location.href='<%=cp%>/member/blog#tab-3';">취소</button>		
+					<button type="button" class="btn btn-primary btn-block" style="float: left;  width: 50%;" onclick="updateReserve();" >수정하기</button>
+					<button type="button" class="btn btn-primary btn-block" style="float:right; width: 50%;" onclick="javascript:location.href='<%=cp%>/member/blog#tab-3';">취소</button>	
 				</c:if>
 				</div>
 				</form>
