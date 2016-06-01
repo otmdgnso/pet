@@ -114,8 +114,7 @@ $(function(){
 
 function checkHouseJoin() {
 	alert("a");
-  	var f=document.houseJoinForm;
-	
+  	var f=document.houseJoinForm;  	
   	/*var str= f.subject.value;
 	if(!str) {
 		f.subject.focus();
@@ -159,6 +158,8 @@ function checkHouseJoin() {
 		}
 	}
 	 */
+	 
+	 f.action="<%=cp%>/house/join";
 	f.submit();
 }
 
@@ -316,7 +317,7 @@ function checkHouseJoin() {
                                     <div class="col-sm-6 col-sm-offset-1">
                                          <div class="form-group">
                                          	<label>Title</label>
-                                         	<input type="text" class="form-control" placeholder="Title" name="Title">
+                                         	<input type="text" class="form-control" placeholder="Title" name="subject">
                                             <label>집에 대한 소개를 해주세요.</label>
                                             <textarea class="form-control" rows="9" name="content"></textarea>
                                           </div>
@@ -345,7 +346,7 @@ function checkHouseJoin() {
                         </div>
                         <div class="wizard-footer">
                             	<div class="pull-right">
-                                    <input type='button' class='btn btn-next btn-fill btn-info btn-wd btn-sm' name='next' value='Next' onclick="javascript:checkHouseJoin();" />
+                                    <input type='button' class='btn btn-next btn-fill btn-info btn-wd btn-sm' name='next' value='Next'/>
                                     <input type='button' class='btn btn-finish btn-fill btn-info btn-wd btn-sm' name='finish' value='finish' onclick="javascript:checkHouseJoin();"/>
         
                                 </div>

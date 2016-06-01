@@ -29,6 +29,11 @@
 			TO_CHAR(created, 'YYYY-MM-DD') = #{searchValue}
 	          OR TO_CHAR(created, 'YYYYMMDD') = #{searchValue}
 		</if>
+		<if test="searchValue == 'main'">
+		species=#{species}
+		AND type=#{type}
+		AND price BETWEEN #{minPrice} AND #{maxPrice}
+		</if>
 	</sql>
 	
 	<select id="seq" resultType="Integer">
@@ -48,7 +53,12 @@
 	</insert>
 
 	<select id="dataCount" resultType="Integer" parameterType="map">
-		SELECT NVL(COUNT(*),0) FROM preSale
+		SELECT NVL(COUNT(*),0) FROM preSale p
+		LEFT OUTER JOIN
+             (
+              SELECT preSaleNum, COUNT(*) replyCount FROM preSaleReply
+              GROUP BY preSaleNum
+             )r ON r.PreSaleNum=p.preSaleNum
 		<where>
           <if test="searchValue != null and searchValue != '' ">
 			   <include refid="where-list"/>
@@ -59,10 +69,15 @@
 	<select id="listPreSale" resultType="com.pet.adopt.Adopt" parameterType="map">
 	SELECT * FROM (
   		SELECT ROWNUM rnum, tb.* FROM (
-    		SELECT preSaleNum, subject, userId
-    		, hitCount, TO_CHAR(p.created,'YYYY-MM-DD') created
+    		SELECT p.preSaleNum, subject, userId
+    		, hitCount, TO_CHAR(p.created,'YYYY-MM-DD') created, type,price,species, replyCount
     		FROM preSale p JOIN
     		member m ON p.num=m.num
+    		LEFT OUTER JOIN
+             (
+              SELECT preSaleNum, COUNT(*) replyCount FROM preSaleReply
+              GROUP BY preSaleNum
+             )r ON r.PreSaleNum=p.preSaleNum
     		 <where>
                          <if test="searchValue != null and searchValue != ''">
 			                  <include refid="where-list"/>

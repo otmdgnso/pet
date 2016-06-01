@@ -47,7 +47,13 @@ $(function () {
 </script>
 <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 
-<script>
+<script type="text/javascript">
+function searchList() {
+	var f=document.searchForm;	
+	f.action="<%=cp%>/house/list";
+	f.submit();
+}
+
 function checkHouseinfo(hostNum) {
 	var url="<%=cp%>/house/houseinfo";
 	location.href=url+"?hostNum="+hostNum;
@@ -139,7 +145,7 @@ function checkHouseinfo(hostNum) {
 						<li class="mix category-3" data-value="1250">
 							<figure>
                                 <div class="cbp-vm-image img">
-                                    <img src="<%=cp%>/uploads/profile/${dto.profile}" style="width:338px; height:180px">
+                                    <img src="<%=cp%>/uploads/house/${dto.saveFilename}" style="width:338px; height:180px">
                                     <div class="overlay">
                                         <a onclick='checkHouseinfo(${dto.hostNum});' class="expand"><i class="fa fa-paw" aria-hidden="true"></i></a>
                                         <a class="close-overlay hidden">x</a>

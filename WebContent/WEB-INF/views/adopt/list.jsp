@@ -44,10 +44,10 @@ $(function(){
 	} else if(s=="http://localhost:9090/pet/adopt/list?orderList=priceL") {
 		$('.albumFilter .current').removeClass('current');
 		$('.albumFilter .4').addClass('current');
-	} else if(s=="http://localhost:9090/pet/adopt/list?searchKey=species&searchValue=%EA%B0%9C") {
+	} else if(s=="http://localhost:9090/pet/adopt/list?searchKey=species&searchValue=dog") {
 		$('.albumFilter .current').removeClass('current');
 		$('.albumFilter .1').addClass('current');
-	} else if(s=="http://localhost:9090/pet/adopt/list?searchKey=species&searchValue=%EA%B3%A0%EC%96%91%EC%9D%B4") {
+	} else if(s=="http://localhost:9090/pet/adopt/list?searchKey=species&searchValue=cat") {
 		$('.albumFilter .current').removeClass('current');
 		$('.albumFilter .2').addClass('current');
 	}
@@ -75,8 +75,8 @@ $(function(){
                         <dt></dt>
 		                <dd>
 			                <ul class="filter group albumFilter"> 
-				                <li data-filter=".cat1" class="1"><a href="<%=cp%>/adopt/list?searchKey=species&searchValue=개">강아지만</a></li> 
-				                <li data-filter=".cat2" class="2"><a href="<%=cp%>/adopt/list?searchKey=species&searchValue=고양이">고양이만</a></li> 
+				                <li data-filter=".cat1" class="1"><a href="<%=cp%>/adopt/list?searchKey=species&searchValue=dog">강아지만</a></li> 
+				                <li data-filter=".cat2" class="2"><a href="<%=cp%>/adopt/list?searchKey=species&searchValue=cat">고양이만</a></li> 
 				                <li data-filter="*" class="current"><a href="<%=cp%>/adopt/list">최신순</a></li> 
 				                <li data-filter=".cat3" class="3"><a href="<%=cp%>/adopt/list?orderList=priceH">가격 높은순</a></li>
 				                <li data-filter=".cat4" class="4"><a href="<%=cp%>/adopt/list?orderList=priceL">가격 낮은순</a></li>  
@@ -96,9 +96,11 @@ $(function(){
                                             <a class="close-overlay hidden">x</a>
                                         </div>
                                     </div>
-                                    <div class="gallery-img-title">
-                                      <h3>제목:${dto.subject} 작성자:${dto.userId} 작성일:${dto.created} 조회수${dto.hitCount}</h3>
-                                     
+                                    <div align="left" class="gallery-img-title">
+                                      <span style="color: black;">제목 : ${dto.subject}</span> &nbsp;
+                                       <span style="color: orange; font-weight: bold;">[${dto.replyCount}]</span><br>
+                                       <span style="color: black;">조회수 ${dto.hitCount}  |  ${dto.created}     </span><br>
+                                       <span style="color: black;">${dto.userId} </span>
                                     </div>
                             </div>
 						</c:forEach>
@@ -109,11 +111,13 @@ $(function(){
                      
                     
           </div><!--Close col 12 -->
+          <div align="center">
           <ul class="pagination clearfix">
                         <c:if test="${dataCount!=0}">
             				${paging}
          				</c:if>
                     </ul>
+                    </div>
 
        </div>
           

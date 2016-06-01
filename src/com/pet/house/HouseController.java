@@ -1,5 +1,6 @@
 package com.pet.house;
 
+import java.io.File;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pet.common.MyUtil;
+import com.pet.member.SessionInfo;
 
 @Controller("house.houseController")
 public class HouseController {
@@ -36,6 +39,7 @@ public class HouseController {
 			@RequestParam(value="searchValue", defaultValue="") String searchValue,
 			@RequestParam(value="orderList", defaultValue="") String orderList
 			) throws Exception {
+				
 		String cp=req.getContextPath();
 		
 		int numPerPage = 9;
@@ -95,24 +99,36 @@ public class HouseController {
         
 	}
 	
-	/*// 호스팅 등록
-	@RequestMapping(value="house/join", method=RequestMethod.GET)
+	// 호스팅 등록
+	@RequestMapping(value="/house/join", method=RequestMethod.GET)
 	public ModelAndView houseJoinInput() throws Exception{
-		List<Location> list = locationService.listCategory1();
-		
-		
+		List<Location> list = locationService.listCategory1();	
+				
 		ModelAndView mav = new ModelAndView(".house.join");
 		mav.addObject("list", list);
 		return mav;
 	}
-	@RequestMapping(value="house/join", method=RequestMethod.POST)
-	public ModelAndView houseJoinSubmit() throws Exception{
+	@RequestMapping(value="/house/join", method=RequestMethod.POST)
+	public ModelAndView houseJoinSubmit(
+			House dto,
+			HttpSession session
+			) throws Exception{
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		dto.setHostNum(info.getMemberNum());
+		
+		String root=session.getServletContext().getRealPath("/");
+		String pathname=root+File.separator+"uploads"+File.separator+"house";
+		
+		service.insertHouseInfo(dto, pathname);
+		service.insertHostPetInfo(dto);
+		
 		ModelAndView mav = new ModelAndView(".house.join");
 		return mav;
-	}*/
+	}
 	
 	// 호스팅 등록시 필요한 카테고리 
-	@RequestMapping(value="house/listCategory2", method=RequestMethod.POST)
+	@RequestMapping(value="/house/listCategory2", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> listCategory2(String category1) throws Exception{
 		List<Location> list = locationService.listCategory2(category1);
@@ -131,12 +147,16 @@ public class HouseController {
 
 		House dto=service.readHouseInfo(hostNum);
 		
+		//사진파일
+		List<House> readFile=service.readHousePhoto(hostNum);
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("hostNum", dto.getNum());
 		
 		ModelAndView mav = new ModelAndView(".house.houseinfo");
 		mav.addObject("hostNum",hostNum);
 		mav.addObject("dto", dto);
+		mav.addObject("readFile",readFile);
 		
 		return mav;
 	}

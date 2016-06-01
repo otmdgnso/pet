@@ -93,6 +93,17 @@ function deleteReview(reviewnum) {
 	      });
 	}
 }
+
+function check_star(star){
+	
+	for(var i=1; i<=star;i++){
+			
+		var s = $("#star_"+i);
+		
+		s.src = "<%=cp%>/res/image/staryellow.png";
+	}
+	
+} 
 </script>
 
 <div class="clear"></div>
@@ -152,6 +163,7 @@ function deleteReview(reviewnum) {
          <!-- 본문 -->   
          <div class="col-sm-8 col-md-9">
             <div class="main-details bx-about2 noowlf">
+            <c:forEach var="dto" items="${readFile}">
 				<ul class="bxslider">
                   <li><img src="http://placehold.it/840x460" alt=""/></li>
                   <li><img src="http://placehold.it/840x460" alt=""/></li>
@@ -164,7 +176,8 @@ function deleteReview(reviewnum) {
                 </ul>
 
                 <div id="bx-pager">
-                  <a data-slide-index="0" href=""><img src="http://placehold.it/100x55" alt=""/></a>
+                  	
+                  <a data-slide-index="0" href=""><img src="<%=cp%>/uploads/house/${dto.saveFilename}" alt=""/></a>
                   <a data-slide-index="1" href=""><img src="http://placehold.it/100x55" alt=""/></a>
                   <a data-slide-index="2" href=""><img src="http://placehold.it/100x55" alt=""/></a>
                   <a data-slide-index="3" href=""><img src="http://placehold.it/100x55" alt=""/></a>
@@ -172,7 +185,9 @@ function deleteReview(reviewnum) {
                   <a data-slide-index="5" href=""><img src="http://placehold.it/100x55" alt=""/></a>
                   <a data-slide-index="6" href=""><img src="http://placehold.it/100x55" alt=""/></a>
                   <a data-slide-index="7" href=""><img src="http://placehold.it/100x55" alt=""/></a>
+                	
                 </div>
+                </c:forEach>
 			</div>
 		
             <div class="col-md-12 details-hotel" style="min-height: 100px; padding: 50px;">
@@ -190,7 +205,7 @@ function deleteReview(reviewnum) {
             <div class="col-md-12 details-hotel" style="min-height: 100px; padding: 50px;">
               <div id="review"></div>
             </div>
-            
+           
             <!-- 리스트로 돌아가기 -->
             <div class="col-sm-8 col-md-9" style="margin-top: 30px; float: right;">
 	           	<button type="button" class="btn btn-primary btn-block" style="float: right; width: 10%;" onclick="javascript:location.href='<%=cp%>/house/list';">목록</button>

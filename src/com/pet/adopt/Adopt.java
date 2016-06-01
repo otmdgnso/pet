@@ -8,9 +8,16 @@ public class Adopt {
 	private int listNum, preSaleNum,month,price,deposit,num, hitCount;
 	private String subject, content, created,species, type, gender;
 	private String lineage, vaccin, saveFilename;
-	private int photoNum;
+	private int photoNum, replyCount;
 	private String userName;
 	private String userId;
+	
+	public int getReplyCount() {
+		return replyCount;
+	}
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
 	public String getUserId() {
 		return userId;
 	}

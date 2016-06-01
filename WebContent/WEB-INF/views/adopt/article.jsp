@@ -144,7 +144,7 @@ function deleteReply(replyNum, page, userId) {
                     	<table style="width: 70%; margin: 0px auto; border-spacing: 0px; padding: 0px;">
                     		<tr height="40%">
                     			<td align="center" width="10%"><label>제목</label></td>
-                     			<td align="center" width="90%"><input class="form-control" type="text" name="subject" value="${dto.subject}" style="text-align:center" readonly="readonly"></td>
+                     			<td align="center" width="90%"><input class="form-control" type="text" name="subject" value="${dto.subject}" style="border:none; text-align:center" readonly="readonly"></td>
                     		</tr>
                     		<tr align="center" height="40%">
                     			<td align="center" width="10%"><label>내용</label></td>
@@ -230,8 +230,12 @@ function deleteReply(replyNum, page, userId) {
                     	<div class="col-sm-4 fly-who">
                     	<div class="col-sm-2 colbtn">
 							<button type="button" class="btn btn-primary btn-block" style="float: left; width: 34%;" onclick="javacript:location.href='<%=cp%>/adopt/list?page=${page}';">목록</button>
+							<c:if test="${sessionScope.member.userId=='admin'|| sessionScope.member.userId==dto.userId}">
 							<button type="button" class="btn btn-primary btn-block" style="float: right; width: 33%;" onclick="deletePreSale(${dto.preSaleNum});">삭제</button>
+							</c:if>
+							<c:if test="${sessionScope.member.userId==dto.userId}">
 							<button type="button" class="btn btn-primary btn-block" style="float: right; width: 33%;" onclick="javascript:location.href='<%=cp%>/adopt/update?preSaleNum=${dto.preSaleNum}&page=${page}';">수정</button>
+							</c:if>
 						</div>
                     	<div class="separator" style="width:100%"></div>
                     	</div>	
@@ -251,10 +255,9 @@ function deleteReply(replyNum, page, userId) {
 				</div>
 				
 				<div class="col-md-12 details-hotel" id="replyList">
-	<p><textarea rows="6" cols="95" id="content" style="width: 200%;"></textarea> <a id="btnSend" onclick="sendReply();">등록</a></p>
+	<p align="right"><textarea rows="6" cols="95" id="content" style="width: 200%;"></textarea> <a id="btnSend" onclick="sendReply();">등록</a></p>
 		<div id="reply-content" style="display: none;">
-			<p id="listReply">
-			</p>
+			<div id="listReply"></div>
 		</div>
 	</div>
 				

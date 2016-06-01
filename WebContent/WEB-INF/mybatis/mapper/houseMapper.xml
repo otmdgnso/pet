@@ -26,17 +26,17 @@
 		</if>
 	</sql>
 	<insert id="insertHouseInfo" parameterType="com.pet.house.House">
-		INSERT INTO host (houstNum, address, cost, capacity, searchOn, subject, content)
-		VALUES(#{houseNum}, #{address}, #{cost}, #{capacity}, #{searchOn}, #{subject}, #{content})
+		INSERT INTO host (hostNum, address, cost, capacity, search_On, subject, content)
+		VALUES(#{hostNum}, #{address}, #{cost}, #{capacity}, #{searchOn, jdbcType=VARCHAR}, #{subject}, #{content})
 	</insert>
 	
 	<insert id="insertHousePic" parameterType="com.pet.house.House">
-		INSERT INTO hostHousePic (picNum, saveFileName, hostNum)
-		VALUES(hostHousePic_seq.NEXTVAL, #{saveFileName}, #{hostNum})
+		INSERT INTO hostHousePic (picNum, saveFilename, hostNum)
+		VALUES(hostHousePic_seq.NEXTVAL, #{saveFilename}, #{hostNum})
 	</insert>
 	<insert id="insertHostPetInfo" parameterType="com.pet.house.House">
-		INSERT INTO hostHousePic (picNum, species, hostNum)
-		VALUES(hostHousePetInfo_seq.NEXTVAL, #{species}, #{hostNum})
+		INSERT INTO hostPetInfo (num, species, hostNum)
+		VALUES(hostPetInfo_seq.NEXTVAL, #{species}, #{hostNum})
 	</insert>
 	<!-- Mapper 수정 필요  
 	-->
@@ -73,19 +73,36 @@
 	    ) WHERE rnum >= #{start}
 	]]>	    
 	</select>
+	<!-- 첫번째 보여줄 사진 -->
+	<select id="housePhoto" resultType="com.pet.house.House" parameterType="Integer">
+		SELECT tb1.* FROM( 
+				SELECT saveFilename FROM hostHousePic
+			     	WHERE hostNum=#{hostNum}
+			     ORDER BY picNum
+			 <![CDATA[
+			 )tb1 WHERE ROWNUM=1
+			 ]]>			 
+	</select>
 	
 	<!-- 글보기 -->
 	<select id="readHouseinfo" resultType="com.pet.house.House" parameterType="Integer">
 		SELECT hostNum, userName, profile, address, capacity, cost, subject, content
 		FROM host h JOIN member m ON h.hostNum=m.num
 		WHERE hostNum=#{hostNum}
+	</select>	
+	<!-- 사진글보기 -->
+	<select id="readHousePhoto" resultType="com.pet.house.House" parameterType="Integer">
+		SELECT picNum, saveFilename, hostNum
+		FROM hostHousePic
+		WHERE hostNum=#{hostNum}
 	</select>
 	
 	<!-- 댓글(리뷰) -->
 	<insert id="insertReview" parameterType="com.pet.house.Review">
 		INSERT INTO hostreview(reviewNum, content, hostNum, completeNum)
-		VALUES (hostReview_seq.NEXTVAL, #{content}, #{hostNum}, #{completeNum}); 
-	</insert>
+		VALUES (hostReview_seq.NEXTVAL, #{content}, #{hostNum}, #{completeNum}) 
+	
+	</insert>	
 	
 	<select id="reviewDataCount" resultType="Integer" parameterType="map">
 		SELECT NVL(COUNT(*), 0) FROM hostreview WHERE hostNum=#{hostNum}

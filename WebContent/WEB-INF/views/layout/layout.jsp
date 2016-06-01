@@ -105,18 +105,18 @@
 					.slider(
 							{
 								range : true,
-								min : 0,
-								max : 500,
-								values : [ 75, 300 ],
+								min : 1,
+								max : 1000,
+								values : [ 10, 30 ],
 								slide : function(event, ui) {
 									$("#amount").val(
-											"$" + ui.values[0] + " - $"
-													+ ui.values[1]);
+											ui.values[0] + "만원 - "
+													+ ui.values[1]+"만원");
 								}
 							});
 			$("#amount").val(
-					"$" + $("#slider-range").slider("values", 0) + " - $"
-							+ $("#slider-range").slider("values", 1));
+					$("#slider-range").slider("values", 0) + "만원 - "
+							+ $("#slider-range").slider("values", 1)+"만원");
 		});
 
 		var tpj = jQuery;
