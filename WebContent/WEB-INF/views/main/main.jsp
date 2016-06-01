@@ -37,11 +37,21 @@ function adoptSearch() {
 	var f=document.adoptForm;
 	var typeAdopt=f.typeAdopt.value;
 	var speciesAdopt=f.speciesAdopt.value;
-	alert(speciesAdopt);
+	
 	var minPrice=$("#slider-range").slider("values", 0)*10000;
 	var maxPrice=$("#slider-range").slider("values", 1)*10000;
-	var params="searchValue=main&type="+type+"&species="+species+"&minPrice="+minPrice+"&maxPrice="+maxPrice;
+	var params="searchValue=main&type="+typeAdopt+"&species="+speciesAdopt+"&minPrice="+minPrice+"&maxPrice="+maxPrice;
 	f.action="<%=cp%>/adopt/list?"+params;
+	f.submit();
+}
+
+function auctionSearch() {
+	var f=document.auctionForm;
+	var subjectAuction=f.subjectAuction.value;
+	var speciesAuction=f.speciesAuction.value;
+	
+	var params="searchValue=main&subject="+subjectAuction+"&species="+speciesAuction;
+	f.action="<%=cp%>/auction/list?"+params;
 	f.submit();
 }
 
@@ -144,14 +154,14 @@ function adoptSearch() {
                                   
 ​
                                     <!--********************* 경매 검색 ********************-->
-                                    <form id="auction-tab" class="tab-pane form-inline reservation-flight" method="post" name="auctionSearch">
+                                    <form id="auction-tab" class="tab-pane form-inline reservation-flight" method="post" name="auctionForm">
                                       <div class="row">
                                         <div class="col-sm-4 flight-where" >
                                           <div class="form-group" >
                                             <h3> <img alt="" src="<%=cp%>/res/img/product.png"> 검색 상품</h3>
                                             <label for="auctionSubject">상품 명</label>
                                             <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="검색할 상품 입력"> <i class="fa fa-info-circle fa-lg"> </i> </div>
-                                            <input type="text" class="form-control" placeholder="상품 이름" id="subject" name="subject" >
+                                            <input type="text" class="form-control" placeholder="상품 이름" id="subjectAuction" name="subjectAuction" >
                                           </div>
                                         </div>
                                         <div class="col-sm-4 fly-who">
@@ -161,7 +171,7 @@ function adoptSearch() {
                                                 <div class="guests-select">
                                                   <label>Dog or Cat</label>
                                                   
-                                                      <select name="species" id="species" class="form-control">
+                                                      <select name="speciesAuction" id="speciesAuction" class="form-control">
                                                         <option value="dog">DOG</option>
                                                         <option value="cat">CAT</option>
                                                       </select>
@@ -170,7 +180,7 @@ function adoptSearch() {
                                             </div>
                                         </div>
                                         <div class="col-sm-2 colbtn">
-                                          <button type="submit" class="btn btn-primary btn-block">Search Now</button>
+                                          <button type="button" class="btn btn-primary btn-block" onclick="auctionSearch();">검색</button>
                                         </div>
                                       </div>
                                     </form>

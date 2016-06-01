@@ -102,7 +102,12 @@ public class AuctionServiceImpl implements AuctionService{
 	public Auction readAuction(int auctionNum) {
 		Auction dto=null;
 		try {
+			// ¿Á¼Ç±Û
 			dto=dao.getReadData("auction.readAuction", auctionNum);
+			
+			// ÀÔÂû¸®½ºÆ® 
+			
+			
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
@@ -186,6 +191,40 @@ public class AuctionServiceImpl implements AuctionService{
 			System.out.println(e.toString());
 		}
 		return result;
+	}
+
+	@Override
+	public int insertBid(Map<String, Object> map) {
+		int result=0;
+		try {
+			result=dao.insertData("auction.insertBid", map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	@Override
+	public Auction readMaxBid(int auctionNum) {
+		Auction dto=null;
+		try {
+			dto=dao.getReadData("auction.readMaxBid", auctionNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return dto;
+	}
+
+	@Override
+	public List<Auction> listBid(int auctionNum) {
+		List<Auction> list=null;
+		try {
+			list=dao.getListData("auction.listBid", auctionNum);
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return list;
 	}
 
 }

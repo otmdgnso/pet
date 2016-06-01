@@ -4,17 +4,23 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-//경매글, 경매사진             //입찰낙찰은 안함
+//경매글, 경매사진             //입찰낙찰은 하는중
 public class Auction {
 	private int listNum,auctionNum, minPrice,buyPrice,amount,num;
 	private String aucEnd,species,subject,content,userId,created;
 	private int categoryNum;
-	private int photoNum,hitCount;
+	private int photoNum,hitCount,bidPrice;
 	private String saveFilename;
 	private List<MultipartFile> upload;
 	
 	
 	
+	public int getBidPrice() {
+		return bidPrice;
+	}
+	public void setBidPrice(int bidPrice) {
+		this.bidPrice = bidPrice;
+	}
 	public int getHitCount() {
 		return hitCount;
 	}

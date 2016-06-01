@@ -17,6 +17,10 @@
 			TO_CHAR(a.created, 'YYYY-MM-DD') = #{searchValue}
 	          OR TO_CHAR(a.created, 'YYYYMMDD') = #{searchValue}
 		</if>
+		<if test="searchValue == 'main'">
+			INSTR(subject, #{subject}) &gt; 0
+			AND species = #{species}
+		</if>
 	</sql>
 
 <select id="aucseq" resultType="Integer">
@@ -51,7 +55,7 @@
 	<select id="listAuction" resultType="com.pet.auction.Auction" parameterType="map">
 	SELECT * FROM (
   		SELECT ROWNUM rnum, tb.* FROM (
-    		SELECT auctionNum, subject, userId,content,species,hitCount,amount
+    		SELECT auctionNum, subject, userId,content,species,hitCount,amount,aucEnd
     		FROM auction a JOIN
     		member m ON a.num=m.num
     		 <where>
@@ -83,7 +87,7 @@
 	<!-- 경매 글 상세보기 -->
 	<select id="readAuction" resultType="com.pet.auction.Auction" parameterType="Integer">
 	SELECT auctionNum, subject, m.userId, content, amount,
-  		TO_CHAR(a.created, 'YYYY-MM-DD') created, 
+  		TO_CHAR(a.created, 'YYYY-MM-DD') created, aucEnd
   		species,minPrice,buyPrice,aucEnd,
   		categoryNum, 
   		a.num, hitCount
@@ -120,4 +124,24 @@
 		DELETE FROM auctionPhoto WHERE saveFilename=#{saveFilename}
 	</delete>
 	
+	<!-- 입찰 삽입 -->
+	<insert id="insertBid" parameterType="map">
+	  INSERT INTO bid (bidNum, bidPrice, num, auctionNum) 
+  		VALUES(bid_seq.NEXTVAL,#{bidPrice}, #{num},#{auctionNum})
+	</insert>
+	
+	<!-- 입찰 보기 max값만 볼까 아니면 다 볼까 -->
+	<select id="readMaxBid" parameterType="Integer" resultType="com.pet.auction.Auction">
+	
+	  SELECT userId,NVL(MAX(bidPrice),0) bidPrice
+		  FROM bid b JOIN member m ON b.num=m.num
+	</select>
+	
+	<!-- 입찰 리스트 -->
+	<select id="listBid" parameterType="Integer" resultType="com.pet.auction.Auction">
+	SELECT userId,bidPrice
+   FROM bid b JOIN member m ON b.num=m.num
+	WHERE auctionNum=#{auctionNum}
+	order by b.bidnum asc
+	</select>
 </mapper>

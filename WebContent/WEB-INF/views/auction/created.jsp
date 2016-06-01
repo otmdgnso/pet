@@ -172,8 +172,8 @@ function deleteFile(saveFilename, photoNum) {
 						<label for="checkin">종류</label>
 					<div class="guests-select" style="margin:0 auto; width:60%" align="center">
 																<select name="species">
-																	<option value="개">개</option>
-																	<option value="고양이">고양이</option>
+																	<option value="dog">Dog</option>
+																	<option value="cat">Cat</option>
 																</select>
 															</div>
 					</div>
@@ -219,8 +219,9 @@ function deleteFile(saveFilename, photoNum) {
                      
 					<div class="col-sm-4 fly-who">
 					<div class="separator" style="width:100%"></div>
-						<h3>사진</h3>
+						<h3>사진등록</h3>
 						
+	
 	<div id="tbFile">
 	<h3><input type="file" name="upload"></h3>
 	</div>

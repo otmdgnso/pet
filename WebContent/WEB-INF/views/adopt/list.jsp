@@ -92,7 +92,7 @@ $(function(){
                                    <div class="img">
                                         <img src="<%=cp%>/uploads/adopt/${dto.saveFilename}" style="width: 380px; height: 300px"/>
                                         <div class="overlay">
-                                            <a href="${articleUrl}&preSaleNum=${dto.preSaleNum}" class="expand">+</a>
+                                            <a href="${articleUrl}&preSaleNum=${dto.preSaleNum}" class="expand">IN</a>
                                             <a class="close-overlay hidden">x</a>
                                         </div>
                                     </div>

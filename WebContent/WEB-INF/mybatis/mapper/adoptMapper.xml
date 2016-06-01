@@ -31,7 +31,7 @@
 		</if>
 		<if test="searchValue == 'main'">
 		species=#{species}
-		AND type=#{type}
+		AND INSTR(type,#{type}) &gt; 0
 		AND price BETWEEN #{minPrice} AND #{maxPrice}
 		</if>
 	</sql>
