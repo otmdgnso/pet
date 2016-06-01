@@ -93,6 +93,17 @@ function deleteReview(reviewnum) {
 	      });
 	}
 }
+
+function check_star(star){
+	
+	for(var i=1; i<=star;i++){
+			
+		var s = $("#star_"+i);
+		
+		s.src = "<%=cp%>/res/image/staryellow.png";
+	}
+	
+} 
 </script>
 
 <div class="clear"></div>
