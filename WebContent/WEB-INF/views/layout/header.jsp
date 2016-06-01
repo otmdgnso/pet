@@ -55,6 +55,7 @@
 <script type="text/javascript">
 $(function(){
 	var url="<%=cp%>/message/userMessageCheck";
+	<c:if test="${not empty sessionScope.member}">
 	$.ajax({
 		type:"POST",
 		url:url,
@@ -67,6 +68,7 @@ $(function(){
 		
 	}
 });
+	</c:if>
 	
 	$(document).mouseup(function(e) {
 		if ($(e.target).parents('.zeta-menu').length == 0) {
