@@ -132,7 +132,7 @@ function check_star(star){
                 <table style="width: 100%; 	margin: 0px auto; border-spacing: 10px;">
                 	<tr>
 						<td rowspan="2" align="center" width="30%">
-						<img src="<%=cp%>/uploads/profile/${dto.profile}" class="avatar img-circle img-thumbnail" width="100px;">
+						<img style="width: 80px; height: 100px;" src="<%=cp%>/uploads/profile/${dto.profile}" class="avatar img-circle img-thumbnail" width="100px;">
 						</td>
 						<td align="center" width="70%"><h3 style="color:tomato;">${dto.subject}</h3></td>
 					</tr>
@@ -141,7 +141,7 @@ function check_star(star){
 				</table>
 				</div>
 			</div>
-				
+				<span style="color: black;">등록일 : ${dto.created}</span>
 			<div class="separator" style="width:100%"></div>
 				<section class="ac-container">
                 <div style="width: 100%; height: 40px;"><button type="button" class="btn btn-danger" onclick="checkCreated2()" style="width: 100%; height: 50px;"><i class="fa fa-bolt" aria-hidden="true"></i> 	예약하기</button></div>

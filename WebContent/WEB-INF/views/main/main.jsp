@@ -279,7 +279,7 @@ function auctionSearch() {
 				<div>
 					<div class="cbp-vm-image img">
 						<img src="<%=cp%>/uploads/house/${dto.saveFilename}"
-							style="width: 338px; height: 180px">
+							style="width: 400px; height: 350px;">
 						<div class="overlay" style="width: 83%;">
 							<a href="<%=cp%>/house/houseinfo?hostNum=${dto.hostNum}" class="expand"><i
 								class="fa fa-paw" aria-hidden="true"></i></a> <a
