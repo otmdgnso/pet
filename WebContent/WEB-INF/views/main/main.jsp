@@ -350,30 +350,36 @@ function adoptSearch() {
 <!-- 사진 끝 -->
 
 <!-- 분양시작 -->
-<section style="width: 100%;  margin-top: 100px;" class="box-tr-square">
-<div class="container">
-   <div class="row">
-         <div align="center" class="col-md-12 effect-5 effects">
-	  <span style="font-weight: bold; color: #747474; font-size: 28pt;">It's Pet</span>
-		<div class="portfolio albumContainer">
-			<c:forEach var="dto" items="${listAdopt}">
-	                        <div class="cat3 col-md-4 gallery-view view-fifth">
-                                   <div class="img">
-                                        <img src="<%=cp%>/uploads/adopt/${dto.saveFilename}" style="width: 380px; height: 300px"/>
-                                        <div class="overlay">
-                                            <a href="<%=cp%>/adopt/article?preSaleNum=${dto.preSaleNum}&page" class="expand">+</a>
-                                            <a class="close-overlay hidden">x</a>
-                                        </div>
-                                    </div>
-                                    <div align="left" class="gallery-img-title">
-                                      <span style="color: black;">제목 : ${dto.subject}</span> &nbsp;
-                                       <span style="color: orange; font-weight: bold;">[${dto.replyCount}]</span><br>
-                                       <span style="color: black;">조회수 ${dto.hitCount}  |  ${dto.created}     </span><br>
-                                       <span style="color: black;">${dto.userId} </span>
-                                    </div>
-                            </div>
-						</c:forEach>
-				</div>
+<section style="width: 100%; margin-top: 100px;" class="box-tr-square">
+	<div class="container">
+		<div class="row">
+			<div align="center" class="col-md-12 effect-5 effects">
+				<span style="font-weight: bold; color: #747474; font-size: 28pt;">It's Pet</span>
+				<ul class="sandbox">
+				
+					<c:forEach var="dto" items="${listAdopt}">
+						<div class="cat3 col-md-4 gallery-view view-fifth"
+							style="width: 31.5%; float: left;">
+							<div class="img">
+								<img src="<%=cp%>/uploads/adopt/${dto.saveFilename}"
+									style="width: 380px; height: 300px" />
+								<div class="overlay">
+									<a
+										href="<%=cp%>/adopt/article?preSaleNum=${dto.preSaleNum}&page"
+										class="expand">IN</a> <a class="close-overlay hidden">x</a>
+								</div>
+							</div>
+							<div align="left" class="gallery-img-title">
+								<span style="color: black;">제목 : ${dto.subject}</span> &nbsp; <span
+									style="color: orange; font-weight: bold;">[${dto.replyCount}]</span><br>
+								<span style="color: black;">조회수 ${dto.hitCount} |
+									${dto.created} </span><br> <span style="color: black;">${dto.userId}
+								</span>
+							</div>
+						</div>
+					</c:forEach>
+
+				</ul>
 			</div>
 		</div>
 	</div>
