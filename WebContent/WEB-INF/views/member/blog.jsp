@@ -35,12 +35,13 @@ function searchList() {
  	var searchHost = $("#searchHost").val();
  	var searchState = "";
  	
- 	alert($("#searchState").val());
+ 	
+ 	var searchState = $(':radio[name="searchState"]:checked').val();
  
 	$.ajax({
 	  url: "<%=cp%>/reservation/list"
 	  ,type:"post"
-	  ,data : {searchHost:searchHost,searchState:"wait"}
+	  ,data : {searchHost:searchHost,searchState:searchState}
 	}).done(function(data) {
 		$("#ajaxReserveList").html('');
 		$("#ajaxReserveList").html(data);
@@ -48,8 +49,7 @@ function searchList() {
 }
 
 function deleteReservation(reservationNum) {
-	var page="${page}";
-	var params="reservationNum="+reservationNum+"&page="+page;
+	var params="reservationNum="+reservationNum;
 	var url="<%=cp%>/reservation/delete?"+params;
 	
 	if(confirm("정말 삭제할까요?")) {
@@ -58,8 +58,7 @@ function deleteReservation(reservationNum) {
 }
 
 function updateReservation(reservationNum) {
-	var page="${page}";
-	var params="reservationNum="+reservationNum+"&page="+page;
+	var params="reservationNum="+reservationNum;
 	var url="<%=cp%>/reservation/update?"+params; 
 	
 	location.href=url;
@@ -68,12 +67,20 @@ function updateReservation(reservationNum) {
 //예약목록
 $(document).ready(function(){
 
-	// ajax 처리
+	// ajax 처리 - 예약목록
 	$.ajax({
 	  url: "<%=cp%>/reservation/list"
 	  //context: document.body
 	}).done(function(data) {
 		$("#ajaxReserveList").html(data);
+	});
+	
+	// ajax 처리 - 북마트목록
+	$.ajax({
+	  url: "<%=cp%>/member/bookmark"
+	  //context: document.body
+	}).done(function(data) {
+		$("#ajaxBookmarkList").html(data);
 	});
 
       $("#wizard-picture1").change(function(){
@@ -358,69 +365,11 @@ function shakeModalMember(msg){
 	<div id="ajaxReserveList"></div>
 	
 </div>
-                  <div id="tab-4">
-                     <div class="col-md-3 histo-img">
-                        <img src="http://placehold.it/300x200" alt="" />
-                     </div>
-                     <div class="col-md-9">
-                        <h3>Pasta</h3>
-                        <p>Quisque sodales sodales lacus pharetra bibendum. Etiam
-                           commodo non velit ac rhoncus. Mauris euismod purus sem, ac
-                           adipiscing quam laoreet et. Praesent vulputate ornare sem vel
-                           scelerisque. Ut dictum augue non erat lacinia, sed lobortis
-                           elit gravida. Proin ante massa, ornare accumsan ultricies et,
-                           posuere sit amet magna. Praesent dignissim, enim sed malesuada
-                           luctus, arcu sapien sodales sapien, ut placerat eros nunc vel
-                           est. Donec tristique mi turpis, et sodales nibh gravida eu.
-                           Etiam odio risus, porttitor non lacus id, rhoncus tempus
-                           tortor. Curabitur tincidunt molestie turpis, ut luctus nibh
-                           sollicitudin vel. Sed vel luctus nisi, at mattis metus. Aenean
-                           ultricies dolor est, a congue ante dapibus varius. Nulla at
-                           auctor nunc.</p>
-                     </div>
-                     <div class="clear"></div>
-                     <br />
-                     <div class="col-md-3 histo-img">
-                        <img src="http://placehold.it/300x200" alt="" />
-                     </div>
-                     <div class="col-md-9">
-                        <h3>Pizza</h3>
-                        <p>Quisque sodales sodales lacus pharetra bibendum. Etiam
-                           commodo non velit ac rhoncus. Mauris euismod purus sem, ac
-                           adipiscing quam laoreet et. Praesent vulputate ornare sem vel
-                           scelerisque. Ut dictum augue non erat lacinia, sed lobortis
-                           elit gravida. Proin ante massa, ornare accumsan ultricies et,
-                           posuere sit amet magna. Praesent dignissim, enim sed malesuada
-                           luctus, arcu sapien sodales sapien, ut placerat eros nunc vel
-                           est. Donec tristique mi turpis, et sodales nibh gravida eu.
-                           Etiam odio risus, porttitor non lacus id, rhoncus tempus
-                           tortor. Curabitur tincidunt molestie turpis, ut luctus nibh
-                           sollicitudin vel. Sed vel luctus nisi, at mattis metus. Aenean
-                           ultricies dolor est, a congue ante dapibus varius. Nulla at
-                           auctor nunc.</p>
-                     </div>
-                     <div class="clear"></div>
-                     <br />
-                     <div class="col-md-3 histo-img">
-                        <img src="http://placehold.it/300x200" alt="" />
-                     </div>
-                     <div class="col-md-9">
-                        <h3>Vino</h3>
-                        <p>Quisque sodales sodales lacus pharetra bibendum. Etiam
-                           commodo non velit ac rhoncus. Mauris euismod purus sem, ac
-                           adipiscing quam laoreet et. Praesent vulputate ornare sem vel
-                           scelerisque. Ut dictum augue non erat lacinia, sed lobortis
-                           elit gravida. Proin ante massa, ornare accumsan ultricies et,
-                           posuere sit amet magna. Praesent dignissim, enim sed malesuada
-                           luctus, arcu sapien sodales sapien, ut placerat eros nunc vel
-                           est. Donec tristique mi turpis, et sodales nibh gravida eu.
-                           Etiam odio risus, porttitor non lacus id, rhoncus tempus
-                           tortor. Curabitur tincidunt molestie turpis, ut luctus nibh
-                           sollicitudin vel. Sed vel luctus nisi, at mattis metus. Aenean
-                           ultricies dolor est, a congue ante dapibus varius. Nulla at
-                           auctor nunc</p>
-                     </div>
-                  </div>
+
+<div id="tab-4">
+	<!-- 북마크 -->                     
+    <div id="ajaxBookmarkList"></div>
+</div>
                   <div id="tab-5">
                      <p>Proin dignissim faucibus odio sollicitudin sagittis.
                         Phasellus aliquet, erat vitae mollis consectetur, enim lectus
