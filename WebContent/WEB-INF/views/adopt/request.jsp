@@ -6,137 +6,12 @@
 	String cp=request.getContextPath();
 %>
 
-<script type="text/javascript">
-
-//댓글 보기 닫기
-$(function(){
-	$("#reply-open-close").click(function(){
-		  if($("#reply-content").is(':visible')) {
-			  $("#reply-content").fadeOut(100);
-			  $("#reply-open-close").text("댓글 ▼");
-		  } else {
-			  $("#reply-content").fadeIn(100);
-			  $("#reply-open-close").text("댓글 ▲");
-		  }
-	});
-})
-
-// 댓글 리스트
-$(function(){
-	listPage(1);
-});
-
-function listPage(page) {
-	
-	var url="<%=cp%>/adopt/listReply";
-	var preSaleNum="${dto.preSaleNum}";
-	$.post(url, {preSaleNum:preSaleNum, pageNo:page}, function(data){
-		$("#listReply").html(data);
-	});
-}
-
-// 댓글 추가
-function sendReply() {
-	var uid="${sessionScope.member.userId}";
-	if (! uid) {
-		return;
-	}
-	var preSaleNum="${dto.preSaleNum}"; // 해당 게시물의 번호
-	var content=$.trim($('#content').val());
-	if(! content ) {
-		alert("내용을 입력하세요!!!");
-		$("#content").focus();
-		return;
-	}
-	var params="preSaleNum=" +preSaleNum;
-	params+="&content="+content;
-	$.ajax({
-		type:"post"
-		,url:"<%=cp%>/adopt/insertReply"
-		,data:params
-		,dataType:"json"
-		,success:function(data) {
-			$("#content").val("");
-			
-			var state=data.state;
-			if(state=="true") {
-				listPage(1);
-				postReplyCount();
-			} else if(state=="false") {
-				alert("댓글을 등록하지 못했습니다. !!!");
-			} 
-		}
-		
-	});
-}
-
-// 댓글 개수
-function postReplyCount() {
-	var preSaleNum="${dto.preSaleNum}"; // 해당 게시물의 번호
-	var url="<%=cp%>/adopt/postReplyCount";
-	$.post (url, {preSaleNum:preSaleNum}, function(data) {
-		var count=data.count;
-		$("#postReplyCountView").text("("+count+"개)");
-	}, "JSON");
-}
-
-function deletePreSale(preSaleNum) {
-	if(confirm("분양 게시글을 삭제 하시겠습니까?")) {
-		var url="<%=cp%>/adopt/delete?preSaleNum="+preSaleNum+"&page=${page}";
-		location.href=url;
-	}
-}
-
-// 댓글 삭제
-function deleteReply(replyNum, page, userId) {
-	var uid="${sessionScope.member.userId}";
-	if(! uid) {
-		return false;
-	}
-	
-	if(confirm("댓글을 삭제 하시겠습니까?")) {
-		var url="<%=cp%>/adopt/deleteReply";
-		$.post(url, {replyNum:replyNum, userId:userId},
-		function(data){
-			var state=data.state;
-			listPage(page);
-			postReplyCount();
-		}, "json");
-	}
-}
-
-function requestAdopt() {
-	if(confirm("분양 신청을 하시겠습니까?")) {
-		var f=document.boardForm;
-		var params="preSaleNum=${dto.preSaleNum}";
-		var url="<%=cp%>/adopt/requestAdopt?"+params;
-		
-		f.action=url;
-		f.submit();
-	}
-}
-</script>
-
-<body>
-
-<section class="about-section-top">
-	<div class="container">
-	<div class="row">
-	<div class="col-md-12">
-	<div class="page-title pull-left">
-		<h2 class="title-about">분양</h2>
-	</div>
-	</div>
-	</div>
-	</div>
-</section>
-
 <section class="top-we-are">
 	<div class="container">
 	<div class="row" style="margin:0 auto; width:80%;" align="center">
 	<div class="col-md-12 effect-5 effects no-border-img" style="margin:0 auto; width:90%;" align="center">
 	<div class="text-center top-txt-title" align="center">
-<h3 style="font-size: 30px">게시글</h3>
+<h3 style="font-size: 30px">분양 신청</h3>
 	<!-- Reservation form -->
 		<section id="reservation-form" class="reservation-color-form pos-middle resv-plus-meteo">
 			<div class="container-form-chose">
@@ -287,5 +162,3 @@ function requestAdopt() {
 	</div>
 	</div>
 </section>
-
-</body>

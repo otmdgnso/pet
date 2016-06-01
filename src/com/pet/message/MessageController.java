@@ -111,6 +111,8 @@ public class MessageController {
 			dataCount = service.dataCountReceive(map);
 		} else if(mode.equals("send")) {
 			dataCount = service.dataCountSend(map);
+		} else if(mode.equals("system")) {
+			dataCount = service.dataCountSystem(map);
 		}
 		
 		if (dataCount != 0)
@@ -129,6 +131,8 @@ public class MessageController {
 			list = service.listReceive(map);
 		} else if(mode.equals("send")) {
 			list = service.listSend(map);
+		} else if(mode.equals("system")) {
+			list = service.listSystem(map);
 		}
 		
 		String params ="";
@@ -176,7 +180,7 @@ public class MessageController {
 		Message dto=null;
 		dto=service.readMessage(messageNum);
 		
-		if(mode.equals("receive"))
+		if(mode.equals("receive") || mode.equals("system"))
 			service.updateConfirmCreated(messageNum);
 		
 		dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
@@ -272,7 +276,7 @@ public class MessageController {
 			return model;
 		
 		}
-	
+
 	
 	
 	
