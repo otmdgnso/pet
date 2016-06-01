@@ -29,11 +29,10 @@
 		}
 		
 		var mode="${mode}";
-		var page="${page}";
 		if(mode=="created")
 			f.action="<%=cp%>/reservation/created";
 		else if(mode=="update")
-			f.action="<%=cp%>/reservation/update?page="+page;
+			f.action="<%=cp%>/reservation/update";
 			
 		return true;
 	}
