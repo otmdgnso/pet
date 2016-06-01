@@ -17,6 +17,10 @@
 			TO_CHAR(a.created, 'YYYY-MM-DD') = #{searchValue}
 	          OR TO_CHAR(a.created, 'YYYYMMDD') = #{searchValue}
 		</if>
+		<if test="searchValue == 'main'">
+			INSTR(subject, #{subject}) &gt; 0
+			AND species = #{species}
+		</if>
 	</sql>
 
 <select id="aucseq" resultType="Integer">

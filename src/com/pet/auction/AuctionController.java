@@ -61,8 +61,10 @@ public class AuctionController {
 	public ModelAndView list(
 				HttpServletRequest req,
 				@RequestParam(value="page", defaultValue="1") int current_page,
-				@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
-				@RequestParam(value="searchValue", defaultValue="") String searchValue
+				@RequestParam(value="searchKey", defaultValue="") String searchKey,
+				@RequestParam(value="searchValue", defaultValue="") String searchValue,
+				@RequestParam(value="subjectAuction", defaultValue="") String subject,
+				@RequestParam(value="speciesAuction", defaultValue="") String species
 			) throws Exception {
 		String cp=req.getContextPath();
 		
@@ -78,6 +80,8 @@ public class AuctionController {
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("searchKey", searchKey);
 		map.put("searchValue", searchValue);
+		map.put("subject", subject);
+		map.put("species", species);
 		
 		dataCount = service.auctiondataCount(map);
 		if(dataCount != 0)

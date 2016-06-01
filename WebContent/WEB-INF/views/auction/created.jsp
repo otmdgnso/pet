@@ -172,8 +172,8 @@ function deleteFile(saveFilename, photoNum) {
 						<label for="checkin">종류</label>
 					<div class="guests-select" style="margin:0 auto; width:60%" align="center">
 																<select name="species">
-																	<option value="개">개</option>
-																	<option value="고양이">고양이</option>
+																	<option value="dog">Dog</option>
+																	<option value="cat">Cat</option>
 																</select>
 															</div>
 					</div>
