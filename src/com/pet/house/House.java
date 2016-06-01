@@ -1,17 +1,33 @@
 package com.pet.house;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class House {
-	int hostNum, cost, capacity, num, picNum, reviewcnt;
+	private int hostNum, cost, capacity, num, picNum, reviewcnt;
+	private String category1, category2;
+	private String category3;
+	private String address, searchOn, subject, content, created, species;
+	private String saveFilename, profile, userName;
+	private List<MultipartFile> upload;	
+	
+	public List<MultipartFile> getUpload() {
+		return upload;
+	}
+
+	public void setUpload(List<MultipartFile> upload) {
+		this.upload = upload;
+	}
+
 	public int getReviewcnt() {
 		return reviewcnt;
 	}
-
+	
 	public void setReviewcnt(int reviewcnt) {
 		this.reviewcnt = reviewcnt;
 	}
-	String category1, category2, category3;
-	String address, searchOn, subject, content, created, species;
-	String saveFileNum, profile, userName;
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -113,10 +129,13 @@ public class House {
 	public void setSpecies(String species) {
 		this.species = species;
 	}
-	public String getSaveFileNum() {
-		return saveFileNum;
+
+	public String getSaveFilename() {
+		return saveFilename;
 	}
-	public void setSaveFileNum(String saveFileNum) {
-		this.saveFileNum = saveFileNum;
+
+	public void setSaveFilename(String saveFilename) {
+		this.saveFilename = saveFilename;
 	}
+	
 }

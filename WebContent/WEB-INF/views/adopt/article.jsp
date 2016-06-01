@@ -144,7 +144,7 @@ function deleteReply(replyNum, page, userId) {
                     	<table style="width: 70%; margin: 0px auto; border-spacing: 0px; padding: 0px;">
                     		<tr height="40%">
                     			<td align="center" width="10%"><label>제목</label></td>
-                     			<td align="center" width="90%"><input class="form-control" type="text" name="subject" value="${dto.subject}" style="text-align:center" readonly="readonly"></td>
+                     			<td align="center" width="90%"><input class="form-control" type="text" name="subject" value="${dto.subject}" style="border:none; text-align:center" readonly="readonly"></td>
                     		</tr>
                     		<tr align="center" height="40%">
                     			<td align="center" width="10%"><label>내용</label></td>

@@ -33,6 +33,18 @@ $(function(){
 	});
 });
 
+function adoptSearch() {
+	var f=document.adoptForm;
+	var typeAdopt=f.typeAdopt.value;
+	var speciesAdopt=f.speciesAdopt.value;
+	alert(speciesAdopt);
+	var minPrice=$("#slider-range").slider("values", 0)*10000;
+	var maxPrice=$("#slider-range").slider("values", 1)*10000;
+	var params="searchValue=main&type="+type+"&species="+species+"&minPrice="+minPrice+"&maxPrice="+maxPrice;
+	f.action="<%=cp%>/adopt/list?"+params;
+	f.submit();
+}
+
 </script>
 
 <section class="top-content">
@@ -125,7 +137,7 @@ $(function(){
                                             </div>
                                         </div>
                                         <div class="col-sm-2 colbtn">
-                                          <button type="submit" class="btn btn-primary btn-block">Search Now</button>
+                                          <button type="button" class="btn btn-primary btn-block">검색</button>
                                         </div>
                                       </div>
                                     </form>
@@ -164,13 +176,13 @@ $(function(){
                                     </form>
                                     
                                         <!--********************* 분양 검색 ********************-->
-                                    <form id="sell-tab" class="tab-pane form-inline reservation-flight" method="post" name="auctionSearch">
+                                    <form id="sell-tab" class="tab-pane form-inline reservation-flight" method="post" name="adoptForm">
                                       <div class="row">
                                         <div class="col-sm-4 flight-where">
                                           <div class="form-group">
                                             <h3> <img alt="" src="<%=cp%>/res/img/dogplay.png">펫 검색</h3>
                                             <label for="auctionSubject">통합 검색</label>
-                                            <input type="text" class="form-control" placeholder="품종을 입력하세요" id="species" name="species" >
+                                            <input type="text" class="form-control" placeholder="품종을 입력하세요" id="type" name="typeAdopt" >
                                           </div>
                                         </div>
                                         <div class="col-sm-4 fly-who">
@@ -180,7 +192,7 @@ $(function(){
                                                 <div class="guests-select">
                                                   <label>Dog or Cat</label>
                                                   
-                                                      <select name="species" id="species" class="form-control">
+                                                      <select name="speciesAdopt" id="species" class="form-control">
                                                         <option value="dog">DOG</option>
                                                         <option value="cat">CAT</option>
                                                       </select>
@@ -199,7 +211,7 @@ $(function(){
                                         </div>
                                            
                                         <div class="col-sm-2 colbtn">
-                                          <button type="submit" class="btn btn-primary btn-block">Search Now</button>
+                                          <button type="button" class="btn btn-primary btn-block" onclick="adoptSearch();">검색</button>
                                         </div>
                                       </div>
                                     </form>
@@ -256,7 +268,7 @@ $(function(){
 			<li class="cat3 col-md-4 gallery-view view-fifth" style="width: 31.5%; float: left;">
 				<div>
 					<div class="cbp-vm-image img">
-						<img src="<%=cp%>/uploads/profile/${dto.profile}"
+						<img src="<%=cp%>/uploads/house/${dto.saveFilename}"
 							style="width: 338px; height: 180px">
 						<div class="overlay" style="width: 83%;">
 							<a href="<%=cp%>/house/houseinfo?hostNum=${dto.hostNum}" class="expand"><i
@@ -338,30 +350,36 @@ $(function(){
 <!-- 사진 끝 -->
 
 <!-- 분양시작 -->
-<section style="width: 100%;  margin-top: 100px;" class="box-tr-square">
-<div class="container">
-   <div class="row">
-         <div align="center" class="col-md-12 effect-5 effects">
-	  <span style="font-weight: bold; color: #747474; font-size: 28pt;">It's Pet</span>
-		<div class="portfolio albumContainer">
-			<c:forEach var="dto" items="${listAdopt}">
-	                        <div class="cat3 col-md-4 gallery-view view-fifth">
-                                   <div class="img">
-                                        <img src="<%=cp%>/uploads/adopt/${dto.saveFilename}" style="width: 380px; height: 300px"/>
-                                        <div class="overlay">
-                                            <a href="<%=cp%>/adopt/article?preSaleNum=${dto.preSaleNum}&page" class="expand">+</a>
-                                            <a class="close-overlay hidden">x</a>
-                                        </div>
-                                    </div>
-                                    <div align="left" class="gallery-img-title">
-                                      <span style="color: black;">제목 : ${dto.subject}</span> &nbsp;
-                                       <span style="color: orange; font-weight: bold;">[${dto.replyCount}]</span><br>
-                                       <span style="color: black;">조회수 ${dto.hitCount}  |  ${dto.created}     </span><br>
-                                       <span style="color: black;">${dto.userId} </span>
-                                    </div>
-                            </div>
-						</c:forEach>
-				</div>
+<section style="width: 100%; margin-top: 100px;" class="box-tr-square">
+	<div class="container">
+		<div class="row">
+			<div align="center" class="col-md-12 effect-5 effects">
+				<span style="font-weight: bold; color: #747474; font-size: 28pt;">It's Pet</span>
+				<ul class="sandbox">
+				
+					<c:forEach var="dto" items="${listAdopt}">
+						<div class="cat3 col-md-4 gallery-view view-fifth"
+							style="width: 31.5%; float: left;">
+							<div class="img">
+								<img src="<%=cp%>/uploads/adopt/${dto.saveFilename}"
+									style="width: 380px; height: 300px" />
+								<div class="overlay">
+									<a
+										href="<%=cp%>/adopt/article?preSaleNum=${dto.preSaleNum}&page"
+										class="expand">IN</a> <a class="close-overlay hidden">x</a>
+								</div>
+							</div>
+							<div align="left" class="gallery-img-title">
+								<span style="color: black;">제목 : ${dto.subject}</span> &nbsp; <span
+									style="color: orange; font-weight: bold;">[${dto.replyCount}]</span><br>
+								<span style="color: black;">조회수 ${dto.hitCount} |
+									${dto.created} </span><br> <span style="color: black;">${dto.userId}
+								</span>
+							</div>
+						</div>
+					</c:forEach>
+
+				</ul>
 			</div>
 		</div>
 	</div>

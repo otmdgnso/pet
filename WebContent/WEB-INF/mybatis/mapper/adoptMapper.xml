@@ -29,6 +29,11 @@
 			TO_CHAR(created, 'YYYY-MM-DD') = #{searchValue}
 	          OR TO_CHAR(created, 'YYYYMMDD') = #{searchValue}
 		</if>
+		<if test="searchValue == 'main'">
+		species=#{species}
+		AND type=#{type}
+		AND price BETWEEN #{minPrice} AND #{maxPrice}
+		</if>
 	</sql>
 	
 	<select id="seq" resultType="Integer">
@@ -65,7 +70,7 @@
 	SELECT * FROM (
   		SELECT ROWNUM rnum, tb.* FROM (
     		SELECT p.preSaleNum, subject, userId
-    		, hitCount, TO_CHAR(p.created,'YYYY-MM-DD') created, replyCount
+    		, hitCount, TO_CHAR(p.created,'YYYY-MM-DD') created, type,price,species, replyCount
     		FROM preSale p JOIN
     		member m ON p.num=m.num
     		LEFT OUTER JOIN
