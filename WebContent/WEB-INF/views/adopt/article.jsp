@@ -138,7 +138,7 @@ function deleteReply(replyNum, page, userId) {
 				<form class="tab-pane form-inline reservation-hotel active" method="post" name="boardForm" enctype="multipart/form-data">
 				<!-- 제목, 내용 -->
 				<div class="col-sm-4 fly-who">
-						<h3>작성일:${dto.created} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;조회수:${dto.hitCount}</h3>
+						<h3>작성자:${dto.userId} 작성일:${dto.created} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;조회수:${dto.hitCount}</h3>
 						
 					<div class="form-group" style="margin:0 auto;" align="center">
                     	<table style="width: 70%; margin: 0px auto; border-spacing: 0px; padding: 0px;">
