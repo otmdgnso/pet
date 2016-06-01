@@ -26,6 +26,24 @@ $(function(){
 	$('#video').mouseup(function(){		
 		 $('#main1').toggle(); 
 	});
+	
+	$('#checkInHouse').change(function(){		
+		var date= $('#checkInHouse').val();
+		var y=date.substring(6,10);
+		var m=date.substring(3,5);
+		var d=date.substring(0,2);
+		var df=y+"/"+m+"/"+d;
+		$('#checkInHouse').val(df);
+	});
+	
+	$('#checkOutHouse').change(function(){		
+		var date= $('#checkOutHouse').val();
+		var y=date.substring(6,10);
+		var m=date.substring(3,5);
+		var d=date.substring(0,2);
+		var df=y+"/"+m+"/"+d;
+		$('#checkOutHouse').val(df);
+	});
 
 	$(function () {
 	    "use strict";
@@ -55,6 +73,19 @@ function auctionSearch() {
 	f.submit();
 }
 
+function houseSearch() {
+	var f=document.houseForm;
+	var addressHouse=f.addressHouse.value;
+	var checkInHouse=f.checkInHouse.value;
+	var checkOutHouse=f.checkOutHouse.value;
+	var speciesHouse=f.speciesHouse.value;
+	var pet_suHouse=f.pet_suHouse.value;
+	
+	var params="searchValue=main&address="+addressHouse+"&checkIn="+checkInHouse+"&checkOut="+checkOutHouse+"&species="+speciesHouse+"&pet_su="+pet_suHouse;
+	f.action="<%=cp%>/house/list?"+params;
+	f.submit();
+}
+
 </script>
 
 <section class="top-content">
@@ -80,7 +111,7 @@ function auctionSearch() {
                                         </div>
                                     </div>
                                     <div class="tab-content">
-                                    <form id="hotels-tab" class="tab-pane form-inline reservation-hotel active" method="post" name="reservationform">
+                                    <form id="hotels-tab" class="tab-pane form-inline reservation-hotel active" method="post" name="houseForm">
                                       <div class="row">
                                       
                                         <div class="col-sm-4 step-where">
@@ -89,7 +120,7 @@ function auctionSearch() {
                                             <label for="adress">주소 입력</label>
                                             <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="본인의 주소를 입력하세요. 시, 도, 구까지 입력"> <i class="fa fa-info-circle fa-lg"> </i> </div>
                                             <!-- 자동완성 -->
-                                            <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text" class="form-control"></input>                                          </div>
+                                            <input id="addressHouse" name="addressHouse" placeholder="Enter your address" onFocus="geolocate()" type="text" class="form-control"></input>                                          </div>
                                         </div>
                                         <div class="col-sm-4 step-check">
                                           <h3><img alt="" src="<%=cp%>/res/img/clock.png"> When?</h3>
@@ -99,7 +130,7 @@ function auctionSearch() {
                                                 <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="맡기고 싶은 날짜 검색"> <i class="fa fa-info-circle fa-lg"> </i> </div>
                                                 <div class="content-checkin-data">
                                                     <i class="fa fa-calendar infield"></i>
-                                                    <input name="checkin" type="text" id="checkin" value="" class="form-control checkin" placeholder="Check-in"/>
+                                                    <input name="checkInHouse" type="text" id="checkInHouse" value="" class="form-control checkin" placeholder="Check-in"/>
                                                 </div>
                                               </div>
                                             </div>
@@ -109,7 +140,7 @@ function auctionSearch() {
                                                 <div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="반려동물 되찾아갈 날짜"> <i class="fa fa-info-circle fa-lg"> </i> </div>
                                                 <div class="content-checkin-data">
                                                     <i class="fa fa-calendar infield"></i>
-                                                    <input name="checkout" type="text" id="checkOut" value="" class="form-control checkout" placeholder="Check-out"/>
+                                                    <input name="checkOutHouse" type="text" id="checkOutHouse" value="" class="form-control checkout" placeholder="Check-out"/>
                                                 </div>
                                               </div>
                                             </div>
@@ -119,8 +150,7 @@ function auctionSearch() {
                                             <div class="col-sm-4 room-book" style="padding-left:0">
                                               <div class="form-group">
                                                 <label for="room">DOG or CAT</label>
-                                                <select class="form-control" name="species" id="species">
-                                                  <option class="opt-default" selected="selected" disabled="disabled">PET</option>
+                                                <select class="form-control" name="speciesHouse" id="speciesHouse">
                                                   <option value="dog">DOG</option>
                                                   <option value="cat">CAT</option>
                                                 </select>
@@ -131,8 +161,8 @@ function auctionSearch() {
                                                 <div class="guests-select">
                                                   <label>How many</label>
                                                   <!--<i class="fa fa-user infield"></i>-->
-                                                        <select name="pet_su" id="pet_su" class="form-control">
-                                                        <option disabled="disabled" selected="selected">1</option>
+                                                        <select name="pet_suHouse" id="pet_suHouse" class="form-control">
+                                                        <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3 이상</option>
                                                       </select>
@@ -147,7 +177,7 @@ function auctionSearch() {
                                             </div>
                                         </div>
                                         <div class="col-sm-2 colbtn">
-                                          <button type="button" class="btn btn-primary btn-block">검색</button>
+                                          <button type="button" class="btn btn-primary btn-block" onclick="houseSearch();">검색</button>
                                         </div>
                                       </div>
                                     </form>
@@ -279,7 +309,7 @@ function auctionSearch() {
 				<div>
 					<div class="cbp-vm-image img">
 						<img src="<%=cp%>/uploads/house/${dto.saveFilename}"
-							style="width: 338px; height: 180px">
+							style="width: 400px; height: 350px;">
 						<div class="overlay" style="width: 83%;">
 							<a href="<%=cp%>/house/houseinfo?hostNum=${dto.hostNum}" class="expand"><i
 								class="fa fa-paw" aria-hidden="true"></i></a> <a
@@ -817,7 +847,7 @@ function initAutocomplete() {
 	  }); */
 
 	  // Create the search box and link it to the UI element.
-	  var input = document.getElementById('autocomplete');
+	  var input = document.getElementById('addressHouse');
 	  var searchBox = new google.maps.places.SearchBox(input);
 	  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 

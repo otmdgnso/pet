@@ -104,6 +104,19 @@ function check_star(star){
 	   }
 	   
 	} 
+	
+//이미지 커지게 하기
+function imgbigview(a,b){
+	document.getElementById(b).getElementsByTagName("img")[0].src=a.href;
+	if(document.getElementById(b).style.display=='block'){
+		document.getElementById(b).style.display=='none';
+	}else
+		document.getElementById(b).style.display=='block';
+}
+//닫히게 하기
+function hide(c){
+	document.getElementById(c).style.display=='none';
+}
 </script>
 
 <div class="clear"></div>
@@ -132,16 +145,16 @@ function check_star(star){
                 <table style="width: 100%; 	margin: 0px auto; border-spacing: 10px;">
                 	<tr>
 						<td rowspan="2" align="center" width="30%">
-						<img src="<%=cp%>/uploads/profile/${dto.profile}" class="avatar img-circle img-thumbnail" width="100px;">
+						<img style="width: 90px; height: 100px;" src="<%=cp%>/uploads/profile/${dto.profile}" class="avatar img-circle img-thumbnail" width="100px;">
 						</td>
-						<td align="center" width="70%"><h3 style="color:tomato;">${dto.subject}</h3></td>
+						<td align="center" width="30%"><h3 style="color:tomato;">${dto.subject}</h3></td>
 					</tr>
 					<tr>
-						<td align="center" width="70%" style="color: #8C8C8C;">${dto.userName}</td>
+						<td align="center" width="30%" style="color: #8C8C8C;">${dto.userName}</td>
 				</table>
 				</div>
 			</div>
-				
+				<span style="color: black;">등록일 : ${dto.created}</span>
 			<div class="separator" style="width:100%"></div>
 				<section class="ac-container">
                 <div style="width: 100%; height: 40px;"><button type="button" class="btn btn-danger" onclick="checkCreated2()" style="width: 100%; height: 50px;"><i class="fa fa-bolt" aria-hidden="true"></i> 	예약하기</button></div>
@@ -167,10 +180,15 @@ function check_star(star){
 					<ul class="bxslider">
 						<c:forEach var="dto" items="${readFile}" >
 							<!-- <li><img src="http://placehold.it/840x460" alt=""/></li> -->
-						<img style="width: 810px; height: 430px;"
-								src="<%=cp%>/uploads/house/${dto.saveFilename}" alt="" />
+						  <a href="<%=cp%>/uploads/house/${dto.saveFilename}" onclick="imgbigview(this,'bigimg'); return false;"><img style="width: 810px; height: 430px;"
+								src="<%=cp%>/uploads/house/${dto.saveFilename}" alt="" /></a>
 						</c:forEach>
+						<!-- 큰이미지 등장 -->
 					</ul>
+						<div id="bigimg" style="display:none;
+							position: absolute;left:100px;top:100px; overflow:hidden; border: 0px
+							solid; #ff6600;" align="center">
+						</div>
 					<div id="bx-pager">
 						<c:forEach var="dto" items="${readFile}" begin="0" varStatus="status">
 							<a data-slide-index="${status.index}" href=""><img style="width: 150px; height: 105px;"

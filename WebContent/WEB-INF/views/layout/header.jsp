@@ -55,6 +55,7 @@
 <script type="text/javascript">
 $(function(){
 	var url="<%=cp%>/message/userMessageCheck";
+	<c:if test="${not empty sessionScope.member}">
 	$.ajax({
 		type:"POST",
 		url:url,
@@ -67,6 +68,7 @@ $(function(){
 		
 	}
 });
+	</c:if>
 	
 	$(document).mouseup(function(e) {
 		if ($(e.target).parents('.zeta-menu').length == 0) {
@@ -283,9 +285,11 @@ function shakeModalMember(msg){
 					<a class="logo" href="<%=cp%>"><img src="<%=cp%>/res/images/icon/title.jpg" height="40px"/></a>
 				</li>	
                 <!-- 호스팅버튼 -->
+              <c:if test="${empty sessionScope.member.hostNum}">
 				<li class="weather">
 					<a class="top-menu-txt" href="<%=cp%>/house/join">호스팅하기</a>
 				</li>
+			  </c:if>
 				<!--/ 호스팅버튼 -->
 				
 				<!-- 메뉴 -->
