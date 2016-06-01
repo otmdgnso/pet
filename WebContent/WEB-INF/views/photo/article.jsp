@@ -15,6 +15,7 @@ span{
 
 <script type="text/javascript">
 function deletePhoto(photoNum) {
+	alert("${sessionScope.member.hostNum}");
 	if(confirm("사진 게시글을 삭제 하시겠습니까?")) {
 		var url="<%=cp%>/photo/delete?photoNum="+photoNum+"&page=${page}&saveFilename=${dto.saveFilename}";
 		location.href=url;

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pet.common.MyUtil;
@@ -143,6 +144,20 @@ public class ReservationController {
 		mav.addObject("tax", tax);
 		mav.addObject("total", total);
 		return mav;
+	}
+	
+	@RequestMapping(value="/reservation/ajaxUpdate", method=RequestMethod.POST)
+	@ResponseBody
+	public String ajaxUpdateForm(
+			HttpSession session
+			,Reservation dto
+		) throws Exception {
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		service.updateReservation(dto);
+		
+		return "ok";
 	}
 	
 	@RequestMapping(value="/reservation/update", method=RequestMethod.POST)

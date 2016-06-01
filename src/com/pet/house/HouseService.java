@@ -20,4 +20,7 @@ public interface HouseService {
 	public List<Review> listReview(Map<String, Object> map);
 	public int reviewDataCount(Map<String, Object> map);
 	public int deleteReview(int reviewnum);
+	
+	//호스팅 체크
+	public int hostCheck(int hostNum);
 }

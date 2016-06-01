@@ -115,14 +115,19 @@ public class HouseController {
 			) throws Exception{
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		dto.setHostNum(info.getMemberNum());
-		
+		dto.setHostNum(info.getMemberNum());		
+				
 		String root=session.getServletContext().getRealPath("/");
 		String pathname=root+File.separator+"uploads"+File.separator+"house";
 		
 		service.insertHouseInfo(dto, pathname);
-		service.insertHostPetInfo(dto);
+		service.insertHostPetInfo(dto);				
 		
+		/*info.setHostNum(dto.getHostNum());
+		session.setAttribute("member", info);
+		dto.setHostNum(info.getHostNum());*/
+		
+		System.out.println(dto.getHostNum());
 		ModelAndView mav = new ModelAndView(".house.join");
 		return mav;
 	}
