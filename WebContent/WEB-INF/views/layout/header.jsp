@@ -285,11 +285,11 @@ function shakeModalMember(msg){
 					<a class="logo" href="<%=cp%>"><img src="<%=cp%>/res/images/icon/title.jpg" height="40px"/></a>
 				</li>	
                 <!-- 호스팅버튼 -->
-              <c:if test="${empty sessionScope.member.hostNum}">
+         <c:if test="${sessionScope.member.hostNum!=sessionScope.member.memberNum}">
 				<li class="weather">
 					<a class="top-menu-txt" href="<%=cp%>/house/join">호스팅하기</a>
 				</li>
-			  </c:if>
+			</c:if> 
 				<!--/ 호스팅버튼 -->
 				
 				<!-- 메뉴 -->

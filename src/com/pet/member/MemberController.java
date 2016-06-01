@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -17,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.pet.member.SessionInfo;
+import com.pet.house.House;
+import com.pet.house.HouseService;
 
 import net.sf.json.JSONObject;
 
@@ -25,6 +25,8 @@ import net.sf.json.JSONObject;
 public class MemberController {
    @Autowired
    private MemberService service;
+   @Autowired
+   private HouseService houseService;
    
    @RequestMapping(value="/member/login", method=RequestMethod.POST)
    @ResponseBody
@@ -47,6 +49,12 @@ public class MemberController {
          info.setMemberNum(dto.getNum());
          info.setPwd(dto.getPwd());
          session.setAttribute("member", info);
+         
+       /*
+         //호스트 체크하기  
+         House vo;
+         vo.setHostNum(info.getHostNum());
+         houseService.hostCheck(hostNum);*/
       }
       
       Map<String, Object> model=new HashMap<>();

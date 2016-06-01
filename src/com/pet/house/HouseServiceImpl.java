@@ -204,4 +204,15 @@ public class HouseServiceImpl implements HouseService{
 		return result;
 	}
 
+	@Override
+	public int hostCheck(int hostNum) {
+		int result=0;
+		try {
+			result=dao.getIntValue("house.hostCheck",hostNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
 }

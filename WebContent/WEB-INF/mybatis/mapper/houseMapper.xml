@@ -129,4 +129,9 @@
 	<select id="listGrade" parameterType="map" resultType="com.pet.house.Review">
 		SELECT * FROM grade;
 	</select>
+	
+	<select id="hostCheck" parameterType="Integer" resultType="com.pet.house.House">
+	   SELECT COUNT(*) FROM host 
+	   WHERE hostNum=#{memberNum}
+	</select>
 </mapper>
