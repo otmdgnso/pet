@@ -55,7 +55,7 @@
 	<select id="listHouse" parameterType="map" resultType="com.pet.house.House">
 		SELECT * FROM (
 		    SELECT ROWNUM rnum, tb.* , (select NVL(count(reviewnum),0) from hostreview rv WHERE tb.hostNum = rv.hostNum ) as reviewcnt FROM (
-			     SELECT hostNum, address, cost, capacity, subject, content, userName, profile 
+			     SELECT hostNum, address, cost, capacity, subject, content, userName, profile,TO_CHAR(h.created,'YYYY-MM-DD') created 
 			     FROM host h JOIN member m ON h.hostNum=m.num
 			  <where>
               	<if test="searchValue != null and searchValue != ''">
@@ -66,7 +66,7 @@
 	        		<include refid="order-list"/>
 	        	</if>
 	        	<if test="orderList ==null or orderList == ''">
-              		ORDER BY hostNum DESC
+              		  ORDER BY created DESC
               	</if>
     <![CDATA[
 	        ) tb WHERE ROWNUM <= #{end}
@@ -86,7 +86,7 @@
 	
 	<!-- 글보기 -->
 	<select id="readHouseinfo" resultType="com.pet.house.House" parameterType="Integer">
-		SELECT hostNum, userName, profile, address, capacity, cost, subject, content
+		SELECT hostNum, userName, profile, address, capacity, cost, subject, content, TO_CHAR(h.created,'YYYY-MM-DD') created
 		FROM host h JOIN member m ON h.hostNum=m.num
 		WHERE hostNum=#{hostNum}
 	</select>	
