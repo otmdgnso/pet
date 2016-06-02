@@ -34,7 +34,7 @@
    <div class="container">
       <div class="row">
          <div class="col-sm-4 col-md-3">
-                <div class="search-results-title"><i class="fa fa-search"></i><p>1,322</p> <p>results found.</p></div>
+                <div class="search-results-title"><i class="fa fa-search"></i><p>${dataCount }</p> <p>의 결과를 찾았습니다</p></div>
                 <section class="ac-container">
                     <h3 class="desc-filter">Save time with filters:</h3>
 				    <div>
@@ -61,16 +61,13 @@
 				    <div>
 					    <input id="ac-4" name="accordion-1" type="checkbox" />
 					    <label for="ac-4">카테고리분류<i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></label>
-					    <article class="ac-large">
+					    <article class="ac-small">
 						    <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>사료</p></div>
                             <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>미용</p></div>
                             <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>위생</p></div>
-                            <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>United (232)</p></div>
-                            <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>Lufthansa (128)</p></div>
-                            <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>Rayanir (78)</p></div>
 					    </article>
 				    </div>
-                    <div>
+                    <!-- <div>
 					    <input id="ac-5" name="accordion-1" type="checkbox" />
 					    <label for="ac-5">Flight Class<i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></label>
 					    <article class="ac-small">
@@ -78,7 +75,7 @@
                             <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>Business</p></div>
                             <div class="meals-trip"><p><i class="fa fa-check-square-o"></i>First Class</p></div>
 					    </article>
-				    </div>
+				    </div> -->
 			    </section>
             </div>
          <div class="col-sm-8 col-md-9 effect-5 effects">
@@ -88,7 +85,7 @@
                                 <div class="click-nav">
 			                        <ul class="no-js">
 				                        <li>
-					                        <a class="clicker">가격</a>
+					                        <a class="clicker">가격순</a>
 					                        <ul>
 						                        <li><span class="btn sort active" data-sort="random">Random</span></li>
 						                        <li><span class="btn sort" data-sort="value:asc">Ascending</span></li>
@@ -100,9 +97,9 @@
                                 <div class="click-nav-location">
 			                        <ul class="no-js">
 				                        <li>
-					                        <a class="clicker">품종</a>
+					                        <a class="clicker">품종별</a>
 					                        <ul>
-                                                <li><span class="btn filter active" data-filter="all">All</span></li>
+                                                <li><span class="btn filter active" data-filter="all">개</span></li>
 						                        <li><span class="btn filter" data-filter=".category-1">Delta</span></li>
 						                        <li><span class="btn filter" data-filter=".category-2">Lufthansa</span></li>
                                                 <li><span class="btn filter" data-filter=".category-3">United</span></li>

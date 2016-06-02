@@ -142,6 +142,6 @@
 	SELECT userId,bidPrice
    FROM bid b JOIN member m ON b.num=m.num
 	WHERE auctionNum=#{auctionNum}
-	order by b.bidnum asc
+	order by b.bidnum desc
 	</select>
 </mapper>
