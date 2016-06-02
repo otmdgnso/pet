@@ -55,18 +55,33 @@
 <script type="text/javascript">
 $(function(){
 	var url="<%=cp%>/message/userMessageCheck";
+	<c:if test="${not empty sessionScope.member}">
 	$.ajax({
 		type:"POST",
 		url:url,
 		dataType:"json",
 		success:function(data){
 		if(data.userMessageCount>0)
-			$("#userMessageCount").html("<img src='<%=cp%>/res/images/icon/new.gif' style='width: 15px; height: 15px;'>"+data.userMessageCount);
+			$("#userMessageCount").html("<img src='<%=cp%>/res/images/icon/new.gif' style='width: 15px; height: 15px;'>"+data.userMessageCount+"개");
 	},
 	error:function(e) {
 		
 	}
 });
+	var url="<%=cp%>/member/hostCheck";	
+	 $.ajax({
+		type:"post",
+		url:url,
+		dataType:"json",
+		success:function(data){
+			if(data.cnt==1)
+				$("#hostCheck").html("");
+		}
+	 });
+	
+	</c:if>
+	
+	
 	
 	$(document).mouseup(function(e) {
 		if ($(e.target).parents('.zeta-menu').length == 0) {
@@ -106,6 +121,9 @@ function loginSend(){
     			shakeModal();
     		} else {    			
     			location.href="<%=cp%>";
+    		/* 	if(data.cnt==1){
+    				$("#hostCheck").html(""); 
+    			}*/
     		}
     		
     	}
@@ -129,8 +147,9 @@ function registerMember(){
     	,success:function(data){
     		if(data.state=="false") {
     		
-    		} else {     		  			
-    			location.href="<%=cp%>";
+    		} else {   			
+    			location.href="<%=cp%>";    				
+    			
     		}
     		
     	}
@@ -283,9 +302,11 @@ function shakeModalMember(msg){
 					<a class="logo" href="<%=cp%>"><img src="<%=cp%>/res/images/icon/title.jpg" height="40px"/></a>
 				</li>	
                 <!-- 호스팅버튼 -->
-				<li class="weather">
-					<a class="top-menu-txt" href="<%=cp%>/house/join">호스팅하기</a>
+       			
+				<li id="hostCheck" class="weather">
+					<a class='top-menu-txt' href='<%=cp%>/house/join'>호스팅하기</a>
 				</li>
+			
 				<!--/ 호스팅버튼 -->
 				
 				<!-- 메뉴 -->

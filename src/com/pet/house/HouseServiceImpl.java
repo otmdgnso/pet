@@ -23,7 +23,7 @@ public class HouseServiceImpl implements HouseService{
 		int result=0;
 		
 		try {			
-			dto.setAddress(dto.getCategory1()+dto.getCategory2()+dto.getCategory3());
+			dto.setAddress(dto.getCategory1()+" "+dto.getCategory2()+" "+dto.getCategory3());
 			dao.insertData("house.insertHouseInfo", dto);
 			// 파일 업로드
 						if (!dto.getUpload().isEmpty()) {
@@ -201,6 +201,17 @@ public class HouseServiceImpl implements HouseService{
 			System.out.println(e.toString());
 		}
 		
+		return result;
+	}
+
+	@Override
+	public int hostCheck(int memberNum) {
+		int result=0;
+		try {
+			result=dao.getIntValue("house.hostCheck",memberNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
 		return result;
 	}
 

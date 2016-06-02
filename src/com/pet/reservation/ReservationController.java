@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pet.common.MyUtil;
@@ -125,39 +126,44 @@ public class ReservationController {
 	@RequestMapping(value="/reservation/update", method=RequestMethod.GET)
 	public ModelAndView updateForm(
 			HttpSession session
-			,Reservation dto
 			,@RequestParam(value="reservationNum") int reservationNum
-			,@RequestParam(value="page") String page
 			) throws Exception {
 		
-		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		dto.setUserName(info.getUserName());
+		//SessionInfo info=(SessionInfo)session.getAttribute("member");;
 		
-		dto=(Reservation)service.readReservation(reservationNum);
-		
-		if(dto==null) {
-			return new ModelAndView("redirect:/reservation/list?page="+page);
-		}
-		
+		Reservation dto = (Reservation)service.readReservation(reservationNum);
 		int cost = dto.getCost();
 		int pet_su = dto.getPet_su();
 		int tax= (int)((double)cost*(double)pet_su*0.1);
 		int total= tax+cost;
 
+	
 		ModelAndView mav=new ModelAndView(".reservation.created");
 		mav.addObject("mode", "update");
-		mav.addObject("page", page);
 		mav.addObject("dto", dto);
 		mav.addObject("tax", tax);
 		mav.addObject("total", total);
 		return mav;
 	}
 	
+	@RequestMapping(value="/reservation/ajaxUpdate", method=RequestMethod.POST)
+	@ResponseBody
+	public String ajaxUpdateForm(
+			HttpSession session
+			,Reservation dto
+		) throws Exception {
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		service.updateReservation(dto);
+		
+		return "ok";
+	}
+	
 	@RequestMapping(value="/reservation/update", method=RequestMethod.POST)
 	public ModelAndView updateSubmit(
 			HttpSession session
 			,Reservation dto
-			,@RequestParam(value="page") String page
 			) throws Exception{
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
@@ -167,7 +173,7 @@ public class ReservationController {
 		
 		service.updateReservation(dto);
 		
-		return new ModelAndView("redirect:/reservation/list?page="+page);
+		return new ModelAndView("redirect:/member/blog#tab-3");
 	}
 	
 	@RequestMapping(value="/reservation/delete")
