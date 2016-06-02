@@ -37,23 +37,23 @@
 
 	                        <div class="blog-view view-fifth">
                                    <div class="img">
-                                        <div class="entry-date">
-                                                    <label class="date">22</label>
-                                                    <label class="month">OCTOBER</label>
-                                                    <p>12 comments</p>
+                                        <div class="entry-date" align="center">
+                                                    <img src="<%=cp%>/res/image/cat1.png" style="padding: 20px;">
+                                                    <p>수의사 : 김기자</p>
                                                 </div>
-                                        <img src="http://placehold.it/2000x1000" alt=""/>
-                                        <div class="overlay">
-                                            <a href="#" class="expand">+</a>
-                                            <a class="close-overlay hidden">x</a>
-                                        </div>
+                                        <img src="<%=cp%>/res/image/catmovie.gif" height="30px" style="padding-left: 40%; padding-top: 10px;"/>
+
                                     </div>
                                     <div class="blog-img-title">
-                                      <h3>Standard single image post</h3>
+                                      <h3>고양이에 관한 잘못된 상식</h3>
                                       
-                                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's stand dummy text ever since the 1500s, when an unknown printer took a galley of type and 
-                                      scrambled it to make a neque a tortor tempor in porta sem vulputate. Donec varius felis fermentum nis type specimen book. It has survived not only five centuries.</p>
-
+                                      <p>
+고양이는 항상 발로 착지한다?<br>그렇지 않아요.<br>
+고양이는 다른 과(科) 동물들에 비해 본능적으로 발이 먼저 땅에 닿도록 착지하며 비교적 높은 곳에서 떨어져도 살아남죠.<br>
+고층에서 떨어진 고양이가 살아남아 기네스북에 오른 고양이도 있답니다.<br>
+그러나 고양이들도 잘못 떨어져 뼈가 부러지는 경우가 있으며, 개체마다 차이는 있어요. <br>
+안전을 위해 발코니나 창문에서 떨어져 사고가 나지 않도록 보호막 등의 장비를 설치해야만 한답니다.
+</p>
                                       <ul class="blog-info">  
                                         <li><i class="fa fa-user"></i>POSTED BY : <a href="#"> Robert Doe</a></li>
                                         <li><a href="#"><i class="fa fa-comments"></i>30 comments</a></li>
@@ -61,7 +61,10 @@
                                       </ul>
                                     </div>
                             </div>
-	
+	                                        <div class="overlay">
+                                            <a href="#" class="expand">+</a>
+                                            <a class="close-overlay hidden">x</a>
+                                        </div>
 	                        <div class="blog-view">
                                     <div class="entry-date">
                                                     <label class="date">22</label>
