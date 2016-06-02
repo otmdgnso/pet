@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.pet.house.House;
 import com.pet.house.HouseService;
 
 import net.sf.json.JSONObject;
@@ -212,6 +211,27 @@ public class MemberController {
 	   out.print(job.toString());
    }
    
+   @RequestMapping(value="/member/info")
+   public ModelAndView info(
+         HttpSession session      
+         ) throws Exception{
+      SessionInfo info= (SessionInfo)session.getAttribute("member");
+      Member dto=service.readMember(info.getUserId());
+      ModelAndView mav= new ModelAndView("/member/info");
+      mav.addObject("dto",dto);
+      return mav;      
+   }
+   
+   @RequestMapping(value="/member/hosting")
+   public ModelAndView hosting(
+         HttpSession session      
+         ) throws Exception{
+      SessionInfo info= (SessionInfo)session.getAttribute("member");
+      Member dto=service.readMember(info.getUserId());
+      ModelAndView mav= new ModelAndView("/member/hosting");
+      mav.addObject("dto",dto);
+      return mav;      
+   }
    
 }
 

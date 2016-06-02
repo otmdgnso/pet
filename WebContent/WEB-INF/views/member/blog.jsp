@@ -30,7 +30,68 @@
 
 </style>
 
+<script src="<%=cp%>/res/js/tabs/jquery.responsiveTabs.js"
+      type="text/javascript"></script>
+
 <script type="text/javascript">
+function tabContent(idx) {
+	var url;
+	var id;
+	id=$("#tab-"+idx);
+	if(idx==0) {
+		url="<%=cp%>/member/info";
+	} else if(idx==1) {
+		url="<%=cp%>/member/hosting";
+	} else if(idx==2) {
+		url="";
+	} else if(idx==3) {
+		url="";
+	} else if(idx==4) {
+		url="";
+	} else if(idx==5) {
+		url="";
+	} else if(idx==6) {
+		url="";
+	}
+	$.get(url, {}, function(data){
+		id.html(data);
+	});
+}
+
+$(function(){
+	tabContent(0);
+});
+
+$(document).ready(function() {
+         "use strict";
+         $('#horizontalTab')
+               .responsiveTabs(
+                     {
+                        rotate : false,
+                        startCollapsed : 'accordion',
+                        collapsible : 'accordion',
+                        setHash : true,
+                        animation : 'slide',
+                        activate : function(e, tab) {
+                                 
+                           		tabContent(tab.id);
+                           
+                        },
+                        activateState : function(e,
+                              state) {
+                           //console.log(state);
+                           $('.info')
+                                 .html(
+                                       'Switched from <strong>'
+                                             + state.oldState
+                                             + '</strong> state to <strong>'
+                                             + state.newState
+                                             + '</strong> state!');
+                        }
+                     });
+
+      });
+
 function searchList() { 
  	var searchHost = $("#searchHost").val();
  	var searchState = "";
@@ -223,140 +284,17 @@ function shakeModalMember(msg){
             <div class="col-md-12">
                <div id="horizontalTab">
                   <ul>
-                     <li><a href="#tab-1">INFO</a></li>
-                     <li><a href="#tab-2">호스팅 목록</a></li>
-                     <li><a href="#tab-3">예약 목록</a></li>
-                     <li><a href="#tab-4">북마크 목록</a></li>
-                     <li><a href="#tab-5">포토갤러리</a></li>
-                     <li><a href="#tab-6">나의 QnA</a></li>
+                     <li><a href="#tab-0">INFO</a></li>
+                     <li><a href="#tab-1">호스팅 목록</a></li>
+                     <li><a href="#tab-2">예약 목록</a></li>
+                     <li><a href="#tab-3">북마크 목록</a></li>
+                     <li><a href="#tab-4">포토갤러리</a></li>
+                     <li><a href="#tab-5">경매 목록</a></li>
+                     <li><a href="#tab-6">분양 목록</a></li>
                   </ul>
-						<div id="tab-1" >
-							<div class="city-info-content">
-								<div class="info-box-guide" style="width: 200px; height: 200px;">
-									<img src="<%=cp%>/uploads/profile/${dto.profile}"
-										class="avatar img-circle img-thumbnail">
-								</div>
-								<c:if test="${empty dto.themeprofile }">
-									<img src="http://placehold.it/1600x800" alt="" />
-								</c:if>
-								<c:if test="${not empty dto.themeprofile }">
-									<img src="<%=cp%>/uploads/theme/${dto.themeprofile}" alt="" />
-								</c:if>
+						<div id="tab-0" style="width: 100%; min-height: 600px;"></div>
 
-								<form name="updateTheme" method="post" enctype="multipart/form-data">
-									<div class="file_input_div" style="float: right;">
-										<div class="file_input">
-											<label
-												class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
-												<i class="material-icons">file_upload</i> <input
-												id="file_input_file" class="none" type="file"
-												style="display: none;" name="themeUpload" />
-											</label>
-										</div>
-										<div id="file_input_text_div"
-											class="mdl-textfield mdl-js-textfield textfield-demo">
-											<input class="file_input_text mdl-textfield__input"
-												type="text" disabled readonly id="file_input_text" /> <label
-												class="mdl-textfield__label" for="file_input_text"></label>
-										</div>
-										<div style="float: right;">
-											<button onclick="sendTheme();" class="btn btn-info btn-small">
-												<i class="icon-white icon-chevron-right"></i>테마사진변경
-											</button>
-										</div>
-									</div>
-								</form>
-							</div>
-							<h3 style="text-align: center;"><img alt="" src="<%=cp%>/res/images/asterisk.png"
-											style="width: 64px;"> &nbsp; Information</h3>
-							
-							
-						<div align="center">
-						<table style="text-align: left;margin-left: 290px; margin-right: 290px; ">
-											<tr
-												style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
-												<td><h4>
-														<img alt="" src="<%=cp%>/res/images/name.png"
-															style="width: 64px;"> 이름 : ${dto.userName }
-													</h4></td>
-											</tr>
-											<tr
-												style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
-												<td><h4>
-														<img alt="" src="<%=cp%>/res/images/birthday-cake.png"
-															style="width: 64px;"> 생년월일 : ${dto.birth }
-													</h4></td>
-											</tr>
-											<tr
-												style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
-												<td><h4>
-														<img alt="" src="<%=cp%>/res/images/calendar.png"
-															style="width: 64px;"> 가입일 : ${dto.created }
-													</h4></td>
-											</tr>
-											<tr
-												style="border-bottom: 2px; border-bottom-style: dashed; width: 100%; color: navy;">
-												<td><h4>
-														<img alt="" src="<%=cp%>/res/images/email.png"
-															style="width: 64px;"> 이메일 : ${dto.email }
-													</h4></td>
-											</tr>
-											<tr style="text-align: center;">
-												<!--    <td><h3><input class="btn btn-default btn-register"  type="button" onclick="update();" value="수정하기"></h3> -->
-
-												<td><h4>
-														<a href="javascript:void(0)" onclick="openUpdateModal();">수정하기</a>
-													</h4></td>												
-											</tr>
-										</table>
-										</div>
-										
-						</div>
-
-                  <div id="tab-2">
-
-                     <div class="col-md-5 histo-img">
-                        <img src="http://placehold.it/450x260" alt="" />
-                     </div>
-                     <div class="col-md-7 guide-story-info">
-                        <h3 style="margin-top: 0">Rome History</h3>
-                        <p>Quisque sodales sodales lacus pharetra bibendum. Etiam
-                           commodo non velit ac rhoncus. Mauris euismod purus sem, ac
-                           adipiscing quam laoreet et. Praesent vulputate ornare sem vel
-                           scelerisque. Ut dictum augue non erat lacinia, sed lobortis
-                           elit gravida. Proin ante massa, ornare accumsan ultricies et,
-                           posuere sit amet magna. Praesent dignissim, enim sed malesuada
-                           luctus, arcu sapien sodales sapien, ut placerat eros nunc vel
-                           est. Donec tristique mi turpis, et sodales nibh gravida eu.
-                           Etiam odio risus, porttitor non lacus id, rhoncus tempus
-                           tortor. Curabitur tincidunt molestie turpis, ut luctus nibh
-                           sollicitudin vel. Sed vel luctus nisi, at mattis metus. Aenean
-                           ultricies dolor est, a congue ante dapibus varius. Nulla at
-                           auctor nunc. Curabitur accumsan feugiat felis ut pretium.
-                           Praesent semper semper nisi, eu cursus augue.</p>
-                     </div>
-                     <div class="clear"></div>
-                     <h3>Rome Culture</h3>
-                     <div class="col-md-5 culture-img">
-                        <img src="http://placehold.it/400x200" alt="" />
-                     </div>
-                     <div class="col-md-7 histo-img">
-                        <p>Quisque sodales sodales lacus pharetra bibendum. Etiam
-                           commodo non velit ac rhoncus. Mauris euismod purus sem, ac
-                           adipiscing quam laoreet et. Praesent vulputate ornare sem vel
-                           scelerisque. Ut dictum augue non erat lacinia, sed lobortis
-                           elit gravida. Proin ante massa, ornare accumsan ultricies et,
-                           posuere sit amet magna. Praesent dignissim, enim sed malesuada
-                           luctus, arcu sapien sodales sapien, ut placerat eros nunc vel
-                           est. Donec tristique mi turpis, et sodales nibh gravida eu.
-                           Etiam odio risus, porttitor non lacus id, rhoncus tempus
-                           tortor. Curabitur tincidunt molestie turpis, ut luctus nibh
-                           sollicitudin vel. Sed vel luctus nisi, at mattis metus. Aenean
-                           ultricies dolor est, a congue ante dapibus varius. Nulla at
-                           auctor nunc. Curabitur accumsan feugiat felis ut pretium.
-                           Praesent semper semper nisi, eu cursus augue.</p>
-                     </div>
-                  </div>
+                 		<div id="tab-1" style="width: 100%; min-height: 600px;"></div>
                   
                   
 <div id="tab-3">
@@ -477,45 +415,6 @@ function shakeModalMember(msg){
       
    </section>
 
-
-   <script src="<%=cp%>/res/js/tabs/jquery.responsiveTabs.js"
-      type="text/javascript"></script>
-   <script type="text/javascript">
-      $(document)
-            .ready(
-                  function() {
-                     "use strict";
-                     $('#horizontalTab')
-                           .responsiveTabs(
-                                 {
-                                    rotate : false,
-                                    startCollapsed : 'accordion',
-                                    collapsible : 'accordion',
-                                    setHash : true,
-                                    animation : 'slide',
-                                    disabled : [ 4 ],
-                                    activate : function(e, tab) {
-                                       $('.info')
-                                             .html(
-                                                   'Tab <strong>'
-                                                         + tab.id
-                                                         + '</strong> activated!');
-                                    },
-                                    activateState : function(e,
-                                          state) {
-                                       //console.log(state);
-                                       $('.info')
-                                             .html(
-                                                   'Switched from <strong>'
-                                                         + state.oldState
-                                                         + '</strong> state to <strong>'
-                                                         + state.newState
-                                                         + '</strong> state!');
-                                    }
-                                 });
-
-                  });
-   </script>
 
 
       
