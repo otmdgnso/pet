@@ -122,7 +122,7 @@ public class AuctionController {
 			articleUrl = cp+"/auction/article?page=" +current_page;
 		} else {
 			listUrl = cp+"auction/list?" +params;
-			articleUrl = cp+"auction/article?page=" + current_page + "&" +params;
+			articleUrl = cp+"/auction/article?page=" + current_page + "&" +params;
 		}
 		
 		ModelAndView mav = new ModelAndView(".auction.list");
@@ -140,7 +140,7 @@ public class AuctionController {
 	public ModelAndView article(
 			@RequestParam(value="auctionNum") int auctionNum,
 			@RequestParam(value="page") String page,
-			@RequestParam(value="searchKey", defaultValue="subject")String searchKey,
+			@RequestParam(value="searchKey", defaultValue="")String searchKey,
 			@RequestParam(value="searchValue", defaultValue="")String searchValue
 			) throws Exception {
 		

@@ -48,6 +48,11 @@ function check() {
 		return false;
 	}
 	
+	var str= f.categoryNum.value;
+	if(!str) {
+		f.categoryNum.focus();
+		return false;
+	}
 	
 	var str= f.minPrice.value;
 	if(str < 1000) {
@@ -71,8 +76,18 @@ function check() {
 		return false;
 	}
 	
-	
+	//경매끝나는날
 	var str= f.aucEnd.value;
+	var strdate= new Date(str);
+	
+	//입력날
+	var t= new Date();
+	
+	if(strdate.getTime()<t.getTime() ) {
+		alert("오늘날짜보다 커야합니다")
+		return false;
+	}
+	
 	if(!str) {
 		f.aucEnd.focus();
 		return false;
@@ -89,11 +104,28 @@ function check() {
 		return false;
 	}
 	
-	var str= f.categoryNum.value;
-	if(!str) {
-		f.categoryNum.focus();
+	
+	//경매 사진 체크
+	
+	var cnt=0;
+	
+	//하나일때
+	if(f.upload.length==undefined) {
+		if(f.upload.value!="")
+		   cnt++;
+	//여러개일때
+	} else {
+		for(var i=0; i<f.upload.length; i++) {
+			if(f.upload[i].value!="")
+				cnt++;
+		}
+	}
+	
+	if(cnt==0) {
+		alert("경매 물품 사진을 올려주세요");
 		return false;
 	}
+	
 	
 	
 	var mode="${mode}";
@@ -112,6 +144,7 @@ function check() {
 	
 	f.submit();
 }
+
 
 <c:if test="${mode=='update'}">
 function deleteFile(saveFilename, photoNum) {
@@ -222,9 +255,9 @@ function deleteFile(saveFilename, photoNum) {
 						<h3>사진등록</h3>
 						
 	
-	<div id="tbFile">
-	<h3><input type="file" name="upload"></h3>
-	</div>
+						<div id="tbFile">
+							<h3><input type="file" name="upload"></h3>
+						</div>
 	
 	<c:if test="${mode=='update'}">
 	<h3>첨부된 파일(사진 클릭시 삭제가능!!)</h3><br>

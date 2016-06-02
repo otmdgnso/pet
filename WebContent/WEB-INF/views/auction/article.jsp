@@ -28,8 +28,13 @@ function checkBid(){
 		data:params,
 		success:function(data) {
 			
+			
 			if(bidPrice == $("#buyPrice").val()){
-				alert('즉시구입...');
+				if(confirm("즉시구입하시겠습니까?")){
+				}
+				
+				alert('즉시구입하셨습니다.');
+				location.reload();
 			}else{
 				alert('입찰완료');
 			}
@@ -193,7 +198,7 @@ function checkBid(){
 																<c:forEach var="bid" items="${listBid}" begin="0" end="4">
 																	<label >${bid.bidPrice}를 입찰하셨습니다 </label><br>
 																</c:forEach>
-																<label>마지막입찰&nbsp;&nbsp;:&nbsp; ${listBid[0].bidPrice}원을입찰하셨습니다.</label>
+																<label>최종입찰가&nbsp;&nbsp;:&nbsp; ${listBid[0].bidPrice}원을입찰하셨습니다.</label>
 															</td>
 														</tr>
 														<tr height="40%">

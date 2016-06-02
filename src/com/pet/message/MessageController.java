@@ -234,7 +234,7 @@ public class MessageController {
 				) throws Exception {
 			Map<String, Object> map=new HashMap<String,Object>();
 			
-			if(mode.equals("receive")) {
+			if(mode.equals("receive") || mode.equals("system")) {
 				map.put("field1", "receiveDelete");
 				map.put("field2", "sendDelete");
 			} else {
