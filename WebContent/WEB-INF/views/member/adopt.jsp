@@ -5,3 +5,8 @@
 <%
 	String cp=request.getContextPath();
 %>
+
+<script type="text/javascript">
+</script>
+
+ㅋㅋㅋ

@@ -56,6 +56,26 @@ function check() {
 		f.deposit.focus();
 		return false;
 	}
+	
+	var cnt=0;
+	
+	//하나일때
+	if(f.upload.length==undefined) {
+		if(f.upload.value!="")
+		   cnt++;
+	//여러개일때
+	} else {
+		for(var i=0; i<f.upload.length; i++) {
+			if(f.upload[i].value!="")
+				cnt++;
+		}
+	}
+	
+	if(cnt==0) {
+		alert("경매 물품 사진을 올려주세요");
+		return false;
+	}
+	
 	var mode="${mode}";
 	
 	if(mode=="created")
