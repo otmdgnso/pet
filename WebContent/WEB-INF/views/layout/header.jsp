@@ -62,7 +62,7 @@ $(function(){
 		dataType:"json",
 		success:function(data){
 		if(data.userMessageCount>0)
-			$("#userMessageCount").html("<img src='<%=cp%>/res/images/icon/new.gif' style='width: 15px; height: 15px;'>"+data.userMessageCount);
+			$("#userMessageCount").html("<img src='<%=cp%>/res/images/icon/new.gif' style='width: 15px; height: 15px;'>"+data.userMessageCount+"개");
 	},
 	error:function(e) {
 		

@@ -43,6 +43,8 @@
       		url="<%=cp%>/message/receive?mode=send";
       	  } else if(idx==2) {
       		url="<%=cp%>/message/send";
+      	  } else if (idx==3) {
+      		url="<%=cp%>/message/receive?mode=system";
       	  }
       		
       	  $.get(url, {}, function(data){
@@ -70,9 +72,9 @@
                                     disabled : [ 4 ],
                                     activate : function(e, tab) {
                                     	
-                                    	if(tab.id==0 || tab.id==1 || tab.id==2) {
+                                    	
                                     		tabContent(tab.id);
-                                    	}
+                                    	
                                     
                                     },
                                     activateState : function(e,

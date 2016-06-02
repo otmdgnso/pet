@@ -104,6 +104,17 @@ function deleteReply(replyNum, page, userId) {
 		}, "json");
 	}
 }
+
+function requestAdopt() {
+	if(confirm("분양 신청을 하시겠습니까?")) {
+		var f=document.boardForm;
+		var params="page=${page}&preSaleNum=${dto.preSaleNum}";
+		var url="<%=cp%>/adopt/requestAdopt?"+params;
+		
+		f.action=url;
+		f.submit();
+	}
+}
 </script>
 
 <body>
@@ -229,12 +240,15 @@ function deleteReply(replyNum, page, userId) {
 				
                     	<div class="col-sm-4 fly-who">
                     	<div class="col-sm-2 colbtn">
-							<button type="button" class="btn btn-primary btn-block" style="float: left; width: 34%;" onclick="javacript:location.href='<%=cp%>/adopt/list?page=${page}';">목록</button>
+							<button type="button" class="btn btn-primary btn-block" style="float: left; width: 25%;" onclick="javacript:location.href='<%=cp%>/adopt/list?page=${page}';">목록</button>
+							<c:if test="${sessionScope.member.userId!=dto.userId}">
+							<button type="button" class="btn btn-primary btn-block" style="float: left; width: 25%;" onclick="requestAdopt();">분양 신청</button>
+							</c:if>
 							<c:if test="${sessionScope.member.userId=='admin'|| sessionScope.member.userId==dto.userId}">
-							<button type="button" class="btn btn-primary btn-block" style="float: right; width: 33%;" onclick="deletePreSale(${dto.preSaleNum});">삭제</button>
+							<button type="button" class="btn btn-primary btn-block" style="float: right; width: 25%;" onclick="deletePreSale(${dto.preSaleNum});">삭제</button>
 							</c:if>
 							<c:if test="${sessionScope.member.userId==dto.userId}">
-							<button type="button" class="btn btn-primary btn-block" style="float: right; width: 33%;" onclick="javascript:location.href='<%=cp%>/adopt/update?preSaleNum=${dto.preSaleNum}&page=${page}';">수정</button>
+							<button type="button" class="btn btn-primary btn-block" style="float: right; width: 25%;" onclick="javascript:location.href='<%=cp%>/adopt/update?preSaleNum=${dto.preSaleNum}&page=${page}';">수정</button>
 							</c:if>
 						</div>
                     	<div class="separator" style="width:100%"></div>

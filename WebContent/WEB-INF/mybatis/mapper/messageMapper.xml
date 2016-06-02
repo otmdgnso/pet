@@ -30,6 +30,9 @@
 			</if>
 			AND receiveUserId = #{userId}
 			AND receiveDelete='N'
+			<![CDATA[
+	     	    AND INSTR(sendUserId,'시스템') <> 1
+	     	    ]]>
 		</where>
 	</select>
 	
@@ -46,6 +49,9 @@
 	     	    </if>
 	     	    AND receiveUserId = #{userId}
 	     	    AND receiveDelete='N'
+	     	    <![CDATA[
+	     	    AND INSTR(sendUserId,'시스템') <> 1
+	     	    ]]>
           	</where>
           ORDER BY messageNum DESC
     <![CDATA[
@@ -54,7 +60,7 @@
 	]]>
 	</select>
 	
-	<!-- 받은 메시지 리스트 -->
+	<!-- 보낸 메시지 리스트 -->
 	<select id="dataCountSend" parameterType="map" resultType="Integer">
 		SELECT NVL(COUNT(*), 0) FROM message
 		<where>
@@ -129,5 +135,40 @@
 	</select>
 	
 	
+	<!-- 시스템 메시지 리스트 -->
+	
+	<select id="dataCountSystem" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0) FROM message
+		<where>
+			<if test="searchValue!=null and searchValue!='' ">
+				<include refid="where-list"/>
+			</if>
+			AND INSTR(sendUserId,'시스템') &gt; 0
+			AND receiveUserId = #{userId}
+			AND receiveDelete='N'
+		</where>
+	</select>
+	
+	<select id="listSystem" parameterType="map" resultType="com.pet.message.Message">
+	SELECT * FROM (
+		SELECT ROWNUM rnum, tb.* FROM (
+          SELECT messageNum, subject, content, sendUserId, 
+          TO_CHAR(sendCreated,'YYYY-MM-DD HH24:MI:SS') sendCreated, 
+          NVL2(confirmCreated,TO_CHAR(confirmCreated,'YYYY-MM-DD HH24:MI:SS'), null) confirmCreated, 
+          receiveDelete FROM message
+          	<where>
+          		<if test="searchValue!=null and searchValue!='' ">
+	     	    	<include refid="where-list"/>
+	     	    </if>
+	     	    AND INSTR(sendUserId,'시스템') &gt; 0
+	     	    AND receiveUserId = #{userId}
+	     	    AND receiveDelete='N'
+          	</where>
+          ORDER BY messageNum DESC
+    <![CDATA[
+      	) tb WHERE ROWNUM <= #{end}
+	) WHERE rnum >= #{start}
+	]]>
+	</select>
 	
 </mapper>

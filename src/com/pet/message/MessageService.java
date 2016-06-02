@@ -14,6 +14,10 @@ public interface MessageService {
 	public int dataCountSend(Map<String, Object> map);
 	public List<Message> listSend(Map<String, Object> map);
 	
+	// 시스템 메시지 리스트
+	public int dataCountSystem(Map<String, Object> map);
+	public List<Message> listSystem(Map<String, Object> map);
+	
 	// 메시지 보기
 	public Message readMessage(int messageNum);
 	
