@@ -17,11 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-<<<<<<< HEAD
-=======
+
 import com.pet.common.MyUtil;
 import com.pet.house.House;
->>>>>>> 5587cd723f664f02d80b951da9cc8bb29bdf8b14
+
 import com.pet.house.HouseService;
 
 import net.sf.json.JSONObject;
@@ -57,11 +56,10 @@ public class MemberController {
          info.setPwd(dto.getPwd());
          session.setAttribute("member", info);
          
-       /*
-         //호스트 체크하기  
-         House vo;
-         vo.setHostNum(info.getHostNum());
-         houseService.hostCheck(hostNum);*/
+       
+         //호스트 체크하기          
+         int cnt=houseService.hostCheck(dto.getNum());
+         
       }
       
       Map<String, Object> model=new HashMap<>();
@@ -219,7 +217,7 @@ public class MemberController {
 	   out.print(job.toString());
    }
    
-<<<<<<< HEAD
+
    @RequestMapping(value="/member/info")
    public ModelAndView info(
          HttpSession session      
@@ -240,7 +238,7 @@ public class MemberController {
       ModelAndView mav= new ModelAndView("/member/hosting");
       mav.addObject("dto",dto);
       return mav;      
-=======
+   }
    @RequestMapping(value="/member/bookmark")
    public ModelAndView booklist(
 		   @RequestParam(value="page", defaultValue="1") int current_page
@@ -271,7 +269,7 @@ public class MemberController {
 		mav.addObject("dataCount",dataCount);
 		mav.addObject("paging",util.paging(current_page, total_page));
 		return mav;
->>>>>>> 5587cd723f664f02d80b951da9cc8bb29bdf8b14
+
    }
    
 }
