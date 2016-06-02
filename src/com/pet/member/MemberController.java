@@ -283,7 +283,38 @@ public class MemberController {
 		return mav;
 
    }
+   @RequestMapping(value="/member/photo")
+   public ModelAndView photo(
+         HttpSession session      
+         ) throws Exception{
+      SessionInfo info= (SessionInfo)session.getAttribute("member");
+      Member dto=service.readMember(info.getUserId());
+      ModelAndView mav= new ModelAndView("/member/photo");
+      mav.addObject("dto",dto);
+      return mav;      
+   }
    
+   @RequestMapping(value="/member/auction")
+   public ModelAndView auction(
+         HttpSession session      
+         ) throws Exception{
+      SessionInfo info= (SessionInfo)session.getAttribute("member");
+      Member dto=service.readMember(info.getUserId());
+      ModelAndView mav= new ModelAndView("/member/auction");
+      mav.addObject("dto",dto);
+      return mav;      
+   }
+   
+   @RequestMapping(value="/member/adopt")
+   public ModelAndView adopt(
+         HttpSession session      
+         ) throws Exception{
+      SessionInfo info= (SessionInfo)session.getAttribute("member");
+      Member dto=service.readMember(info.getUserId());
+      ModelAndView mav= new ModelAndView("/member/adopt");
+      mav.addObject("dto",dto);
+      return mav;      
+   }
 }
 
 
