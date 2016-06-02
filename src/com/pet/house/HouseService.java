@@ -23,5 +23,5 @@ public interface HouseService {
 	public int deleteReview(int reviewnum);
 	
 	//호스팅 체크
-	public int hostCheck(int hostNum);
+	public int hostCheck(int memberNum);
 }

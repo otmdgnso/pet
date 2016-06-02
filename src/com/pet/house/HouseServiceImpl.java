@@ -205,10 +205,10 @@ public class HouseServiceImpl implements HouseService{
 	}
 
 	@Override
-	public int hostCheck(int hostNum) {
+	public int hostCheck(int memberNum) {
 		int result=0;
 		try {
-			result=dao.getIntValue("house.hostCheck",hostNum);
+			result=dao.getIntValue("house.hostCheck",memberNum);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}

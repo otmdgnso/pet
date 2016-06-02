@@ -68,7 +68,20 @@ $(function(){
 		
 	}
 });
+	var url="<%=cp%>/member/hostCheck";	
+	 $.ajax({
+		type:"post",
+		url:url,
+		dataType:"json",
+		success:function(data){
+			if(data.cnt==1)
+				$("#hostCheck").html("");
+		}
+	 });
+	
 	</c:if>
+	
+	
 	
 	$(document).mouseup(function(e) {
 		if ($(e.target).parents('.zeta-menu').length == 0) {
@@ -108,6 +121,9 @@ function loginSend(){
     			shakeModal();
     		} else {    			
     			location.href="<%=cp%>";
+    		/* 	if(data.cnt==1){
+    				$("#hostCheck").html(""); 
+    			}*/
     		}
     		
     	}
@@ -131,8 +147,9 @@ function registerMember(){
     	,success:function(data){
     		if(data.state=="false") {
     		
-    		} else {     		  			
-    			location.href="<%=cp%>";
+    		} else {   			
+    			location.href="<%=cp%>";    				
+    			
     		}
     		
     	}
@@ -285,11 +302,11 @@ function shakeModalMember(msg){
 					<a class="logo" href="<%=cp%>"><img src="<%=cp%>/res/images/icon/title.jpg" height="40px"/></a>
 				</li>	
                 <!-- 호스팅버튼 -->
-         <c:if test="${sessionScope.member.hostNum!=sessionScope.member.memberNum}">
-				<li class="weather">
-					<a class="top-menu-txt" href="<%=cp%>/house/join">호스팅하기</a>
+       			
+				<li id="hostCheck" class="weather">
+					<a class='top-menu-txt' href='<%=cp%>/house/join'>호스팅하기</a>
 				</li>
-			</c:if> 
+			
 				<!--/ 호스팅버튼 -->
 				
 				<!-- 메뉴 -->
