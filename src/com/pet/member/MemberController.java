@@ -17,10 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import com.pet.common.MyUtil;
-import com.pet.house.House;
-
 import com.pet.house.HouseService;
 
 import net.sf.json.JSONObject;
@@ -56,16 +53,31 @@ public class MemberController {
          info.setPwd(dto.getPwd());
          session.setAttribute("member", info);
          
-       
-         //호스트 체크하기          
-         int cnt=houseService.hostCheck(dto.getNum());
+         System.out.println(info.getMemberNum());
          
+             
       }
       
       Map<String, Object> model=new HashMap<>();
       model.put("state", state);
       model.put("userName", userName);
+      return model;
+   }
+   
+   @RequestMapping(value="/member/hostCheck", method=RequestMethod.POST)
+   @ResponseBody
+   public Map<String, Object> hostCheck(
+         HttpSession session        
+         ) throws Exception{
+	   
+	   SessionInfo info=(SessionInfo)session.getAttribute("member");	    
+      int cnt=0;         
+        //호스트 체크하기          
+       cnt=houseService.hostCheck(info.getMemberNum());   
+   
       
+      Map<String, Object> model=new HashMap<>();     
+      model.put("cnt", cnt);
       return model;
    }
    
@@ -271,7 +283,38 @@ public class MemberController {
 		return mav;
 
    }
+   @RequestMapping(value="/member/photo")
+   public ModelAndView photo(
+         HttpSession session      
+         ) throws Exception{
+      SessionInfo info= (SessionInfo)session.getAttribute("member");
+      Member dto=service.readMember(info.getUserId());
+      ModelAndView mav= new ModelAndView("/member/photo");
+      mav.addObject("dto",dto);
+      return mav;      
+   }
    
+   @RequestMapping(value="/member/auction")
+   public ModelAndView auction(
+         HttpSession session      
+         ) throws Exception{
+      SessionInfo info= (SessionInfo)session.getAttribute("member");
+      Member dto=service.readMember(info.getUserId());
+      ModelAndView mav= new ModelAndView("/member/auction");
+      mav.addObject("dto",dto);
+      return mav;      
+   }
+   
+   @RequestMapping(value="/member/adopt")
+   public ModelAndView adopt(
+         HttpSession session      
+         ) throws Exception{
+      SessionInfo info= (SessionInfo)session.getAttribute("member");
+      Member dto=service.readMember(info.getUserId());
+      ModelAndView mav= new ModelAndView("/member/adopt");
+      mav.addObject("dto",dto);
+      return mav;      
+   }
 }
 
 

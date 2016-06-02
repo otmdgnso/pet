@@ -42,16 +42,12 @@ function tabContent(idx) {
 		url="<%=cp%>/member/info";
 	} else if(idx==1) {
 		url="<%=cp%>/member/hosting";
-	} else if(idx==2) {
-		url="";
-	} else if(idx==3) {
-		url="";
 	} else if(idx==4) {
-		url="";
+		url="<%=cp%>member/photo";
 	} else if(idx==5) {
-		url="";
+		url="<%=cp%>member/auction";
 	} else if(idx==6) {
-		url="";
+		url="<%=cp%>member/adopt";
 	}
 	$.get(url, {}, function(data){
 		id.html(data);
@@ -73,7 +69,7 @@ $(document).ready(function() {
                         setHash : true,
                         animation : 'slide',
                         activate : function(e, tab) {
-                                 
+                               if(tab.id!=2 && tab.id!=3)
                            		tabContent(tab.id);
                            
                         },
@@ -297,53 +293,20 @@ function shakeModalMember(msg){
                  		<div id="tab-1" style="width: 100%; min-height: 600px;"></div>
                   
                   
-<div id="tab-3">
+<div id="tab-2" style="width: 100%; min-height: 600px;">
 	<!-- 예약목록 -->		
 	<!-- http://localhost:9090/pet/reservation/list -->
 	<div id="ajaxReserveList"></div>
 	
 </div>
 
-<div id="tab-4">
+<div id="tab-3" style="width: 100%; min-height: 600px;">
 	<!-- 북마크 -->                     
     <div id="ajaxBookmarkList"></div>
 </div>
-                  <div id="tab-5">
-                     <p>Proin dignissim faucibus odio sollicitudin sagittis.
-                        Phasellus aliquet, erat vitae mollis consectetur, enim lectus
-                        ornare libero, et porta mi dui eu tellus. Morbi lobortis, elit
-                        at euismod porta, magna lacus mattis massa, a lacinia ligula
-                        risus et lectus. Sed et aliquam ligula. Nunc venenatis orci
-                        magna, quis facilisis sem porta non. Nunc sodales arcu in
-                        consectetur malesuada. Maecenas varius justo lacus, scelerisque
-                        viverra tellus luctus eu. Nam imperdiet ultricies suscipit. Ut
-                        urna mauris, eleifend quis lacinia non, mollis id libero.
-                        Praesent pharetra viverra ipsum at posuere. Quisque commodo
-                        tortor nec hendrerit faucibus. Fusce convallis urna et vehicula
-                        tincidunt. Duis sed vehicula justo, eu placerat nisi. Donec
-                        facilisis augue non turpis semper, eget condimentum mauris
-                        malesuada. Nunc in dignissim mi, sed laoreet felis.</p>
-                  </div>
-                  <div id="tab-6">
-                     <h3>
-                        Italy Weather <span>(more info <a href="meteo.html">travego
-                              meteo</a>)
-                        </span>
-                     </h3>
-                     <p>Quisque sodales sodales lacus pharetra bibendum. Etiam
-                        commodo non velit ac rhoncus. Mauris euismod purus sem, ac
-                        adipiscing quam laoreet et. Praesent vulputate ornare sem vel
-                        scelerisque. Ut dictum augue non erat lacinia, sed lobortis elit
-                        gravida. Proin ante massa, ornare accumsan ultricies et, posuere
-                        sit amet magna. Praesent dignissim, enim sed malesuada luctus,
-                        arcu sapien sodales sapien, ut placerat eros nunc vel est. Donec
-                        tristique mi turpis, et sodales nibh gravida eu. Etiam odio
-                        risus, porttitor non lacus id, rhoncus tempus tortor. Curabitur
-                        tincidunt molestie turpis, ut luctus nibh sollicitudin vel. Sed
-                        vel luctus nisi, at mattis metus. Aenean ultricies dolor est, a
-                        congue ante dapibus varius. Nulla at auctor nunc</p>
-                     <div id="meteo-guide"></div>
-                  </div>
+                  <div id="tab-4" style="width: 100%; min-height: 600px;"></div>
+                  <div id="tab-5" style="width: 100%; min-height: 600px;"></div>
+                  <div id="tab-6" style="width: 100%; min-height: 600px;"></div>
                </div>
                <!--Close col 12 -->
 

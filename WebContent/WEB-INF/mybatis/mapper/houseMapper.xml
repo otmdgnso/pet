@@ -130,7 +130,7 @@
 		SELECT * FROM grade;
 	</select>
 	
-	<select id="hostCheck" parameterType="Integer" resultType="com.pet.house.House">
+	<select id="hostCheck" parameterType="Integer" resultType="Integer">
 	   SELECT COUNT(*) FROM host 
 	   WHERE hostNum=#{memberNum}
 	</select>
