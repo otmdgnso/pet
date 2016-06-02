@@ -3,6 +3,7 @@ package com.pet.member;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+<<<<<<< HEAD
+=======
+import com.pet.common.MyUtil;
+import com.pet.house.House;
+>>>>>>> 5587cd723f664f02d80b951da9cc8bb29bdf8b14
 import com.pet.house.HouseService;
 
 import net.sf.json.JSONObject;
@@ -26,6 +32,8 @@ public class MemberController {
    private MemberService service;
    @Autowired
    private HouseService houseService;
+   @Autowired
+   private MyUtil util;
    
    @RequestMapping(value="/member/login", method=RequestMethod.POST)
    @ResponseBody
@@ -211,6 +219,7 @@ public class MemberController {
 	   out.print(job.toString());
    }
    
+<<<<<<< HEAD
    @RequestMapping(value="/member/info")
    public ModelAndView info(
          HttpSession session      
@@ -231,6 +240,38 @@ public class MemberController {
       ModelAndView mav= new ModelAndView("/member/hosting");
       mav.addObject("dto",dto);
       return mav;      
+=======
+   @RequestMapping(value="/member/bookmark")
+   public ModelAndView booklist(
+		   @RequestParam(value="page", defaultValue="1") int current_page
+		   ) throws Exception {
+	   
+	   int numPerPage=10;
+	   int total_page=0;
+	   int dataCount=0;
+	   
+	   //전체페이지수
+	   Map<String, Object> map=new HashMap<String, Object>();
+	   dataCount=service.dataCount(map);
+		
+		if(dataCount!=0)
+			total_page=util.pageCount(numPerPage, dataCount);
+		
+		//리스트에 출력할 데이터를 가져오기
+		int start=(current_page-1)*numPerPage+1;
+		int end=current_page*numPerPage;
+		map.put("start", start);
+		map.put("end", end);
+		
+		List<Bookmark> list=service.listBookmark(map);
+		
+		ModelAndView mav=new ModelAndView("/member/bookmark");
+		mav.addObject("list", list);
+		mav.addObject("page",current_page);
+		mav.addObject("dataCount",dataCount);
+		mav.addObject("paging",util.paging(current_page, total_page));
+		return mav;
+>>>>>>> 5587cd723f664f02d80b951da9cc8bb29bdf8b14
    }
    
 }
