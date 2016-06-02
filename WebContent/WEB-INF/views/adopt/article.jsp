@@ -108,7 +108,7 @@ function deleteReply(replyNum, page, userId) {
 function requestAdopt() {
 	if(confirm("분양 신청을 하시겠습니까?")) {
 		var f=document.boardForm;
-		var params="preSaleNum=${dto.preSaleNum}";
+		var params="page=${page}&preSaleNum=${dto.preSaleNum}";
 		var url="<%=cp%>/adopt/requestAdopt?"+params;
 		
 		f.action=url;

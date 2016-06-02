@@ -414,8 +414,9 @@ public class AdoptController {
 	}
 	
 	@RequestMapping(value="/adopt/requestAdopt")
-	public ModelAndView requestAdopt(
+	public String requestAdopt(
 			HttpSession session, Message dto,
+			@RequestParam(value="page") int page,
 			@RequestParam(value="preSaleNum") int preSaleNum
 			) throws Exception {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
@@ -423,13 +424,11 @@ public class AdoptController {
 		dto.setSendUserId("시스템_분양");
 		dto.setReceiveUserId(info.getUserId());
 		dto.setSubject("분양을 신청하셧습니다.");
-		String msg="<a href=''>신청한 분양 게시글 보기</a>";
+		String msg="<a href=http://localhost:9090/pet/adopt/article"+"?page="+page+"&preSaleNum="+preSaleNum+">신청한 글보기</a>";
 		dto.setContent(msg);
 		
-		messageService.insertMessage(dto);
 		
-		ModelAndView mav= new ModelAndView(".adopt.request");
-		mav.addObject("presSaleNum",preSaleNum);
-		return mav;
+		messageService.insertMessage(dto);
+		return "redirect:/adopt/article"+"?page="+page+"&preSaleNum="+preSaleNum;
 	}
 }
