@@ -842,6 +842,7 @@ function initAutocomplete() {
 	  var input = document.getElementById('addressHouse');
 	  var searchBox = new google.maps.places.SearchBox(input);
 	  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+	  
 
 	  // Bias the SearchBox results towards current map's viewport.
 	  map.addListener('bounds_changed', function() {
@@ -893,5 +894,9 @@ function initAutocomplete() {
 	    map.fitBounds(bounds);
 	  });
 	}
+	
+$('#addressHouse').change(function(){		
+	
+});
 </script>
 
