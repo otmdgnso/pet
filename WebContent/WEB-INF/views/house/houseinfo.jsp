@@ -117,6 +117,17 @@ function imgbigview(a,b){
 function hide(c){
 	document.getElementById(c).style.display=='none';
 }
+
+var mlayoutPhoto=new PhotoImageViewer({
+    target   : parent,
+    cssurl   : "/common/storyphoto/original_viewer.css",
+    //CAFESUS-4811 LCS 개선 
+    gdid 	 : "90000004_019A822C00D59FF800000000",
+    popupurl : "http://cafe.naver.com/common/storyphoto",
+    allowRightMouseClick : false
+});
+
+
 </script>
 
 <div class="clear"></div>
@@ -180,8 +191,10 @@ function hide(c){
 					<ul class="bxslider">
 						<c:forEach var="dto" items="${readFile}" >
 							<!-- <li><img src="http://placehold.it/840x460" alt=""/></li> -->
-						  <a href="<%=cp%>/uploads/house/${dto.saveFilename}" onclick="imgbigview(this,'bigimg'); return false;"><img style="width: 810px; height: 430px;"
-								src="<%=cp%>/uploads/house/${dto.saveFilename}" alt="" /></a>
+						  <a href="javascript_;;" onclick="window.open('<%=cp%>/uploads/house/${dto.saveFilename}','이름',
+						  ' width=720,height=600,scrollbars=no,left=100,top=200'); return false">
+						  <img style="width: 810px; height: 430px;"
+								src="<%=cp%>/uploads/house/${dto.saveFilename}" alt=""  /></a>
 						</c:forEach>
 						<!-- 큰이미지 등장 -->
 					</ul>
