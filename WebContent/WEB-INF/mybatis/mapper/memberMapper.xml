@@ -30,6 +30,5 @@
    <delete id="deleteMember" parameterType="String">
       DELETE FROM member WHERE userId=#{userId}
    </delete>
-   
-   
+  
 </mapper>

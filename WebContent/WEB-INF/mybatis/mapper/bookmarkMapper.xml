@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bookmark">
+
+   <select id="listBookmark" parameterType="map" resultType="com.pet.member.Bookmark">
+   		SELECT * FROM (
+		    SELECT ROWNUM rnum, tb.* FROM (
+			     SELECT bookmarkNum, b.num, b.hostNum, address, cost, subject, userName, profile
+			     FROM host h JOIN member m ON h.hostNum=m.num JOIN bookmark b ON b.num=m.num
+			     WHERE b.num=#{num}
+				 ORDER BY bookmarknum DESC
+		<![CDATA[
+	     	 ) tb WHERE ROWNUM <= #{end}
+	   	 ) WHERE rnum >= #{start}
+	    ]]>	 
+   </select>
+   
+</mapper>
