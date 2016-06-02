@@ -563,40 +563,32 @@ function houseSearch() {
     <div class="container">
       <div class="row">
       <div class="col-md-4 middle-text-adv">
-         <h3>Why Travego</h3>
+         <h3>여기맡기개 어서오냥</h3>
          <div class="line-left"></div>
-         <p>A modern hotel room in Star Hotel Nunc tempor erat in magna pulvinar fermentum. malesuada metus.</p>
-         <p>A modern hotel room in Star Hotel Nunc tempor erat in magna pulvinar fermentum. malesuada metus.</p>
+         <p>집을 비울 때... 사랑하는 반려견과 반겨묘를 두고 가야한다면?..</p>
+         <p>이젠 동물을 사랑하고 믿을 수 있는 사람들에게 맡기세요!</p>
       </div>
         <div class='col-md-8'>
            <div class='col-md-6'>
-              <div class='grid-info'>
-                <div class='grid-icon'><i class="fa fa-taxi"></i></div>
-                <h5 class="grid-title ">TAXI DISCOUNT</h5>
-                <div class="grid-desc"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus facilisis cvallis.</p></div>
+              <div class='grid-info' style="height: 170px; width: 340px;">
+                <img src="<%=cp%>/res/image/maindog2.JPG" width="330px" height="140px"/>
              </div>
            </div>   
            <div class='col-md-6'>
-              <div class='grid-info'>
-                <div class='grid-icon'><i class="fa fa-unlock-alt"></i></div>
-                <h5 class="grid-title ">TRUST AND SECURITY</h5>
-                <div class="grid-desc"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus facilisis cvallis.</p></div>
-              </div>
+              <div class='grid-info' style="height: 170px; width: 340px;">
+                <img src="<%=cp%>/res/image/maincat2.JPG" width="330px" height="140px"/>
+             </div>
            </div>
         
            <div class='col-md-6'>
-             <div class='grid-info'>
-                <div class='grid-icon'><i class="fa fa-cutlery"></i></div>
-                <h5 class="grid-title ">BEST FOOD</h5>
-                <div class="grid-desc"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus facilisis cvallis.</p></div>
+              <div class='grid-info' style="height: 170px; width: 340px;">
+                <img src="<%=cp%>/res/image/maincat1.JPG" width="330px" height="140px"/>
              </div>
            </div>
          
            <div class='col-md-6'>
-             <div class='grid-info'>
-                <div class='grid-icon'><i class="fa fa-futbol-o"></i></div>
-                <h5 class="grid-title ">BEST SPORTS</h5>
-                <div class="grid-desc"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus facilisis cvallis.</p></div>
+             <div class='grid-info' style="height: 170px; width: 340px;">
+                <img src="<%=cp%>/res/image/maindog1.JPG" width="330px" height="140px"/>
              </div>
            </div>
         </div>
