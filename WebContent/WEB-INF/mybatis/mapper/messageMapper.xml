@@ -4,7 +4,7 @@
 <mapper namespace="message">
 	<sql id="where-list">
 	  <if test="searchKey=='sendUserId' or searchKey=='receiveUserId'">
-	      ${searchKey}=#{searchValue}
+	  	  INSTR(${searchKey}, #{searchValue}) &gt; 0
 	  </if>
 	  <if test="searchKey=='content'">
 	      INSTR(content, #{searchValue}) &gt; 0

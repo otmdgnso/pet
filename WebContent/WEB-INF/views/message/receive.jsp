@@ -33,8 +33,16 @@ $(function() {
 
 function searchListMessage() {
 	var mode="${mode}";
+	if (mode=="receive") {
 	var searchKey=$("#messageSearchKey1").val();
 	var searchValue=$("#messageSearchValue1").val();
+	} else if (mode=="send") {
+		var searchKey=$("#messageSearchKey2").val();
+		var searchValue=$("#messageSearchValue2").val();
+	} else {
+		var searchKey=$("#messageSearchKey3").val();
+		var searchValue=$("#messageSearchValue3").val();
+	}
 	
 	var url="<%=cp%>/message/receive";
 	$.post(url, {mode:mode, searchKey:searchKey, searchValue:searchValue}, function(data){
@@ -96,7 +104,14 @@ function deleteListMessage() {
 	var searchKey=$("#searchKey").val();
 	var searchValue=$("#searchValue").val();
 	
-	var chks = $("input:checked");
+	if(mode=="receive") {
+		var chks = $("#check1 input:checked");
+	} else if(mode=="send") {
+		var chks = $("#check2 input:checked");
+	} else {
+		var chks = $("#check3 input:checked");
+	}
+
 	var cnt = chks.length;
 	if(cnt==0) {
 		alert("삭제할 항목을 먼저 선택 하세요 !!!");
@@ -189,7 +204,8 @@ function deleteListMessage() {
 					<td style="width: 20%; font-weight: bold;">받은날짜</td>
 					<td style="width: 20%; font-weight: bold;">확인날짜</td>
 				</tr>
-
+			</table>
+			<table style="width: 100%;" id="check1">
 				<c:forEach var="dto" items="${list}">
 					<tr>
 						<td style="width: 20%; height: 10px;"><input type="checkbox"
@@ -244,13 +260,13 @@ function deleteListMessage() {
 				<td style="width: 25%;"><button type="button"
 						class="btn btn-default btn-sm" onclick="deleteListMessage();">삭제</button></td>
 				<td align="right" style="width: 25%;"><select
-					class="form-control input-sm" id="messageSearchKey">
+					class="form-control input-sm" id="messageSearchKey2">
 							<option>받은사람</option>
 						<option>제목</option>
 						<option>내용</option>
 				</select></td>
 				<td style="width: 25%;" align="center"><input type="text"
-					class="form-control input-sm input-search" id="messageSearchValue"
+					class="form-control input-sm input-search" id="messageSearchValue2"
 					value="${searchValue}"></td>
 				<td align="left" style="width: 25%;">
 					<button type="button" class="btn btn-info btn-sm btn-search"
@@ -275,7 +291,8 @@ function deleteListMessage() {
 									<td style="width: 20%; font-weight: bold;">보낸날짜</td>
 									<td style="width: 20%; font-weight: bold;">확인날짜</td>
 								</tr>
-								
+								</table>
+								<table style="width: 100%;" id="check2">
 								<c:forEach var="dto" items="${list}">
 								<tr>
 									<td style="width: 20%; height: 10px;">
@@ -323,13 +340,13 @@ function deleteListMessage() {
 				<td style="width: 25%;"><button type="button"
 						class="btn btn-default btn-sm" onclick="deleteListMessage();">삭제</button></td>
 				<td align="right" style="width: 25%;"><select
-					class="form-control input-sm" id="messageSearchKey1">
+					class="form-control input-sm" id="messageSearchKey3">
 						<option value="sendUserId" ${searchKey=="sendUserId"?"selected='selected' ":"" }>보낸사람</option>
 						<option value="subject">제목</option>
 						<option value="content">내용</option>
 				</select></td>
 				<td style="width: 25%;" align="center"><input type="text"
-					class="form-control input-sm input-search" id="messageSearchValue1"
+					class="form-control input-sm input-search" id="messageSearchValue3"
 					value="${searchValue}"></td>
 				<td align="left" style="width: 25%;">
 					<button type="button" class="btn btn-info btn-sm btn-search"
@@ -353,7 +370,8 @@ function deleteListMessage() {
 					<td style="width: 20%; font-weight: bold;">받은날짜</td>
 					<td style="width: 20%; font-weight: bold;">확인날짜</td>
 				</tr>
-
+				</table>
+				<table style="width: 100%;" id="check3">
 				<c:forEach var="dto" items="${list}">
 					<tr>
 						<td style="width: 20%; height: 10px;"><input type="checkbox"
