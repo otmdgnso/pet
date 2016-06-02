@@ -122,20 +122,21 @@ function updateReservation(reservationNum) {
 }
 
 //예약목록
-$(document).ready(function(){
+$("#tab-2").ready(function(){
 
 	// ajax 처리 - 예약목록
 	$.ajax({
 	  url: "<%=cp%>/reservation/list"
-	  //context: document.body
 	}).done(function(data) {
 		$("#ajaxReserveList").html(data);
 	});
-	
+
+});	
+
+$("#tab-3").ready(function(){
 	// ajax 처리 - 북마트목록
 	$.ajax({
 	  url: "<%=cp%>/member/bookmark"
-	  //context: document.body
 	}).done(function(data) {
 		$("#ajaxBookmarkList").html(data);
 	});
