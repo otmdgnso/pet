@@ -148,6 +148,7 @@ public class HouseController {
 	@RequestMapping(value="/house/houseinfo") 
 	public ModelAndView houseInfo(
 			@RequestParam(value="hostNum") int hostNum
+			,Review vo
 			) throws Exception{
 
 		House dto=service.readHouseInfo(hostNum);
@@ -158,11 +159,13 @@ public class HouseController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("hostNum", dto.getNum());
 		
+		vo=service.readReview(hostNum);
+		
 		ModelAndView mav = new ModelAndView(".house.houseinfo");
 		mav.addObject("hostNum",hostNum);
 		mav.addObject("dto", dto);
+		mav.addObject("vo", vo);
 		mav.addObject("readFile",readFile);
-		
 		return mav;
 	}
 	// 호스팅한 집, 예약 받은 정보
@@ -176,7 +179,9 @@ public class HouseController {
 	@RequestMapping(value="/house/review") 
 	public ModelAndView listReview(
 			@RequestParam(value="hostNum", defaultValue="") int hostNum
-			,@RequestParam(value="pageNo", defaultValue="1") int current_page
+			,@RequestParam(value="pageNo", defaultValue="1") int current_page,
+			House dto
+			,Review vo
 			) throws Exception {
 		
 		int numPerPage=10;
@@ -187,6 +192,8 @@ public class HouseController {
 		map.put("hostNum", hostNum);
 		
 		dataCount=service.reviewDataCount(map);
+		
+		
 		total_page=myUtil.pageCount(numPerPage, dataCount);
 		if(current_page>total_page)
 			current_page=total_page;
@@ -199,7 +206,8 @@ public class HouseController {
 		map.put("hostNum", hostNum);
 		
 		List<Review> list=service.listReview(map);
-
+		
+		vo=service.readReview(hostNum);
 		
 		ModelAndView mav=new ModelAndView("/house/review");
 		mav.addObject("listReview", list);
@@ -207,7 +215,31 @@ public class HouseController {
 		mav.addObject("reviewDataCount", dataCount);
 		mav.addObject("total_page", total_page);
 		mav.addObject("paging", myUtil.paging(current_page, total_page));		
+		mav.addObject("dto",dto);
+		mav.addObject("vo",vo);
 		return mav;
+	}
+
+	//댓글 입력
+	@RequestMapping(value="/house/createdReply", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertReply(
+			@RequestParam int hostNum,
+			@RequestParam(value="content", defaultValue="") String content,
+			Review dto,
+			@RequestParam int completeNum
+			) throws Exception{
+		
+		String state="false";
+		int result=0;
+		result=service.insertReview(dto);
+		if(result==1){
+			state="true";
+		}
+		System.out.println(hostNum);
+		Map<String, Object> model=new HashMap<>();
+		model.put("state", state);
+		return model;
 	}
 	
 	@RequestMapping(value="/house/review/delete") 

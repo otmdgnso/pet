@@ -8,7 +8,8 @@
 <script type="text/javascript">
 //댓글 추가
 function sendReply() {
-	var uid="$sessionScope.member.userId}";
+	alert(score);
+	var uid="${sessionScope.member.userId}";
 	if(! uid) {
 		login();
 		return false;
@@ -16,6 +17,7 @@ function sendReply() {
 	
 	var hostNum="${dto.hostNum}";
 	var content=$.trim($("#content").val());
+	var completeNum="${vo.completeNum}";
 	if(! content) {
 		alert("내용을 입력하세요.");
 		$("#content").focus();
@@ -24,16 +26,18 @@ function sendReply() {
 	
 	var params="hostNum="+hostNum;
 	params+="&content="+content;
-	
+	params+="&completeNum="+completeNum;
 	$.ajax({
 		type:"POST"
 		,url:"<%=cp%>/house/createdReply"
 		,dataType:"json"
+		,data:params
 		,success:function(data) {
 			$("#content").val("");
-			
+			alert("ㅎㅇ");
 			var state=data.state;
 			if(state=="true") {
+				alert("gd");
 				listPage(1);
 			} else if(state=="false") {
 				alert("댓글을 등록하지 못했습니다.");
@@ -45,26 +49,6 @@ function sendReply() {
 	});
 }
 
-
-
-<%-- $(function(){
-	$("#star_1").click(function(){
-		$("#star").html("<img src='<%=cp%>/res/image/staryellow.png' width='15px' > <img src='<%=cp%>/res/image/stargray.png' width='15px'> <img src='<%=cp%>/res/image/stargray.png' width='15px'> <img src='<%=cp%>/res/image/stargray.png' width='15px'> <img src='<%=cp%>/res/image/stargray.png' width='15px'>");
-		
-	}); 
-	$("#star_2").click(function(){
-		$("#star").html("<img src='<%=cp%>/res/image/staryellow.png' width='15px'> <img src='<%=cp%>/res/image/staryellow.png' width='15px'> <img src='<%=cp%>/res/image/stargray.png' width='15px'> <img src='<%=cp%>/res/image/stargray.png' width='15px'> <img src='<%=cp%>/res/image/stargray.png' width='15px'>");
-	}); 
-	$("#star_3").click(function(){
-		$("#star").html("<img src='<%=cp%>/res/image/staryellow.png' width='15px'> <img src='<%=cp%>/res/image/staryellow.png' width='15px'> <img src='<%=cp%>/res/image/staryellow.png' width='15px'> <img src='<%=cp%>/res/image/stargray.png' width='15px'> <img src='<%=cp%>/res/image/stargray.png' width='15px'>");			
-	}); 
-	$("#star_4").click(function(){
-		$("#star").html("<img src='<%=cp%>/res/image/staryellow.png' width='15px'> <img src='<%=cp%>/res/image/staryellow.png' width='15px'> <img src='<%=cp%>/res/image/staryellow.png' width='15px'> <img src='<%=cp%>/res/image/staryellow.png' width='15px'> <img src='<%=cp%>/res/image/stargray.png' width='15px'>");			
-	}); 
-	$("#star_5").click(function(){
-		$("#star").html("<img src='<%=cp%>/res/image/staryellow.png' width='15px'> <img src='<%=cp%>/res/image/staryellow.png' width='15px'> <img src='<%=cp%>/res/image/staryellow.png' width='15px'> <img src='<%=cp%>/res/image/staryellow.png' width='15px'> <img src='<%=cp%>/res/image/staryellow.png' width='15px'>");			
-	}); 
-});  --%>
 var locked=0;
 
 function show(star){
@@ -102,12 +86,12 @@ function lock(star){
 function mark(star){
 	lock(star);
 	alert("선택2"+star);
-	
-	if($("#star").change()){
+	/* if($("#star").change()){
 		alert("ㅎㅇ");
-	}
-	
-	document.cmtform.star.value=star;
+	} */
+	var score=star;
+	alert(score);
+	document.cmtform.star.value=star; 
 }
 </script>
 
@@ -138,20 +122,21 @@ function mark(star){
 							<img src="<%=cp%>/res/image/stargray.png" id="star_5" onclick="javascript:check_star(5);" width="15px">								     
 						</td> --%>
 						<td id="star" align="center" width="15%">		               		
-							<img  id="image1" onclick="mark(1)" onmouseover="show(1);" onmouseout="noshow(1);" src="<%=cp%>/res/image/stargray.png" width="15px">
-							<img  id="image2" onclick="mark(2)" onmouseover="show(2);" onmouseout="noshow(2);" src="<%=cp%>/res/image/stargray.png" width="15px">
-							<img id="image3" onclick="mark(3);" onmouseover="show(3);" onmouseout="noshow(3);" src="<%=cp%>/res/image/stargray.png" width="15px">
+							<img id="image1" onclick="mark(1)" onmouseover="show(1);" onmouseout="noshow(1);" src="<%=cp%>/res/image/stargray.png" width="15px">							
+							<img id="image2" onclick="mark(2)" onmouseover="show(2);" onmouseout="noshow(2);" src="<%=cp%>/res/image/stargray.png" width="15px">
+							<img id="image3"  onclick="mark(3);" onmouseover="show(3);" onmouseout="noshow(3);" src="<%=cp%>/res/image/stargray.png" width="15px">
 							<img id="image4" onclick="mark(4);" onmouseover="show(4);" onmouseout="noshow(4);" src="<%=cp%>/res/image/stargray.png" width="15px">
-							<img  id="image5" onclick="mark(5);" onmouseover="show(5);" onmouseout="noshow(5);" src="<%=cp%>/res/image/stargray.png" width="15px">								     
-						</td>
+							<img id="image5"  onclick="mark(5);" onmouseover="show(5);" onmouseout="noshow(5);" src="<%=cp%>/res/image/stargray.png" width="15px">								     
+						 
+						</td>												
 						<td align="center" width="75%" rowspan="2" style="text-align: center;">
 							<textarea id="content" class="form-control" rows="3" cols="50"></textarea>
 						</td>
 					</tr>
 					<tr>					
 						<td align="center" width="20%">평점을 입력해주세요.</td>					
-					</tr>
-				</table>     
+					</tr>					
+				</table>   
 				<div align="right" style="padding: 10px;"><button type="button" class="btn btn-primary btn-sm" onclick="sendReply();"> 등록 <span class="glyphicon glyphicon-ok"></span></button></div>   
 	           </div>
 	       </div>       
@@ -170,11 +155,11 @@ function mark(star){
 		<td align="left" width="70%" style="margin-bottom:  5px; min-height: 50px;">
 			${dto.content}
 		</td>
+		<td align="right" width="70%">${dto.created}</td>
 		<td width="10%"></td>
 	</tr>
 	<tr>
 		<td align="center" width="20%">${dto.userName}</td>
-		<td align="left" width="70%">${dto.created}</td>
 
 		<c:if test="${sessionScope.member.memberNum==dto.num || sessionScope.member.userId=='admin'}">
 		<td width="10%"><a onclick='deleteReview("${dto.reviewnum}")'>삭제</a></td>
