@@ -62,7 +62,7 @@
 		<img src="<%=cp%>/res/image/catmovie.gif" height="30px" style="padding-left: 40%; padding-top: 10px;"/>
 	</div>
 	<div class="blog-img-title">
-		<h3>고양이에 관한 잘못된 상식</h3>
+		<h2 style="color: tomato">고양이에 관한 잘못된 상식</h2>
 		<p>
 		고양이는 항상 발로 착지한다?<br>그렇지 않아요.<br>
 		고양이는 다른 과(科) 동물들에 비해 본능적으로 발이 먼저 땅에 닿도록 착지하며 비교적 높은 곳에서 떨어져도 살아남죠.<br>
