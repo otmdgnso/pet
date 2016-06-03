@@ -24,6 +24,9 @@
 			TO_CHAR(created, 'YYYY-MM-DD') = #{searchValue}
 	          OR TO_CHAR(created, 'YYYYMMDD') = #{searchValue}
 		</if>
+		<if test="searchValue == 'main'">
+			
+		</if>
 	</sql>
 	<insert id="insertHouseInfo" parameterType="com.pet.house.House">
 		INSERT INTO host (hostNum, address, cost, capacity, search_On, subject, content)

@@ -13,7 +13,6 @@
 </head>
 <body>
 <script type="text/javascript">
-
 	function updateReserve(){
 		
 		var url="<%=cp%>/reservation/ajaxUpdate";
@@ -34,7 +33,7 @@
 			type:"POST",
 			success:function(data){
 				alert('수정완료');
-				window.location.href="<%=cp%>/member/blog#tab-3";				
+				window.location.href="<%=cp%>/member/blog#tab-2";				
 			},
 			error:function(e){
 				//alert("에러");
@@ -43,7 +42,7 @@
 	}
 
 	function check() {
-		
+		var mode="${mode}";
 		if(mode=="created") {
 			var f=document.reservationform;
 			
@@ -71,15 +70,13 @@
 				return false;
 			}
 		}
-		
-		var mode="${mode}";
 		if(mode=="created") {
 			f.action="<%=cp%>/reservation/created";
 			alert("예약 신청이 완료되었습니다.");
 		} else if(mode=="update")
 			f.action="<%=cp%>/reservation/update";
 
-		return true;
+		f.submit();
 	}
 	
 	$(function(){
@@ -100,6 +97,12 @@
 		});
 		
 		$("#checkin").change(function() {
+			var date= $('#checkin').val();
+			var y=date.substring(6,10);
+			var m=date.substring(3,5);
+			var d=date.substring(0,2);
+			var df=y+"/"+m+"/"+d;
+			$('#checkin').val(df);
 			
 			var s="박";
 			
@@ -126,6 +129,12 @@
 		});
 		
 		$("#checkout").change(function() {
+			var date= $('#checkout').val();
+			var y=date.substring(6,10);
+			var m=date.substring(3,5);
+			var d=date.substring(0,2);
+			var df=y+"/"+m+"/"+d;
+			$('#checkout').val(df);
 			
 			var s="박";
 			
@@ -182,7 +191,7 @@
 			</div>
 			
 			<div class="tab-content">
-				<form id="hotels-tab" class="tab-pane form-inline reservation-hotel active" method="post" name="reservationform" onsubmit="return check();">
+				<form id="hotels-tab" class="tab-pane form-inline reservation-hotel active" method="post" name="reservationform">
 				<div class="row">
 					
 					<!-- 날짜 -->
@@ -195,7 +204,7 @@
 						<i class="fa fa-info-circle fa-lg"></i>
 					</div>
 					<div class="content-checkin-data" style="margin:0 auto; width:60%" align="center">
-						<i class="fa fa-calendar infield"></i><input name="checkIn" type="text" id="checkin" value="2000/01/01" style="margin:0 auto; width:100%;" class="form-control checkin" placeholder="ex: 2000/01/01" />
+						<i class="fa fa-calendar infield"></i><input name="checkIn" type="text" id="checkin" value="${dto.checkIn}" style="margin:0 auto; width:100%;" class="form-control checkin" placeholder="ex: 2000/01/01" />
 					</div>
 					</div>
 					</div>
@@ -206,7 +215,7 @@
 						<i class="fa fa-info-circle fa-lg"> </i>
 					</div>
 					<div class="content-checkin-data" style="margin:0 auto; width:60%" align="center">
-						<i class="fa fa-calendar infield"></i> <input name="checkOut" type="text" id="checkout" value="2000/01/01" style="margin:0 auto; width:100%;" class="form-control checkout" placeholder="ex: 2000/01/01" />
+						<i class="fa fa-calendar infield"></i> <input name="checkOut" type="text" id="checkout" value="${dto.checkOut}" style="margin:0 auto; width:100%;" class="form-control checkout" placeholder="ex: 2000/01/01" />
 					</div>
 					</div>
 					</div>
@@ -315,7 +324,7 @@
 				
 				<div class="col-sm-2 colbtn">
 				<c:if test="${mode=='created'}">		
-					<button type="button" class="btn btn-primary btn-block" style="float: left; width: 50%;">예약하기</button>
+					<button type="button" class="btn btn-primary btn-block" style="float: left; width: 50%;" onclick="check();">예약하기</button>
 					<button type="button" class="btn btn-primary btn-block" style="float: right; width: 50%;" onclick="javascript:location.href='<%=cp%>/house/list';">취소</button>
 				</c:if>
 				<c:if test="${mode=='update'}">

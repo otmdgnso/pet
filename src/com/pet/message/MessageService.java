@@ -29,4 +29,6 @@ public interface MessageService {
 	public int userIdCheck(String userId);
 	// 읽지 않은 메시지 체크
 	public int userMessageCheck(String userId);
+	// 유저번호를 유저 아이디로
+	public String userNumSel(int num);
 }
