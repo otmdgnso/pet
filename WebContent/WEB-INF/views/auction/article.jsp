@@ -21,7 +21,7 @@ function checkBid(){
 	var params="&bidPrice="+bidPrice+"&auctionNum=${dto.auctionNum}";
 	
 	
-	//1. DB저장한다. (ajax 로..??)
+	//1. DB저장한다. (ajax)
 	$.ajax({
 		type:"POST",
 		url:url,
@@ -34,6 +34,12 @@ function checkBid(){
 				}
 				
 				alert('즉시구입하셨습니다.');
+				
+				$(function(){
+				$("#bidInsertButton").('invisible');	
+				});
+				
+				
 				location.reload();
 			}else{
 				alert('입찰완료');
@@ -187,7 +193,7 @@ function checkBid(){
 																
 																	<input id="bidForm" class="form-control" type="text" name="insertbidPrice"
 																		value="${dto.bidPrice}" style="text-align: center">
-																	<button type="button" name="bidInsertButton" onclick="checkBid();"> 
+																	<button id="bidInsertButton"   type="button" name="bidInsertButton" onclick="checkBid();"> 
 																				입찰하기</button>
 																
 															</td>
@@ -196,8 +202,15 @@ function checkBid(){
 															
 															<td align="center" width="10%">
 																<c:forEach var="bid" items="${listBid}" begin="0" end="4">
+																	<c:if test="${bid.bidPrice == dto.buyPrice}">
+																		<script>
+																			$("#bidInsertButton").attr("disabled","disabled");
+																			$("#bidInsertButton").text("입찰완료");
+																		</script>
+																	</c:if>
 																	<label >${bid.bidPrice}를 입찰하셨습니다 </label><br>
 																</c:forEach>
+																
 																<label>최종입찰가&nbsp;&nbsp;:&nbsp; ${listBid[0].bidPrice}원을입찰하셨습니다.</label>
 															</td>
 														</tr>
