@@ -43,11 +43,11 @@ function tabContent(idx) {
 	} else if(idx==1) {
 		url="<%=cp%>/member/hosting";
 	} else if(idx==4) {
-		url="<%=cp%>member/photo";
+		url="<%=cp%>/member/photo";
 	} else if(idx==5) {
-		url="<%=cp%>member/auction";
+		url="<%=cp%>/member/auction";
 	} else if(idx==6) {
-		url="<%=cp%>member/adopt";
+		url="<%=cp%>/member/adopt";
 	}
 	$.get(url, {}, function(data){
 		id.html(data);

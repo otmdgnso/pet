@@ -13,7 +13,6 @@
 </head>
 <body>
 <script type="text/javascript">
-
 	function updateReserve(){
 		
 		var url="<%=cp%>/reservation/ajaxUpdate";
@@ -100,6 +99,12 @@
 		});
 		
 		$("#checkin").change(function() {
+			var date= $('#checkin').val();
+			var y=date.substring(6,10);
+			var m=date.substring(3,5);
+			var d=date.substring(0,2);
+			var df=y+"/"+m+"/"+d;
+			$('#checkin').val(df);
 			
 			var s="박";
 			
@@ -126,6 +131,12 @@
 		});
 		
 		$("#checkout").change(function() {
+			var date= $('#checkout').val();
+			var y=date.substring(6,10);
+			var m=date.substring(3,5);
+			var d=date.substring(0,2);
+			var df=y+"/"+m+"/"+d;
+			$('#checkout').val(df);
 			
 			var s="박";
 			
@@ -195,7 +206,7 @@
 						<i class="fa fa-info-circle fa-lg"></i>
 					</div>
 					<div class="content-checkin-data" style="margin:0 auto; width:60%" align="center">
-						<i class="fa fa-calendar infield"></i><input name="checkIn" type="text" id="checkin" value="2000/01/01" style="margin:0 auto; width:100%;" class="form-control checkin" placeholder="ex: 2000/01/01" />
+						<i class="fa fa-calendar infield"></i><input name="checkIn" type="text" id="checkin" style="margin:0 auto; width:100%;" class="form-control checkin" placeholder="ex: 2000/01/01" />
 					</div>
 					</div>
 					</div>
@@ -206,7 +217,7 @@
 						<i class="fa fa-info-circle fa-lg"> </i>
 					</div>
 					<div class="content-checkin-data" style="margin:0 auto; width:60%" align="center">
-						<i class="fa fa-calendar infield"></i> <input name="checkOut" type="text" id="checkout" value="2000/01/01" style="margin:0 auto; width:100%;" class="form-control checkout" placeholder="ex: 2000/01/01" />
+						<i class="fa fa-calendar infield"></i> <input name="checkOut" type="text" id="checkout" style="margin:0 auto; width:100%;" class="form-control checkout" placeholder="ex: 2000/01/01" />
 					</div>
 					</div>
 					</div>

@@ -271,13 +271,8 @@ public class MemberController {
    }
    
    @RequestMapping(value="/member/adopt")
-   public ModelAndView adopt(
-         HttpSession session      
-         ) throws Exception{
-      SessionInfo info= (SessionInfo)session.getAttribute("member");
-      Member dto=service.readMember(info.getUserId());
+   public ModelAndView adopt() throws Exception{
       ModelAndView mav= new ModelAndView("/member/adopt");
-      mav.addObject("dto",dto);
       return mav;      
    }
 }

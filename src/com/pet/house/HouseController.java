@@ -35,9 +35,14 @@ public class HouseController {
 	public ModelAndView list(
 			HttpServletRequest req,
 			@RequestParam(value="page", defaultValue="1") int current_page,
-			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
+			@RequestParam(value="searchKey", defaultValue="") String searchKey,
 			@RequestParam(value="searchValue", defaultValue="") String searchValue,
-			@RequestParam(value="orderList", defaultValue="") String orderList
+			@RequestParam(value="orderList", defaultValue="") String orderList,
+			@RequestParam(value="addressHouse",defaultValue="") String address,
+			@RequestParam(value="checkInHouse",defaultValue="") String checkIn,
+			@RequestParam(value="checkOutHouse",defaultValue="") String checkOut,
+			@RequestParam(value="speciesHouse",defaultValue="") String species,
+			@RequestParam(value="pet_suHouse",defaultValue="") String pet_su
 			) throws Exception {
 				
 		String cp=req.getContextPath();
@@ -55,6 +60,11 @@ public class HouseController {
         map.put("searchKey", searchKey);
         map.put("searchValue", searchValue);
         map.put("orderList", orderList);
+        map.put("address", address);
+        map.put("checkIn", checkIn);
+        map.put("checkOut", checkOut);
+        map.put("species", species);
+        map.put("pet_su", pet_su);
 
         dataCount = service.dataCount(map);
         
