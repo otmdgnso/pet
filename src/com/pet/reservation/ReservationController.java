@@ -19,12 +19,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.pet.common.MyUtil;
 import com.pet.member.SessionInfo;
+import com.pet.message.Message;
+import com.pet.message.MessageService;
 
 @Controller("reservation.reservationController")
 public class ReservationController {
 	
 	@Autowired
 	private ReservationService service;
+	
+	@Autowired
+	private MessageService messageService;
 	
 	@Autowired
 	private MyUtil util;
@@ -116,9 +121,16 @@ public class ReservationController {
 	@RequestMapping(value="/reservation/created", method=RequestMethod.POST)
 	public String createdSubmit(
 			Reservation dto
+			,Message mto
 			) throws Exception {
 
 		service.insertReservation(dto, "created");
+		
+		mto.setSendUserId("시스템_예약");
+		int num= dto.getHostNum();
+		String userId= messageService.userNumSel(num);
+		mto.setReceiveUserId(userId);
+		messageService.insertMessage(mto);
 
 		return "redirect:/house/list";
 	}

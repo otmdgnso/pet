@@ -21,6 +21,10 @@
 		#{content}, SYSDATE, #{confirmCreated, jdbcType=VARCHAR}, 'N', 'N')
 	</insert>
 	
+	<select id="userNumSel" parameterType="Integer" resultType="String">
+	SELECT userId FROM MEMBER WHERE num=#{num}
+	</select>
+	
 	<!-- 받은 메시지 리스트 -->
 	<select id="dataCountReceive" parameterType="map" resultType="Integer">
 		SELECT NVL(COUNT(*), 0) FROM message
