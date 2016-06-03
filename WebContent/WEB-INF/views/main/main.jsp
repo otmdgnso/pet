@@ -840,6 +840,7 @@ function initAutocomplete() {
 
 	  // Create the search box and link it to the UI element.
 	  var input = document.getElementById('addressHouse');
+	  
 	  var searchBox = new google.maps.places.SearchBox(input);
 	  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 	  
@@ -894,9 +895,5 @@ function initAutocomplete() {
 	    map.fitBounds(bounds);
 	  });
 	}
-	
-$('#addressHouse').change(function(){		
-	
-});
 </script>
 

@@ -28,7 +28,11 @@
 							<i class="fa fa-smile-o" aria-hidden="true"></i><label>품종 : </label>
 							<input type="text" name="searchHost" id="searchHost" class="boxTF">
 					</td>	
-					
+					<td align="center" width="10%"><i class="fa fa-smile-o" aria-hidden="true"></i><label>분류 : </label></td>
+					<td align="center" width="10%"><input type="radio" name="searchState" value="all" checked="checked"><label>all</label></td>
+					<td align="center" width="10%"><input type="radio" name="searchState" value="wait"><label>wait</label></td>
+					<td align="center" width="10%"><input type="radio" name="searchState" value="accept"><label>accept</label></td>
+					<td align="center" width="15%"><input type="button" value="검색" class="btn" onclick="searchList()"></td>
 				</tr>
 			</table>
 			</form>		
@@ -48,7 +52,7 @@
 	           
 	           <c:forEach var="dto" items="${list}">
 	           <tr align="center" height="50px">
-	           	  <td align="center" width="5%" style="color: #A6A6A6;">accept</td>
+	           	  <td align="center" width="5%" style="color: #A6A6A6;">${dto.accept}</td>
 	              <td align="center" width="15%" style="color: #6ABC64;">${dto.species}</td>
 	              <td align="center" width="20%" style="color: #A6A6A6;">${dto.subject}</td>
 	              <td align="center" width="15%" style="color: #A6A6A6;"><a href="<%=cp%>/adopt/article?page=&preSaleNum=${dto.preSaleNum}">${dto.userId}</a></td>	          
