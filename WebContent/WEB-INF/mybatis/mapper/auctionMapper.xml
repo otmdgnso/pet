@@ -144,4 +144,8 @@
 	WHERE auctionNum=#{auctionNum}
 	order by b.bidnum desc
 	</select>
+	
+	
+	
+	
 </mapper>
