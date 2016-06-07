@@ -170,12 +170,25 @@ public class ReservationController {
 	@ResponseBody
 	public String ajaxUpdateForm(
 			HttpSession session
-			,Reservation dto
+			,Reservation dto,
+			Message mto
 		) throws Exception {
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		
 		service.updateReservation(dto);
+		
+		mto.setSendUserId("시스템_예약");
+		int num= dto.getHostNum();
+		String userId= messageService.userNumSel(num);
+		mto.setReceiveUserId(userId);
+		mto.setSubject(info.getUserId()+"님이 예약을 수정하셨습니다.");
+		String msg="예약 신청일 : "+dto.getCheckIn()+" ~ "+dto.getCheckOut() +"<br>";
+		msg+="펫 종류 : " +dto.getPet_type() +" 펫 수 : " +dto.getPet_su() +"<br> 총 가격 : "+dto.getTotalCost();
+		msg+="<br><a href=''>수락하러가기</a>";
+		mto.setContent(msg);
+		
+		messageService.insertMessage(mto);
 		
 		return "ok";
 	}
@@ -193,7 +206,7 @@ public class ReservationController {
 		
 		service.updateReservation(dto);
 		
-		return new ModelAndView("redirect:/member/blog#tab-3");
+		return new ModelAndView("redirect:/member/blog#tab-2");
 	}
 	
 	@RequestMapping(value="/reservation/delete")
