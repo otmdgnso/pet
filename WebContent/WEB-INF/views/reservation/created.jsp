@@ -329,7 +329,7 @@
 				</c:if>
 				<c:if test="${mode=='update'}">
 					<button type="button" class="btn btn-primary btn-block" style="float: left;  width: 50%;" onclick="updateReserve();" >수정하기</button>
-					<button type="button" class="btn btn-primary btn-block" style="float:right; width: 50%;" onclick="javascript:location.href='<%=cp%>/member/blog#tab-3';">취소</button>	
+					<button type="button" class="btn btn-primary btn-block" style="float:right; width: 50%;" onclick="javascript:location.href='<%=cp%>/member/blog#tab-2';">취소</button>	
 				</c:if>
 				</div>
 				</form>

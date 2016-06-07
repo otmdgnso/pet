@@ -24,4 +24,7 @@ public interface HouseService {
 	
 	//호스팅 체크
 	public int hostCheck(int memberNum);
+	
+	//댓글 글보기
+	public Review readReview(int hostNum);
 }
