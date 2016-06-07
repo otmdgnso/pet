@@ -350,7 +350,7 @@ function shakeModalMember(msg){
 					<a class="top-menu-txt" href="#">도움말</a>
 				<div>
 					 <ul class="zeta-menu">	
-					 	<li><a href="#">예약하기</a>
+					 	<li><a href="#">예약 신청하기</a>
 					 		<ul>
 					 			<li><p style="color: black; font-size: 10pt;">나와 가까운 지역에 호스트가 있는지 확인한 후 내가 맡기려는 날짜에 스케쥴이 가능한지 체크해보세요.</p></li>
 					 			<li><p style="color: black; font-size: 10pt;">내게 맞는 호스트를 찾으셨나요? 그렇다면 예약신청을 하세요.</p></li>
@@ -359,7 +359,7 @@ function shakeModalMember(msg){
 					 		</ul>
 					 	</li>
 						   
-						<li><a href="#">경매하기</a>
+						<li><a href="#">경매에 참여하기</a>
 							<ul>
 								<li><p style="color: black; font-size: 10pt;">구매하고자 하는 물품이 판매중인지 체크해보세요.</p></li>
 					 			<li><p style="color: black; font-size: 10pt;">구매를 원하는 물품을 찾으셨나요? 그렇다면 경매가 마감되기전 서둘러 입찰하세요.</p></li>
@@ -367,7 +367,7 @@ function shakeModalMember(msg){
 							</ul>
 						</li>		
 						
-						<li><a href="#">분양방법</a>
+						<li><a href="#">반려동물 데려오기</a>
 							<ul>
 								<li><p style="color: black; font-size: 10pt;">원하는 아이를 찾아보세요.</p></li>
 					 			<li><p style="color: black; font-size: 10pt;">상세 정보를 꼼꼼히 확인하고 분양신청과 결제를 해주세요!</p></li>
