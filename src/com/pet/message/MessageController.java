@@ -30,12 +30,18 @@ public class MessageController {
 	
 	@RequestMapping(value="/message/send")
 	public ModelAndView send(
+			@RequestParam(value="hostNum", defaultValue="0") int hostNum,
 			@RequestParam(value="userId", defaultValue="")String userId,
 			@RequestParam(value="page", defaultValue="1") int page,
 			@RequestParam(value="searchKey", defaultValue="") String searchKey,
 			@RequestParam(value="searchValue", defaultValue="") String searchValue
 			) throws Exception {
 			ModelAndView mav = new ModelAndView("/message/send");
+			
+			if(hostNum!=0) {
+				userId= service.userNumSel(hostNum);
+			}
+			
 			mav.addObject("userId",userId);
 			mav.addObject("page",page);
 			mav.addObject("searchKey",searchKey);
@@ -65,6 +71,7 @@ public class MessageController {
 			@RequestParam(value="page",defaultValue="1")int current_page,
 			@RequestParam(value="searchKey", defaultValue="") String searchKey,
 			@RequestParam(value="searchValue", defaultValue="") String searchValue,
+			@RequestParam(value="hostNum", defaultValue="0") int hostNum,
 			Message dto
 			) throws Exception {
 		SessionInfo info = (SessionInfo) session.getAttribute("member");
@@ -75,6 +82,7 @@ public class MessageController {
 
 		ModelAndView mav=new ModelAndView(".message.list");
 		mav.addObject("page", current_page);
+		mav.addObject("hostNum", hostNum);
 		mav.addObject("searchKey", searchKey);
 		mav.addObject("searchValue", searchValue);
 		return mav;

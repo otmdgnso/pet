@@ -215,4 +215,17 @@ public class HouseServiceImpl implements HouseService{
 		return result;
 	}
 
+	@Override
+	public Review readReview(int hostNum) {
+		Review vo=null;
+		try {
+			vo=dao.getReadData("house.readReview", hostNum);
+			System.out.println(vo.getCompleteNum());
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return vo;
+	}
+
+
 }
