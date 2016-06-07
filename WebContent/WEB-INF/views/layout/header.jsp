@@ -74,8 +74,8 @@ $(function(){
 		url:url,
 		dataType:"json",
 		success:function(data){
-			if(data.cnt==1)
-				$("#hostCheck").html("");
+			if(data.cnt==0)
+				$("#hostCheck").html("<a class='top-menu-txt' href='<%=cp%>/house/join'>호스팅하기</a>");
 		}
 	 });
 	
@@ -304,7 +304,24 @@ function shakeModalMember(msg){
                 <!-- 호스팅버튼 -->
        			
 				<li id="hostCheck" class="weather">
-					<a class='top-menu-txt' href='<%=cp%>/house/join'>호스팅하기</a>
+					<a class='top-menu-txt' href="#">호스팅 관리</a>
+				  <div class="grid-container10 destination">
+                        <form>
+							<fieldset>					
+								<div class="row">
+									<section class="col col-md-3 destination-img">	
+											<img src="<%=cp%>/res/images/icon/menu.JPG" width="40" alt="" />
+                                            <h3>메뉴</h3>
+                                            <ul>
+                                              <li><a href="<%=cp%>/house/list">예약</a></li>
+                                              <li><a href="<%=cp%>/auction/list">경매</a></li>
+                                              <li><a href="<%=cp%>/adopt/list">분양</a></li>
+                                            </ul>
+									</section>                                  
+								</div>
+							</fieldset>						
+						</form>
+					</div>	
 				</li>
 			
 				<!--/ 호스팅버튼 -->
