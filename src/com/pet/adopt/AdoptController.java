@@ -425,6 +425,7 @@ public class AdoptController {
 		dto.setReceiveUserId(info.getUserId());
 		dto.setSubject("분양을 신청하셧습니다.");
 		String msg="<a href=http://localhost:9090/pet/adopt/article"+"?page="+page+"&preSaleNum="+preSaleNum+">신청한 글보기</a>";
+		msg+="<br><a href=''>결제하기</a>";
 		dto.setContent(msg);
 		
 		

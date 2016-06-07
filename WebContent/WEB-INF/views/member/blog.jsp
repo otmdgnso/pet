@@ -330,12 +330,7 @@ function shakeModalMember(msg){
 </div>
 
 
-<div id="tab-5" style="width: 100%; min-height: 600px;">
-	<!-- 예약목록 -->		
-	<!-- http://localhost:9090/pet/reservation/list -->
-	<div id="ajaxAuctionList"></div>
-	
-</div>
+
                   <div id="tab-4" style="width: 100%; min-height: 600px;"></div>
                   <div id="tab-5" style="width: 100%; min-height: 600px;"></div>
                   <div id="tab-6" style="width: 100%; min-height: 600px;"></div>
