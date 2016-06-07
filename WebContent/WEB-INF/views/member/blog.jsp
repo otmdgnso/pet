@@ -105,6 +105,18 @@ function searchList() {
 	}); 
 }
 
+function auctionList() {
+	$.ajax({
+		url:"<%=cp%>/auction/list"
+		,type:"post"
+	}).done(function(data){
+		$("#ajaxAuctionList").html('');
+		$("#ajaxAuctionList").html(data);
+	});
+	
+	
+}
+
 function deleteReservation(reservationNum) {
 	var params="reservationNum="+reservationNum;
 	var url="<%=cp%>/reservation/delete?"+params;
@@ -129,6 +141,17 @@ $("#tab-2").ready(function(){
 	  url: "<%=cp%>/reservation/list"
 	}).done(function(data) {
 		$("#ajaxReserveList").html(data);
+	});
+
+});	
+//경매목록
+$("#tab-5").ready(function(){
+
+	// ajax 처리 - 예약목록
+	$.ajax({
+	  url: "<%=cp%>/auction/list"
+	}).done(function(data) {
+		$("#ajaxAuctionList").html(data);
 	});
 
 });	
@@ -303,8 +326,11 @@ function shakeModalMember(msg){
 
 <div id="tab-3" style="width: 100%; min-height: 600px;">
 	<!-- 북마크 -->                     
-    <div id="ajaxBookmarkList"></div>
+    <div id="ajaxReserveList"></div>
 </div>
+
+
+
                   <div id="tab-4" style="width: 100%; min-height: 600px;"></div>
                   <div id="tab-5" style="width: 100%; min-height: 600px;"></div>
                   <div id="tab-6" style="width: 100%; min-height: 600px;"></div>

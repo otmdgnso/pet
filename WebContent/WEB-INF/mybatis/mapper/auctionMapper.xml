@@ -55,7 +55,7 @@
 	<select id="listAuction" resultType="com.pet.auction.Auction" parameterType="map">
 	SELECT * FROM (
   		SELECT ROWNUM rnum, tb.* FROM (
-    		SELECT auctionNum, subject, userId,content,species,hitCount,amount,aucEnd
+    		SELECT auctionNum, subject, userId,content,species,hitCount,amount,aucEnd,userName
     		FROM auction a JOIN
     		member m ON a.num=m.num
     		 <where>

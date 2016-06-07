@@ -127,7 +127,11 @@ var mlayoutPhoto=new PhotoImageViewer({
     allowRightMouseClick : false
 });
 
-
+function hostMessage() {
+	var hostNum=${dto.hostNum};
+	var url="<%=cp%>/message/list?hostNum="+hostNum+"#tab-2";
+	self.location=url;
+}
 </script>
 
 <div class="clear"></div>
@@ -179,7 +183,9 @@ var mlayoutPhoto=new PhotoImageViewer({
 			    
 			    <section class="ac-container">
 				    <div style="width: 100%; height: 40px;">
-				    	<button type="button" class="btn btn-default" style="width: 100%; height: 50px;"><i class="fa fa-commenting-o" aria-hidden="true"></i> 메시지 보내기</button>				   			
+				    	<button type="button" class="btn btn-default" style="width: 100%; height: 50px;" onclick="hostMessage();"><i class="fa fa-commenting-o" aria-hidden="true"></i>
+				    	메시지 보내기
+				    	</button>				   			
 				    </div>				   
 			    </section>
             </div>

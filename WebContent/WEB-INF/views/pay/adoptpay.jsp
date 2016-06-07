@@ -63,17 +63,17 @@
 	
 	<!-- 예약 정보 -->
 	<div class="separator" style="width:100%"></div>
-	<span style="color: black;">예약일</span>
+	<span style="color: black;"></span>
 	<div class="separator" style="width:100%"></div>
 	<div class="form-group" style="margin:0 auto; width:100%" align="center">
                     	<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
                     		<tr>
                     			<td align="center" width="50%"><label>기본료</label></td>
-                     			<td align="center" width="50%"><label>230278</label></td>
+                     			<td align="center" width="50%"><label></label></td>
                     		</tr>
                     		<tr>
-                    			<td align="center" width="50%"><label>서비스 수수료</label></td>
-                     			<td align="center" width="50%"><label>27545</label></td>
+                    			<td align="center" width="50%"><label>보증금</label></td>
+                     			<td align="center" width="50%"><label></label></td>
                     		</tr>                                       		           
                     	</table>                                     
      </div>
@@ -82,7 +82,7 @@
                     	<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
                     		<tr>
 								<td align="center" width="50%"><h3 style="color: black">합계</h3></td>
-								<td align="center" width="50%"><h3 style="color: black">257823</h3></td>
+								<td align="center" width="50%"><h3 style="color: black"></h3></td>
 							</tr>
 						</table>
 	</div>
@@ -108,7 +108,7 @@
 		<label for="checkin">카드 종류</label>
 					<div class="guests-select" style="margin:0 auto; width:30%" align="center">
 						<select name="pet_su" id="pet_su" class="form-control">
-								<option value="" disabled="disabled" selected="selected">비씨카드</option>
+								<option value="" selected="selected">비씨카드</option>
 								<option value="1">삼성카드</option>
 								<option value="1">신한카드</option>
 								<option value="1">하나카드</option>
@@ -130,7 +130,7 @@
     <div class="separator" style="width:70%"></div>
     <div align="center">
     	<button type="button" class="btn btn-primary btn-block" style="width: 30%">결제하기</button>
-    	<label>결제하기를 클릭하시면 예약이 확정되고 회원님의 결제 수단으로 요금이 부과됩니다.</label>
+    	<label>결제하기를 클릭하시면 회원님의 결제 수단으로 요금이 부과됩니다.</label>
     </div>	  
     
 </div>   

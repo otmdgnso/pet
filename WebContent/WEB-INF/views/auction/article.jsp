@@ -35,10 +35,7 @@ function checkBid(){
 				
 				alert('즉시구입하셨습니다.');
 				
-				$(function(){
-				$("#bidInsertButton").('invisible');	
-				});
-				
+			
 				
 				location.reload();
 			}else{

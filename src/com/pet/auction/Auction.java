@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 //경매글, 경매사진             //입찰낙찰은 하는중
 public class Auction {
 	private int listNum,auctionNum, minPrice,buyPrice,amount,num;
-	private String aucEnd,species,subject,content,userId,created;
+	private String aucEnd,species,subject,content,userId,created,userName;
 	private int categoryNum;
 	private int photoNum,hitCount,bidPrice;
 	private String saveFilename;
@@ -15,6 +15,12 @@ public class Auction {
 	
 	
 	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public int getBidPrice() {
 		return bidPrice;
 	}
