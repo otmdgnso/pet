@@ -121,15 +121,23 @@ public class ReservationController {
 	@RequestMapping(value="/reservation/created", method=RequestMethod.POST)
 	public String createdSubmit(
 			Reservation dto
-			,Message mto
+			,Message mto,
+			HttpSession session
 			) throws Exception {
-
+		SessionInfo info = (SessionInfo) session.getAttribute("member");
+		
 		service.insertReservation(dto, "created");
 		
 		mto.setSendUserId("시스템_예약");
 		int num= dto.getHostNum();
 		String userId= messageService.userNumSel(num);
 		mto.setReceiveUserId(userId);
+		mto.setSubject(info.getUserId()+"님이 예약을 신청하셨습니다.");
+		String msg="예약 신청일 : "+dto.getCheckIn()+" ~ "+dto.getCheckOut() +"<br>";
+		msg+="펫 종류 : " +dto.getPet_type() +" 펫 수 : " +dto.getPet_su() +"<br> 총 가격 : "+dto.getTotalCost();
+		msg+="<br><a href=''>수락하러가기</a>";
+		mto.setContent(msg);
+		
 		messageService.insertMessage(mto);
 
 		return "redirect:/house/list";
