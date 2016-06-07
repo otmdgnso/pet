@@ -42,7 +42,8 @@
       	  } else if(idx==1) {
       		url="<%=cp%>/message/receive?mode=send";
       	  } else if(idx==2) {
-      		url="<%=cp%>/message/send";
+      		var hostNum=${hostNum};
+      		url="<%=cp%>/message/send?hostNum="+hostNum;
       	  } else if (idx==3) {
       		url="<%=cp%>/message/receive?mode=system";
       	  }
