@@ -26,5 +26,5 @@ public interface HouseService {
 	public int hostCheck(int memberNum);
 	
 	//´ñ±Û ±Ûº¸±â
-	public Review readReview(int hostNum);
+	public Review readReview(Map<String, Object> map);
 }

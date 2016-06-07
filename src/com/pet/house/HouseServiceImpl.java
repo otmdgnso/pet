@@ -157,7 +157,7 @@ public class HouseServiceImpl implements HouseService{
 		int result=0;
 		
 		try {
-			dao.insertData("house.insertReview", dto);
+			result=dao.insertData("house.insertReview", dto);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
@@ -216,11 +216,10 @@ public class HouseServiceImpl implements HouseService{
 	}
 
 	@Override
-	public Review readReview(int hostNum) {
+	public Review readReview(Map<String, Object> map) {
 		Review vo=null;
 		try {
-			vo=dao.getReadData("house.readReview", hostNum);
-			System.out.println(vo.getCompleteNum());
+			vo=dao.getReadData("house.readReview", map);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}

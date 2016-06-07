@@ -6,9 +6,15 @@
 	String cp=request.getContextPath();
 %>
 <script type="text/javascript">
+
+$(function(){
+	listPage(1);
+	
+});
 //댓글 추가
-function sendReply() {
-	alert(score);
+function sendReply() {	
+	var f=document.cmtform;
+	var score=f.score.value;
 	var uid="${sessionScope.member.userId}";
 	if(! uid) {
 		login();
@@ -27,6 +33,7 @@ function sendReply() {
 	var params="hostNum="+hostNum;
 	params+="&content="+content;
 	params+="&completeNum="+completeNum;
+	params+="&score="+score;
 	$.ajax({
 		type:"POST"
 		,url:"<%=cp%>/house/createdReply"
@@ -34,13 +41,11 @@ function sendReply() {
 		,data:params
 		,success:function(data) {
 			$("#content").val("");
-			alert("ㅎㅇ");
 			var state=data.state;
 			if(state=="true") {
-				alert("gd");
-				listPage(1);
+				ajaxReviewList();
 			} else if(state=="false") {
-				alert("댓글을 등록하지 못했습니다.");
+				alert("댓글은 한번씩만 입력이 가능합니다.");
 			}
 		}
 		, error:function(e) {
@@ -85,13 +90,9 @@ function lock(star){
 
 function mark(star){
 	lock(star);
-	alert("선택2"+star);
-	/* if($("#star").change()){
-		alert("ㅎㅇ");
-	} */
-	var score=star;
-	alert(score);
-	document.cmtform.star.value=star; 
+	/* alert("선택2"+star); */
+	
+	document.cmtform.score.value=star;
 }
 </script>
 
@@ -111,16 +112,9 @@ function mark(star){
 	           <div class="bbs-reply-write"> 
 	               <table style="width: 100%;">
 	               <tr>   
-		               <td align="center" width="10%" rowspan="2" style="text-align: center;">
+		              <%--  <td align="center" width="10%" rowspan="2" style="text-align: center;">
 							<img src="<%=cp%>/uploads/profile/${dto.profile}" class="avatar img-circle img-thumbnail" width="70px;">
-						</td>       
-	               		<%-- <td id="star" align="center" width="15%">		               		
-							<img src="<%=cp%>/res/image/stargray.png" id="star_1" width="15px">
-							<img src="<%=cp%>/res/image/stargray.png" id="star_2" onclick="javascript:check_star(2);" width="15px">
-							<img src="<%=cp%>/res/image/stargray.png" id="star_3" onclick="javascript:check_star(3);" width="15px">
-							<img src="<%=cp%>/res/image/stargray.png" id="star_4" onclick="javascript:check_star(4);" width="15px">
-							<img src="<%=cp%>/res/image/stargray.png" id="star_5" onclick="javascript:check_star(5);" width="15px">								     
-						</td> --%>
+						</td>	 --%>			
 						<td id="star" align="center" width="15%">		               		
 							<img id="image1" onclick="mark(1)" onmouseover="show(1);" onmouseout="noshow(1);" src="<%=cp%>/res/image/stargray.png" width="15px">							
 							<img id="image2" onclick="mark(2)" onmouseover="show(2);" onmouseout="noshow(2);" src="<%=cp%>/res/image/stargray.png" width="15px">
@@ -137,7 +131,10 @@ function mark(star){
 						<td align="center" width="20%">평점을 입력해주세요.</td>					
 					</tr>					
 				</table>   
+				<input type="hidden" name="score" value="0">
+		 <c:if test="${not empty vo.completeNum}">		 
 				<div align="right" style="padding: 10px;"><button type="button" class="btn btn-primary btn-sm" onclick="sendReply();"> 등록 <span class="glyphicon glyphicon-ok"></span></button></div>   
+	    </c:if>       
 	           </div>
 	       </div>       
            </c:if>
@@ -158,7 +155,7 @@ function mark(star){
 		<td align="right" width="70%">${dto.created}</td>
 		<td width="10%"></td>
 	</tr>
-	<tr>
+	<tr height='50'>
 		<td align="center" width="20%">${dto.userName}</td>
 
 		<c:if test="${sessionScope.member.memberNum==dto.num || sessionScope.member.userId=='admin'}">
