@@ -100,8 +100,8 @@
 		</p>
 		<ul class="blog-info">  
 			<li><i class="fa fa-user"></i>POSTED BY : <a href="#">김기자</a></li>
-			<li><a href="#"><i class="fa fa-comments"></i>30 comments</a></li>
-			<li><a href="#"><i class="fa fa-heart"></i>22 Likes</a></li>
+			<li><a href="#"><i class="fa fa-comments"></i>5 comments</a></li>
+			<li><a href="#"><i class="fa fa-heart"></i>17 Likes</a></li>
 		</ul>
 	</div>
 </div>       
@@ -130,8 +130,8 @@
 		</p>
 		<ul class="blog-info">  
 			<li><i class="fa fa-user"></i>POSTED BY : <a href="#">김기자</a></li>
-			<li><a href="#"><i class="fa fa-comments"></i>30 comments</a></li>
-			<li><a href="#"><i class="fa fa-heart"></i>22 Likes</a></li>
+			<li><a href="#"><i class="fa fa-comments"></i>8 comments</a></li>
+			<li><a href="#"><i class="fa fa-heart"></i>11 Likes</a></li>
 		</ul>
 	</div>
 </div>                              
@@ -161,8 +161,8 @@
 		</p>
 		<ul class="blog-info">  
 			<li><i class="fa fa-user"></i>POSTED BY : <a href="#">김기자</a></li>
-			<li><a href="#"><i class="fa fa-comments"></i>30 comments</a></li>
-			<li><a href="#"><i class="fa fa-heart"></i>22 Likes</a></li>
+			<li><a href="#"><i class="fa fa-comments"></i>18 comments</a></li>
+			<li><a href="#"><i class="fa fa-heart"></i>37 Likes</a></li>
 		</ul>
 	</div>
 </div>  
@@ -189,8 +189,8 @@
 		</p>
 		<ul class="blog-info">  
 			<li><i class="fa fa-user"></i>POSTED BY : <a href="#">김기자</a></li>
-			<li><a href="#"><i class="fa fa-comments"></i>30 comments</a></li>
-			<li><a href="#"><i class="fa fa-heart"></i>22 Likes</a></li>
+			<li><a href="#"><i class="fa fa-comments"></i>9 comments</a></li>
+			<li><a href="#"><i class="fa fa-heart"></i>13 Likes</a></li>
 		</ul>
 	</div>
 </div>                                        
