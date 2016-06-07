@@ -18,6 +18,31 @@
    #main1{
    opacity: 1;  
    }
+   
+   #parallax-footer.price-color-log{
+    padding: 200px 0; 
+    background: url("<%=cp%>/res/image/catdog.JPG") center no-repeat;
+    height: 100%;
+	width: 100%;
+	}
+	
+	.parallax-home{
+	height: auto;
+    padding: 100px 0 80px 0;
+    margin: 80px 0 80px 0;
+    overflow: hidden;
+    background-attachment: fixed;
+    border-bottom: 0px solid #fff;
+    border-top: 0px solid #fff;
+    background-image: url("<%=cp%>/res/image/mainbg.jpg");
+    background-position: 0 0!important;
+    background-repeat: no-repeat!important;
+    width: 100%;
+    -webkit-background-size: cover!important;
+    -moz-background-size: cover!important;
+    -o-background-size: cover!important;
+    background-size: cover!important;
+}
   
 </style>
 
@@ -563,10 +588,10 @@ function houseSearch() {
     <div class="container">
       <div class="row">
       <div class="col-md-4 middle-text-adv">
-         <h3>여기맡기개 어서오냥</h3>
+         <h3 style="color: black">여기맡기개 어서오냥</h3>
          <div class="line-left"></div>
-         <p>집을 비울 때... 사랑하는 반려견과 반겨묘를 두고 가야한다면?..</p>
-         <p>이젠 동물을 사랑하고 믿을 수 있는 사람들에게 맡기세요!</p>
+         <p style="color: black">집을 비울 때... 사랑하는 반려견과 반겨묘를 두고 가야한다면?..</p>
+         <p style="color: black">이젠 동물을 사랑하고 믿을 수 있는 사람들에게 맡기세요!</p>
       </div>
         <div class='col-md-8'>
            <div class='col-md-6'>
@@ -774,15 +799,13 @@ function houseSearch() {
                 <div class="col-md-4 prices content-blue">
                     <div class="price-table-circle basic blue-prices">
                          <div class="price-circle">
-                          <div class="price-title"><h3>Basic</h3></div>
-                          <div class="price-money"><h3>$10<span>/month</span></h3></div>
+                          <div class="price-title"><h3>내 애완동물을 위한</h3></div>
+                          <div class="price-money"><h3>맞춤 서비스</h3></div>
                           <ul>
-                           <li><p>Flight 5% discount</p></li>
-                           <li><p>Hotel 3% discount</p></li>
-                           <li><p>Sport Bagage free</p></li>
-                           <li><p>5 Free driks</p></li>
-                           <li><p>Excursion 5% discount</p></li>
-                           <li class="price-info"><a href="">Sign up</a></li>
+                           <li><p>혼자 있는 애완동물이</p></li>
+                           <li><p>걱정되시나요 ?</p></li>
+                           <li><p>이젠 믿을 수 있는 사람에게</p></li>
+                           <li><p>자유롭게 맡겨보세요.</p></li>
                           </ul>
                          
                          </div>
@@ -792,15 +815,13 @@ function houseSearch() {
                 <div class="col-md-4 prices content-green">
                      <div class="price-table-circle medium green-prices">
                          <div class="price-circle">
-                          <div class="price-title"><h3>Medium</h3></div>
-                          <div class="price-money"><h3>$30<span>/month</span></h3></div>
+                          <div class="price-title"><h3>먼 곳이 아닌</h3></div>
+                          <div class="price-money"><h3>내 주변에</h3></div>
+                          <div class="price-money"><h3>있어요.</h3></div>
                           <ul>
-                           <li><p>Flight 10% discount</p></li>
-                           <li><p>Hotel 10% discount</p></li>
-                           <li><p>1 Children free</p></li>
-                           <li><p>Excursion 8% discount</p></li>
-                           <li><p>Soft Inclusive</p></li>
-                           <li class="price-info"><a href="">Sign up</a></li>
+                           <li><p>내 주변의 믿을 수 있는</p></li>
+                           <li><p>동물을 사랑하는 사람을</p></li>
+                           <li><p>만나세요!</p></li>
                           </ul>
                           
                         </div>
@@ -809,15 +830,14 @@ function houseSearch() {
                 <div class="col-md-4 prices content-red">
                     <div class="price-table-circle premium red-prices">
                         <div class="price-circle">
-                          <div class="price-title"><h3>Premium</h3></div>
-                          <div class="price-money"><h3>$50<span>/month</span></h3></div>
+                          <div class="price-title"><h3>꼼꼼하게 따져보고</h3></div>
+                          <div class="price-money"><h3>맡기세요.</h3></div>
                           <ul>
-                           <li><p>Flight 15% discount</p></li>
-                           <li><p>Hotel 15% discount</p></li>
-                           <li><p>2 Children free</p></li>
-                           <li><p>Excursion 10% discount</p></li>
-                           <li><p>All Inclusive</p></li>
-                           <li class="price-info"><a href="">Sign up</a></li>
+                           <li><p>사랑하는 나의 애완동물</p></li>
+                           <li><p>맡기기 전</p></li>
+                           <li><p>후기 보고</p></li>
+                           <li><p>꼼꼼하게 따져본 후</p></li>
+                           <li><p>맡기세요.</p></li>
                           </ul>
                           
                          </div>
