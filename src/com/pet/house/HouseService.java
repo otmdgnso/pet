@@ -8,7 +8,7 @@ public interface HouseService {
 	public int insertHostPic(House dto);
 	public int insertHostPetInfo(House dto);
 	
-	public int updateHouseInfo();
+	public int updateHouseInfo(House dto);
 	public House readHouseInfo(int hostNum);
 	public List<House> readHousePhoto(int hostNum);
 	public int deleteHouseInfo();

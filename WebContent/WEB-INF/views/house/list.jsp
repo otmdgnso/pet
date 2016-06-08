@@ -86,7 +86,7 @@ function checkHouseinfo(hostNum) {
          <div class="col-sm-4 col-md-3">
                 <form name="searchForm" method="post" class="form-inline">
                 <div class="search-results-title" style="padding-top: 20px;"><i class="fa fa-search"></i>
-                		<input type="text" style="width: 70%" class="form-control input-sm input-search" name="searchValue">
+                		<input type="text" style="width: 50%" class="form-control input-sm input-search" name="searchValue">
                 		<button type="button" class="btn btn-info btn-sm btn-search" onclick="searchList();">검색</button>
                 </div>
                 </form>

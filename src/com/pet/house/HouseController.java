@@ -174,11 +174,15 @@ public class HouseController {
 		map.put("num", info.getMemberNum());
 		vo=service.readReview(map);
 		
+		info.setHostNum(hostNum);
+		
 		ModelAndView mav = new ModelAndView(".house.houseinfo");
 		mav.addObject("hostNum",hostNum);
 		mav.addObject("dto", dto);
 		mav.addObject("vo", vo);
+		mav.addObject("info",info);
 		mav.addObject("readFile",readFile);
+		
 		return mav;
 	}
 	// 호스팅한 집, 예약 받은 정보
@@ -225,8 +229,8 @@ public class HouseController {
 		
 		map.put("hostNum", hostNum);
 		map.put("num", info.getMemberNum());
-		vo=service.readReview(map);	
-				
+		vo=service.readReview(map);				
+		
 		ModelAndView mav=new ModelAndView("/house/review");
 		mav.addObject("listReview", list);
 		mav.addObject("pageNo", current_page);
@@ -270,6 +274,50 @@ public class HouseController {
 		service.deleteReview(reviewnum);
 		
 		return "";
+	}
+	
+	//호스팅 수정
+	@RequestMapping(value="/house/update", method=RequestMethod.GET)
+	public ModelAndView update(
+			@RequestParam int hostNum,
+			HttpSession session
+			) throws Exception{
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		if(info==null){
+			return new ModelAndView("redirect:/");
+		}
+				
+		House dto = service.readHouseInfo(hostNum);
+		List<House> list=service.readHousePhoto(hostNum);
+		
+		ModelAndView mav=new ModelAndView(".house.join");
+		mav.addObject("mode", "update");
+		mav.addObject("dto",dto);
+		mav.addObject("list",list);
+		return mav;		
+	}
+	
+	@RequestMapping(value="/house/update",method=RequestMethod.POST)
+	public String updateSubmit(
+			House dto,
+			HttpSession session,
+			@RequestParam int hostNum
+			) throws Exception{
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		if(info==null){
+			return "redirect:/";
+		}	
+		
+		String root=session.getServletContext().getRealPath("/");
+		String pathname=root+File.separator+"uploads"+File.separator+"house";
+		
+		service.updateHouseInfo(dto);
+		
+		return "redirect:/house/list";		
 	}
 
 }

@@ -143,27 +143,31 @@ function mark(star){
 <div class="separator" style="width:100%; padding: 0px;"></div>
 
 <div style="clear:both; margin-top:5px; padding: 10px; min-height: 150px;">
+<table style="width: 100%; min-height: 100px; margin: 0px auto; border-spacing: 0px;">
 <c:forEach var="dto" items="${listReview}">
-<table style="width: 100%; min-height: 100px; margin: 0px auto; border-spacing: 10px;">
-	<tr>
-		<td align="center" width="20%">
-			<img src="<%=cp%>/uploads/profile/${dto.profile}" class="avatar img-circle img-thumbnail" width="70px;">
+	<tr height='30'>
+		<td align="center" width="20%" style="padding-top: 30px;">
+			<img style="height: 80px;" src="<%=cp%>/uploads/profile/${dto.profile}" class="avatar img-circle img-thumbnail" width="70px;">
 		</td>
-		<td align="left" width="70%" style="margin-bottom:  5px; min-height: 50px;">
-			${dto.content}
+		<td align="left" width="60%"> 
+		 <span style="font-weight: bold;">평점 : ${dto.score}</span>
+			<br><br>${dto.content}
 		</td>
-		<td align="right" width="70%">${dto.created}</td>
-		<td width="10%"></td>
-	</tr>
-	<tr height='50'>
-		<td align="center" width="20%">${dto.userName}</td>
-
-		<c:if test="${sessionScope.member.memberNum==dto.num || sessionScope.member.userId=='admin'}">
-		<td width="10%"><a onclick='deleteReview("${dto.reviewnum}")'>삭제</a></td>
+		<td align="right" width="20%">
+		${dto.created}
+		<c:if test="${sessionScope.member.memberNum==dto.num || sessionScope.member.userId=='admin'}"><br>
+		 <a onclick='deleteReview("${dto.reviewnum}")'>삭제</a>
 		</c:if>
+		</td>
+		
 	</tr>
-</table>
+	<tr height='50' style="border-bottom: 1px solid #DBDBDB;">
+		<td align="center" width="20%" >${dto.userName}</td>
+		<td align="left" width="60%" ><input type="hidden"></td>
+		<td align="right" width="20%" ><input type="hidden"></td>
+	</tr>
 </c:forEach>
+</table>
 
 <!-- 페이징처리 -->
 <div class="cbp-vm-switcher cbp-vm-view-list">
@@ -176,7 +180,7 @@ function mark(star){
             
             <!-- 댓글 페이징 -->	
             <c:if test="${reviewDataCount!=0 }">	
-            <div class="separator" style="width:100%; padding: 0px;"></div>		
+           <!--  <div class="separator" style="width:100%; padding: 0px;"></div>	 -->	
                ${paging}
             </c:if>
 		</div>

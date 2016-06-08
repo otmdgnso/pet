@@ -5,13 +5,22 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 public class House {
-	private int hostNum, cost, capacity, num, picNum, reviewcnt;
+	private int hostNum, cost, capacity, num, picNum, reviewcnt, score;
 	private String category1, category2;
 	private String category3;
 	private String address, searchOn, subject, content, created, species;
 	private String saveFilename, profile, userName;
 	private List<MultipartFile> upload;	
 	
+	
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
 	public List<MultipartFile> getUpload() {
 		return upload;
 	}

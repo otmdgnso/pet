@@ -41,9 +41,14 @@
 		INSERT INTO hostPetInfo (num, species, hostNum)
 		VALUES(hostPetInfo_seq.NEXTVAL, #{species}, #{hostNum})
 	</insert>
-	<!-- Mapper 수정 필요  
-	-->
 	
+	<!-- 호스팅 수정(글보기) -->
+	<update id="updateHouseInfo" parameterType="com.pet.house.House">
+		UPDATE host SET address=#{address}, cost=#{cost}, capacity=#{capacity}, search_On=#{searchOn,jdbcType=VARCHAR},
+		 subject=#{subject}, content=#{content}  WHERE hostNum=#{hostNum}
+	</update>
+
+		
 	<!-- 글 개수 -->
 	<select id="dataCount" parameterType="map" resultType="Integer">
 		SELECT NVL(COUNT(*),0) FROM host 
@@ -114,7 +119,7 @@
 	<select id="listReview" parameterType="map" resultType="com.pet.house.Review">
 		SELECT * FROM (
 		    SELECT ROWNUM rnum, tb.* FROM (	   
-				SELECT reviewnum, r.hostNum, r.num, m.profile, userName, h.created, content, c.completeNum
+				SELECT reviewnum, r.hostNum, r.num, m.profile, userName, h.created, content, c.completeNum, score
 				FROM hostreview h JOIN reserComplete c ON h.completeNum=c.completeNum JOIN reservation r ON c.reservationNum = r.reservationNum JOIN member m ON r.num=m.num
 				WHERE h.hostNum=#{hostNum}
 				ORDER BY h.hostNum DESC

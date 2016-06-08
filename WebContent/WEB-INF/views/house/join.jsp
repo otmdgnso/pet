@@ -114,7 +114,7 @@ $(function(){
 
 function checkHouseJoin() {
 	alert("a");
-  	var f=document.houseJoinForm;  	
+  	var f=document.houseJoinForm;  
   	/*var str= f.subject.value;
 	if(!str) {
 		f.subject.focus();
@@ -158,8 +158,14 @@ function checkHouseJoin() {
 		}
 	}
 	 */
-	 
+   
+  var mode="${mode}";
+  
+  if(mode=="update")	  
+	  f.action="<%=cp%>/house/update?hostNum=${dto.hostNum}";  
+  else	  
 	 f.action="<%=cp%>/house/join";
+	 
 	f.submit();
 }
 
@@ -217,6 +223,8 @@ function checkHouseJoin() {
                                   <div class="col-sm-12">
                                     <h4 class="info-text"><b>집 정보 입력</b></h4>
                                   </div>
+                                 
+                            <c:if test="${mode!='update'}"> 
                                   <div class="col-sm-5 col-sm-offset-1">
                                       <div class="form-group">
                                         <label><b>시·도</b></label><br>
@@ -242,11 +250,22 @@ function checkHouseJoin() {
                                         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="상세 주소를 입력해주세요" name="category3">
                                       </div>
                                   </div>
+                              </c:if>   
+                       <c:if test="${mode=='update'}">
+                           <div class="col-sm-10 col-sm-offset-1">
+                               <div class="form-group">
+                                    <label><b>주소</b></label>
+                                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="주소를 입력해주세요" name="address" value="${dto.address}">
+                               </div>
+                           </div>
+                       </c:if>
+                              
+                                 
                                   <div class="col-sm-5 col-sm-offset-1">
                                       <div class="form-group">
                                           <label><b>수용가능 동물 수</b></label>
                                           <select class="form-control" name="capacity">
-                                            <option disabled="" selected="">- 마리 -</option>
+                                            <option disabled="" selected="">- ${dto.capacity}마리 -</option>
                                             <option value="1">1 마리</option>
                                             <option value="2">2 마리 </option>
                                             <option value="3">3 마리</option>
@@ -260,7 +279,7 @@ function checkHouseJoin() {
                                       <div class="form-group">
                                           <label><b>비용</b></label>
                                           <div class="input-group">
-                                              <input type="text" class="form-control" placeholder="1일 비용" name="cost">
+                                              <input type="text" class="form-control" placeholder="1일 비용" name="cost" value="${dto.cost}">
                                               <span class="input-group-addon">￦</span>
                                           </div>
                                       </div>
@@ -317,9 +336,9 @@ function checkHouseJoin() {
                                     <div class="col-sm-6 col-sm-offset-1">
                                          <div class="form-group">
                                          	<label>Title</label>
-                                         	<input type="text" class="form-control" placeholder="Title" name="subject">
+                                         	<input type="text" class="form-control" placeholder="Title" name="subject" value="${dto.subject}">
                                             <label>집에 대한 소개를 해주세요.</label>
-                                            <textarea class="form-control" rows="9" name="content"></textarea>
+                                            <textarea class="form-control" rows="9" name="content">${dto.content}</textarea>
                                           </div>
                                     </div>
                                     <div class="col-sm-4">

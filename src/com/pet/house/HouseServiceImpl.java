@@ -70,10 +70,10 @@ public class HouseServiceImpl implements HouseService{
 		return result;
 	}
 	@Override
-	public int updateHouseInfo() {
+	public int updateHouseInfo(House dto) {
 		int result=0;
 		try {
-			
+			result=dao.updateData("house.updateHouseInfo", dto);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
