@@ -302,10 +302,10 @@ function shakeModalMember(msg){
 					<a class="logo" href="<%=cp%>"><img src="<%=cp%>/res/images/icon/title.jpg" height="40px"/></a>
 				</li>	
                 <!-- 호스팅버튼 -->
-       			
+       		<c:if test="${not empty sessionScope.member}">	
 				<li id="hostCheck" class="weather">
-					<a class='top-menu-txt' href="#">호스팅 관리</a>
-				  <div  style="width: 200px;">
+					<a class='top-menu-txt' href="<%=cp%>/house/houseinfo?hostNum=${sessionScope.member.memberNum}">호스팅 관리</a>
+			  <div  style="width: 200px;">
                         <form>
 							<fieldset>					
 								<div class="row">
@@ -323,7 +323,7 @@ function shakeModalMember(msg){
 						</form>
 					</div>	
 				</li>
-			
+			</c:if>	
 				<!--/ 호스팅버튼 -->
 				
 				<!-- 메뉴 -->
