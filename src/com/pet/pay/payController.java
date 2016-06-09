@@ -1,5 +1,9 @@
 package com.pet.pay;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pet.adopt.AdoptService;
+import com.pet.house.HouseService;
 import com.pet.member.SessionInfo;
 import com.pet.message.Message;
 import com.pet.message.MessageService;
@@ -17,14 +22,27 @@ import com.pet.message.MessageService;
 public class payController {
 	
 	@Autowired
-	MessageService messageservice;
-	
+	MessageService messageservice;	
 	@Autowired
 	AdoptService adoptservice;
+	@Autowired
+	payService payservice;
+	@Autowired
+	HouseService houseservice;
 
 	@RequestMapping(value="/pay/reservepay")
 	public ModelAndView list() throws Exception {
-		ModelAndView mav=new ModelAndView(".pay.reservepay");
+		
+		int hostNum=188;
+		int reservationNum=42;
+		Map<String, Object> map=new HashMap<>();
+		map.put("hostNum", hostNum);
+		map.put("reservationNum", reservationNum);
+		
+		List<pay> listPay=payservice.listHost(map);
+		
+		ModelAndView mav=new ModelAndView(".pay.reservepay");		
+		mav.addObject("listPay",listPay);
 		return mav;
 	}
 	

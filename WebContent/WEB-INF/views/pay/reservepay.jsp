@@ -47,9 +47,10 @@
     <!-- 호스트정보 -->           
     <div>
 	    <div style="width: 100%; height: 100px;">
-	    			<table style="width: 100%; 	margin: 0px auto; border-spacing: 10px;">
+	    			<table style="width: 100%; 	margin: 0px auto; border-spacing: 10px;">	
+	             <c:forEach var="dto" items="listPay">   	
 	                	<tr>				
-							<td align="center" width="30%"><h3 style="color: black">제목</h3></td>
+							<td align="center" width="30%"><h3 style="color: black">제목: ${dto.subject} </h3></td>
 						</tr>
 						<tr>
 							<td align="center" width="30%" style="color: #8C8C8C;">호스트명</td>
@@ -57,6 +58,7 @@
 						<tr>
 							<td align="center" width="30%" style="color: #8C8C8C;">주소</td>
 						</tr>
+				</c:forEach>
 					</table>				
 		</div>
 	</div>
