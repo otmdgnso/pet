@@ -86,7 +86,7 @@ function checkHouseinfo(hostNum) {
          <div class="col-sm-4 col-md-3">
                 <form name="searchForm" method="post" class="form-inline">
                 <div class="search-results-title" style="padding-top: 20px;"><i class="fa fa-search"></i>
-                		<input type="text" style="width: 50%" class="form-control input-sm input-search" name="searchValue">
+                		<input type="text" style="width: 70%" class="form-control input-sm input-search" name="searchValue">
                 		<button type="button" class="btn btn-info btn-sm btn-search" onclick="searchList();">검색</button>
                 </div>
                 </form>
@@ -96,11 +96,11 @@ function checkHouseinfo(hostNum) {
 					    <input id="ac-2" name="accordion-1" type="checkbox" checked/>
 					    <label for="ac-2">평점 <i class="fa fa-angle-down"></i> <i class="fa fa-angle-up"></i></label>
 					    <article class="ac-medium">
-						    <div class="rating-trip"><i class="fa fa-check-square-o"></i><img src="<%=cp%>/res/images/star.png" alt="1 Star"/><p>(975) result</p></div>
-                            <div class="rating-trip"><i class="fa fa-check-square-o"></i><img src="<%=cp%>/res/images/2star.png" alt="2 Star"/><p>(1335) result</p></div>
-                            <div class="rating-trip"><i class="fa fa-check-square-o"></i><img src="<%=cp%>/res/images/3star.png" alt="3 Star"/><p>(1732) result</p></div>
-                            <div class="rating-trip"><i class="fa fa-check-square-o"></i><img src="<%=cp%>/res/images/4star.png" alt="4 Star"/><p>(665) result</p></div>
-                            <div class="rating-trip"><i class="fa fa-check-square-o"></i><img src="<%=cp%>/res/images/5star.png" alt="5 Star"/><p>(412) result</p></div>
+						    <div class="rating-trip"><i class="fa fa-check-square-o"></i><img src="<%=cp%>/res/images/star.png" alt="1 Star"/></div>
+                            <div class="rating-trip"><i class="fa fa-check-square-o"></i><img src="<%=cp%>/res/images/2star.png" alt="2 Star"/></div>
+                            <div class="rating-trip"><i class="fa fa-check-square-o"></i><img src="<%=cp%>/res/images/3star.png" alt="3 Star"/></div>
+                            <div class="rating-trip"><i class="fa fa-check-square-o"></i><img src="<%=cp%>/res/images/4star.png" alt="4 Star"/></div>
+                            <div class="rating-trip"><i class="fa fa-check-square-o"></i><img src="<%=cp%>/res/images/5star.png" alt="5 Star"/></div>
 					    </article>
 				    </div>
 				    <div>
