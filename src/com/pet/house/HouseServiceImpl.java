@@ -1,5 +1,6 @@
 package com.pet.house;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.pet.adopt.Adopt;
 import com.pet.common.FileManager;
 import com.pet.common.dao.CommonDAO;
 
@@ -70,15 +72,53 @@ public class HouseServiceImpl implements HouseService{
 		return result;
 	}
 	@Override
-	public int updateHouseInfo(House dto) {
+	public int updateHouseInfo(House dto, String pathname) {
 		int result=0;
 		try {
 			result=dao.updateData("house.updateHouseInfo", dto);
+		
+			if(!dto.getUpload().isEmpty()) {
+				for(MultipartFile mf:dto.getUpload()) {
+					if(mf.isEmpty())
+						continue;
+					
+					String saveFilename=fileManager.doFileUpload(mf, pathname);
+					if(saveFilename!=null) {
+						dto.setSaveFilename(saveFilename);
+						
+						insertHostPic(dto);
+					}
+				}
+			}
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
 		return result;
 	}
+
+	@Override
+	public int updateHostPetInfo(House dto) {
+		int result=0;
+		try {
+			result=dao.updateData("house.updateHostPetInfo", dto);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+	
+
+	@Override
+	public int deleteHousePic(String saveFilename, String pathname) {
+		int result=0;
+		try {
+			result=dao.deleteData("house.deleteHousePic", saveFilename);
+			fileManager.doFileDelete(saveFilename, pathname);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}	
 
 	@Override
 	public House readHouseInfo(int hostNum) {
@@ -105,9 +145,23 @@ public class HouseServiceImpl implements HouseService{
 	}
 
 	@Override
-	public int deleteHouseInfo() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteHouseInfo(int hostNum, String pathname) {
+		int result=0;
+		try {
+			//파일지우기
+			List<House> readHousePhoto=readHousePhoto(hostNum);
+			if(readHousePhoto!=null) {
+				Iterator<House> it=readHousePhoto.iterator();
+				while(it.hasNext()) {
+					House dto=it.next();
+					fileManager.doFileDelete(dto.getSaveFilename(), pathname);
+				}
+			}
+			result=dao.deleteData("house.deleteHouse", hostNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
 	}
 
 	@Override
@@ -225,6 +279,18 @@ public class HouseServiceImpl implements HouseService{
 		}
 		return vo;
 	}
+
+	@Override
+	public String readHostPetInfo(int hostNum) {
+		String st=null;
+		try {
+			st=dao.getReadData("house.readHostPetInfo",hostNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return st;
+	}
+
 
 
 }

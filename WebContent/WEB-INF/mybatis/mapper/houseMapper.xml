@@ -30,7 +30,7 @@
 	</sql>
 	<insert id="insertHouseInfo" parameterType="com.pet.house.House">
 		INSERT INTO host (hostNum, address, cost, capacity, search_On, subject, content)
-		VALUES(#{hostNum}, #{address}, #{cost}, #{capacity}, #{searchOn, jdbcType=VARCHAR}, #{subject}, #{content})
+		VALUES(#{hostNum}, #{address}, #{cost}, #{capacity}, #{searchOn}, #{subject}, #{content})
 	</insert>
 	
 	<insert id="insertHousePic" parameterType="com.pet.house.House">
@@ -47,8 +47,26 @@
 		UPDATE host SET address=#{address}, cost=#{cost}, capacity=#{capacity}, search_On=#{searchOn,jdbcType=VARCHAR},
 		 subject=#{subject}, content=#{content}  WHERE hostNum=#{hostNum}
 	</update>
-
-		
+	
+	<update id="updateHostPetInfo" parameterType="com.pet.house.House">
+		UPDATE hostPetInfo SET species=#{species}
+		 WHERE hostNum=#{hostNum}
+	</update>
+	
+	<select id="readHostPetInfo" parameterType="Integer" resultType="String">
+	   select species from hostPetInfo WHERE hostNum=#{hostNum}
+	</select>
+	
+	<!-- 호스트 사진삭제 -->
+	<delete id="deleteHousePic" parameterType="String">
+	  DELETE FROM hostHousePic WHERE saveFilename=#{saveFilename}
+	</delete>
+	
+	<!-- 호스팅 삭제 -->	
+	<delete id="deleteHouse" parameterType="Integer">
+		delete FROM host WHERE hostNum=#{hostNum}
+	</delete>
+	
 	<!-- 글 개수 -->
 	<select id="dataCount" parameterType="map" resultType="Integer">
 		SELECT NVL(COUNT(*),0) FROM host 

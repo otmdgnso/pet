@@ -323,7 +323,7 @@ function houseSearch() {
 </section>
 
 <!-- 호스트 시작 -->
-<section style="width: 100%; margin-top: 100px;" class="box-tr-square">
+<section style="width: 100%; margin-top: 150px;" class="box-tr-square">
 <div class="container">
 <div class="row">
   <div align="center" class="col-md-12 effect-5 effects">
@@ -375,8 +375,49 @@ function houseSearch() {
 </section>
 <!-- 호스트 끝 -->
 
+
+
+<!-- 소개글 시작-->
+ <section class='parallax-home' style="width: 100%; margin-top: 150px;" class="box-tr-square">
+    <div class="container">
+      <div class="row">
+      <div class="col-md-4 middle-text-adv">
+         <h3 style="color: black">여기맡기개 어서오냥</h3>
+         <div class="line-left"></div>
+         <p style="color: black">집을 비울 때... 사랑하는 반려견과 반겨묘를 두고 가야한다면?..</p>
+         <p style="color: black">이젠 동물을 사랑하고 믿을 수 있는 사람들에게 맡기세요!</p>
+      </div>
+        <div class='col-md-8'>
+           <div class='col-md-6'>
+              <div class='grid-info' style="height: 170px; width: 340px;">
+                <img src="<%=cp%>/res/image/maindog2.JPG" width="330px" height="140px"/>
+             </div>
+           </div>   
+           <div class='col-md-6'>
+              <div class='grid-info' style="height: 170px; width: 340px;">
+                <img src="<%=cp%>/res/image/maincat2.JPG" width="330px" height="140px"/>
+             </div>
+           </div>
+        
+           <div class='col-md-6'>
+              <div class='grid-info' style="height: 170px; width: 340px;">
+                <img src="<%=cp%>/res/image/maincat1.JPG" width="330px" height="140px"/>
+             </div>
+           </div>
+         
+           <div class='col-md-6'>
+             <div class='grid-info' style="height: 170px; width: 340px;">
+                <img src="<%=cp%>/res/image/maindog1.JPG" width="330px" height="140px"/>
+             </div>
+           </div>
+        </div>
+     </div>
+    </div>
+ </section> 
+ <!-- 소개글 끝 -->
+
 <!-- 사진 시작 -->
-<section id="photo" style="width: 100%;  margin-top: 100px;" class="box-tr-square">
+<section id="photo" style="width: 100%;  margin-top: 150px;" class="box-tr-square">
 <div class="container">
    <div class="row">
          <div align="center" class="col-md-12 effect-5 effects">
@@ -415,7 +456,7 @@ function houseSearch() {
 <!-- 사진 끝 -->
 
 <!-- 분양시작 -->
-<section style="width: 100%; margin-top: 100px;" class="box-tr-square">
+<section style="width: 100%; margin-top: 150px;" class="box-tr-square">
 	<div class="container">
 		<div class="row">
 			<div align="center" class="col-md-12 effect-5 effects">
@@ -451,8 +492,66 @@ function houseSearch() {
 </section>
 <!-- 분양 끝 -->
 
-<!-- TOP OFFERTS -->
+<!-- 서비스 소개 시작 -->
+<section id="parallax-footer" class="price-color-log" style="width: 100%; margin-top: 150px;" class="box-tr-square">
+   <div class="effect-over">
+        <div class="container">
+           <div class="row">
+             <div class="col-md-12">
+                <div class="col-md-4 prices content-blue">
+                    <div class="price-table-circle basic blue-prices">
+                         <div class="price-circle">
+                          <div class="price-title"><h3>반려동물을</h3></div>
+                          <div class="price-money"><h3>맡겨요.</h3></div>
+                          <ul>
+                           <li><p>혼자 있는 애완동물이</p></li>
+                           <li><p>걱정되시나요 ?</p></li>
+                           <li><p>이젠 믿을 수 있는 사람에게</p></li>
+                           <li><p>자유롭게 맡겨보세요.</p></li>
+                          </ul>
+                         
+                         </div>
+                     </div>
+                </div>
+           
+                <div class="col-md-4 prices content-green">
+                     <div class="price-table-circle medium green-prices">
+                         <div class="price-circle">
+                          <div class="price-title"><h3>경매를 통해</h3></div>
+                          <div class="price-money"><h3>용품을</h3></div>
+                          <div class="price-money"><h3>사고 팔아요.</h3></div>
+                          <ul>
+                           <li><p>사용하지 않는 물건이나</p></li>
+                           <li><p>필요한 물건을</p></li>
+                           <li><p>경매를 통해</p></li>
+                           <li><p>판매하거나 구매해 보세요!</p></li>
+                          </ul>
+                          
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 prices content-red">
+                    <div class="price-table-circle premium red-prices">
+                        <div class="price-circle">
+                          <div class="price-title"><h3>반려동물을</h3></div>
+                          <div class="price-money"><h3>분양 하세요.</h3></div>
+                          <ul>
+                           <li><p>사랑하는 나의 반려동물을</p></li>
+                           <li><p>꼼꼼하게 따져본 후</p></li>
+                           <li><p>분양해 보세요.</p></li>
+                          </ul>
+                          
+                         </div>
+                     </div>
+                </div>
+             </div><!--Close col-md-12-->
+           </div>
+        </div>
+    </div>
+</section>
 
+<!-- TOP OFFERTS -->
+<!-- 
 <section id="top-offerts" class="box-tr-square">
    <div class="container">
       <div class="row">
@@ -462,7 +561,7 @@ function houseSearch() {
                     <h2>THE BEST PROMOTIONS</h2>
                     <p>Find your favorite place, feel more than home</p>
      			 </div>
-                <!-- FIFTH EXAMPLE -->
+                FIFTH EXAMPLE
                 <div class="col-md-4 view view-fifth">
                     <figure class="triggerAnimation animated" data-animate="fadeInDown">
                         <div class="img">
@@ -579,49 +678,14 @@ function houseSearch() {
                         </div>
                     </div>
                 </div>
-            </div><!--Close col 12 -->
+            </div>Close col 12
         </div>
     </div>
- </section>   
+ </section>    -->
 
- <section class='parallax-home'>
-    <div class="container">
-      <div class="row">
-      <div class="col-md-4 middle-text-adv">
-         <h3 style="color: black">여기맡기개 어서오냥</h3>
-         <div class="line-left"></div>
-         <p style="color: black">집을 비울 때... 사랑하는 반려견과 반겨묘를 두고 가야한다면?..</p>
-         <p style="color: black">이젠 동물을 사랑하고 믿을 수 있는 사람들에게 맡기세요!</p>
-      </div>
-        <div class='col-md-8'>
-           <div class='col-md-6'>
-              <div class='grid-info' style="height: 170px; width: 340px;">
-                <img src="<%=cp%>/res/image/maindog2.JPG" width="330px" height="140px"/>
-             </div>
-           </div>   
-           <div class='col-md-6'>
-              <div class='grid-info' style="height: 170px; width: 340px;">
-                <img src="<%=cp%>/res/image/maincat2.JPG" width="330px" height="140px"/>
-             </div>
-           </div>
-        
-           <div class='col-md-6'>
-              <div class='grid-info' style="height: 170px; width: 340px;">
-                <img src="<%=cp%>/res/image/maincat1.JPG" width="330px" height="140px"/>
-             </div>
-           </div>
-         
-           <div class='col-md-6'>
-             <div class='grid-info' style="height: 170px; width: 340px;">
-                <img src="<%=cp%>/res/image/maindog1.JPG" width="330px" height="140px"/>
-             </div>
-           </div>
-        </div>
-     </div>
-    </div>
- </section>    
+   
 
- <!-- LAST MINUTES -->
+<!-- 
 
 <section id="lastminute-offerts" class="box-tr-square">
    <div class="container">
@@ -748,7 +812,7 @@ function houseSearch() {
             </div>
           </div>
         </div>
-</section>      
+</section>       -->
 
 <!-- <section id="parallax_slide" class="service2-prx">
    <div class="effect-over">
@@ -791,63 +855,7 @@ function houseSearch() {
     </div>
 </section> -->
 
-<section id="parallax-footer" class="price-color-log">
-   <div class="effect-over">
-        <div class="container">
-           <div class="row">
-             <div class="col-md-12">
-                <div class="col-md-4 prices content-blue">
-                    <div class="price-table-circle basic blue-prices">
-                         <div class="price-circle">
-                          <div class="price-title"><h3>내 애완동물을 위한</h3></div>
-                          <div class="price-money"><h3>맞춤 서비스</h3></div>
-                          <ul>
-                           <li><p>혼자 있는 애완동물이</p></li>
-                           <li><p>걱정되시나요 ?</p></li>
-                           <li><p>이젠 믿을 수 있는 사람에게</p></li>
-                           <li><p>자유롭게 맡겨보세요.</p></li>
-                          </ul>
-                         
-                         </div>
-                     </div>
-                </div>
-           
-                <div class="col-md-4 prices content-green">
-                     <div class="price-table-circle medium green-prices">
-                         <div class="price-circle">
-                          <div class="price-title"><h3>먼 곳이 아닌</h3></div>
-                          <div class="price-money"><h3>내 주변에</h3></div>
-                          <div class="price-money"><h3>있어요.</h3></div>
-                          <ul>
-                           <li><p>내 주변의 믿을 수 있는</p></li>
-                           <li><p>동물을 사랑하는 사람을</p></li>
-                           <li><p>만나세요!</p></li>
-                          </ul>
-                          
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 prices content-red">
-                    <div class="price-table-circle premium red-prices">
-                        <div class="price-circle">
-                          <div class="price-title"><h3>꼼꼼하게 따져보고</h3></div>
-                          <div class="price-money"><h3>맡기세요.</h3></div>
-                          <ul>
-                           <li><p>사랑하는 나의 애완동물</p></li>
-                           <li><p>맡기기 전</p></li>
-                           <li><p>후기 보고</p></li>
-                           <li><p>꼼꼼하게 따져본 후</p></li>
-                           <li><p>맡기세요.</p></li>
-                          </ul>
-                          
-                         </div>
-                     </div>
-                </div>
-             </div><!--Close col-md-12-->
-           </div>
-        </div>
-    </div>
-</section>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBL_yUn3yTe4MywkHS94ZkWiqxam9JF5nI&signed_in=true&libraries=places&callback=initAutocomplete"
         async defer></script>
 <script>

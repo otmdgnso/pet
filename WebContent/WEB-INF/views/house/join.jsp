@@ -113,7 +113,6 @@ $(function(){
 });
 
 function checkHouseJoin() {
-	alert("a");
   	var f=document.houseJoinForm;  
   	/*var str= f.subject.value;
 	if(!str) {
@@ -169,6 +168,16 @@ function checkHouseJoin() {
 	f.submit();
 }
 
+<c:if test="${mode=='update'}">
+function deleteFile(saveFilename, picNum) {
+	if(confirm("사진을 삭제 하시겠습니까?")) {
+	    var url="<%=cp%>/house/deleteFile";
+	   $.post(url, {saveFilename:saveFilename}, function(data){
+		   $("#fileview"+picNum).remove();
+	   },"json");
+	}
+}
+</c:if>
 
 </script>
 
@@ -263,9 +272,10 @@ function checkHouseJoin() {
                                  
                                   <div class="col-sm-5 col-sm-offset-1">
                                       <div class="form-group">
-                                          <label><b>수용가능 동물 수</b></label>
+                                          <label><b>수용가능 동물 수</b></label> <br>
+                                           <span style="color: black; font-weight: bold;">현재선택: ${dto.capacity} 마리</span>
                                           <select class="form-control" name="capacity">
-                                            <option disabled="" selected="">- ${dto.capacity}마리 -</option>
+                                            <option disabled="" selected="">-마리 -</option>
                                             <option value="1">1 마리</option>
                                             <option value="2">2 마리 </option>
                                             <option value="3">3 마리</option>
@@ -288,6 +298,9 @@ function checkHouseJoin() {
                             </div>
                             <div class="tab-pane" id="type">
                                 <h4 class="info-text"> <b>어떤 동물을 현재 키우고 계신가요?(복수 선택 가능)</b> </h4>
+                        <c:if test="${mode=='update'}">
+                                <h3 align="center">현재 선택 : ${sp}</h3>
+                        </c:if>
                                 <div class="row">
                                     <div class="col-sm-10 col-sm-offset-1">
                                         <div class="col-sm-4 col-sm-offset-2">
@@ -314,7 +327,15 @@ function checkHouseJoin() {
                             </div>
                             <div class="tab-pane" id="facilities">
                                 <h4 class="info-text"><b> 집 사진을 올려주세요 </b><label>최대 4장</label></h4>
-                                
+                                	
+                                	<c:if test="${mode=='update'}">
+	<h3>첨부된 파일(사진 클릭시 삭제가능!!)</h3><br>
+		<c:forEach var="vo" items="${list}">
+		   <div id="fileview${vo.picNum}" style="float: left;">
+			 <img style="width: 200px; height: 150px;" src="<%=cp%>/uploads/house/${vo.saveFilename}"  onclick="deleteFile('${vo.saveFilename}', ${vo.picNum});">
+			</div>
+		</c:forEach>
+	</c:if>
                                 <div class="row" style="margin-bottom: 5px">
                                  <div class="col-sm-2 col-sm-offset-10">
 	    			 				<button type="button" name="plus" class="btn btn-fill btn-info btn-sm">사진추가</button>
@@ -345,7 +366,7 @@ function checkHouseJoin() {
                                          <div class="form-group">
                                          <label>검색 노출 여부</label>
                                          	<div class="choice" data-toggle="wizard-radio">
-                                                <input type="radio" name="searchOn" value="yes">
+                                                <input type="radio" checked="checked" name="searchOn" value="yes">
                                                 <div class="icon">
                                                     <i class="fa fa-search-plus"></i>
                                                 </div>

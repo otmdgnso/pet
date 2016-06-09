@@ -44,15 +44,8 @@ $(function(){
           <div class="row">
              <div class="col-md-12">
                <div class="page-title pull-left">
-                    <h2 class="title-about">Gallery 3 Columns</h2>
+                    <h2 class="title-about">사진</h2>
                 </div>
-                <ul class="breadcrumbs pull-right">
-                    <li><a href="#">HOME</a></li>
-                    <li>/</li>
-                    <li><a href="#">PAGES</a></li>
-                    <li>/</li>
-                    <li class="active">Gallery</li>
-                </ul>
              </div>
           </div>
       </div>
@@ -84,7 +77,7 @@ $(function(){
 						      <option value="created">등록일</option>
 						  </select>
 						  <input type="text" name="searchValue">
-						  <button type="button"  onclick="searchList();"><span ></span> 검색</button>
+						  <button type="button" class="btn btn-info btn-sm btn-search" onclick="searchList();"><span ></span> 검색</button>
         		     </form>
         		</div>
                 <div class="portfolio albumContainer">
