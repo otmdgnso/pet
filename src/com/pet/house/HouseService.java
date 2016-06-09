@@ -8,7 +8,7 @@ public interface HouseService {
 	public int insertHostPic(House dto);
 	public int insertHostPetInfo(House dto);
 	
-	public int updateHouseInfo();
+	public int updateHouseInfo(House dto);
 	public House readHouseInfo(int hostNum);
 	public List<House> readHousePhoto(int hostNum);
 	public int deleteHouseInfo();
@@ -26,5 +26,5 @@ public interface HouseService {
 	public int hostCheck(int memberNum);
 	
 	//´ñ±Û ±Ûº¸±â
-	public Review readReview(int hostNum);
+	public Review readReview(Map<String, Object> map);
 }

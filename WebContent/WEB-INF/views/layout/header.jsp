@@ -15,7 +15,7 @@
   display: inline-block;
   width: 100%;
 } */
-.zeta-menu { margin: 0; padding: 0; width: 130px;}
+.zeta-menu { margin: 0; padding: 0; width: 200px;}
 .zeta-menu li {
   float: left;
   list-style:none;
@@ -74,8 +74,8 @@ $(function(){
 		url:url,
 		dataType:"json",
 		success:function(data){
-			if(data.cnt==1)
-				$("#hostCheck").html("");
+			if(data.cnt==0)
+				$("#hostCheck").html("<a class='top-menu-txt' href='<%=cp%>/house/join'>호스팅하기</a>");
 		}
 	 });
 	
@@ -302,11 +302,28 @@ function shakeModalMember(msg){
 					<a class="logo" href="<%=cp%>"><img src="<%=cp%>/res/images/icon/title.jpg" height="40px"/></a>
 				</li>	
                 <!-- 호스팅버튼 -->
-       			
+       		<c:if test="${not empty sessionScope.member}">	
 				<li id="hostCheck" class="weather">
-					<a class='top-menu-txt' href='<%=cp%>/house/join'>호스팅하기</a>
+					<a class='top-menu-txt' href="<%=cp%>/house/houseinfo?hostNum=${sessionScope.member.memberNum}">호스팅 관리</a>
+			  <div  style="width: 200px;">
+                        <form>
+							<fieldset>					
+								<div class="row">
+									<section>	
+											<img src="<%=cp%>/res/images/icon/menu.JPG" width="40" alt="" />
+                                            <h3>메뉴</h3>
+                                            <ul>
+                                              <li><a href="<%=cp%>/house/houseinfo?hostNum=${sessionScope.member.memberNum}">내 호스팅 정보</a></li>
+                                              <li><a href="<%=cp%>/auction/list">경매</a></li>
+                                              <li><a href="<%=cp%>/adopt/list">분양</a></li>
+                                            </ul>
+									</section>                                  
+								</div>
+							</fieldset>						
+						</form>
+					</div>	
 				</li>
-			
+			</c:if>	
 				<!--/ 호스팅버튼 -->
 				
 				<!-- 메뉴 -->
@@ -348,43 +365,41 @@ function shakeModalMember(msg){
 				
 				<li>
 					<a class="top-menu-txt" href="#">도움말</a>
-				<div >
+				<div>
 					 <ul class="zeta-menu">	
-					 	<li><a href="#">호스팅방법</a>
+					 	<li><a href="#">예약 신청하기</a>
 					 		<ul>
-					 			<li><p style="color: black; font-size: 15pt;">
-					 						호스팅 방법? 샬라 샬라 샬라</p></li>
+					 			<li><p style="color: black; font-size: 10pt;">나와 가까운 지역에 호스트가 있는지 확인한 후 내가 맡기려는 날짜에 스케쥴이 가능한지 체크해보세요.</p></li>
+					 			<li><p style="color: black; font-size: 10pt;">내게 맞는 호스트를 찾으셨나요? 그렇다면 예약신청을 하세요.</p></li>
+					 			<li><p style="color: black; font-size: 10pt;">예약이 확정되었다면 결제를 해주세요!</p></li>
+					 			<li><p style="color: black; font-size: 10pt;">안심하고 반려동물을 맡겨보세요.</p></li>
 					 		</ul>
 					 	</li>
 						   
-						<li><a href="#">경매방법</a>
+						<li><a href="#">경매에 참여하기</a>
 							<ul>
-								<li><p style="color: black; font-size: 15pt;">
-					 						경매방법 호호호호호호</p></li>
+								<li><p style="color: black; font-size: 10pt;">구매하고자 하는 물품이 판매중인지 체크해보세요.</p></li>
+					 			<li><p style="color: black; font-size: 10pt;">구매를 원하는 물품을 찾으셨나요? 그렇다면 경매가 마감되기전 서둘러 입찰하세요.</p></li>
+					 			<li><p style="color: black; font-size: 10pt;">낙찰되었다면 결제를 해주세요!</p></li>
 							</ul>
 						</li>		
 						
-						<li><a href="#">분양방법</a>
+						<li><a href="#">반려동물 데려오기</a>
 							<ul>
-								<li><p style="color: black; font-size: 15pt;">
-					 						분양방법 호호호호호호</p></li>
+								<li><p style="color: black; font-size: 10pt;">원하는 아이를 찾아보세요.</p></li>
+					 			<li><p style="color: black; font-size: 10pt;">상세 정보를 꼼꼼히 확인하고 분양신청과 결제를 해주세요!</p></li>
+					 			<li><p style="color: black; font-size: 10pt;">책임지고 예쁘게 키워주시면 됩니다.</p></li>
 							</ul>
 						</li>	
-						
-						<li><a href="#">예약방법</a>
-							<ul>
-								<li><p style="color: black; font-size: 15pt;">
-					 						예약방법 호호호호호호</p></li>
-							</ul>
-						</li>						    
+															    
 				    </ul>	
 				</div>
 				
-				</li>				
+					</li>				
 				<!--/ 메뉴 -->		
-			</ul>
+				</ul>
 			<!--/ mega menu -->
-          </div>
+          	</div>
           
           <nav id="mobile-menu-01" class="mobile-menu">
                 <div class="line-logo">

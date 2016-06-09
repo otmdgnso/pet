@@ -4,6 +4,7 @@ public class SessionInfo {
 	private String userId, userName, pwd;
 	private int memberNum, hostNum;	
 	
+
 	public int getHostNum() {
 		return hostNum;
 	}

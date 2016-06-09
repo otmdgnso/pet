@@ -188,6 +188,20 @@ function hostMessage() {
 				    	</button>				   			
 				    </div>				   
 			    </section>
+			    
+		<c:if test="${sessionScope.member.hostNum==sessionScope.member.memberNum}">	    
+			    <section class="ac-container">
+				    <div style="width: 100%; height: 40px; float: left;">
+				    	<button type="button" class="btn btn-default" style="width: 50%; height: 50px;" onclick="javascript:location.href='<%=cp%>/house/update?hostNum=${dto.hostNum}'">
+				    	수정
+				    	</button>		
+				    	<button type="button" class="btn btn-default" style="width: 48%; height: 50px;" onclick="hostMessage();">
+				    	삭제
+				    	</button>			   			
+				    </div>				   
+			    </section>
+  	     </c:if>
+  	     			    
             </div>
              
          <!-- 본문 -->   

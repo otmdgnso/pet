@@ -158,8 +158,10 @@ public class HouseController {
 	@RequestMapping(value="/house/houseinfo") 
 	public ModelAndView houseInfo(
 			@RequestParam(value="hostNum") int hostNum
-			,Review vo
+			,Review vo,
+			HttpSession session
 			) throws Exception{
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
 
 		House dto=service.readHouseInfo(hostNum);
 		
@@ -167,15 +169,20 @@ public class HouseController {
 		List<House> readFile=service.readHousePhoto(hostNum);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("hostNum", dto.getNum());
+		map.put("hostNum", dto.getNum());		
 		
-		vo=service.readReview(hostNum);
+		map.put("num", info.getMemberNum());
+		vo=service.readReview(map);
+		
+		info.setHostNum(hostNum);
 		
 		ModelAndView mav = new ModelAndView(".house.houseinfo");
 		mav.addObject("hostNum",hostNum);
 		mav.addObject("dto", dto);
 		mav.addObject("vo", vo);
+		mav.addObject("info",info);
 		mav.addObject("readFile",readFile);
+		
 		return mav;
 	}
 	// 호스팅한 집, 예약 받은 정보
@@ -190,9 +197,12 @@ public class HouseController {
 	public ModelAndView listReview(
 			@RequestParam(value="hostNum", defaultValue="") int hostNum
 			,@RequestParam(value="pageNo", defaultValue="1") int current_page,
-			House dto
-			,Review vo
+			House dto,			
+			HttpSession session,
+			Review vo
 			) throws Exception {
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		
 		int numPerPage=10;
 		int total_page=0;
@@ -207,7 +217,7 @@ public class HouseController {
 		total_page=myUtil.pageCount(numPerPage, dataCount);
 		if(current_page>total_page)
 			current_page=total_page;
-		
+				
 		//리스트에 출력할 데이터		
 		int start=(current_page-1)*numPerPage+1;
 		int end=current_page*numPerPage;
@@ -215,9 +225,11 @@ public class HouseController {
 		map.put("end", end);
 		map.put("hostNum", hostNum);
 		
-		List<Review> list=service.listReview(map);
+		List<Review> list=service.listReview(map);		
 		
-		vo=service.readReview(hostNum);
+		map.put("hostNum", hostNum);
+		map.put("num", info.getMemberNum());
+		vo=service.readReview(map);				
 		
 		ModelAndView mav=new ModelAndView("/house/review");
 		mav.addObject("listReview", list);
@@ -237,7 +249,8 @@ public class HouseController {
 			@RequestParam int hostNum,
 			@RequestParam(value="content", defaultValue="") String content,
 			Review dto,
-			@RequestParam int completeNum
+			@RequestParam int completeNum,
+			@RequestParam int score
 			) throws Exception{
 		
 		String state="false";
@@ -246,7 +259,7 @@ public class HouseController {
 		if(result==1){
 			state="true";
 		}
-		System.out.println(hostNum);
+		
 		Map<String, Object> model=new HashMap<>();
 		model.put("state", state);
 		return model;
@@ -261,6 +274,50 @@ public class HouseController {
 		service.deleteReview(reviewnum);
 		
 		return "";
+	}
+	
+	//호스팅 수정
+	@RequestMapping(value="/house/update", method=RequestMethod.GET)
+	public ModelAndView update(
+			@RequestParam int hostNum,
+			HttpSession session
+			) throws Exception{
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		if(info==null){
+			return new ModelAndView("redirect:/");
+		}
+				
+		House dto = service.readHouseInfo(hostNum);
+		List<House> list=service.readHousePhoto(hostNum);
+		
+		ModelAndView mav=new ModelAndView(".house.join");
+		mav.addObject("mode", "update");
+		mav.addObject("dto",dto);
+		mav.addObject("list",list);
+		return mav;		
+	}
+	
+	@RequestMapping(value="/house/update",method=RequestMethod.POST)
+	public String updateSubmit(
+			House dto,
+			HttpSession session,
+			@RequestParam int hostNum
+			) throws Exception{
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		
+		if(info==null){
+			return "redirect:/";
+		}	
+		
+		String root=session.getServletContext().getRealPath("/");
+		String pathname=root+File.separator+"uploads"+File.separator+"house";
+		
+		service.updateHouseInfo(dto);
+		
+		return "redirect:/house/list";		
 	}
 
 }

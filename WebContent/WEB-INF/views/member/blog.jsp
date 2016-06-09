@@ -314,6 +314,7 @@ function shakeModalMember(msg){
                      <li><a href="#tab-5">경매 목록</a></li>
                      <li><a href="#tab-6">분양 목록</a></li>
                   </ul>
+<<<<<<< HEAD
 				<div id="tab-0" style="width: 100%; min-height: 600px;"></div>
 				<div id="tab-1" style="width: 100%; min-height: 600px;"></div>
 				
@@ -331,6 +332,33 @@ function shakeModalMember(msg){
 					<!-- http://localhost:9090/pet/reservation/list -->
 					<div id="ajaxAuctionList"></div>
 				</div>
+=======
+						<div id="tab-0" style="width: 100%; min-height: 600px;"></div>
+
+                 		<div id="tab-1" style="width: 100%; min-height: 600px;"></div>
+                  
+                  
+<div id="tab-2" style="width: 100%; min-height: 600px;">
+	<!-- 예약목록 -->		
+	<!-- http://localhost:9090/pet/reservation/list -->
+	<div id="ajaxReserveList"></div>
+	
+</div>
+
+<div id="tab-3" style="width: 100%; min-height: 600px;">
+	<!-- 북마크 -->                     
+    <div id="ajaxReserveList"></div>
+</div>
+
+
+
+                  <div id="tab-4" style="width: 100%; min-height: 600px;"></div>
+                  <div id="tab-5" style="width: 100%; min-height: 600px;"></div>
+                  <div id="tab-6" style="width: 100%; min-height: 600px;"></div>
+               </div>
+               <!--Close col 12 -->
+
+>>>>>>> d85cc18b448b2e4ac2ab1060b6ec60c33389017f
             </div>
          </div>
       </div>
