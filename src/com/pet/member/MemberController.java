@@ -3,6 +3,7 @@ package com.pet.member;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.pet.auction.Auction;
+import com.pet.auction.AuctionService;
 import com.pet.house.HouseService;
 
 import net.sf.json.JSONObject;
@@ -26,6 +29,8 @@ public class MemberController {
    private MemberService service;
    @Autowired
    private HouseService houseService;
+   @Autowired
+   private AuctionService auctionService;
    
    @RequestMapping(value="/member/login", method=RequestMethod.POST)
    @ResponseBody
@@ -264,7 +269,12 @@ public class MemberController {
          HttpSession session      
          ) throws Exception{
       SessionInfo info= (SessionInfo)session.getAttribute("member");
-      Member dto=service.readMember(info.getUserId());
+      
+      Map<String, Object> map = new HashMap<>();
+      map.put("end", 10);
+      map.put("start", 1);
+      
+      List<Auction> dto = auctionService.listAuction(map);
       ModelAndView mav= new ModelAndView("/member/auction");
       mav.addObject("dto",dto);
       return mav;      

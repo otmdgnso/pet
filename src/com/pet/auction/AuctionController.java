@@ -125,7 +125,7 @@ public class AuctionController {
 			articleUrl = cp+"/auction/article?page=" + current_page + "&" +params;
 		}
 		
-		ModelAndView mav = new ModelAndView(".auction.list");
+		ModelAndView mav = new ModelAndView("/auction/list");
 		mav.addObject("list",list);
 		mav.addObject("articleUrl",articleUrl);
 		mav.addObject("page",current_page);
