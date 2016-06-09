@@ -8,10 +8,16 @@ public interface HouseService {
 	public int insertHostPic(House dto);
 	public int insertHostPetInfo(House dto);
 	
-	public int updateHouseInfo(House dto);
+	public int updateHouseInfo(House dto, String pathname);
+	public int updateHostPetInfo(House dto);
+	
+	public String readHostPetInfo(int hostNum);
+	
+	public int deleteHousePic(String saveFilename, String pathname);
+	
 	public House readHouseInfo(int hostNum);
 	public List<House> readHousePhoto(int hostNum);
-	public int deleteHouseInfo();
+	public int deleteHouseInfo(int hostNum, String pathname);
 	public int dataCount(Map<String, Object> map);
 	public List<House> listHouse(Map<String, Object> map);
 	public House housePhoto(int hostNum);
