@@ -227,4 +227,15 @@ public class AuctionServiceImpl implements AuctionService{
 		return list;
 	}
 
+	@Override
+	public List<Auction> auctionMyList(String userId) {
+		List<Auction> list=null;
+		try {
+			list=dao.getListData("auction.auctionMyList", userId);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return list;
+	}
+
 }

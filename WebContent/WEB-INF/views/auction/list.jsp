@@ -35,7 +35,6 @@
 					    <label for="ac-1">가격 범위 <i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></label>
 					    <article class="ac-small">
 						    <p>
-                              <!--<label for="amount">Price range:</label>-->
                               <input type="text" id="amount" readonly>
                             </p>
  
@@ -72,22 +71,20 @@
 				                        <li>
 					                        <a class="clicker">가격순</a>
 					                        <ul>
-						                        <li><span class="btn sort active" data-sort="random">Random</span></li>
-						                        <li><span class="btn sort" data-sort="value:asc">Ascending</span></li>
-						                        <li><span class="btn sort" data-sort="value:desc">Descending</span></li>
+						                        <li><span class="btn sort active" data-sort="random">최신순 정렬</span></li>
+						                        <li><span class="btn sort" data-sort="value:asc">오름차순 정렬</span></li>
+						                        <li><span class="btn sort" data-sort="value:desc">내림차순 정렬</span></li>
 					                        </ul>
 				                        </li>
 			                        </ul>
 		                        </div>
-                                <div class="click-nav-location">
+                                <div class="click-nav">
 			                        <ul class="no-js">
 				                        <li>
 					                        <a class="clicker">품종별</a>
 					                        <ul>
                                                 <li><span class="btn filter active" data-filter="all">개</span></li>
-						                        <li><span class="btn filter" data-filter=".category-1">Delta</span></li>
-						                        <li><span class="btn filter" data-filter=".category-2">Lufthansa</span></li>
-                                                <li><span class="btn filter" data-filter=".category-3">United</span></li>
+						                        <li><span class="btn filter" data-filter=".category-1">고양이</span></li>
 					                        </ul>
 				                        </li>
 			                        </ul>
@@ -123,20 +120,14 @@
                                 </div> 
 							</div>
 						</div>
-					<!-- </div> -->
-						
-						</c:forEach>
+					</c:forEach>
+			<!-- 여기서 forEach 끝 -->
+	
 						<ul class="pagination clearfix">
-						<!-- 여기서 forEach 끝 -->
-						
-						
-						
                     	    <c:if test="${dataCount!=0}">
             					${paging}
          					</c:if>
                     	</ul>
-                    
-                    
 					
 				</div>
 			</div><!-- /main -->
