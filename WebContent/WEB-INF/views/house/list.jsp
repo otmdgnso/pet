@@ -152,7 +152,7 @@ function checkHouseinfo(hostNum) {
                                     </div>
                                 </div>
 								
-								<figcaption style="height: 200px;">
+								<figcaption style="height: 230px;">
                                     <h3>${dto.subject}</h3>
                                     <div class="clear"></div>
                                     <span style="color : #8C8C8C">${dto.userName}, ${dto.address}</span>
