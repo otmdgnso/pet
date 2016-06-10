@@ -20,7 +20,6 @@
 
 <!-- 테이블 -->
 <div class="form-group" style="margin:0 auto; width:80%;" align="center">
-<c:forEach var="dto" items="${list}">
 <div style="width: 90%; height:100%; background-color:#FFF2F2; padding: 30px;" align="center">
 <div style="width: 95%; height:180px; background-color: #FFFFFF; padding: 30px;">
 	
@@ -28,12 +27,12 @@
 		<img src="http://placehold.it/450x260"/>
 	</div>
 	<div class="col-md-7 guide-story-info">
-		<h4 style="margin-top: 0">${dto.subject}</h4>
-		<p>${dto.userName}, ${dto.address}</p>		
+		<h4 style="margin-top: 0">강하나의 집</h4>
+		<p>강하나, 주소</p>		
 	</div>
 	<div class="col-md-7 guide-story-info">
-		<h4 style="margin-top: 0">${dto.cost}</h4>
-	</div>	
+		<h4 style="margin-top: 0">가격</h4>
+	</div>		
 </div>  
 <div class="separator" style="width:100%"></div>  
 <div style="width: 100%; height:10px;"></div>
@@ -50,7 +49,6 @@
 	</div>	
 </div> 
 </div>   
-</c:forEach>
 
 <!-- 페이징처리 -->
 <div class="cbp-vm-switcher cbp-vm-view-list">
