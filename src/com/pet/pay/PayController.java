@@ -57,15 +57,15 @@ public class PayController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/pay/paycomplete", method=RequestMethod.POST)
+	@RequestMapping(value="/pay/paycomplete"/*, method=RequestMethod.POST*/)
 	public ModelAndView complete(
-			Pay dto
+			/*Pay dto*/
 			) throws Exception {
 		
-		int reservationNum=42;
+		/*int reservationNum=42;
 		dto.setReservationNum(reservationNum);
 				
-		payservice.insertpay(dto);
+		payservice.insertpay(dto);*/
 		
 		ModelAndView mav=new ModelAndView(".pay.paycomplete");
 		return mav;
