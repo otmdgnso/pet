@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -42,16 +43,29 @@ public class PayController {
 		map.put("hostNum", hostNum);
 		map.put("reservationNum", reservationNum);
 		
-		dto=payservice.listHost(map);
+		map.put("start", 1);
+		map.put("end", 1);
 		
+		List<House> list=houseservice.listHouse(map);
+		
+		dto=payservice.listHost(map);		
 		
 		ModelAndView mav=new ModelAndView(".pay.reservepay");		
 		mav.addObject("dto",dto);
+		mav.addObject("list",list);
 		return mav;
 	}
 	
-	@RequestMapping(value="/pay/paycomplete")
-	public ModelAndView complete() throws Exception {
+	@RequestMapping(value="/pay/paycomplete", method=RequestMethod.POST)
+	public ModelAndView complete(
+			Pay dto
+			) throws Exception {
+		
+		int reservationNum=42;
+		dto.setReservationNum(reservationNum);
+				
+		payservice.insertpay(dto);
+		
 		ModelAndView mav=new ModelAndView(".pay.paycomplete");
 		return mav;
 	}	

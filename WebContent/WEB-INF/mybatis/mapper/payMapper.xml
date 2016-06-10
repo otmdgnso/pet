@@ -4,11 +4,18 @@
 <mapper namespace="pay">
 										
 	<select id="listHost" parameterType="map" resultType="com.pet.pay.Pay">
-   SELECT h.hostNum, address, cost, capacity, subject, content, userId, userName, (cost)/10 fees, (cost+(cost)/10) totalcost,
+   SELECT tb1.* FROM( 
+	   	SELECT h.hostNum, address, cost, capacity, subject, content, userId, userName, (cost)/10 fees, (cost+(cost)/10) totalcost,
 		TO_CHAR(checkIn,'YYYY-MM-DD') checkIn, TO_CHAR(checkOut,'YYYY-MM-DD') checkOut, reservationNum, r.num
-  FROM host h JOIN reservation r ON h.hostNum=r.hostNum
+	  FROM host h JOIN reservation r ON h.hostNum=r.hostNum
   	JOIN member m ON h.hostNum=m.num
-   WHERE h.hostNum=#{hostNum} AND reservationNum=#{reservationNum}	
+  		 WHERE h.hostNum=#{hostNum} AND reservationNum=#{reservationNum}	
+    )tb1 WHERE ROWNUM=1
 	</select>
+	
+	<insert id="insertpay" parameterType="com.pet.pay.Pay">
+		INSERT INTO resercomplete (completeNum, reservationNum, price, means, name)
+			VALUES(reserComplete_seq.NEXTVAL, #{reservationNum},#{price},#{means},#{name})
+	</insert>
 	
 </mapper>

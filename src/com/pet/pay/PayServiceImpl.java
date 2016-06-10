@@ -23,4 +23,15 @@ public class PayServiceImpl implements PayService{
 		return dto;
 	}
 
+	@Override
+	public int insertpay(Pay dto) {
+		int result=0;
+		try {
+			result=dao.getIntValue("pay.insertpay",dto);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
 }

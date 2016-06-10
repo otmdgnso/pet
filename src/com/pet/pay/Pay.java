@@ -2,9 +2,22 @@ package com.pet.pay;
 
 public class Pay {
 	private int completeNum, reservationNum, price, cost,totalcost,fees;
-	private String mean, created, subject,userName,userId ,address,checkIn,checkOut;
-		
+	private String means, created, subject,userName,userId ,address,checkIn,checkOut, name;		
+	private String saveFilename;	
 	
+	
+	public String getSaveFilename() {
+		return saveFilename;
+	}
+	public void setSaveFilename(String saveFilename) {
+		this.saveFilename = saveFilename;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public int getFees() {
 		return fees;
 	}
@@ -77,11 +90,12 @@ public class Pay {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public String getMean() {
-		return mean;
+	
+	public String getMeans() {
+		return means;
 	}
-	public void setMean(String mean) {
-		this.mean = mean;
+	public void setMeans(String means) {
+		this.means = means;
 	}
 	public String getCreated() {
 		return created;
