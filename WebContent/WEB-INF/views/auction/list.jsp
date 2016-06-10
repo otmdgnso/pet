@@ -12,13 +12,8 @@
           <div class="row">
              <div class="col-md-12">
                <div class="page-title pull-left">
-                    <h2 class="title-about">검색 결과</h2>
-                </div>
-                <ul class="breadcrumbs pull-right">
-                    <li><a href="<%=cp%>">HOME</a></li>
-                    <li>/</li>
-                    <li class="active">검색 결과</li>
-                </ul>
+                    <h2 class="title-about">경매</h2>
+                </div>            
              </div>
           </div>
       </div>
@@ -27,7 +22,12 @@
    <div class="container">
       <div class="row">
          <div class="col-sm-4 col-md-3">
-                <div class="search-results-title"><i class="fa fa-search"></i><p>${dataCount }</p> <p>의 결과를 찾았습니다</p></div>
+                <form name="searchForm" method="post" class="form-inline">
+                <div class="search-results-title" style="padding-top: 20px;"><i class="fa fa-search"></i>
+                		<input type="text" style="width: 70%" class="form-control input-sm input-search" name="searchValue">
+                		<button type="button" class="btn btn-info btn-sm btn-search" onclick="searchList();">검색</button>
+                </div>
+                </form>
                 <section class="ac-container">
                     <h3 class="desc-filter">Save time with filters:</h3>
 				    <div>
