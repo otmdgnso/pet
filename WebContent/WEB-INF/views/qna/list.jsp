@@ -20,19 +20,28 @@ th, td {
 
 </style>
 
-<section class="top-we-are" style="height:780px;">
+<section class="about-section-top">
+       <div class="container">
+          <div class="row">
+             <div class="col-md-12">
+               <div class="page-title pull-left">
+                    <h2 class="title-about">전문가에게 묻기</h2>
+                </div>
+             </div>
+          </div>
+      </div>
+</section>
+
+<section class="top-we-are" style="min-height:780px;">
 	<div class="container">
 	<div class="row" style="margin:0 auto; width:80%;" align="center">
 	<div class="col-md-12 effect-5 effects no-border-img" style="margin:0 auto; width:100%;" align="center">		
 
 			
-	<div class="cbp-vm-switcher cbp-vm-view-list">
-	<div class="separator" style="width:100%"></div>       
-		<h3>전문가에게 묻기 </h3>
-	<div class="separator" style="width:100%"></div>  
+	<div class="table-responsive" style="clear: both;">
 		<!-- 검색 -->
 		
-		<div class="form-group" style="margin:0 auto; width:100%;" align="center">
+		<div class="form-group" style="margin:0 auto; width:100%; padding-top: 30px;" align="center">
 			<form name="searchForm"  method="post">
 			<table style="width: 50%; margin: 0px auto; border-spacing: 0px;">
 				<tr align="center" height="50px">
@@ -50,9 +59,14 @@ th, td {
 			</table>
 			</form>		
 		</div>
-		
+        		
+       <!-- 글쓰기 버튼 -->
+		<div style="width: 100%; padding: 10px;" align="right">
+       		<button type="button" class="btn btn-primary btn-sm bbtn" onclick="javascript:location.href='<%=cp%>/qna/created';">글쓰기</button>
+        </div>		
+        		
 		<!-- 테이블 -->
-		<div class="form-group" style="margin:0 auto; width:80%; padding-top: 20px;" align="center">
+		<div class="form-group" style="margin:0 auto; width:100%; padding-bottom: 20px;" align="center">
 			<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
 	           <tr align="center" style="background-color: #ffffff">
 	           	  <td align="center" width="5%"><label>번호</label></td>
@@ -62,17 +76,19 @@ th, td {
 	              <td align="center" width="5%"><label>조회수</label></td>              
 	           </tr>
 	           
+	           <c:forEach var="dto" items="${list}">
 	           <tr align="center">
-	           	  <td align="center" style="color: #A6A6A6;">1</td>
-	              <td align="center" style="color: #A6A6A6;">질문입니다.</td>
-	              <td align="center" style="color: #A6A6A6;">강하나</td>
-	              <td align="center" style="color: #A6A6A6;">2016/06/07</td>	          
-	              <td align="center" style="color: #A6A6A6;">0</td>	             
-	           </tr>          
-	        </table> 
-	        <input type="hidden" value="${dto.hostNum}">         
+	           	  <td align="center" style="color: #A6A6A6;">${dto.listNum}</td>
+	              <td align="center" style="color: #A6A6A6;"><a href="${urlArticle}&qNum=${dto.qNum}">${dto.subject}<label style="color: tomato">[1]</label></a></td>
+	              <td align="center" style="color: #A6A6A6;">강한나</td>
+	              <td align="center" style="color: #A6A6A6;">${dto.created}</td>	          
+	              <td align="center" style="color: #A6A6A6;">${dto.hitCount}</td>	             
+	           </tr>     
+	           </c:forEach>     
+	        </table>          
 		</div>
-	</div>
+	</div>	        
+                		
 	<div class="cbp-vm-switcher cbp-vm-view-list">
 		<div class="form-group" style="margin:0 auto; width:80%; height:60px " align="center">
 		<div class="paging" style="text-align: center; min-height: 50px; line-height: 50px; color: #A6A6A6;">

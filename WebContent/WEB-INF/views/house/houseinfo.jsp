@@ -203,11 +203,18 @@ function deleteHouse(hostNum){
 			    <section class="ac-container">
 				    <div style="width: 100%; height: 40px; float: left;">
 				    	<button type="button" class="btn btn-default" style="width: 50%; height: 50px;" onclick="javascript:location.href='<%=cp%>/house/update?hostNum=${dto.hostNum}'">
-				    	수정
+				    	정보 수정
 				    	</button>		
 				    	<button type="button" class="btn btn-default" style="width: 48%; height: 50px;" onclick="deleteHouse('${hostNum}');">
-				    	삭제
+				    	호스팅 삭제하기
 				    	</button>			   			
+				    </div>	
+				</section>
+				<section class="ac-container">
+				    <div style="width: 100%; height: 40px; float: left; padding-top: 20px;">
+				    	<button type="button" class="btn btn-default" style="width: 100%; height: 50px;" onclick="javascript:location.href='<%=cp%>/house/house_reservation?hostNum=${dto.hostNum}'">
+				    	예약 관리
+				    	</button>					   			
 				    </div>				   
 			    </section>
   	     </c:if>
