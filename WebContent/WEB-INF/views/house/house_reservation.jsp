@@ -25,9 +25,11 @@
 
 			
 	<div class="cbp-vm-switcher cbp-vm-view-list">
-	
-		<div class="form-group" style="margin:0 auto; width:100%; padding-top: 30px;" align="center">
-			<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
+	<div class="separator" style="width:100%;"></div>       
+		<h3>예약 받은 리스트</h3>
+	<div class="separator" style="width:100%"></div> 
+		<div class="form-group" style="margin:0 auto; width:100%;" align="center">
+			<table style="width: 80%; margin: 0px auto; border-spacing: 0px;">
 	           <tr align="center" height="50px">
 	           	  <td align="center" width="5%"><label>번호</label></td>
 	              <td align="center" width="10%"><label>신청자</label></td>
@@ -39,7 +41,7 @@
 	           
 	           <tr align="center" height="50px">
 	           	  <td align="center" width="5%" style="color: #A6A6A6;">1</td>
-	              <td align="center" width="10%" style="color: #6ABC64;">김지원</td>
+	              <td align="center" width="10%" style="color: #A6A6A6;">김지원</td>
 	              <td align="center" width="10%" style="color: #A6A6A6;">강아지</td>
 	              <td align="center" width="10%" style="color: #A6A6A6;">1마리</td>	          
 	              <td align="center" width="20%" style="color: #A6A6A6;">2016/07/01~2016/07/03</td>

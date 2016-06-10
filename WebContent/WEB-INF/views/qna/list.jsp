@@ -38,10 +38,10 @@ th, td {
 	<div class="col-md-12 effect-5 effects no-border-img" style="margin:0 auto; width:100%;" align="center">		
 
 			
-	<div class="table-responsive" style="clear: both; padding-top: 80px;">
+	<div class="table-responsive" style="clear: both;">
 		<!-- 검색 -->
 		
-		<div class="form-group" style="margin:0 auto; width:100%; padding-top: 40px;" align="center">
+		<div class="form-group" style="margin:0 auto; width:100%; padding-top: 30px;" align="center">
 			<form name="searchForm"  method="post">
 			<table style="width: 50%; margin: 0px auto; border-spacing: 0px;">
 				<tr align="center" height="50px">
