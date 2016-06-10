@@ -94,6 +94,9 @@ th, td {
        
            <div id="listReply"></div>
        </div>
+       <div>
+       <img src="<%=cp%>/res/image/replyli.png">
+       </div>
        
 
 	</div>
