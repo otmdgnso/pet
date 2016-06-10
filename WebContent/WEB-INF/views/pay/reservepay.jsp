@@ -47,35 +47,33 @@
     <!-- 호스트정보 -->           
     <div>
 	    <div style="width: 100%; height: 100px;">
-	    			<table style="width: 100%; 	margin: 0px auto; border-spacing: 10px;">	
-	             <c:forEach var="dto" items="listPay">   	
+	    			<table style="width: 100%; 	margin: 0px auto; border-spacing: 10px; margin-top: 20px;">	
 	                	<tr>				
-							<td align="center" width="30%"><h3 style="color: black">제목:${dto.subject} </h3></td>
+							<td align="center" width="30%"><h3 style="color: black">제목: ${dto.subject} </h3></td>
 						</tr>
 						<tr>
-							<td align="center" width="30%" style="color: #8C8C8C;">호스트명</td>
+							<td align="center" width="30%" style="color: #8C8C8C;">호스트명: ${dto.userId}</td>
 						</tr>
 						<tr>
-							<td align="center" width="30%" style="color: #8C8C8C;">주소</td>
+							<td align="center" width="30%" style="color: #8C8C8C;">주소: ${dto.address}</td>
 						</tr>
-				</c:forEach>
 					</table>				
 		</div>
 	</div>
 	
 	<!-- 예약 정보 -->
 	<div class="separator" style="width:100%"></div>
-	<span style="color: black;">예약일</span>
+	<span style="color: black;">예약일  : ${dto.checkIn} ~ ${dto.checkOut}</span>
 	<div class="separator" style="width:100%"></div>
 	<div class="form-group" style="margin:0 auto; width:100%" align="center">
                     	<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
                     		<tr>
                     			<td align="center" width="50%"><label>기본료</label></td>
-                     			<td align="center" width="50%"><label>230278</label></td>
+                     			<td align="center" width="50%"><label>${dto.cost}</label></td>
                     		</tr>
                     		<tr>
                     			<td align="center" width="50%"><label>서비스 수수료</label></td>
-                     			<td align="center" width="50%"><label>27545</label></td>
+                     			<td align="center" width="50%"><label>${dto.fees}</label></td>
                     		</tr>                                       		           
                     	</table>                                     
      </div>
@@ -84,7 +82,7 @@
                     	<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
                     		<tr>
 								<td align="center" width="50%"><h3 style="color: black">합계</h3></td>
-								<td align="center" width="50%"><h3 style="color: black">257823</h3></td>
+								<td align="center" width="50%"><h3 style="color: black">${dto.totalcost}</h3></td>
 							</tr>
 						</table>
 	</div>

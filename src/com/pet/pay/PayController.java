@@ -33,6 +33,7 @@ public class PayController {
 
 	@RequestMapping(value="/pay/reservepay")
 	public ModelAndView list(
+			Pay dto
 			) throws Exception {
 		
 		int hostNum=188;
@@ -41,11 +42,11 @@ public class PayController {
 		map.put("hostNum", hostNum);
 		map.put("reservationNum", reservationNum);
 		
-		List<Pay> listPay=payservice.listHost(map);
+		dto=payservice.listHost(map);
 		
 		
 		ModelAndView mav=new ModelAndView(".pay.reservepay");		
-		mav.addObject("listPay",listPay);
+		mav.addObject("dto",dto);
 		return mav;
 	}
 	

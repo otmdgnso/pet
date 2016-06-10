@@ -1,6 +1,5 @@
 package com.pet.pay;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +13,14 @@ public class PayServiceImpl implements PayService{
 	private CommonDAO dao;
 	
 	@Override
-	public List<Pay> listHost(Map<String, Object> map) {
-		List<Pay> list=null;
+	public Pay listHost(Map<String, Object> map) {
+		Pay dto=null;
 		try {
-			list=dao.getListData("pay.listHost",map);
-			System.out.println(map);
+			dto=dao.getReadData("pay.listHost",map);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
-		return list;
+		return dto;
 	}
 
 }
