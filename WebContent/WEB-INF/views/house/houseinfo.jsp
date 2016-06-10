@@ -217,6 +217,13 @@ function deleteHouse(hostNum){
 				    	</button>					   			
 				    </div>				   
 			    </section>
+			    <section class="ac-container">
+				    <div style="width: 100%; height: 40px; float: left; padding-top: 40px;">
+				    	<button type="button" class="btn btn-default" style="width: 100%; height: 50px;" onclick="javascript:location.href='<%=cp%>/sch/sch'">
+				    	일정 관리
+				    	</button>					   			
+				    </div>				   
+			    </section>
   	     </c:if>
   	     			    
             </div>
