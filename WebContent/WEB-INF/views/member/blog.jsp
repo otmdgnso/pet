@@ -324,7 +324,7 @@ function shakeModalMember(msg){
 		
 				<div id="tab-3" style="width: 100%; min-height: 600px;">
 					<!-- 북마크 -->                     
-				    <div id="ajaxReserveList"></div>
+				    <div id="ajaxBookmarkList"></div>
 				</div>
 
 				<div id="tab-5" style="width: 100%; min-height: 600px;">

@@ -5,13 +5,30 @@
 <%
 	String cp=request.getContextPath();
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+<script type="text/javascript">
+function adoptPay() {
+	var f=document.adoptPayForm;
+	
+	var name= f.name.value;
+	if (!name) {
+		f.name.focus();
+		return false;
+	}
+	
+	f.action="<%=cp%>/pay/paycomplete";
+	f.submit();
+}
+
+$(function(){
+	var price=${dto.price};
+	var deposit=${dto.deposit};
+	var amount=price+deposit;
+	$("#amount").html(amount);
+})
+</script>
+
 <body>
+<form name="adoptPayForm">
 <section class="about-section-top">
 	<div class="container">
 	<div class="row">
@@ -49,31 +66,26 @@
 	    <div style="width: 100%; height: 100px;">
 	    			<table style="width: 100%; 	margin: 0px auto; border-spacing: 10px;">
 	                	<tr>				
-							<td align="center" width="30%"><h3 style="color: black">제목</h3></td>
+							<td align="center" width="30%"><h3 style="color: black">제목 : ${dto.subject}</h3></td>
 						</tr>
 						<tr>
-							<td align="center" width="30%" style="color: #8C8C8C;">호스트명</td>
-						</tr>
-						<tr>
-							<td align="center" width="30%" style="color: #8C8C8C;">주소</td>
+							<td align="center" width="30%" style="color: #8C8C8C;">판매자 아이디 : ${dto.userId}</td>
 						</tr>
 					</table>				
 		</div>
 	</div>
 	
 	<!-- 예약 정보 -->
-	<div class="separator" style="width:100%"></div>
 	<span style="color: black;"></span>
-	<div class="separator" style="width:100%"></div>
 	<div class="form-group" style="margin:0 auto; width:100%" align="center">
                     	<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
                     		<tr>
                     			<td align="center" width="50%"><label>기본료</label></td>
-                     			<td align="center" width="50%"><label></label></td>
+                     			<td align="center" width="50%"><label>${dto.price}</label></td>
                     		</tr>
                     		<tr>
                     			<td align="center" width="50%"><label>보증금</label></td>
-                     			<td align="center" width="50%"><label></label></td>
+                     			<td align="center" width="50%"><label>${dto.deposit}</label></td>
                     		</tr>                                       		           
                     	</table>                                     
      </div>
@@ -82,7 +94,7 @@
                     	<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
                     		<tr>
 								<td align="center" width="50%"><h3 style="color: black">합계</h3></td>
-								<td align="center" width="50%"><h3 style="color: black"></h3></td>
+								<td align="center" width="50%" id="amount"><h3 style="color: black"></h3></td>
 							</tr>
 						</table>
 	</div>
@@ -98,7 +110,7 @@
 	<label for="checkin">결제 방법</label>
 		<div class="guests-select" style="margin:0 auto; width:30%" align="center">
 						<select name="pet_su" id="pet_su" class="form-control">
-								<option value="" disabled="disabled" selected="selected">신용/체크카드</option>
+								<option value="" selected="selected">신용/체크카드</option>
 								<option value="1">무통장입금</option>
 						</select>
 		</div>
@@ -122,14 +134,14 @@
 	<div>				
 	<div class="form-group" style="margin:0 auto; width:30%" align="center">
     <label>이름</label>
-    <input class="form-control" type="text" name="cost" id="cost" value="${dto.cost}" style="text-align:center">                                   
+    <input class="form-control" type="text" name="name" id="cost" value="" style="text-align:center">                                   
     </div>
     </div>
                      
     <!-- 안내 -->  
     <div class="separator" style="width:70%"></div>
     <div align="center">
-    	<button type="button" class="btn btn-primary btn-block" style="width: 30%">결제하기</button>
+    	<button type="button" class="btn btn-primary btn-block" style="width: 30%" onclick="adoptPay();">결제하기</button>
     	<label>결제하기를 클릭하시면 회원님의 결제 수단으로 요금이 부과됩니다.</label>
     </div>	  
     
@@ -138,6 +150,6 @@
 </div>
 </div>
 </section>
-
+</form>
 </body>
 </html>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.pet.adopt.Adopt;
 import com.pet.adopt.AdoptService;
 import com.pet.house.House;
 import com.pet.house.HouseService;
@@ -56,15 +57,15 @@ public class PayController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/pay/paycomplete", method=RequestMethod.POST)
+	@RequestMapping(value="/pay/paycomplete"/*, method=RequestMethod.POST*/)
 	public ModelAndView complete(
-			Pay dto
+			/*Pay dto*/
 			) throws Exception {
 		
-		int reservationNum=42;
+		/*int reservationNum=42;
 		dto.setReservationNum(reservationNum);
 				
-		payservice.insertpay(dto);
+		payservice.insertpay(dto);*/
 		
 		ModelAndView mav=new ModelAndView(".pay.paycomplete");
 		return mav;
@@ -94,7 +95,10 @@ public class PayController {
 			) throws Exception {
 		SessionInfo info = (SessionInfo) session.getAttribute("member");
 		
+		Adopt dto = adoptservice.readPreSale(preSaleNum);
+		
 		ModelAndView mav=new ModelAndView(".pay.adoptpay");
+		mav.addObject("dto", dto);
 		return mav;
 	}
 }
