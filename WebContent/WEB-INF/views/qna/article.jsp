@@ -92,12 +92,46 @@ th, td {
                </table>           
            </div>
        
-           <div id="listReply"></div>
-       </div>
-       <div>
-       <img src="<%=cp%>/res/image/replyli.png">
-       </div>
-       
+<div style="clear: both; padding-top: 20px;">
+    <div style="float: left;"><span style="color: #3EA9CD; font-weight: bold;">댓글 1개</span><span style="color: #A6A6A6;">[댓글 목록, 1/1 페이지]</span></div>
+    <div style="float: right; text-align: right;"></div>
+</div>
+              
+<div style="clear: both; padding-top: 5px;">
+
+    <!-- 리플 내용 리스트 시작 -->
+    <div style="clear:both; margin-top:5px; padding: 10px; border: #d5d5d5 solid 1px; min-height: 130px;  color : black">
+        <div style="clear: both;">
+            <div style="float: left;">전문가 | 2016/06/09</div>
+        </div>
+        <div style="clear: both; padding: 5px 0 5px 0px;  min-height: 70px;">
+            강아지가 스트레스를 받았을 경우 그러한 증상이 나타 날 수가 있습니다. 스트레스를 풀 수 있도록 함께 산책을 해보세요.
+        </div>
+        <div style="clear: both; min-height: 30px;">
+            <div style="float: left;">
+                <button type="button" class="btn btn-primary btn-sm" onclick="$">답글</button>
+            </div>                        
+        </div>
+
+        <!-- 답글 시작 -->
+        <div id="replyAnswerLayout${vo.replyNum}" style="display: none;">
+            <div style="clear: both; margin-top:10px; padding: 5px; border-top: #d5d5d5 solid 1px;">
+                <textarea id="replyContent${vo.replyNum}" class="form-control" rows="3" required="required"></textarea>
+            </div>
+            <div style="text-align: right; padding-top: 7px;">
+                <button type="button" class="btn btn-primary btn-sm" onclick="sendReplyAnswer('${vo.num}', '${vo.replyNum}')"> 답글등록 </button>
+            </div>
+
+            <!-- 답글 리스트 -->       
+            <div id="listReplyAnswer${vo.replyNum}" style="padding-top: 5px;"></div>
+        </div> <!-- 답글 끝 -->
+                        
+    </div>  <!-- 리플 내용 리스트 끝 -->
+</div>
+              
+<div style="clear: both; padding-top: 10px; text-align: center;">
+    ${paging}
+</div>
 
 	</div>
 	</div>

@@ -80,7 +80,7 @@ th, td {
 	           <tr align="center">
 	           	  <td align="center" style="color: #A6A6A6;">${dto.listNum}</td>
 	              <td align="center" style="color: #A6A6A6;"><a href="${urlArticle}&qNum=${dto.qNum}">${dto.subject}<label style="color: tomato">[1]</label></a></td>
-	              <td align="center" style="color: #A6A6A6;">강한나</td>
+	              <td align="center" style="color: #A6A6A6;">강하나</td>
 	              <td align="center" style="color: #A6A6A6;">${dto.created}</td>	          
 	              <td align="center" style="color: #A6A6A6;">${dto.hitCount}</td>	             
 	           </tr>     
