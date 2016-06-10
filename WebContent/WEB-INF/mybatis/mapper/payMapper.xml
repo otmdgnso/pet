@@ -18,4 +18,11 @@
 			VALUES(reserComplete_seq.NEXTVAL, #{reservationNum},#{price},#{means},#{name})
 	</insert>
 	
+	<select id="listAuction" parameterMap="map" resultType="com.pet.pay.Pay">
+	SELECT 
+	
+	</select>
+	
+	
+	
 </mapper>

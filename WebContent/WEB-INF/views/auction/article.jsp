@@ -24,16 +24,15 @@ function checkTime(){
 	var nowTime = new Date();
 	
 	if(aucEnd < nowTime){
-		alert('끝');
+		alert('경매가 종료 되었습니다.');
 		$("#bidInsertButton").attr("disabled","disabled");
 		return false;
 		
 	}else {
-		alert('진행중');
+		
 		return true;
 	}
-	
-	
+		
 }
 
 function deleteAuction(auctionNum) {
@@ -63,7 +62,7 @@ function checkBid(){
 		success:function(data) {
 			
 			
-			if(bidPrice == $("#buyPrice").val()){
+			if(bidPrice >= $("#buyPrice").val()){
 				if(confirm("즉시구입하시겠습니까?")){
 				}
 				
@@ -86,8 +85,6 @@ function checkBid(){
 	});
 	
 }  
-	
-//2. 저장후 리스트 가져온다..(ajax..??)
 
 
 </script>
