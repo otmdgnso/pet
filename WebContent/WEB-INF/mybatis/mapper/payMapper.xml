@@ -3,8 +3,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pay">
 										
-	<select id="listHost" parameterType="map" resultType="Integer">
-   SELECT  h.hostNum, address, cost, capacity, subject, content,  totalcost, userId, userName
+	<select id="listHost" parameterType="map" resultType="com.pet.pay.Pay">
+   SELECT h.hostNum, address, cost, capacity, subject, content,  totalcost, userId, userName
 		checkIn, checkOut, reservationNum, r.num
   FROM host h JOIN reservation r ON h.hostNum=r.hostNum
   	JOIN member m ON h.hostNum=m.num

@@ -50,7 +50,7 @@
 	    			<table style="width: 100%; 	margin: 0px auto; border-spacing: 10px;">	
 	             <c:forEach var="dto" items="listPay">   	
 	                	<tr>				
-							<td align="center" width="30%"><h3 style="color: black">제목: ${dto.subject} </h3></td>
+							<td align="center" width="30%"><h3 style="color: black">제목:${dto.subject} </h3></td>
 						</tr>
 						<tr>
 							<td align="center" width="30%" style="color: #8C8C8C;">호스트명</td>
@@ -124,7 +124,7 @@
 	<div>				
 	<div class="form-group" style="margin:0 auto; width:30%" align="center">
     <label>이름</label>
-    <input class="form-control" type="text" name="cost" id="cost" value="${dto.cost}" style="text-align:center">                                   
+    <%-- <input class="form-control" type="text" name="cost" id="cost" value="${dto.cost}" style="text-align:center"> --%>                                   
     </div>
     </div>
                      

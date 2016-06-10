@@ -1,7 +1,7 @@
 package com.pet.pay;
 
-public class pay {
-	private int completeNum, reservationNum, price;
+public class Pay {
+	private int completeNum, reservationNum, price, cost;
 	private String mean, created, name, subject;
 	
 	
