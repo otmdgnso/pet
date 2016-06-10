@@ -91,4 +91,40 @@ public class QnaServiceImpl implements QnaService{
 		return result;
 	}
 
+	@Override
+	public int insertReply(Qna dto) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<Qna> listReply(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Qna> listReplyAnswer(int answer) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int replyDataCount(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int replyCountAnswer(int answer) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteReply(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

@@ -148,4 +148,56 @@ public class QnaController {
 		mav.addObject("page", page);
 		return mav;
 	}
+	
+	// 댓글 리스트
+		@RequestMapping(value="/qna/listReply")
+		public ModelAndView listReply(
+				@RequestParam(value="aNum") int num,
+				@RequestParam(value="pageNo", defaultValue="1") int current_page
+				) throws Exception {
+			
+			int numPerPage=5;
+			int total_page=0;
+			int dataCount=0;
+			
+			Map<String, Object> map=new HashMap<String, Object>();
+			map.put("aNum", num);
+			
+			dataCount=service.replyDataCount(map);
+			total_page=myUtil.pageCount(numPerPage, dataCount);
+			if(current_page>total_page)
+				current_page=total_page;
+			
+			// 리스트에 출력할 데이터
+			int start=(current_page-1)*numPerPage+1;
+			int end=current_page*numPerPage;
+			map.put("start", start);
+			map.put("end", end);
+			List<Qna> listReply=service.listReply(map);
+			
+			// 엔터를 <br>
+			Iterator<Qna> it=listReply.iterator();
+			int listNum, n=0;
+			while(it.hasNext()) {
+				Qna dto=it.next();
+				listNum=dataCount-(start+n-1);
+				dto.setListNum(listNum);
+				dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
+				n++;
+			}
+			
+			// 페이징처리(인수2개 짜리 js로 처리)
+			String paging=myUtil.paging(current_page, total_page);
+			
+			ModelAndView mav=new ModelAndView("qna/listReply");
+
+			// jsp로 넘길 데이터
+			mav.addObject("listReply", listReply);
+			mav.addObject("pageNo", current_page);
+			mav.addObject("replyCount", dataCount);
+			mav.addObject("total_page", total_page);
+			mav.addObject("paging", paging);
+			
+			return mav;
+		}
 }
