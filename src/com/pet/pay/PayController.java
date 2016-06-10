@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.pet.adopt.Adopt;
 import com.pet.adopt.AdoptService;
 import com.pet.house.House;
 import com.pet.house.HouseService;
@@ -94,7 +95,10 @@ public class PayController {
 			) throws Exception {
 		SessionInfo info = (SessionInfo) session.getAttribute("member");
 		
+		Adopt dto = adoptservice.readPreSale(preSaleNum);
+		
 		ModelAndView mav=new ModelAndView(".pay.adoptpay");
+		mav.addObject("dto", dto);
 		return mav;
 	}
 }
