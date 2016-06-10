@@ -5,12 +5,23 @@
 <%
 	String cp=request.getContextPath();
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+<script type="text/javascript">
+function insertPay(){
+	var f=document.reservePay;
+	
+	var str;
+	 str = f.name.value;
+	    if(!/^[가-힣]{2,4}$/.test(str)) {
+	        f.name.focus();
+	        alert("이름을 제대로 입력해주세요");
+	        return false;
+	    }
+	
+	f.action="<%=cp%>/pay/paycomplete";
+	f.submit();
+}
+</script>
+
 <body>
 <section class="about-section-top">
 	<div class="container">
@@ -49,31 +60,26 @@
 	    <div style="width: 100%; height: 100px;">
 	    			<table style="width: 100%; 	margin: 0px auto; border-spacing: 10px;">
 	                	<tr>				
-							<td align="center" width="30%"><h3 style="color: black">제목</h3></td>
+							<td align="center" width="30%"><h3 style="color: black">제목 : ${dto.subject}</h3></td>
 						</tr>
 						<tr>
-							<td align="center" width="30%" style="color: #8C8C8C;">호스트명</td>
-						</tr>
-						<tr>
-							<td align="center" width="30%" style="color: #8C8C8C;">주소</td>
+							<td align="center" width="30%" style="color: #8C8C8C;">판매자 아이디 : ${dto.userId}</td>
 						</tr>
 					</table>				
 		</div>
 	</div>
 	
 	<!-- 예약 정보 -->
-	<div class="separator" style="width:100%"></div>
 	<span style="color: black;"></span>
-	<div class="separator" style="width:100%"></div>
 	<div class="form-group" style="margin:0 auto; width:100%" align="center">
                     	<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
                     		<tr>
                     			<td align="center" width="50%"><label>기본료</label></td>
-                     			<td align="center" width="50%"><label></label></td>
+                     			<td align="center" width="50%"><label>${dto.price}</label></td>
                     		</tr>
                     		<tr>
                     			<td align="center" width="50%"><label>보증금</label></td>
-                     			<td align="center" width="50%"><label></label></td>
+                     			<td align="center" width="50%"><label>${dto.deposit}</label></td>
                     		</tr>                                       		           
                     	</table>                                     
      </div>
@@ -122,7 +128,7 @@
 	<div>				
 	<div class="form-group" style="margin:0 auto; width:30%" align="center">
     <label>이름</label>
-    <input class="form-control" type="text" name="cost" id="cost" value="${dto.cost}" style="text-align:center">                                   
+    <input class="form-control" type="text" name="cost" id="cost" value="" style="text-align:center">                                   
     </div>
     </div>
                      

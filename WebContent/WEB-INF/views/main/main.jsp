@@ -81,7 +81,7 @@ function adoptSearch() {
 	var typeAdopt=f.typeAdopt.value;
 	var speciesAdopt=f.speciesAdopt.value;
 	
-	if(typeAdopt && speciesAdopt > 0) {
+	if(typeAdopt!="") {
 	var minPrice=$("#slider-range").slider("values", 0)*10000;
 	var maxPrice=$("#slider-range").slider("values", 1)*10000;
 	var params="searchValue=main&type="+typeAdopt+"&species="+speciesAdopt+"&minPrice="+minPrice+"&maxPrice="+maxPrice;
@@ -97,7 +97,7 @@ function auctionSearch() {
 	var subjectAuction=f.subjectAuction.value;
 	var speciesAuction=f.speciesAuction.value;
 	
-	if(subjectAuction && speciesAuction > 0) {
+	if(subjectAuction!="") {
 	var params="searchValue=main&subject="+subjectAuction+"&species="+speciesAuction;
 	f.action="<%=cp%>/auction/list?"+params;
 	f.submit();
@@ -469,7 +469,7 @@ function houseSearch() {
 	<div class="container">
 		<div class="row">
 			<div align="center" class="col-md-12 effect-5 effects">
-				<span style="font-weight: bold; color: #747474; font-size: 28pt;">It's Pet</span>
+				<span style="font-weight: bold; color: #747474; font-size: 28pt;">Pet</span>
 				<ul class="sandbox">
 				
 					<c:forEach var="dto" items="${listAdopt}">
