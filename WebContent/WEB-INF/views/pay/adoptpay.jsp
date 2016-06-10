@@ -6,23 +6,29 @@
 	String cp=request.getContextPath();
 %>
 <script type="text/javascript">
-function insertPay(){
-	var f=document.reservePay;
+function adoptPay() {
+	var f=document.adoptPayForm;
 	
-	var str;
-	 str = f.name.value;
-	    if(!/^[가-힣]{2,4}$/.test(str)) {
-	        f.name.focus();
-	        alert("이름을 제대로 입력해주세요");
-	        return false;
-	    }
+	var name= f.name.value;
+	if (!name) {
+		f.name.focus();
+		return false;
+	}
 	
 	f.action="<%=cp%>/pay/paycomplete";
 	f.submit();
 }
+
+$(function(){
+	var price=${dto.price};
+	var deposit=${dto.deposit};
+	var amount=price+deposit;
+	$("#amount").html(amount);
+})
 </script>
 
 <body>
+<form name="adoptPayForm">
 <section class="about-section-top">
 	<div class="container">
 	<div class="row">
@@ -88,7 +94,7 @@ function insertPay(){
                     	<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
                     		<tr>
 								<td align="center" width="50%"><h3 style="color: black">합계</h3></td>
-								<td align="center" width="50%"><h3 style="color: black"></h3></td>
+								<td align="center" width="50%" id="amount"><h3 style="color: black"></h3></td>
 							</tr>
 						</table>
 	</div>
@@ -104,7 +110,7 @@ function insertPay(){
 	<label for="checkin">결제 방법</label>
 		<div class="guests-select" style="margin:0 auto; width:30%" align="center">
 						<select name="pet_su" id="pet_su" class="form-control">
-								<option value="" disabled="disabled" selected="selected">신용/체크카드</option>
+								<option value="" selected="selected">신용/체크카드</option>
 								<option value="1">무통장입금</option>
 						</select>
 		</div>
@@ -128,14 +134,14 @@ function insertPay(){
 	<div>				
 	<div class="form-group" style="margin:0 auto; width:30%" align="center">
     <label>이름</label>
-    <input class="form-control" type="text" name="cost" id="cost" value="" style="text-align:center">                                   
+    <input class="form-control" type="text" name="name" id="cost" value="" style="text-align:center">                                   
     </div>
     </div>
                      
     <!-- 안내 -->  
     <div class="separator" style="width:70%"></div>
     <div align="center">
-    	<button type="button" class="btn btn-primary btn-block" style="width: 30%">결제하기</button>
+    	<button type="button" class="btn btn-primary btn-block" style="width: 30%" onclick="adoptPay();">결제하기</button>
     	<label>결제하기를 클릭하시면 회원님의 결제 수단으로 요금이 부과됩니다.</label>
     </div>	  
     
@@ -144,6 +150,6 @@ function insertPay(){
 </div>
 </div>
 </section>
-
+</form>
 </body>
 </html>
