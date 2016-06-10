@@ -81,11 +81,15 @@ function adoptSearch() {
 	var typeAdopt=f.typeAdopt.value;
 	var speciesAdopt=f.speciesAdopt.value;
 	
+	if(typeAdopt && speciesAdopt > 0) {
 	var minPrice=$("#slider-range").slider("values", 0)*10000;
 	var maxPrice=$("#slider-range").slider("values", 1)*10000;
 	var params="searchValue=main&type="+typeAdopt+"&species="+speciesAdopt+"&minPrice="+minPrice+"&maxPrice="+maxPrice;
 	f.action="<%=cp%>/adopt/list?"+params;
 	f.submit();
+	} else
+		f.action="<%=cp%>/adopt/list";
+		f.submit();
 }
 
 function auctionSearch() {
@@ -93,9 +97,14 @@ function auctionSearch() {
 	var subjectAuction=f.subjectAuction.value;
 	var speciesAuction=f.speciesAuction.value;
 	
+	if(subjectAuction && speciesAuction > 0) {
 	var params="searchValue=main&subject="+subjectAuction+"&species="+speciesAuction;
 	f.action="<%=cp%>/auction/list?"+params;
 	f.submit();
+	}else
+		f.action="<%=cp%>/auction/list";
+		f.submit();
+
 }
 
 function houseSearch() {
