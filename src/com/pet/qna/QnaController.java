@@ -104,7 +104,7 @@ public class QnaController {
 			HttpSession session
 			) throws Exception {
 		
-		ModelAndView mav=new ModelAndView("qna.created");
+		ModelAndView mav=new ModelAndView(".qna.created");
 		mav.addObject("mode", "created");
 		return mav;
 	}
