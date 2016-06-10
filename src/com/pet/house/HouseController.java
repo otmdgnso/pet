@@ -132,12 +132,10 @@ public class HouseController {
 		
 		service.insertHouseInfo(dto, pathname);
 		service.insertHostPetInfo(dto);				
-		
 		/*info.setHostNum(dto.getHostNum());
 		session.setAttribute("member", info);
 		dto.setHostNum(info.getHostNum());*/
-		
-		System.out.println(dto.getHostNum());
+	
 		ModelAndView mav = new ModelAndView(".house.join");
 		return mav;
 	}
@@ -182,7 +180,7 @@ public class HouseController {
 		mav.addObject("vo", vo);
 		mav.addObject("info",info);
 		mav.addObject("readFile",readFile);
-		
+
 		return mav;
 	}
 	// 호스팅한 집, 예약 받은 정보
@@ -291,12 +289,28 @@ public class HouseController {
 				
 		House dto = service.readHouseInfo(hostNum);
 		List<House> list=service.readHousePhoto(hostNum);
+		String sp=service.readHostPetInfo(hostNum);
 		
 		ModelAndView mav=new ModelAndView(".house.join");
 		mav.addObject("mode", "update");
 		mav.addObject("dto",dto);
 		mav.addObject("list",list);
+		mav.addObject("sp",sp);
 		return mav;		
+	}
+	
+	@RequestMapping(value="/house/delete")
+	public String delete(
+			HttpSession session,
+			@RequestParam(value="hostNum") int hostNum
+			) throws Exception{
+		
+		String root = session.getServletContext().getRealPath("/");
+		String pathname = root + File.separator + "uploads" +File.separator + "house";
+		
+		service.deleteHouseInfo(hostNum, pathname);
+		
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="/house/update",method=RequestMethod.POST)
@@ -315,9 +329,28 @@ public class HouseController {
 		String root=session.getServletContext().getRealPath("/");
 		String pathname=root+File.separator+"uploads"+File.separator+"house";
 		
-		service.updateHouseInfo(dto);
+		service.updateHouseInfo(dto, pathname);
+		service.updateHostPetInfo(dto);
 		
 		return "redirect:/house/list";		
+	}
+	
+	//사진 삭제
+	@RequestMapping(value="/house/deleteFile")
+	@ResponseBody
+	public Map<String, Object> deleteFile(
+			HttpSession session,
+			@RequestParam(value="saveFilename") String saveFilename
+			) throws Exception{
+		
+		Map<String, Object> map= new HashMap<>();
+		String root = session.getServletContext().getRealPath("/");
+		String pathname = root + File.separator + "uploads" +File.separator + "house";
+		
+		// 해당 파일 삭제
+		service.deleteHousePic(saveFilename, pathname);
+		
+		return map;
 	}
 
 }

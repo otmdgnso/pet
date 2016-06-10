@@ -305,23 +305,7 @@ function shakeModalMember(msg){
        		<c:if test="${not empty sessionScope.member}">	
 				<li id="hostCheck" class="weather">
 					<a class='top-menu-txt' href="<%=cp%>/house/houseinfo?hostNum=${sessionScope.member.memberNum}">호스팅 관리</a>
-			  <div  style="width: 200px;">
-                        <form>
-							<fieldset>					
-								<div class="row">
-									<section>	
-											<img src="<%=cp%>/res/images/icon/menu.JPG" width="40" alt="" />
-                                            <h3>메뉴</h3>
-                                            <ul>
-                                              <li><a href="<%=cp%>/house/houseinfo?hostNum=${sessionScope.member.memberNum}">내 호스팅 정보</a></li>
-                                              <li><a href="<%=cp%>/auction/list">경매</a></li>
-                                              <li><a href="<%=cp%>/adopt/list">분양</a></li>
-                                            </ul>
-									</section>                                  
-								</div>
-							</fieldset>						
-						</form>
-					</div>	
+			 
 				</li>
 			</c:if>	
 				<!--/ 호스팅버튼 -->

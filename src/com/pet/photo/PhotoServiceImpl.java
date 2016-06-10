@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.pet.common.FileManager;
 import com.pet.common.dao.CommonDAO;
 
-@Service("pet.photoService")
+@Service("photo.photoService")
 public class PhotoServiceImpl implements PhotoService{
 	@Autowired
 	private CommonDAO dao;

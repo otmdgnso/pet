@@ -132,6 +132,14 @@ function hostMessage() {
 	var url="<%=cp%>/message/list?hostNum="+hostNum+"#tab-2";
 	self.location=url;
 }
+
+function deleteHouse(hostNum){
+	if(confirm("호스팅을 삭제하시겠습니까?")) {
+		var url="<%=cp%>/house/delete?hostNum="+hostNum;
+		location.href=url;
+	}
+}
+
 </script>
 
 <div class="clear"></div>
@@ -171,6 +179,8 @@ function hostMessage() {
 			</div>
 				<span style="color: black;">등록일 : ${dto.created}</span>
 			<div class="separator" style="width:100%"></div>
+			
+	<c:if test="${sessionScope.member.hostNum!=sessionScope.member.memberNum}">		
 				<section class="ac-container">
                 <div style="width: 100%; height: 40px;"><button type="button" class="btn btn-danger" onclick="checkCreated2()" style="width: 100%; height: 50px;"><i class="fa fa-bolt" aria-hidden="true"></i> 	예약하기</button></div>
                 </section>
@@ -188,14 +198,14 @@ function hostMessage() {
 				    	</button>				   			
 				    </div>				   
 			    </section>
-			    
+	</c:if>	    
 		<c:if test="${sessionScope.member.hostNum==sessionScope.member.memberNum}">	    
 			    <section class="ac-container">
 				    <div style="width: 100%; height: 40px; float: left;">
 				    	<button type="button" class="btn btn-default" style="width: 50%; height: 50px;" onclick="javascript:location.href='<%=cp%>/house/update?hostNum=${dto.hostNum}'">
 				    	수정
 				    	</button>		
-				    	<button type="button" class="btn btn-default" style="width: 48%; height: 50px;" onclick="hostMessage();">
+				    	<button type="button" class="btn btn-default" style="width: 48%; height: 50px;" onclick="deleteHouse('${hostNum}');">
 				    	삭제
 				    	</button>			   			
 				    </div>				   

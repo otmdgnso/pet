@@ -18,5 +18,6 @@ public interface AuctionService {
 	public int insertBid(Map<String, Object> map);
 	public Auction readMaxBid(int auctionNum);
 	public List<Auction> listBid(int auctionNum);
+	public List<Auction> auctionMyList(String userId);
 
 }

@@ -7,6 +7,35 @@
 %>
 
 <script type="text/javascript">
+
+
+$(function(){
+	
+	
+	
+	checkTime();
+	
+});
+
+//경매시간 체크
+function checkTime(){
+	var aucEnd = $("#aucEnd").val();
+	var aucEnd = new Date(aucEnd);
+	var nowTime = new Date();
+	
+	if(aucEnd < nowTime){
+		alert('끝');
+		$("#bidInsertButton").attr("disabled","disabled");
+		return false;
+		
+	}else {
+		alert('진행중');
+		return true;
+	}
+	
+	
+}
+
 function deleteAuction(auctionNum) {
 	if(confirm("경매 게시글을 삭제 하시겠습니까?")) {
 		var url="<%=cp%>/auction/delete?auctionNum="+auctionNum+"&page=${page}";
@@ -16,6 +45,11 @@ function deleteAuction(auctionNum) {
 
 //경매하기 버튼 클릭.
 function checkBid(){
+	
+	if (!checkTime()){
+		return;
+	}
+	
 	var url="<%=cp%>/auction/insertBid"
 	var bidPrice = $("#bidForm").val();
 	var params="&bidPrice="+bidPrice+"&auctionNum=${dto.auctionNum}";
@@ -168,7 +202,7 @@ function checkBid(){
 														</tr>
 														<tr height="40%">
 															<td align="center" width="20%"><label>경매 종료일</label></td>
-															<td align="center" width="80%"><input
+															<td align="center" width="80%"><input id="aucEnd"
 																class="form-control" type="text" name="aucEnd"
 																readonly="readonly" value="${dto.aucEnd}"
 																style="text-align: center;"></td>
