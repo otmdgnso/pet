@@ -331,7 +331,7 @@ function shakeModalMember(msg){
                                         <h3>전문가</h3>
                                             <ul>
                                               <li><a href="<%=cp%>/expert/expert">전문가 이야기</a></li>
-                                              <li><a href="<%=cp%>/qna/qna">전문가에게 묻기</a></li>
+                                              <li><a href="<%=cp%>/qna/list">전문가에게 묻기</a></li>
                                             </ul>
 									</section>
                                     <section class="col col-md-3 destination-img">
