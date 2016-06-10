@@ -330,14 +330,14 @@ function shakeModalMember(msg){
 				<div id="tab-5" style="width: 100%; min-height: 600px;">
 					<div id="ajaxAuctionList"></div>
 				</div>
-
+				<div id="tab-6" style="width: 100%; min-height: 600px;"></div>
 					               </div>
                <!--Close col 12 -->
 
             </div>
          </div>
       </div>
-	</div>
+	
 
    </section>
 

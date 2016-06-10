@@ -61,8 +61,7 @@
 
 	           </c:forEach>  
 	           
-	        </table> 
-	        <input type="hidden" value="${dto.hostNum}">         
+	        </table>      
 		</div>
 	</div>
 	<div class="cbp-vm-switcher cbp-vm-view-list">

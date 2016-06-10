@@ -167,4 +167,7 @@
 	   SELECT COUNT(*) FROM host 
 	   WHERE hostNum=#{memberNum}
 	</select>
+	
+	<!-- 총 별점수 -->
+	
 </mapper>
