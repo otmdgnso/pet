@@ -35,11 +35,11 @@ public class PayController {
 
 	@RequestMapping(value="/pay/reservepay")
 	public ModelAndView list(
-			Pay dto
+			Pay dto,
+			@RequestParam int hostNum,
+			@RequestParam int reservationNum
 			) throws Exception {
-		
-		int hostNum=188;
-		int reservationNum=55;
+				
 		Map<String, Object> map=new HashMap<>();
 		map.put("hostNum", hostNum);
 		map.put("reservationNum", reservationNum);
@@ -54,20 +54,16 @@ public class PayController {
 		ModelAndView mav=new ModelAndView(".pay.reservepay");		
 		mav.addObject("dto",dto);
 		mav.addObject("list",list);
-		System.out.println(dto.getTotalCost());
+		
 		return mav;
 	}
 	
-	@RequestMapping(value="/pay/paycomplete"/*, method=RequestMethod.POST*/)
+	@RequestMapping(value="/pay/paycomplete", method=RequestMethod.POST)
 	public ModelAndView complete(
-			/*Pay dto*/
+			Pay dto,
+			@RequestParam int reservationNum
 			) throws Exception {
-		
-		/*int reservationNum=42;
-		dto.setReservationNum(reservationNum);
-				
-		payservice.insertpay(dto);*/
-		
+		payservice.insertpay(dto);
 		ModelAndView mav=new ModelAndView(".pay.paycomplete");
 		return mav;
 	}	

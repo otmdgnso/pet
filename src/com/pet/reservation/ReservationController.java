@@ -174,17 +174,12 @@ public class ReservationController {
 		//SessionInfo info=(SessionInfo)session.getAttribute("member");;
 		
 		Reservation dto = (Reservation)service.readReservation(reservationNum);
-		int cost = dto.getCost();
-		int pet_su = dto.getPet_su();
-		int tax= (int)((double)cost*(double)pet_su*0.1);
-		int total= tax+cost;
-
-	
+		/*int tax= (int)((double)cost*(double)pet_su*0.1);
+		int total= tax+cost;*/
+		
 		ModelAndView mav=new ModelAndView(".reservation.created");
 		mav.addObject("mode", "update");
 		mav.addObject("dto", dto);
-		mav.addObject("tax", tax);
-		mav.addObject("total", total);
 		return mav;
 	}
 	
@@ -220,14 +215,14 @@ public class ReservationController {
 			HttpSession session
 			,Reservation dto
 			) throws Exception{
-		
+		System.out.println("gdgdgdgdgd");
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		if(info==null) {
 			return new ModelAndView("redirect:/");
 		}
-		
+		System.out.println(dto.getTax()+"Àü");
 		service.updateReservation(dto);
-		
+		System.out.println(dto.getTax()+"ÈÄ");
 		return new ModelAndView("redirect:/member/blog#tab-2");
 	}
 	

@@ -4,9 +4,21 @@ public class Reservation {
 	private int listNum, reservationNum, pet_su, num, hostNum, fees;
 	private String reservationDate, checkIn, checkOut, check_day, accept, acceptDate, pet_type;
 	private String address, userName;
-	private int cost, totalCost;
+	private int cost, totalCost,tax, tax1;
 
 	
+	public int getTax() {
+		return tax;
+	}
+	public void setTax(int tax) {
+		this.tax = tax;
+	}
+	public int getTax1() {
+		return tax1;
+	}
+	public void setTax1(int tax1) {
+		this.tax1 = tax1;
+	}
 	public int getFees() {
 		return fees;
 	}

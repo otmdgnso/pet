@@ -24,7 +24,8 @@
 		data += "&checkOut="+$("#checkout").val();
 		data += "&checkIn="+$("#checkin").val();
 		data += "&pet_type="+$("#pet_type").val();
-
+		data += "&tax="+$("#tax").val();
+		data += "&tax1="+$("#tax1").val();
 		
 		$.ajax({
 			
@@ -357,15 +358,15 @@ $(function(){
                     		</tr>
                     		<tr align="center" height="40%">
                     			<td align="center" width="30%"><label>숙박 추가요금</label></td>
-                     			<td align="center" width="70%"><input class="form-control" type="text" name="tax1" id="tax1" value="${tax1}" style="text-align:center;" readonly="readonly"></td>
+                     			<td align="center" width="70%"><input class="form-control" type="text" name="tax1" id="tax1" value="${dto.tax1}" style="text-align:center;" readonly="readonly"></td>
                     		</tr>
                     		<tr align="center" height="40%">
                     			<td align="center" width="30%"><label>펫 추가요금</label></td>
-                     			<td align="center" width="70%"><input class="form-control" type="text" name="tax" id="tax" value="${tax}" style="text-align:center;" readonly="readonly"></td>
+                     			<td align="center" width="70%"><input class="form-control" type="text" name="tax" id="tax" value="${dto.tax}" style="text-align:center;" readonly="readonly"></td>
                     		</tr>
                     		<tr align="center" height="40%">
                     			<td align="center" width="30%"><label>총합계</label></td>
-                     			<td align="center" width="70%"><input class="form-control" type="text" name="total" id="total" value="${total}" style="text-align:center" readonly="readonly"></td>
+                     			<td align="center" width="70%"><input class="form-control" type="text" name="total" id="total" value="${dto.totalCost}" style="text-align:center" readonly="readonly"></td>
                     		</tr>                    	                                      		           
                     	</table>                                     
                      </div>

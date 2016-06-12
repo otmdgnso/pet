@@ -4,8 +4,8 @@
 <mapper namespace="reservation">
 
 	<insert id="insertReservation" parameterType="com.pet.reservation.Reservation">
-		INSERT INTO reservation(reservationNum, checkIn, checkOut, pet_type, pet_su, num, hostNum, totalCost, fees)
-		VALUES (reservation_seq.NEXTVAL, #{checkIn}, #{checkOut}, #{pet_type}, #{pet_su}, #{num}, #{hostNum}, #{totalCost}, #{fees})	
+		INSERT INTO reservation(reservationNum, checkIn, checkOut, pet_type, pet_su, num, hostNum, totalCost, fees, tax, tax1)
+		VALUES (reservation_seq.NEXTVAL, #{checkIn}, #{checkOut}, #{pet_type}, #{pet_su}, #{num}, #{hostNum}, #{totalCost}, #{fees}, #{tax},#{tax1})	
 	</insert>
 
 	<sql id="where-state">
@@ -64,7 +64,7 @@
 	<!-- 글보기 -->
 	<select id="readReservation" parameterType="Integer" resultType="com.pet.reservation.Reservation">
 		SELECT reservationNum, TO_CHAR(checkIn,'YYYY/MM/DD') checkIn, TO_CHAR(checkOut,'YYYY/MM/DD') checkOut, pet_su, r.num, r.hostNum, pet_type,
-		(checkOut-checkIn) check_day, cost
+		(checkOut-checkIn) check_day, cost, tax, tax1,totalCost
 		 From reservation r JOIN host h ON r.hostNum=h.hostNum
 		WHERE reservationNum=#{reservationNum}
 	</select>
@@ -72,7 +72,8 @@
 	<!-- 수정 -->	
 	<update id="updateReservation" parameterType="com.pet.reservation.Reservation">
 		UPDATE reservation 
-		SET checkIn=#{checkIn, jdbcType=VARCHAR}, checkOut=#{checkOut, jdbcType=VARCHAR}, pet_su=#{pet_su}, pet_type=#{pet_type}, totalCost=#{totalCost}
+		SET checkIn=#{checkIn, jdbcType=VARCHAR}, checkOut=#{checkOut, jdbcType=VARCHAR}, pet_su=#{pet_su}, pet_type=#{pet_type},
+		tax=#{tax}, tax1=#{tax1} ,totalCost=#{totalCost}
 		WHERE reservationNum=#{reservationNum}
 	</update>
 	

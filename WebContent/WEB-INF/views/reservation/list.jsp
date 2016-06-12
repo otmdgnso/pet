@@ -54,11 +54,13 @@
 	              <td align="center" width="15%" style="color: #A6A6A6;"><a href="<%=cp%>/house/houseinfo?hostNum=${dto.hostNum}">${dto.userName}</a></td>	          
 	              <td align="center" width="20%" style="color: #A6A6A6;">${dto.checkIn}~${dto.checkOut}</td>
 	              <c:if test="${dto.accept != 'wait'}">
-	              	<td align="center" width="10%" style="color: #A6A6A6;"><a onclick='deleteReservation(${dto.reservationNum});'>삭제</a></td>
+	              	<td align="center" width="10%" style="color: #A6A6A6;"><a style="cursor: pointer;" onclick='deleteReservation(${dto.reservationNum});'>삭제</a></td>
 	              </c:if>
 	              <c:if test="${dto.accept == 'wait'}">
-	              	<td align="center" width="10%" style="color: #A6A6A6;"><a onclick='updateReservation(${dto.reservationNum});'>변경</a></td>
+	              	<td align="center" width="10%" style="color: #A6A6A6;"><a style="cursor: pointer;" onclick='updateReservation(${dto.reservationNum});'>변경</a></td>
 	              </c:if>
+	              
+	               <td align="center" width="10%" style="color: #A6A6A6;"><a style="cursor: pointer;" onclick='payReservation(${dto.reservationNum},${dto.hostNum});'>결제</a></td>
 	           </tr>
 
 	           </c:forEach>  

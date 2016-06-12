@@ -8,7 +8,7 @@
 <script type="text/javascript">
 function insertPay(){
 	var f=document.reservePay;
-	
+	var params="reservationNum="+${dto.reservationNum};
 	var str;
 	 str = f.name.value;
 	    if(!/^[가-힣]{2,4}$/.test(str)) {
@@ -17,7 +17,7 @@ function insertPay(){
 	        return false;
 	    }
 	
-	f.action="<%=cp%>/pay/paycomplete";
+	f.action="<%=cp%>/pay/paycomplete?"+params;
 	f.submit();
 }
 </script>

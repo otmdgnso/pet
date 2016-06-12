@@ -130,7 +130,13 @@ function deleteReservation(reservationNum) {
 function updateReservation(reservationNum) {
 	var params="reservationNum="+reservationNum;
 	var url="<%=cp%>/reservation/update?"+params; 
-	
+	location.href=url;
+}
+
+function payReservation(reservationNum,hostNum){
+	var params="reservationNum="+reservationNum;
+	params += "&hostNum="+hostNum;
+	var url="<%=cp%>/pay/reservepay?"+params;
 	location.href=url;
 }
 
