@@ -79,87 +79,130 @@
 		f.submit();
 	}
 	
-	$(function(){
+$(function(){	
+	var total=0;
+	var cost=$("#cost").val().trim();
+	var pet_su=0;
+	var tax=0;
+	var tax1=0;
+	
+	$("#checkin").change(function() {
+		var date= $('#checkin').val();
+		var y=date.substring(6,10);
+		var m=date.substring(3,5);
+		var d=date.substring(0,2);
+		var df=y+"/"+m+"/"+d;
+		$('#checkin').val(df);
 		
+		var s="박";
+		
+		var cinArray = $("#checkin").val().trim().split("/");
+		var cinObj =  new Date(cinArray[0], Number(cinArray[1])-1, cinArray[2]); 
+		
+		var coutArray = $("#checkout").val().trim().split("/");
+		var coutObj = new Date(coutArray[0], Number(coutArray[1])-1, coutArray[2]); 
+
+		if(cinArray=="") {
+			$("#period").val("예약 시작일을 입력하세요.");
+			return;
+		}
+		
+		if(coutArray=="") {
+			$("#period").val("예약 종료일을 입력하세요.");
+			return;
+		}
+		
+		var betweenDay = (coutObj.getTime() - cinObj.getTime())/1000/60/60/24;
+
+		/* return $("#period").val(betweenDay+s); */
+		
+	});
+	
+	$("#checkout").change(function() {
+		var date= $('#checkout').val();
+		var y=date.substring(6,10);
+		var m=date.substring(3,5);
+		var d=date.substring(0,2);
+		var df=y+"/"+m+"/"+d;
+		$('#checkout').val(df);
+		
+		var s="박";
+		
+		var cinArray = $("#checkin").val().trim().split("/");
+		var cinObj =  new Date(cinArray[0], Number(cinArray[1])-1, cinArray[2]); 
+		
+		var coutArray = $("#checkout").val().trim().split("/");
+		var coutObj = new Date(coutArray[0], Number(coutArray[1])-1, coutArray[2]); 
+
+		if(cinArray=="") {
+			$("#period").val("예약 시작일을 입력하세요.");
+			return;
+		}
+		
+		if(coutArray=="") {
+			$("#period").val("예약 종료일을 입력하세요.");
+			return;
+		}
+		
+		
+		var betweenDay = (coutObj.getTime() - cinObj.getTime())/1000/60/60/24;			
+		
+		if(betweenDay==0 || betweenDay==1){
+			tax1=cost*0;
+		}else if(betweenDay==2){
+			tax1=cost*1;
+		}else if(betweenDay==3){
+			tax1=cost*2;
+		}else if(betweenDay==4){
+			tax1=cost*3;
+		}else if(betweenDay==5){
+			tax1=cost*4;
+		}else if(betweenDay==6){
+			tax1=cost*5;
+		}else if(betweenDay==7){
+			tax1=cost*6;
+		}else if(betweenDay==8){
+			tax1=cost*7;
+		}else if(betweenDay==9){
+			tax1=cost*8;
+		}
+		$("#tax1").val(tax1);
+		total= tax+tax1+cost*1;
+		var fees=tax+tax1;
+		$("#fees").val(fees);
+		$("#total").val(total);
+		return $("#period").val(betweenDay+s);
+		
+	});
+	
 		$("#pet_su").change(function() {
-			var cost = $("#cost").val().trim();
-			var pet_su = $("#pet_su").val().trim();
-			var tax= cost*pet_su*0.1;
-			var total= tax+cost*1;
+		    pet_su = $("#pet_su").val().trim();
+		    if(pet_su==1){
+		    	tax=0;
+			}else if(pet_su==2){
+				tax=5000;
+			}else if(pet_su==3){
+				tax=10000;
+			}else if(pet_su==4){
+				tax=15000;
+			}else if(pet_su==5){
+				tax=20000;
+			}
+			
+			/* var total= tax+tax1+cost*1; */
 			//return $("#tax").val(tax), $("#total").val(total), $("#totalCost").val(total);
 			
 			$("#tax").val(tax);
+			/* $("#total").val(total);
+			$("#totalCost").val(total); */
+			total= tax+tax1+cost*1;
+			var fees=tax+tax1;
+			$("#fees").val(fees);
 			$("#total").val(total);
 			$("#totalCost").val(total);
-			
 			return;
 			
-		});
-		
-		$("#checkin").change(function() {
-			var date= $('#checkin').val();
-			var y=date.substring(6,10);
-			var m=date.substring(3,5);
-			var d=date.substring(0,2);
-			var df=y+"/"+m+"/"+d;
-			$('#checkin').val(df);
-			
-			var s="박";
-			
-			var cinArray = $("#checkin").val().trim().split("/");
-			var cinObj =  new Date(cinArray[0], Number(cinArray[1])-1, cinArray[2]); 
-			
-			var coutArray = $("#checkout").val().trim().split("/");
-			var coutObj = new Date(coutArray[0], Number(coutArray[1])-1, coutArray[2]); 
-
-			if(cinArray=="") {
-				$("#period").val("예약 시작일을 입력하세요.");
-				return;
-			}
-			
-			if(coutArray=="") {
-				$("#period").val("예약 종료일을 입력하세요.");
-				return;
-			}
-			
-			var betweenDay = (coutObj.getTime() - cinObj.getTime())/1000/60/60/24;
-
-			return $("#period").val(betweenDay+s);
-			
-		});
-		
-		$("#checkout").change(function() {
-			var date= $('#checkout').val();
-			var y=date.substring(6,10);
-			var m=date.substring(3,5);
-			var d=date.substring(0,2);
-			var df=y+"/"+m+"/"+d;
-			$('#checkout').val(df);
-			
-			var s="박";
-			
-			var cinArray = $("#checkin").val().trim().split("/");
-			var cinObj =  new Date(cinArray[0], Number(cinArray[1])-1, cinArray[2]); 
-			
-			var coutArray = $("#checkout").val().trim().split("/");
-			var coutObj = new Date(coutArray[0], Number(coutArray[1])-1, coutArray[2]); 
-
-			if(cinArray=="") {
-				$("#period").val("예약 시작일을 입력하세요.");
-				return;
-			}
-			
-			if(coutArray=="") {
-				$("#period").val("예약 종료일을 입력하세요.");
-				return;
-			}
-			
-			
-			var betweenDay = (coutObj.getTime() - cinObj.getTime())/1000/60/60/24;
-
-			return $("#period").val(betweenDay+s);
-			
-		});
+		});		
 	});
 </script>
 
@@ -196,7 +239,12 @@
 					
 					<!-- 날짜 -->
 					<div class="col-sm-4 step-check">
-						<h3>날짜</h3>
+					
+						<div class="form-group">
+							<div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="2박부터 추가요금 발생">
+							<span style="font-size:15pt; color: orange;">날짜</span> <i class="fa fa-info-circle fa-lg"></i>
+							</div>
+						</div>
 					<div class="col-sm-6 cc-in" style="padding-left: 0">
 					<div class="form-group">
 						<label for="checkin">예약 시작일</label>
@@ -240,7 +288,13 @@
 				<!-- 펫 종류 -->
 				<div class="col-sm-4 step-check">				
 					<div class="col-sm-4 step-who" style="padding-left: 0">
-						<h3>펫 정보</h3>											
+						
+						<div class="form-group">
+							<div class="popover-icon" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="2마리 이상부터 마리당 5천원씩 추가요금이 발생합니다.">
+							<span style="font-size:15pt; color: orange;">펫 정보</span> <i class="fa fa-info-circle fa-lg"></i>
+							</div>
+						</div>
+										
 					<div class="col-sm-6 cc-in" style="padding-left: 0">			
 					<div class="form-group">
 						<label for="checkin">펫 종류</label>
@@ -302,17 +356,21 @@
                      			<td align="center" width="70%"><input class="form-control" type="text" name="cost" id="cost" value="${dto.cost}" style="text-align:center" readonly="readonly"></td>
                     		</tr>
                     		<tr align="center" height="40%">
-                    			<td align="center" width="30%"><label>서비스 수수료</label></td>
+                    			<td align="center" width="30%"><label>숙박 추가요금</label></td>
+                     			<td align="center" width="70%"><input class="form-control" type="text" name="tax1" id="tax1" value="${tax1}" style="text-align:center;" readonly="readonly"></td>
+                    		</tr>
+                    		<tr align="center" height="40%">
+                    			<td align="center" width="30%"><label>펫 추가요금</label></td>
                      			<td align="center" width="70%"><input class="form-control" type="text" name="tax" id="tax" value="${tax}" style="text-align:center;" readonly="readonly"></td>
                     		</tr>
                     		<tr align="center" height="40%">
                     			<td align="center" width="30%"><label>총합계</label></td>
                      			<td align="center" width="70%"><input class="form-control" type="text" name="total" id="total" value="${total}" style="text-align:center" readonly="readonly"></td>
-                    		</tr>                                       		           
+                    		</tr>                    	                                      		           
                     	</table>                                     
                      </div>
                      </div>
-                     
+                 <input type="hidden" name="fees" id="fees" value="${dto.fees}">    
 				<input type="hidden" name="num" id="num" value="${dto.num}">
                 <input type="hidden" name="hostNum" id="hostNum" value="${dto.hostNum}">
                 <input type="hidden" name="totalCost" id="totalCost" value="${dto.totalCost}">

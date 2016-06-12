@@ -82,7 +82,7 @@ function insertPay(){
                      			<td align="center" width="50%"><label>${dto.cost}</label></td>
                     		</tr>
                     		<tr>
-                    			<td align="center" width="50%"><label>서비스 수수료</label></td>
+                    			<td align="center" width="50%"><label>추가요금</label></td>
                      			<td align="center" width="50%"><label>${dto.fees}</label></td>
                     		</tr>                                       		           
                     	</table>                                     
@@ -92,7 +92,7 @@ function insertPay(){
                     	<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
                     		<tr>
 								<td align="center" width="50%"><h3 style="color: black">합계</h3></td>
-								<td align="center" width="50%"><h3 style="color: black">${dto.totalcost}</h3></td>
+								<td align="center" width="50%"><h3 style="color: black">${dto.totalCost}</h3></td>
 							</tr>
 						</table>
 	</div>
@@ -139,7 +139,7 @@ function insertPay(){
     <!-- 안내 -->  
     <div class="separator" style="width:70%"></div>
     <div align="center">
-     <input type="hidden" name="price" value="${dto.totalcost}"> 
+     <input type="hidden" name="price" value="${dto.totalCost}"> 
     	<button type="button" class="btn btn-primary btn-block" style="width: 30%" onclick="insertPay();">결제하기</button>
     	<label>결제하기를 클릭하시면 예약이 확정되고 회원님의 결제 수단으로 요금이 부과됩니다.</label>
     </div>	  

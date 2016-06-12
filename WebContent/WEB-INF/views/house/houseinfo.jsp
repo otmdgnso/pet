@@ -183,8 +183,8 @@ function deleteHouse(hostNum){
 	<c:if test="${sessionScope.member.hostNum!=sessionScope.member.memberNum}">		
 				<section class="ac-container">
                 <div style="width: 100%; height: 40px;"><button type="button" class="btn btn-danger" onclick="checkCreated2()" style="width: 100%; height: 50px;"><i class="fa fa-bolt" aria-hidden="true"></i> 	예약하기</button></div>
-                </section>
-                
+                </section>															
+                																				<%-- javascript:location.href='<%=cp%>/reservation/createdform' --%>
                 <section class="ac-container">
 				    <div style="width: 100%; height: 40px;">
 				    	<button type="button" class="btn btn-default" style="width: 100%; height: 50px;"><i class="fa fa-heart-o" aria-hidden="true"></i> 위시리스트에 담기</button>				   			

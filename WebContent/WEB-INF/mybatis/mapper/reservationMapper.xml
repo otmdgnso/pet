@@ -4,8 +4,8 @@
 <mapper namespace="reservation">
 
 	<insert id="insertReservation" parameterType="com.pet.reservation.Reservation">
-		INSERT INTO reservation(reservationNum, checkIn, checkOut, pet_type, pet_su, num, hostNum, totalCost)
-		VALUES (reservation_seq.NEXTVAL, #{checkIn}, #{checkOut}, #{pet_type}, #{pet_su}, #{num}, #{hostNum}, #{totalCost})	
+		INSERT INTO reservation(reservationNum, checkIn, checkOut, pet_type, pet_su, num, hostNum, totalCost, fees)
+		VALUES (reservation_seq.NEXTVAL, #{checkIn}, #{checkOut}, #{pet_type}, #{pet_su}, #{num}, #{hostNum}, #{totalCost}, #{fees})	
 	</insert>
 
 	<sql id="where-state">

@@ -39,7 +39,7 @@ public class PayController {
 			) throws Exception {
 		
 		int hostNum=188;
-		int reservationNum=42;
+		int reservationNum=55;
 		Map<String, Object> map=new HashMap<>();
 		map.put("hostNum", hostNum);
 		map.put("reservationNum", reservationNum);
@@ -54,6 +54,7 @@ public class PayController {
 		ModelAndView mav=new ModelAndView(".pay.reservepay");		
 		mav.addObject("dto",dto);
 		mav.addObject("list",list);
+		System.out.println(dto.getTotalCost());
 		return mav;
 	}
 	

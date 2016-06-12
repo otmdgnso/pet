@@ -95,13 +95,32 @@ public class ReservationController {
 		return mav;
 	}
 	
+/*	@RequestMapping(value="/reservation/createdform",method=RequestMethod.GET)
+	public ModelAndView created(
+			HttpSession session
+			,Reservation dto
+			) throws Exception{
+		
+		SessionInfo info = (SessionInfo) session.getAttribute("member");
+		dto.setNum(info.getMemberNum());
+		dto.setHostNum(dto.getHostNum());
+		
+		ModelAndView mav=new ModelAndView(".reservation.created");
+		mav.addObject("mode", "created");
+		mav.addObject("dto", dto);
+	
+		return mav;
+	}*/
+	
 	@RequestMapping(value="/reservation/createdform", method=RequestMethod.POST)
 	public ModelAndView createdForm(
 			HttpSession session,
 			Reservation dto
 			) throws Exception {		
 		
-		int tax=(int)((double)dto.getCost()*0.1);
+		/*int tax=(int)((double)dto.getCost()*0.1);*/
+		int tax=0;
+		int tax1=0;
 		int total=(int)(tax+(double)dto.getCost());
 		
 		SessionInfo info = (SessionInfo) session.getAttribute("member");
@@ -113,6 +132,7 @@ public class ReservationController {
 		mav.addObject("mode", "created");
 		mav.addObject("dto", dto);
 		mav.addObject("tax", tax);
+		mav.addObject("tax1", tax1);
 		mav.addObject("total", total);
 		
 		return mav;
@@ -139,6 +159,8 @@ public class ReservationController {
 		mto.setContent(msg);
 		
 		messageService.insertMessage(mto);
+		
+		System.out.println(dto.getFees());
 
 		return "redirect:/house/list";
 	}

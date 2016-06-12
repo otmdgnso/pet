@@ -1,7 +1,7 @@
 package com.pet.pay;
 
 public class Pay {
-	private int completeNum, reservationNum, price, cost,totalcost,fees;
+	private int completeNum, reservationNum, price, cost,totalCost,fees;
 	private String means, created, subject,userName,userId ,address,checkIn,checkOut, name;		
 	private String saveFilename;	
 	
@@ -24,11 +24,13 @@ public class Pay {
 	public void setFees(int fees) {
 		this.fees = fees;
 	}
-	public int getTotalcost() {
-		return totalcost;
+
+
+	public int getTotalCost() {
+		return totalCost;
 	}
-	public void setTotalcost(int totalcost) {
-		this.totalcost = totalcost;
+	public void setTotalCost(int totalCost) {
+		this.totalCost = totalCost;
 	}
 	public String getCheckIn() {
 		return checkIn;
