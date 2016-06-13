@@ -66,7 +66,16 @@ public class PayController {
 		payservice.insertpay(dto);
 		ModelAndView mav=new ModelAndView(".pay.paycomplete");
 		return mav;
-	}	
+	}
+	
+	@RequestMapping(value="/pay/paycompleteAdopt")
+	public ModelAndView paycompleteAdopt(
+			Adopt dto
+			) throws Exception {
+		adoptservice.payCompleteAdopt(dto);
+		ModelAndView mav=new ModelAndView(".pay.paycomplete");
+		return mav;
+	}
 	
 	@RequestMapping(value="/pay/adoptpay")
 	public ModelAndView listAdopt(HttpSession session,

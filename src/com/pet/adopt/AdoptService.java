@@ -26,4 +26,6 @@ public interface AdoptService {
 	public int insertPreSaleRequest(Adopt dto);
 	public List<Adopt> listPreSaleRequest(int num);
 	public int requestDelete(int requestNum);
+	// 분양 결제
+	public int payCompleteAdopt(Adopt dto);
 }

@@ -264,5 +264,17 @@ public class AdoptServiceImpl implements AdoptService {
 		}
 		return result;
 	}
+	
+	// 분양 결제
+	@Override
+	public int payCompleteAdopt(Adopt dto) {
+		int result=0;
+		try {
+			result=dao.insertData("adopt.payCompleteAdopt", dto);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
 
 }

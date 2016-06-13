@@ -199,5 +199,10 @@
 	DELETE FROM preSaleRequest
 	WHERE requestNum=#{requestNum}
 	</delete>
-
+	
+	<!-- 분양 결제완료 -->
+	<insert id="payCompleteAdopt" parameterType="com.pet.adopt.Adopt">
+	INSERT INTO preSaleComplete(completeNum,price,means,name,checked,preSaleNum)
+	VALUES (preSaleComplete_seq.NEXTVAL,#{price},#{means},#{name},'complete',#{preSaleNum})
+	</insert>
 </mapper>

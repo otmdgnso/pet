@@ -6,6 +6,30 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Adopt {
 	private int listNum, preSaleNum,month,price,deposit,num, hitCount, requestNum;
+	private String subject, content, created,species, type, gender;
+	private String lineage, vaccin, saveFilename;
+	private int photoNum, replyCount, completeNum;
+	private String userName, means, name;
+	private String userId, checked;
+	
+	public int getCompleteNum() {
+		return completeNum;
+	}
+	public void setCompleteNum(int completeNum) {
+		this.completeNum = completeNum;
+	}
+	public String getMeans() {
+		return means;
+	}
+	public void setMeans(String means) {
+		this.means = means;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public int getRequestNum() {
 		return requestNum;
 	}
@@ -18,11 +42,6 @@ public class Adopt {
 	public void setChecked(String checked) {
 		this.checked = checked;
 	}
-	private String subject, content, created,species, type, gender;
-	private String lineage, vaccin, saveFilename;
-	private int photoNum, replyCount;
-	private String userName;
-	private String userId, checked;
 	
 	public int getReplyCount() {
 		return replyCount;
