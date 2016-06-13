@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.pet.common.MyUtil;
 import com.pet.member.SessionInfo;
+import com.pet.message.Message;
 import com.pet.message.MessageService;
 
 import net.sf.json.JSONObject;
@@ -410,5 +411,43 @@ public class AdoptController {
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter out=resp.getWriter();
 		out.print(job.toString());
+	}
+	
+	//분양 신청
+	@RequestMapping(value="/adopt/adoptRequest")
+	@ResponseBody
+	public void adoptRequest(
+			Message mto,
+			Adopt dto,
+			@RequestParam(value="preSaleNum") int preSaleNum,
+			@RequestParam(value="page",defaultValue="1") int page,
+			HttpSession session
+			) throws Exception {
+		SessionInfo info = (SessionInfo) session.getAttribute("member");
+		
+		dto.setPreSaleNum(preSaleNum);
+		dto.setNum(info.getMemberNum());
+		service.insertPreSaleRequest(dto);
+		
+		mto.setSendUserId("시스템_분양");
+		mto.setReceiveUserId(info.getUserId());
+		mto.setSubject("분양을 신청하셧습니다.");
+		String msg="<a href=http://localhost:9090/pet/adopt/article"+"?page="+page+"&preSaleNum="+preSaleNum+">신청한 글보기</a>";
+		msg+="<br><a href=http://localhost:9090/pet/pay/adoptpay?preSaleNum="+preSaleNum +">결제하기</a>";
+		mto.setContent(msg);
+		
+		messageService.insertMessage(mto);
+	}
+	
+	@RequestMapping(value="/adopt/requestDelete")
+	@ResponseBody
+	public Map<String, Object> requestDelete (
+			@RequestParam(value="requestNum") int requestNum
+			) throws Exception {
+		// 분양 신청 삭제
+		service.requestDelete(requestNum);
+		
+		Map<String, Object> map=new HashMap<>();
+		return map;
 	}
 }

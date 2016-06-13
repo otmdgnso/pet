@@ -5,7 +5,13 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Adopt {
-	private int listNum, preSaleNum,month,price,deposit,num, hitCount;
+	private int listNum, preSaleNum,month,price,deposit,num, hitCount, requestNum;
+	public int getRequestNum() {
+		return requestNum;
+	}
+	public void setRequestNum(int requestNum) {
+		this.requestNum = requestNum;
+	}
 	public String getChecked() {
 		return checked;
 	}

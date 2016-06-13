@@ -254,4 +254,15 @@ public class AdoptServiceImpl implements AdoptService {
 		return list;
 	}
 
+	@Override
+	public int requestDelete(int requestNum) {
+		int result=0;
+		try {
+			result=dao.deleteData("adopt.requestDelete", requestNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
 }

@@ -181,8 +181,11 @@
   	VALUES(preSaleRequest_seq.NEXTVAL, #{preSaleNum}, #{num})
 	</insert>
 	
+	<!-- 분양 신청 목록 -->
 	<select id="listPreSaleRequest" parameterType="Integer" resultType="com.pet.adopt.Adopt">
-	SELECT requestNum, pr.preSaleNum, pr.created, pr.num, p.species, p.type, p.subject, m.userId, pc.checked
+	SELECT requestNum, pr.preSaleNum,
+	TO_CHAR(pr.created,'YYYY-MM-DD')created, 
+	pr.num, p.species, p.type, p.subject, m.userId, pc.checked
 	FROM preSaleRequest pr
 	JOIN preSale p ON pr.preSaleNum= p.preSaleNum
 	JOIN member m ON p.num=m.num
@@ -191,7 +194,10 @@
 	ORDER BY requestNum DESC
 	</select>
 	
-	
-	
+	<!-- 분양 신청 삭제 -->
+	<delete id="requestDelete" parameterType="Integer">
+	DELETE FROM preSaleRequest
+	WHERE requestNum=#{requestNum}
+	</delete>
 
 </mapper>

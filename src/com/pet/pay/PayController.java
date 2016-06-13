@@ -70,26 +70,8 @@ public class PayController {
 	
 	@RequestMapping(value="/pay/adoptpay")
 	public ModelAndView listAdopt(HttpSession session,
-			Message mto,
-			Adopt ato,
-			@RequestParam(value="preSaleNum") int preSaleNum,
-			@RequestParam(value="page",defaultValue="1") int page
+			@RequestParam(value="preSaleNum") int preSaleNum
 			) throws Exception {
-		SessionInfo info = (SessionInfo) session.getAttribute("member");
-		
-		ato.setPreSaleNum(preSaleNum);
-		ato.setNum(info.getMemberNum());
-		adoptservice.insertPreSaleRequest(ato);
-		
-		mto.setSendUserId("시스템_분양");
-		mto.setReceiveUserId(info.getUserId());
-		mto.setSubject("분양을 신청하셧습니다.");
-		String msg="<a href=http://localhost:9090/pet/adopt/article"+"?page="+page+"&preSaleNum="+preSaleNum+">신청한 글보기</a>";
-		msg+="<br><a href=http://localhost:9090/pet/pay/adoptpay?preSaleNum="+preSaleNum +">결제하기</a>";
-		mto.setContent(msg);
-		
-		messageservice.insertMessage(mto);
-		
 		
 		Adopt dto = adoptservice.readPreSale(preSaleNum);
 		

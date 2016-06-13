@@ -25,4 +25,5 @@ public interface AdoptService {
 	// Ω≈√ª
 	public int insertPreSaleRequest(Adopt dto);
 	public List<Adopt> listPreSaleRequest(int num);
+	public int requestDelete(int requestNum);
 }

@@ -7,9 +7,22 @@
 %>
 
 <script type="text/javascript">
-$(function(){
+function requestDelete(requestNum) {
+	if (confirm("분양 신청을 취소하시겠습니까?")) {
+	var params="requestNum="+requestNum
 	
-})
+	$.ajax({
+		type:"post"
+		,url:"<%=cp%>/adopt/requestDelete"
+		,data:params
+		,dataType:"json"
+		,success:function(data) {
+			tabContent(6);
+		}
+		
+	});
+	}
+}
 
 </script>
 
@@ -67,6 +80,8 @@ $(function(){
 	              <td align="center" width="20%" style="color: #A6A6A6;"><a href="<%=cp%>/adopt/article?page=&preSaleNum=${dto.preSaleNum}">${dto.subject}</a></td>
 	              <td align="center" width="15%" style="color: #A6A6A6;">${dto.userId}</td>	          
 	              <td align="center" width="20%" style="color: #A6A6A6;">${dto.created}</td>
+	              <td align="center" width="5%" style="color: #A6A6A6;"><a href="<%=cp%>/pay/adoptpay?preSaleNum=${dto.preSaleNum}">결제</a></td>
+	              <td align="center" width="5%" style="color: #A6A6A6;"><a href="javascript:requestDelete(${dto.requestNum});">취소</a></td>
 	           </tr>
 
 	           </c:forEach>  

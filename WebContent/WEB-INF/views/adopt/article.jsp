@@ -107,10 +107,21 @@ function deleteReply(replyNum, page, userId) {
 
 function requestAdopt() {
 	if(confirm("분양 신청을 하시겠습니까?")) {
-		var f=document.boardForm;	
 		var params="page=${page}&preSaleNum=${dto.preSaleNum}";
-		var url="<%=cp%>/pay/adoptpay?"+params;
 		
+		$.ajax({
+			type:"post"
+			,url:"<%=cp%>/adopt/adoptRequest"
+			,data:params
+			,dataType:"json"
+			,success:function(data) {
+				
+			}
+			
+		});
+		
+		var f=document.boardForm;	
+		var url="<%=cp%>/member/blog#tab-6"
 		f.action=url;
 		f.submit();
 	}
