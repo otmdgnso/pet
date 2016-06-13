@@ -65,8 +65,9 @@ function updateReserve(reservationNum,hostNum){
 	              <td align="center" width="10%"><label>신청 날짜</label></td>              
 	              <td align="center" width="10%"><label>총 금액</label></td>
 	              <td align="center" width="20%"><label>예약 기간</label></td>     
+	              <td align="center" width="10%"><label>수락 여부</label></td>  
 	              <td align="center" width="10%"><label>결제 상태</label></td>              
-	              <td align="center" width="10%"></td>
+	             
 	           </tr>
 	       <c:forEach var="dto" items="${list}" >
 	           <tr align="center" height="50px">
@@ -77,16 +78,19 @@ function updateReserve(reservationNum,hostNum){
 	              <td align="center" width="10%" style="color: #A6A6A6;">${dto.reservationDate}</td>	   
 	              <td align="center" width="10%" style="color: #A6A6A6;">${dto.totalCost}</td>	          
 	              <td align="center" width="20%" style="color: #A6A6A6;">${dto.checkIn}~${dto.checkOut}</td>
+	        <c:if test="${dto.accept=='accept'}">      
+	              <td align="center" width="10%" style="color: #A6A6A6;">수락 완료</td>
+	        </c:if>
+	      <c:if test="${dto.accept=='wait'}">
+	      	      <td align="center" width="10%" style="color: #A6A6A6;"><a style="cursor: pointer;" onclick="updateReserve(${dto.reservationNum},${dto.hostNum});">수락</a> | 
+	              <a style="cursor: pointer;" onclick="deleteReserve(${dto.reservationNum},${dto.hostNum});">거절</a></td>
+	      </c:if>  
 	        <c:if test="${dto.completeNum==0}">  
 	               <td align="center" width="10%" style="color: #A6A6A6;">입금 전</td>
 	        </c:if>
 	        <c:if test="${dto.completeNum!=0}">  
 	               <td align="center" width="10%" style="color: #A6A6A6;">입금 완료</td>
 	        </c:if>
-	      <c:if test="${dto.accept=='wait'}">
-	      	      <td align="center" width="10%" style="color: #A6A6A6;"><a style="cursor: pointer;" onclick="updateReserve(${dto.reservationNum},${dto.hostNum});">수락</a> | 
-	              <a style="cursor: pointer;" onclick="deleteReserve(${dto.reservationNum},${dto.hostNum});">거절</a></td>
-	      </c:if>  
 	           </tr>  
 	           																	
 	       </c:forEach>          

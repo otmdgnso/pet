@@ -197,7 +197,7 @@ public class HouseController {
 			@RequestParam(value="page", defaultValue="1") int current_page
 			) throws Exception{	
 		String cp = req.getContextPath();
-		int numPerPage=2;
+		int numPerPage=7;
 		int total_page=0;
 		
 		Map<String, Object> map=new HashMap<>();

@@ -211,14 +211,14 @@ function deleteHouse(hostNum){
 				    </div>	
 				</section>
 				<section class="ac-container">
-				    <div style="width: 100%; height: 40px; float: left; padding-top: 20px;">
+				    <div style="width: 100%; height: 40px; padding-top: 50px;">
 				    	<button type="button" class="btn btn-default" style="width: 100%; height: 50px;" onclick="javascript:location.href='<%=cp%>/house/house_reservation?hostNum=${dto.hostNum}'">
 				    	예약 관리
 				    	</button>					   			
 				    </div>				   
 			    </section>
 			    <section class="ac-container">
-				    <div style="width: 100%; height: 40px; float: left; padding-top: 40px;">
+				    <div style="width: 100%; height: 40px; padding-top: 30px;">
 				    	<button type="button" class="btn btn-default" style="width: 100%; height: 50px;" onclick="javascript:location.href='<%=cp%>/sch/sch'">
 				    	일정 관리
 				    	</button>					   			

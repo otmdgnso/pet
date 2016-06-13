@@ -14,8 +14,8 @@
 	</select>
 	
 	<insert id="insertpay" parameterType="com.pet.pay.Pay">
-		INSERT INTO reserComplete (completeNum, reservationNum, price, means, name)
-			VALUES(reserComplete_seq.NEXTVAL, #{reservationNum},#{price},#{means},#{name})
+		INSERT INTO reserComplete (completeNum, reservationNum, price, means, name, checked)
+			VALUES(reserComplete_seq.NEXTVAL, #{reservationNum},#{price},#{means},#{name},'complete')
 	</insert>
 	
 	<delete id="deletePay" parameterType="Integer">

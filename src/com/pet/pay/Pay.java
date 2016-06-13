@@ -3,9 +3,15 @@ package com.pet.pay;
 public class Pay {
 	private int completeNum, reservationNum, price, cost,totalCost,fees,pet_su, hostNum,listNum;
 	private String means, created, subject,userName,userId ,address,checkIn,checkOut, name;		
-	private String saveFilename,pet_type,accept,reservationDate;	
+	private String saveFilename,pet_type,accept,reservationDate,checked;	
 	
 	
+	public String getChecked() {
+		return checked;
+	}
+	public void setChecked(String checked) {
+		this.checked = checked;
+	}
 	public String getReservationDate() {
 		return reservationDate;
 	}
