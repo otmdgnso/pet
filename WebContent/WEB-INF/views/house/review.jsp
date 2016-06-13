@@ -97,7 +97,7 @@ function mark(star){
 </script>
 
 <!-- 시작 -->
-<span style="color: #3EA9CD; font-weight: bold; font-size: 20px;">후기 3개 </span>
+<span style="color: #3EA9CD; font-weight: bold; font-size: 20px;">후기 ${countReview}개  ${avgScore}점</span>
 	<img src="<%=cp%>/res/image/staryellow.png" id="star_12" width="20px">
 	<img src="<%=cp%>/res/image/staryellow.png" id="star_22" width="20px">
 	<img src="<%=cp%>/res/image/staryellow.png" id="star_32"  width="20px">

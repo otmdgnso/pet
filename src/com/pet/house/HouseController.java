@@ -319,6 +319,8 @@ public class HouseController {
 		
 		dataCount=service.reviewDataCount(map);
 		
+		int countReview=0;
+		countReview=service.countReview(hostNum);
 		
 		total_page=myUtil.pageCount(numPerPage, dataCount);
 		if(current_page>total_page)
@@ -330,12 +332,15 @@ public class HouseController {
 		map.put("start", start);
 		map.put("end", end);
 		map.put("hostNum", hostNum);
-		
+	
 		List<Review> list=service.listReview(map);		
 		
 		map.put("hostNum", hostNum);
 		map.put("num", info.getMemberNum());
-		vo=service.readReview(map);				
+		vo=service.readReview(map);		
+		
+		float avgScore=0;
+		avgScore=service.avgScore(hostNum);
 		
 		ModelAndView mav=new ModelAndView("/house/review");
 		mav.addObject("listReview", list);
@@ -345,6 +350,8 @@ public class HouseController {
 		mav.addObject("paging", myUtil.paging(current_page, total_page));		
 		mav.addObject("dto",dto);
 		mav.addObject("vo",vo);
+		mav.addObject("countReview",countReview);
+		mav.addObject("avgScore",avgScore);
 		return mav;
 	}
 

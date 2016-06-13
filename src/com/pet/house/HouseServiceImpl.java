@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.pet.adopt.Adopt;
 import com.pet.common.FileManager;
 import com.pet.common.dao.CommonDAO;
 
@@ -289,6 +288,28 @@ public class HouseServiceImpl implements HouseService{
 			System.out.println(e.toString());
 		}
 		return st;
+	}
+
+	@Override
+	public int countReview(int hostNum) {
+		int result=0;
+		try {
+			result=dao.getIntValue("house.countReview",hostNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	@Override
+	public float avgScore(int hostNum) {
+		float result=0;
+		try {
+			result=dao.getIntValue("house.avgScore", hostNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
 	}
 
 

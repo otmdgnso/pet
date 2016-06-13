@@ -33,4 +33,9 @@ public interface HouseService {
 	
 	//´ñ±Û ±Ûº¸±â
 	public Review readReview(Map<String, Object> map);
+	
+	//´ñ±Û °¹¼ö
+	public int countReview(int hostNum);
+	//´ñ±Û ÆòÁ¡
+	public float avgScore(int hostNum);
 }

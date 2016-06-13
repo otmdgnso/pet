@@ -168,6 +168,17 @@
 	   WHERE hostNum=#{memberNum}
 	</select>
 	
+	<!-- 댓글 갯수 -->
+	<select id="countReview" parameterType="Integer" resultType="Integer">
+		select NVL(count(*),0) from hostReview 
+		where hostNum=#{hostNum}
+	</select>
+	
+	<!-- 댓글 평점 -->
+	<select id="avgScore" parameterType="Integer" resultType="Integer">
+	 select SUM(score)/NVL(count(*),0) 
+	 from hostReview WHERE hostNum=#{hostNum}
+	</select>
 	<!-- 총 별점수 -->
 	
 </mapper>
