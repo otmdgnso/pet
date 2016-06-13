@@ -1,11 +1,23 @@
 package com.pet.pay;
 
 public class Pay {
-	private int completeNum, reservationNum, price, cost,totalCost,fees,pet_su, hostNum;
+	private int completeNum, reservationNum, price, cost,totalCost,fees,pet_su, hostNum,listNum;
 	private String means, created, subject,userName,userId ,address,checkIn,checkOut, name;		
-	private String saveFilename,pet_type,accept;	
+	private String saveFilename,pet_type,accept,reservationDate;	
 	
 	
+	public String getReservationDate() {
+		return reservationDate;
+	}
+	public void setReservationDate(String reservationDate) {
+		this.reservationDate = reservationDate;
+	}
+	public int getListNum() {
+		return listNum;
+	}
+	public void setListNum(int listNum) {
+		this.listNum = listNum;
+	}
 	public int getHostNum() {
 		return hostNum;
 	}

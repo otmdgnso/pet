@@ -7,8 +7,8 @@
 %>
 
 <script type="text/javascript">
-function deleteReserve(reservationNum){
-	var url="<%=cp%>/house/deleteReserve?reservationNum="+reservationNum;
+function deleteReserve(reservationNum,hostNum){
+	var url="<%=cp%>/house/deleteReserve?reservationNum="+reservationNum+"&hostNum="+hostNum; 
 	
 	if(confirm("거절 하시겠습니까?")){
 		location.href=url;
@@ -53,7 +53,7 @@ function updateReserve(reservationNum,hostNum){
 			
 	<div class="cbp-vm-switcher cbp-vm-view-list">
 	<div class="separator" style="width:100%;"></div>       
-		<h3>예약 받은 리스트  ${count}건</h3>
+		<h3>예약 받은 리스트  ${dataCount}건</h3>
 	<div class="separator" style="width:100%"></div> 
 		<div class="form-group" style="margin:0 auto; width:100%;" align="center">
 			<table style="width: 80%; margin: 0px auto; border-spacing: 0px;">
@@ -61,22 +61,31 @@ function updateReserve(reservationNum,hostNum){
 	           	  <td align="center" width="5%"><label>번호</label></td>
 	              <td align="center" width="10%"><label>신청자</label></td>
 	              <td align="center" width="10%"><label>종류</label></td>
-	              <td align="center" width="10%"><label>신청 수</label></td>	              
+	              <td align="center" width="10%"><label>신청 수</label></td>	
+	              <td align="center" width="10%"><label>신청 날짜</label></td>              
 	              <td align="center" width="10%"><label>총 금액</label></td>
-	              <td align="center" width="20%"><label>날짜</label></td>              
+	              <td align="center" width="20%"><label>예약 기간</label></td>     
+	              <td align="center" width="10%"><label>결제 상태</label></td>              
 	              <td align="center" width="10%"></td>
 	           </tr>
-	       <c:forEach var="dto" items="${list}" varStatus="status">
+	       <c:forEach var="dto" items="${list}" >
 	           <tr align="center" height="50px">
-	           	  <td align="center" width="5%" style="color: #A6A6A6;">${status.count}</td>
+	           	  <td align="center" width="5%" style="color: #A6A6A6;">${dto.listNum}</td>
 	              <td align="center" width="10%" style="color: #A6A6A6;">${dto.userName}</td>
 	              <td align="center" width="10%" style="color: #A6A6A6;">${dto.pet_type}</td>
 	              <td align="center" width="10%" style="color: #A6A6A6;">${dto.pet_su}</td>	
+	              <td align="center" width="10%" style="color: #A6A6A6;">${dto.reservationDate}</td>	   
 	              <td align="center" width="10%" style="color: #A6A6A6;">${dto.totalCost}</td>	          
 	              <td align="center" width="20%" style="color: #A6A6A6;">${dto.checkIn}~${dto.checkOut}</td>
+	        <c:if test="${dto.completeNum==0}">  
+	               <td align="center" width="10%" style="color: #A6A6A6;">입금 전</td>
+	        </c:if>
+	        <c:if test="${dto.completeNum!=0}">  
+	               <td align="center" width="10%" style="color: #A6A6A6;">입금 완료</td>
+	        </c:if>
 	      <c:if test="${dto.accept=='wait'}">
 	      	      <td align="center" width="10%" style="color: #A6A6A6;"><a style="cursor: pointer;" onclick="updateReserve(${dto.reservationNum},${dto.hostNum});">수락</a> | 
-	              <a style="cursor: pointer;" onclick="deleteReserve(${dto.reservationNum});">거절</a></td>
+	              <a style="cursor: pointer;" onclick="deleteReserve(${dto.reservationNum},${dto.hostNum});">거절</a></td>
 	      </c:if>  
 	           </tr>  
 	           																	

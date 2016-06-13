@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -190,17 +191,58 @@ public class HouseController {
 	// 호스팅한 집, 예약 받은 정보
 	@RequestMapping(value="/house/house_reservation")
 	public ModelAndView houseReservationInfo(
+			HttpServletRequest req,
 			Pay dto,
-			@RequestParam int hostNum
+			@RequestParam int hostNum,
+			@RequestParam(value="page", defaultValue="1") int current_page
 			) throws Exception{	
+		String cp = req.getContextPath();
+		int numPerPage=2;
+		int total_page=0;
 		
-		int count=payservice.reserveCount(hostNum);
+		Map<String, Object> map=new HashMap<>();
 		
-		List<Pay> list=payservice.listReserve(hostNum);
+		int dataCount=payservice.reserveCount(hostNum);
+		if(dataCount!=0)
+			total_page=myUtil.pageCount(numPerPage, dataCount);
+
+		//다른사람이 자료삭제해서 페이지 변하게된 경우
+		if(total_page<=current_page)
+			current_page=total_page;
+		//리스트에 출력할 데이터
+		int start=(current_page-1)*numPerPage+1;
+		int end=current_page*numPerPage;
+		map.put("start", start);
+		map.put("end", end);
+		map.put("hostNum", hostNum);
+		
+		
+		List<Pay> list=payservice.listReserve(map);
+		
+		//리스트 번호
+		int listNum, n=0;
+		Iterator<Pay> it=list.iterator();
+		while(it.hasNext()){
+			Pay data=it.next();
+			listNum=dataCount-(start+n-1);
+			data.setListNum(listNum);
+			n++;
+		}
+		
+		String params="";
+		String listUrl;
+		
+		if(params.length()==0) {
+			listUrl = cp+"/house/house_reservation?hostNum="+hostNum;
+		} else {
+			listUrl = cp+"house/house_reservation?hostNum="+hostNum +params;
+		}
 		
 		ModelAndView mav = new ModelAndView(".house.house_reservation");
 		mav.addObject("list",list);
-		mav.addObject("count",count);
+		mav.addObject("dataCount",dataCount);
+		mav.addObject("page",current_page);
+		mav.addObject("paging",myUtil.paging(current_page, total_page, listUrl));
 		return mav;
 	}
 	
@@ -208,12 +250,13 @@ public class HouseController {
 	@RequestMapping(value="/house/deleteReserve")
 	public ModelAndView deleteReserve(
 			Pay dto,
-			@RequestParam int reservationNum
+			@RequestParam int reservationNum,
+			@RequestParam int hostNum
 			) throws Exception{
 		
 		payservice.deletePay(reservationNum);
 		
-		ModelAndView mav=new ModelAndView(".house.house_reservation");
+		ModelAndView mav=new ModelAndView("redirect:/house/house_reservation?hostNum="+hostNum);
 		return mav;
 	}
 	

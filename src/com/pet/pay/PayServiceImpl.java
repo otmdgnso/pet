@@ -36,10 +36,10 @@ public class PayServiceImpl implements PayService{
 	}
 
 	@Override
-	public List<Pay> listReserve(int hostNum) {
+	public List<Pay> listReserve(Map<String, Object> map) {
 		List<Pay> list=null;
 		try {
-			list=dao.getListData("pay.listReserve",hostNum);
+			list=dao.getListData("pay.listReserve",map);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}

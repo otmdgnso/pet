@@ -10,7 +10,7 @@ public interface PayService {
 
 	public int reserveCount(int hostNum); 
 	
-	public List<Pay> listReserve(int hostNum);
+	public List<Pay> listReserve(Map<String, Object> map);
 	
 	public int updateReserve(int reservationNum);
 }
