@@ -14,17 +14,9 @@ function adoptPay() {
 		f.name.focus();
 		return false;
 	}
-	
-	f.action="<%=cp%>/pay/paycomplete";
+	f.action="<%=cp%>/pay/paycompleteAdopt";
 	f.submit();
 }
-
-$(function(){
-	var price=${dto.price};
-	var deposit=${dto.deposit};
-	var amount=price+deposit;
-	$("#amount").html(amount);
-})
 </script>
 
 <body>
@@ -94,7 +86,7 @@ $(function(){
                     	<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
                     		<tr>
 								<td align="center" width="50%"><h3 style="color: black">합계</h3></td>
-								<td align="center" width="50%" id="amount"><h3 style="color: black"></h3></td>
+								<td align="center" width="50%"><h3 style="color: black">${dto.price+dto.deposit}</h3></td>
 							</tr>
 						</table>
 	</div>
@@ -109,9 +101,9 @@ $(function(){
 	<div class="form-group">
 	<label for="checkin">결제 방법</label>
 		<div class="guests-select" style="margin:0 auto; width:30%" align="center">
-						<select name="pet_su" id="pet_su" class="form-control">
-								<option value="" selected="selected">신용/체크카드</option>
-								<option value="1">무통장입금</option>
+						<select name="means" id="means" class="form-control">
+								<option value="신용/체크카드" selected="selected">신용/체크카드</option>
+								<option value="무통장입금">무통장입금</option>
 						</select>
 		</div>
 	</div>
@@ -134,7 +126,7 @@ $(function(){
 	<div>				
 	<div class="form-group" style="margin:0 auto; width:30%" align="center">
     <label>이름</label>
-    <input class="form-control" type="text" name="name" id="cost" value="" style="text-align:center">                                   
+    <input class="form-control" type="text" name="name" id="name" value="" style="text-align:center">                                   
     </div>
     </div>
                      
@@ -150,6 +142,8 @@ $(function(){
 </div>
 </div>
 </section>
+<input type="hidden" name="price" value="${dto.price+dto.deposit}">
+<input type="hidden" name="preSaleNum" value="${dto.preSaleNum}">
 </form>
 </body>
 </html>

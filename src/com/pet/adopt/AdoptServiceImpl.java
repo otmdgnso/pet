@@ -232,4 +232,49 @@ public class AdoptServiceImpl implements AdoptService {
 		return result;
 	}
 
+	@Override
+	public int insertPreSaleRequest(Adopt dto) {
+		int result=0;
+		try {
+			result=dao.insertData("adopt.insertPreSaleRequest", dto);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	@Override
+	public List<Adopt> listPreSaleRequest(int num) {
+		List<Adopt> list=null;
+		try {
+			list=dao.getListData("adopt.listPreSaleRequest",num);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return list;
+	}
+
+	@Override
+	public int requestDelete(int requestNum) {
+		int result=0;
+		try {
+			result=dao.deleteData("adopt.requestDelete", requestNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+	
+	// 분양 결제
+	@Override
+	public int payCompleteAdopt(Adopt dto) {
+		int result=0;
+		try {
+			result=dao.insertData("adopt.payCompleteAdopt", dto);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
 }

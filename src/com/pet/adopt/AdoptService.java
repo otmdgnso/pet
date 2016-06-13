@@ -21,4 +21,11 @@ public interface AdoptService {
 	public int dataCountPreReply(Map<String, Object> map);
 	public List<Reply> listPreReply(Map<String, Object> map);
 	public int deletePreReply(int replyNum);
+	
+	// 신청
+	public int insertPreSaleRequest(Adopt dto);
+	public List<Adopt> listPreSaleRequest(int num);
+	public int requestDelete(int requestNum);
+	// 분양 결제
+	public int payCompleteAdopt(Adopt dto);
 }

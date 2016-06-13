@@ -66,31 +66,21 @@ public class PayController {
 		payservice.insertpay(dto);
 		ModelAndView mav=new ModelAndView(".pay.paycomplete");
 		return mav;
-	}	
+	}
 	
-	@RequestMapping(value="/pay/requestAdopt")
-	public void requestAdopt (Message mto,
-			HttpSession session,
-			@RequestParam(value="page",defaultValue="1") int page,
-			@RequestParam(value="preSaleNum") int preSaleNum
+	@RequestMapping(value="/pay/paycompleteAdopt")
+	public ModelAndView paycompleteAdopt(
+			Adopt dto
 			) throws Exception {
-		SessionInfo info = (SessionInfo) session.getAttribute("member");
-		
-		mto.setSendUserId("시스템_분양");
-		mto.setReceiveUserId(info.getUserId());
-		mto.setSubject("분양을 신청하셧습니다.");
-		String msg="<a href=http://localhost:9090/pet/adopt/article"+"?page="+page+"&preSaleNum="+preSaleNum+">신청한 글보기</a>";
-		msg+="<br><a href=http://localhost:9090/pet/pay/adoptpay?preSaleNum="+preSaleNum +">결제하기</a>";
-		mto.setContent(msg);
-		
-		messageservice.insertMessage(mto);
+		adoptservice.payCompleteAdopt(dto);
+		ModelAndView mav=new ModelAndView(".pay.paycomplete");
+		return mav;
 	}
 	
 	@RequestMapping(value="/pay/adoptpay")
 	public ModelAndView listAdopt(HttpSession session,
 			@RequestParam(value="preSaleNum") int preSaleNum
 			) throws Exception {
-		SessionInfo info = (SessionInfo) session.getAttribute("member");
 		
 		Adopt dto = adoptservice.readPreSale(preSaleNum);
 		

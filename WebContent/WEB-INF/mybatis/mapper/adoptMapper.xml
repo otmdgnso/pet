@@ -175,8 +175,34 @@
 	DELETE preSaleReply WHERE replyNum=#{replyNum}
 	</delete>
 	
+	<!-- 분양 신청 -->
+	<insert id="insertPreSaleRequest" parameterType="com.pet.adopt.Adopt">
+	INSERT INTO preSaleRequest(requestNum, preSaleNum, NUM)
+  	VALUES(preSaleRequest_seq.NEXTVAL, #{preSaleNum}, #{num})
+	</insert>
 	
+	<!-- 분양 신청 목록 -->
+	<select id="listPreSaleRequest" parameterType="Integer" resultType="com.pet.adopt.Adopt">
+	SELECT requestNum, pr.preSaleNum,
+	TO_CHAR(pr.created,'YYYY-MM-DD')created, 
+	pr.num, p.species, p.type, p.subject, m.userId, pc.checked
+	FROM preSaleRequest pr
+	JOIN preSale p ON pr.preSaleNum= p.preSaleNum
+	JOIN member m ON p.num=m.num
+  	LEFT OUTER JOIN preSaleComplete pc ON pr.preSaleNum=pc.preSaleNum
+	WHERE pr.num= #{num}
+	ORDER BY requestNum DESC
+	</select>
 	
+	<!-- 분양 신청 삭제 -->
+	<delete id="requestDelete" parameterType="Integer">
+	DELETE FROM preSaleRequest
+	WHERE requestNum=#{requestNum}
+	</delete>
 	
-
+	<!-- 분양 결제완료 -->
+	<insert id="payCompleteAdopt" parameterType="com.pet.adopt.Adopt">
+	INSERT INTO preSaleComplete(completeNum,price,means,name,checked,preSaleNum)
+	VALUES (preSaleComplete_seq.NEXTVAL,#{price},#{means},#{name},'complete',#{preSaleNum})
+	</insert>
 </mapper>
