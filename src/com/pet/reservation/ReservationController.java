@@ -89,6 +89,7 @@ public class ReservationController {
 
 		ModelAndView mav=new ModelAndView("/reservation/list");
 		mav.addObject("list",list);
+		System.out.println(dto.getCompleteNum());
 		mav.addObject("page",current_page);
 		mav.addObject("dataCount",dataCount);
 		mav.addObject("paging",util.paging(current_page, total_page));

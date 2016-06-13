@@ -39,9 +39,8 @@ $(function() {
                             </button>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href='javascript:classifyChange("blue");'>개인일정</a></li>
-                                <li><a href='javascript:classifyChange("black");'>가족일정</a></li>
-                                <li><a href='javascript:classifyChange("green");'>회사일정</a></li>
-                                <li><a href='javascript:classifyChange("red");'>부서일정</a></li>
+                                <li><a href='javascript:classifyChange("black");'>예약대기</a></li>
+                                <li><a href='javascript:classifyChange("green");'>예약완료</a></li>
                             </ul>
                         </div>
                         <input type="hidden" name="color" value="blue">

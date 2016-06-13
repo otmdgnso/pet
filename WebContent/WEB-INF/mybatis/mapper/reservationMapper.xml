@@ -42,9 +42,10 @@
 	<select id="listReservation" parameterType="map" resultType="com.pet.reservation.Reservation">
 		SELECT * FROM (
 			SELECT ROWNUM rnum, tb.* FROM (
-				SELECT h.hostNum, userName, address, reservationNum, accept, TO_CHAR(checkIn,'YYYY/MM/DD') checkIn, TO_CHAR(checkOut,'YYYY/MM/DD') checkOut 
+				SELECT h.hostNum, userName, address, r.reservationNum, accept, TO_CHAR(checkIn,'YYYY/MM/DD') checkIn, TO_CHAR(checkOut,'YYYY/MM/DD') checkOut 
+				,completeNum
 				FROM reservation r JOIN host h ON h.hostNum=r.hostNum JOIN member m ON m.num=h.hostNum
-
+				LEFT OUTER JOIN reserComplete p ON r.reservationNum=p.reservationNum
 				<where>
 			     	<if test="searchHost!=null and searchHost!='' ">
 			     	    userName=#{searchHost}

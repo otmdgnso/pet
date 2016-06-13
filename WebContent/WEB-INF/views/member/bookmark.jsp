@@ -21,33 +21,22 @@
 <!-- 테이블 -->
 <div class="form-group" style="margin:0 auto; width:80%;" align="center">
 <div style="width: 90%; height:100%; background-color:#FFF2F2; padding: 30px;" align="center">
+<c:forEach var="dto" items="${list}">	
 <div style="width: 95%; height:180px; background-color: #FFFFFF; padding: 30px;">
-	
 	<div class="col-md-5 histo-img">
-		<img src="http://placehold.it/450x260"/>
+		<a href="<%=cp%>/house/houseinfo?hostNum=${dto.hostNum}"><img src="<%=cp%>/uploads/profile/${dto.profile}" style="width: 300px; height: 100px;"/></a>
 	</div>
 	<div class="col-md-7 guide-story-info">
-		<h4 style="margin-top: 0">강하나의 집</h4>
-		<p>강하나, 주소</p>		
+		<h4 style="margin-top: 10px;">${dto.subject}</h4>
+		<p>${dto.userName}, ${dto.address}</p>		
 	</div>
 	<div class="col-md-7 guide-story-info">
-		<h4 style="margin-top: 0">가격</h4>
+		<h4 style="margin-top: 20px;">기본료 : ${dto.cost}</h4>
 	</div>		
+	<input type="hidden" value="bookmarkNum">
 </div>  
 <div class="separator" style="width:100%"></div>  
-<div style="width: 100%; height:10px;"></div>
-<div style="width: 95%; height:180px; background-color: #FFFFFF; padding: 30px;">
-	<div class="col-md-5 histo-img">
-		<img src="http://placehold.it/450x260"/>
-	</div>
-	<div class="col-md-7 guide-story-info">
-		<h4 style="margin-top: 0">강하나의 집</h4>
-		<p>강하나, 주소</p>		
-	</div>
-	<div class="col-md-7 guide-story-info">
-		<h4 style="margin-top: 0">가격</h4>
-	</div>	
-</div> 
+</c:forEach>
 </div>   
 
 <!-- 페이징처리 -->

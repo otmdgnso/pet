@@ -147,7 +147,7 @@ $(function() {
 				    success: function(data, text, request) {
 			        	 var isLogin=data.isLogin;
 			        	 if(isLogin=="false") {
-			        		   location.href="<%=cp%>/member/login";
+			        		   location.href="<%=cp%>/";
 			        		   return;
 			        	}
 				    	var events = eval(data.list);
@@ -192,9 +192,8 @@ function articleForm(calEvent) {
 	var color=calEvent.color;
 	var classify="";
 	if(color=="blue") classify="개인일정";
-	else if(color=="black") classify="가족일정";
-	else if(color=="green") classify="회사일정";
-	else if(color=="red") classify="부서일정";
+	else if(color=="black") classify="예약대기";
+	else if(color=="green") classify="예약완료";
 	
 	var allDay=calEvent.allDay;
 	var startDay="", startTime="", sday="";
@@ -391,7 +390,7 @@ function insertOk() {
         ,success:function(data) {
         	   var isLogin=data.isLogin;
         	   if(isLogin=="false") {
-        		   location.href="<%=cp%>/member/login";
+        		   location.href="<%=cp%>/";
         		   return;
         	   }
         	   
@@ -612,7 +611,7 @@ function updateDrag(e) {
 		 ,success:function(data) {
   	          var isLogin=data.isLogin;
  	          if(isLogin=="false") {
- 		           location.href="<%=cp%>/member/login";
+ 		           location.href="<%=cp%>/";
  		           return;
  	          }
          }
@@ -628,7 +627,7 @@ function deleteOk(num) {
 		$.post("<%=cp%>/sch/delete", {num:num}, function(data){
      	   var isLogin=data.isLogin;
     	   if(isLogin=="false") {
-    		   location.href="<%=cp%>/member/login";
+    		   location.href="<%=cp%>/";
     		   return;
     	   }
     	   
@@ -655,18 +654,14 @@ function classifyChange(classify) {
 		$("#btnTitle").addClass("btn-blue");
 		$("#btnDropdown").addClass("btn-blue");
 	} else if(classify=="black") {
-		$("#btnTitle").html("가족일정")
+		$("#btnTitle").html("예약대기")
 		$("#btnTitle").addClass("btn-black");
 		$("#btnDropdown").addClass("btn-black");
 	} else if(classify=="green") {
-		$("#btnTitle").html("회사일정")
+		$("#btnTitle").html("예약완료")
 		$("#btnTitle").addClass("btn-green");
 		$("#btnDropdown").addClass("btn-green");
-	} else if(classify=="red") {
-		$("#btnTitle").html("부서일정")
-		$("#btnTitle").addClass("btn-red");
-		$("#btnDropdown").addClass("btn-red");
-	}
+	} 
 	$("#scheduleModal input[name='color']").val(classify);
 }
 
@@ -707,11 +702,9 @@ $(function(){
                  <a class="hbtn" style="background: blue;"
                        href="javascript:classification('blue', 1);">개인일정</a>
                  <a class="hbtn" style="background: black;"
-                       href="javascript:classification('black', 2);">가족일정</a>
+                       href="javascript:classification('black', 2);">예약대기</a>
                  <a class="hbtn" style="background: green;"
-                       href="javascript:classification('green', 3);">회사일정</a>
-                 <a class="hbtn" style="background: red;"
-                       href="javascript:classification('red', 4);">부서일정</a>
+                       href="javascript:classification('green', 3);">예약완료</a>               
              </div>      
         </div>
     </div>
