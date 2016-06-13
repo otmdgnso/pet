@@ -2,7 +2,24 @@ package com.pet.member;
 
 public class Bookmark {
 	private int num, hostNum, bookmarkNum;
-	private String userName, address, cost;
+
+	private String userName, address, cost, subject, profile;
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
 
 	public String getUserName() {
 		return userName;

@@ -11,7 +11,60 @@ public class Adopt {
 	private int photoNum, replyCount, completeNum;
 	private String userName, means, name;
 	private String userId, checked;
+	// 결제시 정보
+	private int buyer, seller;
+	private String phoneB, phoneS, nameB, nameS, userIdB, userIdS;
 	
+	
+	
+	public int getBuyer() {
+		return buyer;
+	}
+	public void setBuyer(int buyer) {
+		this.buyer = buyer;
+	}
+	public int getSeller() {
+		return seller;
+	}
+	public void setSeller(int seller) {
+		this.seller = seller;
+	}
+	public String getPhoneB() {
+		return phoneB;
+	}
+	public void setPhoneB(String phoneB) {
+		this.phoneB = phoneB;
+	}
+	public String getPhoneS() {
+		return phoneS;
+	}
+	public void setPhoneS(String phoneS) {
+		this.phoneS = phoneS;
+	}
+	public String getNameB() {
+		return nameB;
+	}
+	public void setNameB(String nameB) {
+		this.nameB = nameB;
+	}
+	public String getNameS() {
+		return nameS;
+	}
+	public void setNameS(String nameS) {
+		this.nameS = nameS;
+	}
+	public String getUserIdB() {
+		return userIdB;
+	}
+	public void setUserIdB(String userIdB) {
+		this.userIdB = userIdB;
+	}
+	public String getUserIdS() {
+		return userIdS;
+	}
+	public void setUserIdS(String userIdS) {
+		this.userIdS = userIdS;
+	}
 	public int getCompleteNum() {
 		return completeNum;
 	}

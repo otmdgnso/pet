@@ -4,10 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pet.common.MyUtil;
@@ -15,16 +19,21 @@ import com.pet.common.MyUtil;
 @Controller("member.bookmarkController")
 public class BookmarkController {
 	   @Autowired
-	   private MemberService service;	
+	   private BookmarkService service;	
 	   @Autowired
 	   private MyUtil util;	
 	   
 	@RequestMapping(value="/member/bookmark")
 	   public ModelAndView listBookmark(
+			   HttpSession session,
+			   Bookmark dto,
 			   @RequestParam(value="page", defaultValue="1") int current_page
 			   ) throws Exception {
-		   
-		   int numPerPage=10;
+		
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		dto.setNum(info.getMemberNum());
+
+		   int numPerPage=5;
 		   int total_page=0;
 		   int dataCount=0;
 		   
@@ -40,9 +49,10 @@ public class BookmarkController {
 			int end=current_page*numPerPage;
 			map.put("start", start);
 			map.put("end", end);
-			
+			map.put("num", dto.getNum());
+				
 			List<Bookmark> list=service.listBookmark(map);
-			
+
 			ModelAndView mav=new ModelAndView("/member/bookmark");
 			mav.addObject("list", list);
 			mav.addObject("page",current_page);
@@ -51,5 +61,23 @@ public class BookmarkController {
 			return mav;
 
 	   }
+	
+	@RequestMapping(value="/member/insertBookmark", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertBookmark(
+			Bookmark dto
+			) throws Exception {
+				
+		String state="true";
+		int result=service.insertBookmart(dto);
+		if(result==0)
+			state="false";
+		
+		Map<String, Object> model=new HashMap<>();
+		model.put("state", state);
+		
+				
+		return model;
+	}
 	
 }

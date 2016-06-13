@@ -277,4 +277,15 @@ public class AdoptServiceImpl implements AdoptService {
 		return result;
 	}
 
+	@Override
+	public Adopt payCompleteInfo(int requestNum) {
+		Adopt dto=null;
+		try {
+			dto=dao.getReadData("adopt.payCompleteInfo",requestNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return dto;
+	}
+
 }

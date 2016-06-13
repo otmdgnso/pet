@@ -28,4 +28,6 @@ public interface AdoptService {
 	public int requestDelete(int requestNum);
 	// 분양 결제
 	public int payCompleteAdopt(Adopt dto);
+	// 분양 결제시 서로의 정보
+	public Adopt payCompleteInfo(int requestNum);
 }

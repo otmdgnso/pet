@@ -70,7 +70,7 @@
 	SELECT * FROM (
   		SELECT ROWNUM rnum, tb.* FROM (
     		SELECT p.preSaleNum, subject, userId
-    		, hitCount, TO_CHAR(p.created,'YYYY-MM-DD') created, type,price,species, replyCount
+    		, hitCount, TO_CHAR(p.created,'YYYY-MM-DD') created, type,price,species, replyCount, pr.requestNum
     		FROM preSale p JOIN
     		member m ON p.num=m.num
     		LEFT OUTER JOIN
@@ -78,6 +78,8 @@
               SELECT preSaleNum, COUNT(*) replyCount FROM preSaleReply
               GROUP BY preSaleNum
              )r ON r.PreSaleNum=p.preSaleNum
+             LEFT OUTER JOIN
+             preSaleRequest pr ON p.preSaleNum=pr.preSaleNum
     		 <where>
                          <if test="searchValue != null and searchValue != ''">
 			                  <include refid="where-list"/>
@@ -109,12 +111,13 @@
 	</select>
 
 	<select id="readPreSale" resultType="com.pet.adopt.Adopt" parameterType="Integer">
-	SELECT preSaleNum, subject, userId, content, 
+	SELECT p.preSaleNum, subject, userId, content, 
   		TO_CHAR(p.created, 'YYYY-MM-DD') created, 
   		species, type, gender, lineAge, month, price, 
-  		deposit, vaccin, p.num, hitCount
+  		deposit, vaccin, p.num, hitCount, pr.requestNum
 	FROM preSale p JOIN member m ON p.num=m.num
-	WHERE preSaleNum=#{preSaleNum}
+  	LEFT OUTER JOIN preSaleRequest pr ON p.preSaleNum=pr.preSaleNum
+	WHERE p.preSaleNum=#{preSaleNum}
 	</select>
 	
 	<select id="readPreFile" parameterType="Integer" resultType="com.pet.adopt.Adopt">
@@ -205,4 +208,15 @@
 	INSERT INTO preSaleComplete(completeNum,price,means,name,checked,preSaleNum)
 	VALUES (preSaleComplete_seq.NEXTVAL,#{price},#{means},#{name},'complete',#{preSaleNum})
 	</insert>
+	
+	<!-- 결제시 서로의 핸드폰번호와 이름--> 
+	<select id="payCompleteInfo" parameterType="Integer" resultType="com.pet.adopt.Adopt">
+	 SELECT p.num buyer,pr.num seller, mb.phone phoneB, ms.phone phoneS, mb.userName nameB, ms.userName nameS
+ 	, mb.userId userIdB, ms.userId userIdS, pr.preSaleNum
+ 	FROM preSaleRequest pr
+ 	JOIN preSale p ON pr.preSaleNum=p.preSaleNum
+ 	JOIN member mb ON pr.num=mb.num
+ 	JOIN member ms ON p.num=ms.num
+ 	WHERE requestNum= #{requestNum}
+	</select>
 </mapper>

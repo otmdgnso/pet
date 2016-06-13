@@ -98,7 +98,13 @@ $(function(){
                                     </div>
                                     <div align="left" class="gallery-img-title">
                                       <span style="color: black;">제목 : ${dto.subject}</span> &nbsp;
-                                       <span style="color: orange; font-weight: bold;">[${dto.replyCount}]</span><br>
+                                       <span style="color: orange; font-weight: bold;">[${dto.replyCount}]
+                                       <c:if test="${dto.requestNum!=0}">
+                                      <span style="color: red; font-weight: bold;">
+                                       (신청불가)
+                                       </span>
+                                       </c:if>
+                                       </span><br>
                                        <span style="color: black;">조회수 ${dto.hitCount}  |  ${dto.created}     </span><br>
                                        <span style="color: black;">${dto.userId} </span>
                                     </div>

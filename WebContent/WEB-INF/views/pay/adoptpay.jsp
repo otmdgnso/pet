@@ -144,6 +144,7 @@ function adoptPay() {
 </section>
 <input type="hidden" name="price" value="${dto.price+dto.deposit}">
 <input type="hidden" name="preSaleNum" value="${dto.preSaleNum}">
+<input type="hidden" name="requestNum" value="${dto.requestNum}">
 </form>
 </body>
 </html>
