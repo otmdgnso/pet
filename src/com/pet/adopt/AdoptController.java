@@ -158,7 +158,7 @@ public class AdoptController {
 		return mav;
 	}
 	
-	@RequestMapping(value="adopt/article", method=RequestMethod.GET)
+	@RequestMapping(value="adopt/article")
 	public ModelAndView article(HttpSession session,
 			@RequestParam(value="preSaleNum") int preSaleNum,
 			@RequestParam(value="page") String page,

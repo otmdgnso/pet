@@ -147,7 +147,13 @@ function requestAdopt() {
 	<div class="row" style="margin:0 auto; width:80%;" align="center">
 	<div class="col-md-12 effect-5 effects no-border-img" style="margin:0 auto; width:90%;" align="center">
 	<div class="text-center top-txt-title" align="center">
-<h3 style="font-size: 30px">게시글</h3>
+<h3 style="font-size: 30px">게시글
+<c:if test="${dto.requestNum!=0}">
+<span style="color: red; font-weight: bold;">
+                                       (신청불가)
+</span>
+</c:if>
+</h3>
 	<!-- Reservation form -->
 		<section id="reservation-form" class="reservation-color-form pos-middle resv-plus-meteo">
 			<div class="container-form-chose">
@@ -252,7 +258,7 @@ function requestAdopt() {
                     	<div class="col-sm-4 fly-who">
                     	<div class="col-sm-2 colbtn">
 							<button type="button" class="btn btn-primary btn-block" style="float: left; width: 25%;" onclick="javacript:location.href='<%=cp%>/adopt/list?page=${page}';">목록</button>
-							<c:if test="${sessionScope.member.userId!=dto.userId}">
+							<c:if test="${sessionScope.member.userId!=dto.userId && dto.requestNum==0}">
 							<button type="button" class="btn btn-primary btn-block" style="float: left; width: 25%;" onclick="requestAdopt();">분양 신청</button>
 							</c:if>
 							<c:if test="${sessionScope.member.userId=='admin'|| sessionScope.member.userId==dto.userId}">
