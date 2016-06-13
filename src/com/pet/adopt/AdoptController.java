@@ -23,7 +23,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.pet.common.MyUtil;
 import com.pet.member.SessionInfo;
-import com.pet.message.Message;
 import com.pet.message.MessageService;
 
 import net.sf.json.JSONObject;
@@ -411,5 +410,18 @@ public class AdoptController {
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter out=resp.getWriter();
 		out.print(job.toString());
+	}
+	
+	@RequestMapping(value="/adopt/insertPreSaleRequest")
+	public void insertPreSaleRequest (
+			HttpSession session,
+			Adopt dto,
+			@RequestParam(value="preSaleNum") int preSaleNum
+			) throws Exception {
+		SessionInfo info=(SessionInfo) session.getAttribute("member");
+		
+		dto.setPreSaleNum(preSaleNum);
+		dto.setNum(info.getMemberNum());
+		service.insertPreSaleRequest(dto);
 	}
 }

@@ -232,4 +232,15 @@ public class AdoptServiceImpl implements AdoptService {
 		return result;
 	}
 
+	@Override
+	public int insertPreSaleRequest(Adopt dto) {
+		int result=0;
+		try {
+			result=dao.insertData("adopt.insertPreSaleRequest", dto);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
 }

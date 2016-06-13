@@ -175,6 +175,12 @@
 	DELETE preSaleReply WHERE replyNum=#{replyNum}
 	</delete>
 	
+	<!-- 분양 신청 -->
+	<insert id="insertPreSaleRequest" parameterType="com.pet.adopt.Adopt">
+	INSERT INTO preSaleRequest(requestNum, preSaleNum, NUM)
+  	VALUES(preSaleRequest_seq.NEXTVAL, #{preSaleNum}, #{num})
+	</insert>
+	
 	
 	
 	

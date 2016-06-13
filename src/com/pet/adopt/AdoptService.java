@@ -21,4 +21,7 @@ public interface AdoptService {
 	public int dataCountPreReply(Map<String, Object> map);
 	public List<Reply> listPreReply(Map<String, Object> map);
 	public int deletePreReply(int replyNum);
+	
+	// Ω≈√ª
+	public int insertPreSaleRequest(Adopt dto);
 }
