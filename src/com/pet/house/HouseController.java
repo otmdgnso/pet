@@ -20,6 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.pet.common.MyUtil;
 import com.pet.member.SessionInfo;
+import com.pet.pay.Pay;
+import com.pet.pay.PayService;
 
 @Controller("house.houseController")
 public class HouseController {
@@ -29,6 +31,8 @@ public class HouseController {
 	private MyUtil myUtil;
 	@Autowired
 	private LocationService locationService;
+	@Autowired
+	private PayService payservice;
 	
 	// 검색 결과 창
 	@RequestMapping(value="/house/list")
@@ -184,11 +188,72 @@ public class HouseController {
 		return mav;
 	}
 	// 호스팅한 집, 예약 받은 정보
-	@RequestMapping(value="house/house_reservation")
-	public ModelAndView houseReservationInfo() throws Exception{
+	@RequestMapping(value="/house/house_reservation")
+	public ModelAndView houseReservationInfo(
+			Pay dto,
+			@RequestParam int hostNum
+			) throws Exception{	
+		
+		int count=payservice.reserveCount(hostNum);
+		
+		List<Pay> list=payservice.listReserve(hostNum);
+		
 		ModelAndView mav = new ModelAndView(".house.house_reservation");
+		mav.addObject("list",list);
+		mav.addObject("count",count);
 		return mav;
 	}
+	
+	//호스팅관리에서 예약 거절
+	@RequestMapping(value="/house/deleteReserve")
+	public ModelAndView deleteReserve(
+			Pay dto,
+			@RequestParam int reservationNum
+			) throws Exception{
+		
+		payservice.deletePay(reservationNum);
+		
+		ModelAndView mav=new ModelAndView(".house.house_reservation");
+		return mav;
+	}
+	
+	//호스팅관리에서 예약 수락
+	@RequestMapping(value="/house/updateReserve")
+	public ModelAndView updateReserve(			
+			@RequestParam int reservationNum,
+			@RequestParam int hostNum,
+			Pay dto
+			) throws Exception{
+		
+		String accept="accept";
+		dto.setAccept(accept);
+		payservice.updateReserve(reservationNum);
+		
+		System.out.println(dto.getAccept());
+		
+		ModelAndView mav=new ModelAndView("redirect:/house/house_reservation?hostNum="+hostNum);
+		mav.addObject("accept",accept);
+		return mav;
+	}
+	/*@RequestMapping(value="/house/updateReserve", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> updateReserve(			
+			@RequestParam int reservationNum,
+			@RequestParam int hostNum,
+			Pay dto
+			) throws Exception{
+		
+		String accept="accept";
+		dto.setAccept(accept);
+		payservice.updateReserve(reservationNum);
+		
+		System.out.println(dto.getAccept());
+		
+		Map<String, Object> model=new HashMap<>();
+		
+		return model;
+	}*/
+	
 	
 	//댓글 리스트
 	@RequestMapping(value="/house/review") 
@@ -351,6 +416,7 @@ public class HouseController {
 		service.deleteHousePic(saveFilename, pathname);
 		
 		return map;
-	}
+	}	
+	
 
 }

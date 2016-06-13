@@ -1,11 +1,35 @@
 package com.pet.pay;
 
 public class Pay {
-	private int completeNum, reservationNum, price, cost,totalCost,fees;
+	private int completeNum, reservationNum, price, cost,totalCost,fees,pet_su, hostNum;
 	private String means, created, subject,userName,userId ,address,checkIn,checkOut, name;		
-	private String saveFilename;	
+	private String saveFilename,pet_type,accept;	
 	
 	
+	public int getHostNum() {
+		return hostNum;
+	}
+	public void setHostNum(int hostNum) {
+		this.hostNum = hostNum;
+	}
+	public String getAccept() {
+		return accept;
+	}
+	public void setAccept(String accept) {
+		this.accept = accept;
+	}
+	public int getPet_su() {
+		return pet_su;
+	}
+	public void setPet_su(int pet_su) {
+		this.pet_su = pet_su;
+	}
+	public String getPet_type() {
+		return pet_type;
+	}
+	public void setPet_type(String pet_type) {
+		this.pet_type = pet_type;
+	}
 	public String getSaveFilename() {
 		return saveFilename;
 	}

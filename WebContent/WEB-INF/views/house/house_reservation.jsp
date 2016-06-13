@@ -6,6 +6,33 @@
 	String cp=request.getContextPath();
 %>
 
+<script type="text/javascript">
+function deleteReserve(reservationNum){
+	var url="<%=cp%>/house/deleteReserve?reservationNum="+reservationNum;
+	
+	if(confirm("거절 하시겠습니까?")){
+		location.href=url;
+	}	
+}
+
+function updateReserve(reservationNum,hostNum){
+	 var url="<%=cp%>/house/updateReserve?reservationNum="+reservationNum+"&hostNum="+hostNum; 
+<%-- 	var url="<%=cp%>/house/updateReserve";
+	var params="reservationNum="+reservationNum+"&hostNum="+hostNum; --%>
+	if(confirm("수락 하시겠습니까?")){
+		location.href=url;
+		<%-- $.ajax({
+			url:url
+			,data:params
+			,dataType:"json"
+			,type:"post"
+			,success:function(){
+				location.href="<%=cp%>/house/house_reservation?hostNum="+hostNum;
+			}
+		}); --%>
+	}
+}
+</script>
 <section class="about-section-top">
        <div class="container">
           <div class="row">
@@ -26,7 +53,7 @@
 			
 	<div class="cbp-vm-switcher cbp-vm-view-list">
 	<div class="separator" style="width:100%;"></div>       
-		<h3>예약 받은 리스트</h3>
+		<h3>예약 받은 리스트  ${count}건</h3>
 	<div class="separator" style="width:100%"></div> 
 		<div class="form-group" style="margin:0 auto; width:100%;" align="center">
 			<table style="width: 80%; margin: 0px auto; border-spacing: 0px;">
@@ -34,19 +61,26 @@
 	           	  <td align="center" width="5%"><label>번호</label></td>
 	              <td align="center" width="10%"><label>신청자</label></td>
 	              <td align="center" width="10%"><label>종류</label></td>
-	              <td align="center" width="10%"><label>신청 수</label></td>
+	              <td align="center" width="10%"><label>신청 수</label></td>	              
+	              <td align="center" width="10%"><label>총 금액</label></td>
 	              <td align="center" width="20%"><label>날짜</label></td>              
 	              <td align="center" width="10%"></td>
 	           </tr>
-	           
+	       <c:forEach var="dto" items="${list}" varStatus="status">
 	           <tr align="center" height="50px">
-	           	  <td align="center" width="5%" style="color: #A6A6A6;">1</td>
-	              <td align="center" width="10%" style="color: #A6A6A6;">김지원</td>
-	              <td align="center" width="10%" style="color: #A6A6A6;">강아지</td>
-	              <td align="center" width="10%" style="color: #A6A6A6;">1마리</td>	          
-	              <td align="center" width="20%" style="color: #A6A6A6;">2016/07/01~2016/07/03</td>
-	              <td align="center" width="10%" style="color: #A6A6A6;">수락 | 거절</td>
-	           </tr>        
+	           	  <td align="center" width="5%" style="color: #A6A6A6;">${status.count}</td>
+	              <td align="center" width="10%" style="color: #A6A6A6;">${dto.userName}</td>
+	              <td align="center" width="10%" style="color: #A6A6A6;">${dto.pet_type}</td>
+	              <td align="center" width="10%" style="color: #A6A6A6;">${dto.pet_su}</td>	
+	              <td align="center" width="10%" style="color: #A6A6A6;">${dto.totalCost}</td>	          
+	              <td align="center" width="20%" style="color: #A6A6A6;">${dto.checkIn}~${dto.checkOut}</td>
+	      <c:if test="${dto.accept=='wait'}">
+	      	      <td align="center" width="10%" style="color: #A6A6A6;"><a style="cursor: pointer;" onclick="updateReserve(${dto.reservationNum},${dto.hostNum});">수락</a> | 
+	              <a style="cursor: pointer;" onclick="deleteReserve(${dto.reservationNum});">거절</a></td>
+	      </c:if>  
+	           </tr>  
+	           																	
+	       </c:forEach>          
 	        </table>     
 		</div>
 	</div>

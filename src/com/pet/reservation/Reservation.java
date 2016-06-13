@@ -4,9 +4,15 @@ public class Reservation {
 	private int listNum, reservationNum, pet_su, num, hostNum, fees;
 	private String reservationDate, checkIn, checkOut, check_day, accept, acceptDate, pet_type;
 	private String address, userName;
-	private int cost, totalCost,tax, tax1;
+	private int cost, totalCost,tax, tax1,completeNum;
 
 	
+	public int getCompleteNum() {
+		return completeNum;
+	}
+	public void setCompleteNum(int completeNum) {
+		this.completeNum = completeNum;
+	}
 	public int getTax() {
 		return tax;
 	}

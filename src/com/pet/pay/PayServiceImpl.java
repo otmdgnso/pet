@@ -1,5 +1,6 @@
 package com.pet.pay;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,51 @@ public class PayServiceImpl implements PayService{
 		}
 		return result;
 	}
+
+	@Override
+	public List<Pay> listReserve(int hostNum) {
+		List<Pay> list=null;
+		try {
+			list=dao.getListData("pay.listReserve",hostNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return list;
+	}
+
+	@Override
+	public int deletePay(int reservationNum) {
+		int result=0;
+		try {
+			result=dao.deleteData("pay.deletePay", reservationNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	@Override
+	public int reserveCount(int hostNum) {
+		int result=0;
+		try {
+			result=dao.getIntValue("pay.reserveCount",hostNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	@Override
+	public int updateReserve(int reservationNum) {
+		int result=0;
+		try {
+			result=dao.updateData("pay.updateReserve", reservationNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+	
+	
 
 }
