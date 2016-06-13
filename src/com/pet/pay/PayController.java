@@ -68,13 +68,18 @@ public class PayController {
 		return mav;
 	}	
 	
-	@RequestMapping(value="/pay/requestAdopt")
-	public void requestAdopt (Message mto,
-			HttpSession session,
-			@RequestParam(value="page",defaultValue="1") int page,
-			@RequestParam(value="preSaleNum") int preSaleNum
+	@RequestMapping(value="/pay/adoptpay")
+	public ModelAndView listAdopt(HttpSession session,
+			Message mto,
+			Adopt ato,
+			@RequestParam(value="preSaleNum") int preSaleNum,
+			@RequestParam(value="page",defaultValue="1") int page
 			) throws Exception {
 		SessionInfo info = (SessionInfo) session.getAttribute("member");
+		
+		ato.setPreSaleNum(preSaleNum);
+		ato.setNum(info.getMemberNum());
+		adoptservice.insertPreSaleRequest(ato);
 		
 		mto.setSendUserId("시스템_분양");
 		mto.setReceiveUserId(info.getUserId());
@@ -84,13 +89,7 @@ public class PayController {
 		mto.setContent(msg);
 		
 		messageservice.insertMessage(mto);
-	}
-	
-	@RequestMapping(value="/pay/adoptpay")
-	public ModelAndView listAdopt(HttpSession session,
-			@RequestParam(value="preSaleNum") int preSaleNum
-			) throws Exception {
-		SessionInfo info = (SessionInfo) session.getAttribute("member");
+		
 		
 		Adopt dto = adoptservice.readPreSale(preSaleNum);
 		

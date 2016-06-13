@@ -411,17 +411,4 @@ public class AdoptController {
 		PrintWriter out=resp.getWriter();
 		out.print(job.toString());
 	}
-	
-	@RequestMapping(value="/adopt/insertPreSaleRequest")
-	public void insertPreSaleRequest (
-			HttpSession session,
-			Adopt dto,
-			@RequestParam(value="preSaleNum") int preSaleNum
-			) throws Exception {
-		SessionInfo info=(SessionInfo) session.getAttribute("member");
-		
-		dto.setPreSaleNum(preSaleNum);
-		dto.setNum(info.getMemberNum());
-		service.insertPreSaleRequest(dto);
-	}
 }
