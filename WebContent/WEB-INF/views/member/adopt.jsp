@@ -7,6 +7,10 @@
 %>
 
 <script type="text/javascript">
+$(function(){
+	
+})
+
 </script>
 
 <section class="top-we-are" style="height:780px;">
@@ -44,18 +48,24 @@
 	           <tr align="center" height="50px">
 	           	  <td align="center" width="5%"><label>상태</label></td>
 	              <td align="center" width="15%"><label>품종</label></td>
+	              <td align="center" width="15%"><label>종류</label></td>
 	              <td align="center" width="20%"><label>제목</label></td>
 	              <td align="center" width="15%"><label>판매자</label></td>
-	              <td align="center" width="20%"><label>날짜</label></td>              
-	              <td align="center" width="10%"></td>
+	              <td align="center" width="20%"><label>날짜</label></td>
 	           </tr>
 	           
 	           <c:forEach var="dto" items="${list}">
 	           <tr align="center" height="50px">
-	           	  <td align="center" width="5%" style="color: #A6A6A6;">${dto.accept}</td>
+	           	<c:if test="${dto.checked==null}">
+	           	  <td align="center" width="5%" style="color: #A6A6A6;">wait</td>
+	            </c:if>
+	            <c:if test="${dto.checked!=null}">
+	           	  <td align="center" width="5%" style="color: #A6A6A6;">${dto.checked}</td>
+	           	</c:if>
 	              <td align="center" width="15%" style="color: #6ABC64;">${dto.species}</td>
-	              <td align="center" width="20%" style="color: #A6A6A6;">${dto.subject}</td>
-	              <td align="center" width="15%" style="color: #A6A6A6;"><a href="<%=cp%>/adopt/article?page=&preSaleNum=${dto.preSaleNum}">${dto.userId}</a></td>	          
+	              <td align="center" width="15%" style="color: #6ABC64;">${dto.type}</td>
+	              <td align="center" width="20%" style="color: #A6A6A6;"><a href="<%=cp%>/adopt/article?page=&preSaleNum=${dto.preSaleNum}">${dto.subject}</a></td>
+	              <td align="center" width="15%" style="color: #A6A6A6;">${dto.userId}</td>	          
 	              <td align="center" width="20%" style="color: #A6A6A6;">${dto.created}</td>
 	           </tr>
 

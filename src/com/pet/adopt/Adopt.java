@@ -6,11 +6,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Adopt {
 	private int listNum, preSaleNum,month,price,deposit,num, hitCount;
+	public String getChecked() {
+		return checked;
+	}
+	public void setChecked(String checked) {
+		this.checked = checked;
+	}
 	private String subject, content, created,species, type, gender;
 	private String lineage, vaccin, saveFilename;
 	private int photoNum, replyCount;
 	private String userName;
-	private String userId;
+	private String userId, checked;
 	
 	public int getReplyCount() {
 		return replyCount;

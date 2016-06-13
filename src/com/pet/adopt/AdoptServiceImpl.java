@@ -243,4 +243,15 @@ public class AdoptServiceImpl implements AdoptService {
 		return result;
 	}
 
+	@Override
+	public List<Adopt> listPreSaleRequest(int num) {
+		List<Adopt> list=null;
+		try {
+			list=dao.getListData("adopt.listPreSaleRequest",num);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return list;
+	}
+
 }

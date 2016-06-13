@@ -181,6 +181,15 @@
   	VALUES(preSaleRequest_seq.NEXTVAL, #{preSaleNum}, #{num})
 	</insert>
 	
+	<select id="listPreSaleRequest" parameterType="Integer" resultType="com.pet.adopt.Adopt">
+	SELECT requestNum, pr.preSaleNum, pr.created, pr.num, p.species, p.type, p.subject, m.userId, pc.checked
+	FROM preSaleRequest pr
+	JOIN preSale p ON pr.preSaleNum= p.preSaleNum
+	JOIN member m ON p.num=m.num
+  	LEFT OUTER JOIN preSaleComplete pc ON pr.preSaleNum=pc.preSaleNum
+	WHERE pr.num= #{num}
+	ORDER BY requestNum DESC
+	</select>
 	
 	
 	

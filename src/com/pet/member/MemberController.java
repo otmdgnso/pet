@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.pet.adopt.Adopt;
+import com.pet.adopt.AdoptService;
 import com.pet.auction.Auction;
 import com.pet.auction.AuctionService;
 import com.pet.house.HouseService;
@@ -31,6 +33,8 @@ public class MemberController {
    private HouseService houseService;
    @Autowired
    private AuctionService auctionService;
+   @Autowired
+   private AdoptService adoptService;
    
    @RequestMapping(value="/member/login", method=RequestMethod.POST)
    @ResponseBody
@@ -281,8 +285,16 @@ public class MemberController {
    }
    
    @RequestMapping(value="/member/adopt")
-   public ModelAndView adopt() throws Exception{
+   public ModelAndView adopt(
+		   HttpSession session
+		   ) throws Exception{
+	   SessionInfo info= (SessionInfo)session.getAttribute("member");
+      
+      int num=info.getMemberNum();
+      List<Adopt> list = adoptService.listPreSaleRequest(num);
+      
       ModelAndView mav= new ModelAndView("/member/adopt");
+      mav.addObject("list",list);
       return mav;      
    }
 }
