@@ -83,4 +83,15 @@ public class ReservationServiceImpl implements ReservationService {
 		}
 		return result;
 	}
+
+	@Override
+	public List<Reservation> hostDateRead(int hostNum) {
+		List<Reservation> list=null;
+		try {
+			list=dao.getListData("reservation.hostDateRead",hostNum);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return list;
+	}
 }

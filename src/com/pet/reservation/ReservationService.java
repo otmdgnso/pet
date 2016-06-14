@@ -10,4 +10,6 @@ public interface ReservationService {
 	public Reservation readReservation(int reservationNum);
 	public int updateReservation(Reservation dto);
 	public int deleteReservation(int reservationNum);
+	
+	public List<Reservation> hostDateRead(int hostNum);
 }
