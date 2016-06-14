@@ -142,7 +142,7 @@ public class HouseController {
 		session.setAttribute("member", info);
 		dto.setHostNum(info.getHostNum());*/
 	
-		ModelAndView mav = new ModelAndView(".house.join");
+		ModelAndView mav = new ModelAndView("redirect:/");
 		return mav;
 	}
 	
@@ -341,7 +341,7 @@ public class HouseController {
 		vo=service.readReview(map);		
 		
 		double avgScore=0;
-		avgScore=service.avgScore(hostNum);
+		avgScore=service.avgScore(hostNum);	
 		
 		ModelAndView mav=new ModelAndView("/house/review");
 		mav.addObject("listReview", list);

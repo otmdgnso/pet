@@ -176,9 +176,27 @@
 	
 	<!-- 댓글 평점 -->
 	<select id="avgScore" parameterType="Integer" resultType="Double">
-	 select AVG(score)  
-	 from hostReview WHERE hostNum=#{hostNum}
+	    SELECT ((TRUNC((AVG(score)-0.1)*2)/2) + 0.5) avgScore
+  		FROM hostReview WHERE hostNum=#{hostNum}
 	</select>
 	<!-- 총 별점수 -->
+	
+	<!-- 메인 리스트 -->
+	<select id="mainListHouse" parameterType="map" resultType="com.pet.house.House">
+		 SELECT * FROM (
+		    SELECT ROWNUM rnum, tb.* , (select NVL(count(reviewnum),0)
+        from hostreview rv WHERE tb.hostNum = rv.hostNum ) as reviewcnt FROM (
+			     SELECT h.hostNum, address, cost, capacity, subject, h.content, userName, profile,TO_CHAR(h.created,'YYYY-MM-DD') created, NVL(avgScore,0) avgScore
+			     FROM host h JOIN member m ON h.hostNum=m.num
+           LEFT OUTER JOIN (
+               SELECT hostNum, ((TRUNC((AVG(score)-0.1)*2)/2) + 0.5) avgScore  FROM hostReview GROUP BY hostNum
+           ) av   ON h.hostNum=av.hostNum
+          ORDER BY avgScore DESC
+	     
+    <![CDATA[
+	        ) tb WHERE ROWNUM <= #{end}
+	    ) WHERE rnum >= #{start}
+	]]>	    
+	</select>
 	
 </mapper>

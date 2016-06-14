@@ -22,6 +22,9 @@ public interface HouseService {
 	public List<House> listHouse(Map<String, Object> map);
 	public House housePhoto(int hostNum);
 	
+	//메인 리스트
+	public List<House> mainListHouse(Map<String, Object> map);
+	
 	//후기
 	public int insertReview(Review dto);
 	public List<Review> listReview(Map<String, Object> map);

@@ -109,7 +109,7 @@ function deleteFile(saveFilename, photoNum) {
                     		</tr>
                     		<tr align="center" height="40%">
                     			<td align="center" width="10%"><label>내용</label></td>
-                     			<td align="center" width="90%"><textarea rows="10" cols="34" class="form-control" name="content" style="text-align:center;">${dto.content}</textarea></td>
+                     			<td align="center" width="90%"><textarea rows="10" cols="34" class="form-control" name="content" style="text-align:left;">${dto.content}</textarea></td>
                     		</tr>       
                     		
                     		<tr align="center" height="40%">
@@ -135,8 +135,8 @@ function deleteFile(saveFilename, photoNum) {
                      </div>			
 			
 				<c:if test="${mode=='created'}">
-				<div class="col-sm-2 colbtn">
-					<button type="button" class="btn btn-primary btn-block" onclick="photoCheck();">등록하기</button>
+				<div class="col-sm-2 colbtn" align="right">
+					<button type="button" class="btn btn-primary btn-block" onclick="photoCheck();" style="width: 10%; margin-right: 15%;" >등록하기</button>
 				</div>
 				</c:if>
 				

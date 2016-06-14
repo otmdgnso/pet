@@ -177,6 +177,26 @@ public class HouseServiceImpl implements HouseService{
 	}
 
 	@Override
+	public List<House> mainListHouse(Map<String, Object> map) {
+			List<House> list=null;
+		
+		try {
+			list=dao.getListData("house.mainListHouse", map);
+			for(House vo:list){
+				House t=housePhoto(vo.getHostNum());
+				if(t!=null)
+					vo.setSaveFilename(t.getSaveFilename());
+			   double v=avgScore(vo.getHostNum());
+				vo.setAvgScore(v);			 
+			}
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return list;
+	}
+
+	@Override
 	public List<House> listHouse(Map<String, Object> map) {
 		List<House> list=null;
 		
@@ -308,11 +328,13 @@ public class HouseServiceImpl implements HouseService{
 		double result=0;
 		try {
 			result=dao.getReadData("house.avgScore", hostNum);
+			
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
 		return result;
 	}
+
 
 
 }

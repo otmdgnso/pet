@@ -98,7 +98,7 @@ function mark(star){
 
 <!-- 시작 -->
 <span style="color: #3EA9CD; font-weight: bold; font-size: 20px;">
-후기 ${countReview}개  ${avgScore}점
+후기 ${countReview}개   (${avgScore}점)
 <c:if test="${avgScore==0}">
    <img src="<%=cp%>/res/image/stargray.png" width="20px">
 	<img src="<%=cp%>/res/image/stargray.png" width="20px">

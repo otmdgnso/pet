@@ -273,7 +273,9 @@ function deleteFile(saveFilename, picNum) {
                                   <div class="col-sm-5 col-sm-offset-1">
                                       <div class="form-group">
                                           <label><b>수용가능 동물 수</b></label> <br>
+                                        <c:if test="${mode=='update'}">
                                            <span style="color: black; font-weight: bold;">현재선택: ${dto.capacity} 마리</span>
+                                        </c:if>
                                           <select class="form-control" name="capacity">
                                             <option disabled="" selected="">-마리 -</option>
                                             <option value="1">1 마리</option>
@@ -364,7 +366,7 @@ function deleteFile(saveFilename, picNum) {
                                     </div>
                                     <div class="col-sm-4">
                                          <div class="form-group">
-                                         <label>검색 노출 여부</label>
+                                         <label>검색 노출 여부 (기본은 검색 노출)</label>
                                          	<div class="choice" data-toggle="wizard-radio">
                                                 <input type="radio" checked="checked" name="searchOn" value="yes">
                                                 <div class="icon">

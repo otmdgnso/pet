@@ -37,7 +37,7 @@ public class MainController {
 		
 		List<Photo> list=photoService.mainListPhoto(map);
 		List<Adopt> listAdopt=adoptService.listPreSale(map);
-		List<House> listHouse=houseService.listHouse(map);
+		List<House> listHouse=houseService.mainListHouse(map);
 				
 		ModelAndView mav=new ModelAndView(".mainLayout");
 		mav.addObject("list",list);
