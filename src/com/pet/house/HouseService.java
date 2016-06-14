@@ -37,5 +37,5 @@ public interface HouseService {
 	//´ñ±Û °¹¼ö
 	public int countReview(int hostNum);
 	//´ñ±Û ÆòÁ¡
-	public float avgScore(int hostNum);
+	public double avgScore(int hostNum);
 }

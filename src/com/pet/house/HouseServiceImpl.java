@@ -186,6 +186,8 @@ public class HouseServiceImpl implements HouseService{
 				House t=housePhoto(vo.getHostNum());
 				if(t!=null)
 					vo.setSaveFilename(t.getSaveFilename());
+			   double v=avgScore(vo.getHostNum());
+				vo.setAvgScore(v);			 
 			}
 		} catch (Exception e) {
 			System.out.println(e.toString());
@@ -302,16 +304,15 @@ public class HouseServiceImpl implements HouseService{
 	}
 
 	@Override
-	public float avgScore(int hostNum) {
-		float result=0;
+	public double avgScore(int hostNum) {
+		double result=0;
 		try {
-			result=dao.getIntValue("house.avgScore", hostNum);
+			result=dao.getReadData("house.avgScore", hostNum);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
 		return result;
 	}
-
 
 
 }

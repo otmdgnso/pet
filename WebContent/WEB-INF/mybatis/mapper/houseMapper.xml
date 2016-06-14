@@ -175,8 +175,8 @@
 	</select>
 	
 	<!-- 댓글 평점 -->
-	<select id="avgScore" parameterType="Integer" resultType="Integer">
-	 select SUM(score)/NVL(count(*),0) 
+	<select id="avgScore" parameterType="Integer" resultType="Double">
+	 select AVG(score)  
 	 from hostReview WHERE hostNum=#{hostNum}
 	</select>
 	<!-- 총 별점수 -->

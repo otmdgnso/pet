@@ -47,7 +47,8 @@ public class HouseController {
 			@RequestParam(value="checkInHouse",defaultValue="") String checkIn,
 			@RequestParam(value="checkOutHouse",defaultValue="") String checkOut,
 			@RequestParam(value="speciesHouse",defaultValue="") String species,
-			@RequestParam(value="pet_suHouse",defaultValue="") String pet_su
+			@RequestParam(value="pet_suHouse",defaultValue="") String pet_su,
+			House vo
 			) throws Exception {
 				
 		String cp=req.getContextPath();
@@ -339,7 +340,7 @@ public class HouseController {
 		map.put("num", info.getMemberNum());
 		vo=service.readReview(map);		
 		
-		float avgScore=0;
+		double avgScore=0;
 		avgScore=service.avgScore(hostNum);
 		
 		ModelAndView mav=new ModelAndView("/house/review");

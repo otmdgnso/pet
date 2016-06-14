@@ -344,7 +344,7 @@ function houseSearch() {
 					<div class="cbp-vm-image img">
 						<img src="<%=cp%>/uploads/house/${dto.saveFilename}"
 							style="width: 400px; height: 350px;">
-						<div class="overlay" style="width: 83%;">
+						<div class="overlay" style="width: 86%;">
 							<a href="<%=cp%>/house/houseinfo?hostNum=${dto.hostNum}" class="expand"><i
 								class="fa fa-paw" aria-hidden="true"></i></a> <a
 								class="close-overlay hidden">x</a>
@@ -366,7 +366,15 @@ function houseSearch() {
 							<tr>
 								<td align="left" width="50%" style="color: #8C8C8C"><img
 									class="star-level" src="<%=cp%>/res/images/5star.png" />
-									(${dto.reviewcnt})</td>
+									(${dto.reviewcnt}) ${dto.avgScore}
+									<c:if test="${dto.avgScore==4.5}">
+										   <img src="<%=cp%>/res/images/5star.png" width="20px">
+											<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+											<img src="<%=cp%>/res/image/staryellow.png"  width="20px">
+											<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px"> 		
+									</c:if>
+									</td>
 								<td align="right" width="50%" rowspan="2"><a
 									href="<%=cp%>/house/houseinfo?hostNum=${dto.hostNum}"
 									class="btn btn-primary btn-gallery" style="float: right;">더보기</a></td>

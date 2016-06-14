@@ -97,12 +97,88 @@ function mark(star){
 </script>
 
 <!-- 시작 -->
-<span style="color: #3EA9CD; font-weight: bold; font-size: 20px;">후기 ${countReview}개  ${avgScore}점</span>
-	<img src="<%=cp%>/res/image/staryellow.png" id="star_12" width="20px">
-	<img src="<%=cp%>/res/image/staryellow.png" id="star_22" width="20px">
-	<img src="<%=cp%>/res/image/staryellow.png" id="star_32"  width="20px">
-	<img src="<%=cp%>/res/image/staryellow.png" id="star_42"  width="20px">
-	<img src="<%=cp%>/res/image/staryellow.png" id="star_52" width="20px">
+<span style="color: #3EA9CD; font-weight: bold; font-size: 20px;">
+후기 ${countReview}개  ${avgScore}점
+<c:if test="${avgScore==0}">
+   <img src="<%=cp%>/res/image/stargray.png" width="20px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px">
+	<img src="<%=cp%>/res/image/stargray.png"  width="20px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px"> 		
+</c:if>
+<c:if test="${avgScore==0.5}">
+	<img src="<%=cp%>/res/image/staryellowhalf1.png" width="22px">
+    <img src="<%=cp%>/res/image/stargray.png" width="20px">
+	<img src="<%=cp%>/res/image/stargray.png"  width="20px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px"> 		
+</c:if>
+<c:if test="${avgScore==1.0}">
+   <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px">
+	<img src="<%=cp%>/res/image/stargray.png"  width="20px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px"> 		
+</c:if>
+<c:if test="${avgScore==1.5}">
+   <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellowhalf1.png" width="22px">
+	<img src="<%=cp%>/res/image/stargray.png"  width="20px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px"> 		
+</c:if>
+<c:if test="${avgScore==2.0}">
+   <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/stargray.png"  width="20px">
+	<img src="<%=cp%>/res/image/stargray.png"  width="20px">
+	<img src="<%=cp%>/res/image/stargray.png"  width="20px">	
+</c:if>
+<c:if test="${avgScore==2.5}">
+   <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellowhalf1.png"  width="22px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px"> 		
+</c:if>
+<c:if test="${avgScore==3.0}">
+   <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png"  width="20px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px"> 		
+</c:if>
+<c:if test="${avgScore==3.5}">
+   <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png"  width="20px">
+	<img src="<%=cp%>/res/image/staryellowhalf1.png" width="22px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px"> 		
+</c:if>
+<c:if test="${avgScore==4.0}">
+   <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png"  width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px"> 		
+</c:if>
+<c:if test="${avgScore==4.5}">
+   <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png"  width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellowhalf1.png" width="22px"> 		
+</c:if>
+<c:if test="${avgScore==5.0}">
+   <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png"  width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png" width="20px"> 		
+</c:if>
+
+</span>
+	
 	
 	<!-- 별점 -->
           <form name="cmtform">  
@@ -150,7 +226,43 @@ function mark(star){
 			<img style="height: 80px;" src="<%=cp%>/uploads/profile/${dto.profile}" class="avatar img-circle img-thumbnail" width="70px;">
 		</td>
 		<td align="left" width="60%"> 
-		 <span style="font-weight: bold;">평점 : ${dto.score}</span>
+		 <span style="font-weight: bold;">
+	<c:if test="${dto.score==1}">	 
+	 평점 : <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px">
+	<img src="<%=cp%>/res/image/stargray.png"  width="20px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px"> 		 
+	</c:if>	
+	<c:if test="${dto.score==2}">	 
+	 평점 : <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/stargray.png"  width="20px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px"> 		 
+	</c:if>	
+	 <c:if test="${dto.score==3}">	 
+	 평점 : <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png"  width="20px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px"> 		 
+	</c:if>	
+	<c:if test="${dto.score==4}">	 
+	 평점 : <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png"  width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/stargray.png" width="20px"> 		 
+	</c:if>	
+	<c:if test="${dto.score==5}">	 
+	 평점 : <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png"  width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+	<img src="<%=cp%>/res/image/staryellow.png" width="20px"> 		 
+	</c:if>	
+		 </span>
 			<br><br>${dto.content}
 		</td>
 		<td align="right" width="20%">

@@ -237,7 +237,7 @@ function deleteHouse(hostNum){
 							<!-- <li><img src="http://placehold.it/840x460" alt=""/></li> -->
 						  <a href="javascript_;;" onclick="window.open('<%=cp%>/uploads/house/${dto.saveFilename}','이름',
 						  ' width=720,height=600,scrollbars=no,left=100,top=200'); return false">
-						  <img style="width: 810px; height: 430px;"
+						  <img style="width: 850px; height: 430px;"
 								src="<%=cp%>/uploads/house/${dto.saveFilename}" alt=""  /></a>
 						</c:forEach>
 						<!-- 큰이미지 등장 -->

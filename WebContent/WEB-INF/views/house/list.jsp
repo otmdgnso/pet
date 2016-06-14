@@ -160,7 +160,87 @@ function checkHouseinfo(hostNum) {
                                     
                                     <table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
                                     	<tr>
-                                    		<td align="left" width="50%" style="color:#8C8C8C"><img class="star-level" src="<%=cp%>/res/images/5star.png"/> (${dto.reviewcnt})</td>                                 		
+                                    		<%-- <td align="left" width="50%" style="color:#8C8C8C"><img class="star-level" src="<%=cp%>/res/images/4star.png"/>${dto.avgScore} (${dto.reviewcnt})</td> --%>
+                                    		<td align="left" width="50%" style="color:#8C8C8C">
+                                    <c:if test="${dto.avgScore==0}">
+										   <img src="<%=cp%>/res/image/stargray.png" width="20px">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px">
+											<img src="<%=cp%>/res/image/stargray.png"  width="20px">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px"> 		
+									</c:if>
+									<c:if test="${dto.avgScore==0.5}">
+											<img src="<%=cp%>/res/image/staryellowhalf1.png" width="22px">
+										    <img src="<%=cp%>/res/image/stargray.png" width="20px">
+											<img src="<%=cp%>/res/image/stargray.png"  width="20px">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px"> 		
+									</c:if>
+									<c:if test="${dto.avgScore==1.0}">
+										   <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px">
+											<img src="<%=cp%>/res/image/stargray.png"  width="20px">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px"> 		
+									</c:if>
+									<c:if test="${dto.avgScore==1.5}">
+										   <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+											<img src="<%=cp%>/res/image/staryellowhalf1.png" width="22px">
+											<img src="<%=cp%>/res/image/stargray.png"  width="20px">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px"> 		
+									</c:if>
+									<c:if test="${dto.avgScore==2.0}">
+										   <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+											<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+											<img src="<%=cp%>/res/image/stargray.png"  width="20px">
+											<img src="<%=cp%>/res/image/stargray.png"  width="20px">
+											<img src="<%=cp%>/res/image/stargray.png"  width="20px">	
+									</c:if>
+									<c:if test="${dto.avgScore==2.5}">
+										   <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+											<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+											<img src="<%=cp%>/res/image/staryellowhalf1.png"  width="22px">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px"> 		
+									</c:if>
+									<c:if test="${dto.avgScore==3.0}">
+										   <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+											<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+											<img src="<%=cp%>/res/image/staryellow.png"  width="20px">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px"> 		
+									</c:if>
+									<c:if test="${dto.avgScore==3.5}">
+										   <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+											<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+											<img src="<%=cp%>/res/image/staryellow.png"  width="20px">
+											<img src="<%=cp%>/res/image/staryellowhalf1.png" width="22px">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px"> 		
+									</c:if>
+									<c:if test="${dto.avgScore==4.0}">
+										   <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+											<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+											<img src="<%=cp%>/res/image/staryellow.png"  width="20px">
+											<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px"> 		
+									</c:if>
+									<c:if test="${dto.avgScore==4.5}">
+										   <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+											<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+											<img src="<%=cp%>/res/image/staryellow.png"  width="20px">
+											<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+											<img src="<%=cp%>/res/image/staryellowhalf1.png" width="22px"> 		
+									</c:if>
+									<c:if test="${dto.avgScore==5.0}">
+										   <img src="<%=cp%>/res/image/staryellow.png" width="20px">
+											<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+											<img src="<%=cp%>/res/image/staryellow.png"  width="20px">
+											<img src="<%=cp%>/res/image/staryellow.png" width="20px">
+											<img src="<%=cp%>/res/image/staryellow.png" width="20px"> 		
+									</c:if>  
+										<span>후기 갯수 : (${dto.reviewcnt})</span>                  		
+                                     		</td>
                                     		<td align="right" width="50%" rowspan="2"><a onclick='checkHouseinfo(${dto.hostNum});' class="btn btn-primary btn-gallery" style="float: right;">더보기</a></td>
                                     	</tr>
                                     </table>

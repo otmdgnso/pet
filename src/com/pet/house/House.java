@@ -11,8 +11,17 @@ public class House {
 	private String address, searchOn, subject, content, created, species;
 	private String saveFilename, profile, userName;
 	private List<MultipartFile> upload;	
+	private double avgScore;
 	
 	
+	public double getAvgScore() {
+		return avgScore;
+	}
+
+	public void setAvgScore(double avgScore) {
+		this.avgScore = avgScore;
+	}
+
 	public int getScore() {
 		return score;
 	}
