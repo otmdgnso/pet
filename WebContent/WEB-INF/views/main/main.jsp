@@ -42,8 +42,10 @@
     -moz-background-size: cover!important;
     -o-background-size: cover!important;
     background-size: cover!important;
-}
-  
+      
+   		
+    }
+
 </style>
 
 <script type="text/javascript">
@@ -362,20 +364,89 @@ function houseSearch() {
 								class="price-n">${dto.cost}원</span>
 						</div>
 
-						<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
+						<table style="width: 100%; margin: 0px auto; border-spacing: 0px; float: left;">
 							<tr>
-								<td align="left" width="50%" style="color: #8C8C8C"><img
-									class="star-level" src="<%=cp%>/res/images/5star.png" />
-									(${dto.reviewcnt}) ${dto.avgScore}
-									<c:if test="${dto.avgScore==4.5}">
-										   <img src="<%=cp%>/res/images/5star.png" width="20px">
-											<img src="<%=cp%>/res/image/staryellow.png" width="20px">
-											<img src="<%=cp%>/res/image/staryellow.png"  width="20px">
-											<img src="<%=cp%>/res/image/staryellow.png" width="20px">
-											<img src="<%=cp%>/res/image/stargray.png" width="20px"> 		
+								<td align="left" width="80%" style="color: #8C8C8C">
+								 <c:if test="${dto.avgScore==0}">
+										   <img src="<%=cp%>/res/image/stargray.png" width="20px"  style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png"  width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;"> 		
 									</c:if>
+									<c:if test="${dto.avgScore==0.5}">
+											<img src="<%=cp%>/res/image/staryellowhalf1.png" width="22px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+										    <img src="<%=cp%>/res/image/stargray.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png"  width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;"> 		
+									</c:if>
+									<c:if test="${dto.avgScore==1.0}">
+										   <img src="<%=cp%>/res/image/staryellow.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png"  width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;"> 		
+									</c:if>
+									<c:if test="${dto.avgScore==1.5}">
+										   <img src="<%=cp%>/res/image/staryellow.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/staryellowhalf1.png" width="22px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png"  width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;"> 		
+									</c:if>
+									<c:if test="${dto.avgScore==2.0}">
+										   <img src="<%=cp%>/res/image/staryellow.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/staryellow.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png"  width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png"  width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png"  width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">	
+									</c:if>
+									<c:if test="${dto.avgScore==2.5}">
+										   <img src="<%=cp%>/res/image/staryellow.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/staryellow.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/staryellowhalf1.png"  width="22px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;"> 		
+									</c:if>
+									<c:if test="${dto.avgScore==3.0}">
+										   <img src="<%=cp%>/res/image/staryellow.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/staryellow.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/staryellow.png"  width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;"> 		
+									</c:if>
+									<c:if test="${dto.avgScore==3.5}">
+										   <img src="<%=cp%>/res/image/staryellow.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/staryellow.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/staryellow.png"  width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/staryellowhalf1.png" width="22px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px"  style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;"> 		
+									</c:if>
+									<c:if test="${dto.avgScore==4.0}">
+										   <img src="<%=cp%>/res/image/staryellow.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/staryellow.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/staryellow.png"  width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/staryellow.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/stargray.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;"> 		
+									</c:if>
+									<c:if test="${dto.avgScore==4.5}">
+										    <img class="star" src="<%=cp%>/res/image/staryellow.png"  style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img class="star" src="<%=cp%>/res/image/staryellow.png"  style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img class="star" src="<%=cp%>/res/image/staryellow.png"  style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img class="star" src="<%=cp%>/res/image/staryellow.png"  style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img class="star" src="<%=cp%>/res/image/staryellowhalf1.png"  style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;"> 		
+									</c:if>
+									<c:if test="${dto.avgScore==5.0}">
+										   <img src="<%=cp%>/res/image/staryellow.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/staryellow.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/staryellow.png"  width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/staryellow.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;">
+											<img src="<%=cp%>/res/image/staryellow.png" width="20px" style="display: inline;padding: 0px; margin: 0px; width: 20px; height: 20px;"> 		
+									</c:if>  <br>
+										<span>후기 갯수 : (${dto.reviewcnt})</span> 
 									</td>
-								<td align="right" width="50%" rowspan="2"><a
+								<td align="right" width="20%" rowspan="2"><a
 									href="<%=cp%>/house/houseinfo?hostNum=${dto.hostNum}"
 									class="btn btn-primary btn-gallery" style="float: right;">더보기</a></td>
 							</tr>
