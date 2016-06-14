@@ -5,8 +5,15 @@ public class Reservation {
 	private String reservationDate, checkIn, checkOut, check_day, accept, acceptDate, pet_type;
 	private String address, userName;
 	private int cost, totalCost,tax, tax1,completeNum;
+	private String userId;
 
 	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public int getCompleteNum() {
 		return completeNum;
 	}

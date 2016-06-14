@@ -40,14 +40,10 @@ function tabContent(idx) {
 	id=$("#tab-"+idx);
 	if(idx==0) {
 		url="<%=cp%>/member/info";
-	} else if(idx==1) {
-		url="<%=cp%>/member/hosting";
 	} else if(idx==4) {
-		url="<%=cp%>/member/photo";
-	} else if(idx==5) {
-		url="<%=cp%>/member/auction";
-	} else if(idx==6) {
 		url="<%=cp%>/member/adopt";
+	} else if(idx==3) {
+		url="<%=cp%>/member/auction"
 	}
 	$.get(url, {}, function(data){
 		id.html(data);
@@ -69,7 +65,7 @@ $(document).ready(function() {
                         setHash : true,
                         animation : 'slide',
                         activate : function(e, tab) {
-                               if(tab.id!=2 && tab.id!=3)
+                               if(tab.id!=1 && tab.id!=2)
                            		tabContent(tab.id);
                            
                         },
@@ -106,18 +102,6 @@ function searchList() {
 	}); 
 }
 
-function auctionList() {
-	$.ajax({
-		url:"<%=cp%>/auction/list"
-		,type:"post"
-	}).done(function(data){
-		$("#ajaxAuctionList").html('');
-		$("#ajaxAuctionList").html(data);
-	});
-	
-	
-}
-
 function deleteReservation(reservationNum) {
 	var params="reservationNum="+reservationNum;
 	var url="<%=cp%>/reservation/delete?"+params;
@@ -141,7 +125,7 @@ function payReservation(reservationNum,hostNum){
 }
 
 //예약목록
-$("#tab-2").ready(function(){
+$("#tab-1").ready(function(){
 
 	// ajax 처리 - 예약목록
 	$.ajax({
@@ -151,20 +135,9 @@ $("#tab-2").ready(function(){
 	});
 
 });	
-//경매목록
-$("#tab-5").ready(function(){
 
-	// ajax 처리 - 예약목록
-	$.ajax({
-	  url: "<%=cp%>/auction/list"
-	}).done(function(data) {
-		$("#ajaxAuctionList").html(data);
-	});
-
-});	
-
-$("#tab-3").ready(function(){
-	// ajax 처리 - 북마트목록
+$("#tab-2").ready(function(){
+	// ajax 처리 - 북마크목록
 	$.ajax({
 	  url: "<%=cp%>/member/bookmark"
 	}).done(function(data) {
@@ -313,30 +286,24 @@ function shakeModalMember(msg){
                <div id="horizontalTab">
                   <ul>
                      <li><a href="#tab-0">INFO</a></li>
-                     <li><a href="#tab-1">호스팅 목록</a></li>
-                     <li><a href="#tab-2">예약 목록</a></li>
-                     <li><a href="#tab-3">북마크 목록</a></li>
-                     <li><a href="#tab-4">포토갤러리</a></li>
-                     <li><a href="#tab-5">경매 목록</a></li>
-                     <li><a href="#tab-6">분양 목록</a></li>
+                     <li><a href="#tab-1">예약 목록</a></li>
+                     <li><a href="#tab-2">북마크 목록</a></li>
+                     <li><a href="#tab-3">경매 목록</a></li>
+                     <li><a href="#tab-4">분양 목록</a></li>
                   </ul>
 
 				<div id="tab-0" style="width: 100%; min-height: 600px;"></div>
-				<div id="tab-1" style="width: 100%; min-height: 600px;"></div>
-				
-				<div id="tab-2" style="width: 100%; min-height: 600px;">
+				<div id="tab-1" style="width: 100%; min-height: 600px;">
 					<div id="ajaxReserveList"></div>
 				</div>
-		
-				<div id="tab-3" style="width: 100%; min-height: 600px;">
+				<div id="tab-2" style="width: 100%; min-height: 600px;">
 					<!-- 북마크 -->                     
 				    <div id="ajaxBookmarkList"></div>
 				</div>
-
-				<div id="tab-5" style="width: 100%; min-height: 600px;">
+				<div id="tab-3" style="width: 100%; min-height: 600px;">
 					<div id="ajaxAuctionList"></div>
 				</div>
-				<div id="tab-6" style="width: 100%; min-height: 600px;"></div>
+				<div id="tab-4" style="width: 100%; min-height: 600px;"></div>
 					               </div>
                <!--Close col 12 -->
 

@@ -14,22 +14,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.pet.member.SessionInfo;
+import com.pet.reservation.Reservation;
+import com.pet.reservation.ReservationService;
 
 @Controller("sch.scheduleController")
 public class ScheduleController {
 	@Autowired
 	private ScheduleService service;
+	@Autowired
+	private ReservationService reservationService;
 	
 	@RequestMapping(value="/sch/sch")
-	public String sch(HttpSession session) throws Exception {
+	public ModelAndView sch(HttpSession session,
+			Reservation dto
+			) throws Exception {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		if(info==null) {
-			return "redirect:/";
+			return new ModelAndView("redirect:/");
 		}
 		
-		return ".sch.sch";
+		List<Reservation> list=reservationService.hostDateRead(info.getHostNum());
+		
+		ModelAndView mav = new ModelAndView(".sch.sch");
+		mav.addObject("list",list);
+		return mav;
 	}
 
 	// 대화상자에 출력 할 일정 추가 폼
