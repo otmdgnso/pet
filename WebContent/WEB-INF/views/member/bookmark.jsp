@@ -18,20 +18,20 @@
 	<div class="separator" style="width:100%"></div>  
 
 
-<!-- 테이블 -->
+<!-- 테이블 -->	
 <div class="form-group" style="margin:0 auto; width:80%;" align="center">
 <div style="width: 90%; height:100%; background-color:#FFF2F2; padding: 30px;" align="center">
 <c:forEach var="dto" items="${list}">	
-<div style="width: 95%; height:180px; background-color: #FFFFFF; padding: 30px;">
+<div style="width: 95%; height:200px; background-color: #FFFFFF; padding: 30px;">
 	<div class="col-md-5 histo-img">
-		<a href="<%=cp%>/house/houseinfo?hostNum=${dto.hostNum}"><img src="<%=cp%>/uploads/profile/${dto.profile}" style="width: 300px; height: 100px;"/></a>
+		<a href="<%=cp%>/house/houseinfo?hostNum=${dto.hostNum}"><img src="<%=cp%>/uploads/profile/${dto.profile}" style="width: 300px; height: 130px;"/></a>
 	</div>
 	<div class="col-md-7 guide-story-info">
-		<h4 style="margin-top: 10px;">${dto.subject}</h4>
+		<label style="margin-top: 10px; color:tomato">${dto.subject}</label>
 		<p>${dto.userName}, ${dto.address}</p>		
 	</div>
 	<div class="col-md-7 guide-story-info">
-		<h4 style="margin-top: 20px;">기본료 : ${dto.cost}</h4>
+		<label style="margin-top: 20px; color:tomato">기본료 : ${dto.cost}</label>
 	</div>		
 	<input type="hidden" value="bookmarkNum">
 </div>  
@@ -42,10 +42,7 @@
 <!-- 페이징처리 -->
 <div class="cbp-vm-switcher cbp-vm-view-list">
 		<div class="form-group" style="margin:0 auto; width:80%; height:60px " align="center">
-		<div class="paging" style="text-align: center; min-height: 50px; line-height: 50px; color: #A6A6A6;">
-            <c:if test="${dataCount==0 }">
-                  	아직 위시리스트를 추가하지 않으셨어요.
-            </c:if>
+		<div class="paging" style="text-align: center; min-height: 50px; line-height: 50px; color: #A6A6A6;">           
             <c:if test="${dataCount!=0 }">
                ${paging}
             </c:if>

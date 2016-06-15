@@ -140,6 +140,31 @@ function deleteHouse(hostNum){
 	}
 }
 
+//북마크 추가
+function insertBookmark() {
+	
+	var url="<%=cp%>/member/insertBookmark";
+	var params="num="+${sessionScope.member.memberNum};
+	params += "&hostNum="+${dto.hostNum};
+
+	$.ajax({
+		type:"POST"
+		,url:url
+		,data:params
+		,dataType:"json"
+		,success:function(data) {
+			if(state=="true") {
+				alert('위시리스트에 담기 성공!');
+			} else if(state=="false") {
+				alert('위시리스트를 담는데 실패하였습니다.');
+			}
+		},
+		error:function(e) {
+			alert("state");
+		}
+	})
+}
+
 </script>
 
 <div class="clear"></div>
