@@ -222,10 +222,10 @@ function mark(star){
 <table style="width: 100%; min-height: 100px; margin: 0px auto; border-spacing: 0px;">
 <c:forEach var="dto" items="${listReview}">
 	<tr height='30'>
-		<td align="center" width="20%" style="padding-top: 30px;">
+		<td align="center" width="20%" >
 			<img style="height: 80px;" src="<%=cp%>/uploads/profile/${dto.profile}" class="avatar img-circle img-thumbnail" width="70px;">
 		</td>
-		<td align="left" width="60%"> 
+		<td align="left" width="60%" style="padding-top: 20px;"> 
 		 <span style="font-weight: bold;">
 	<c:if test="${dto.score==1}">	 
 	 평점 : <img src="<%=cp%>/res/image/staryellow.png" width="20px">
