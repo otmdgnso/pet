@@ -164,43 +164,45 @@ function requestAdopt() {
 			</div>
 			<div class="tab-content">
 				<form class="tab-pane form-inline reservation-hotel active" method="post" name="boardForm" enctype="multipart/form-data">
-				<!-- 제목, 내용 -->
-				<div class="col-sm-4 fly-who">
-						<h3>작성자:${dto.userId} 작성일:${dto.created} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;조회수:${dto.hitCount}</h3>
-						
-					<div class="form-group" style="margin:0 auto;" align="center">
-                    	<table style="width: 70%; margin: 0px auto; border-spacing: 0px; padding: 0px;">
-                    		<tr height="40%">
-                    			<td align="center" width="10%"><label>제목</label></td>
-                     			<td align="center" width="90%"><input class="form-control" type="text" name="subject" value="${dto.subject}" style="border:none; text-align:center" readonly="readonly"></td>
-                    		</tr>
-                    		<tr align="center" height="40%">
-                    			<td align="center" width="10%"><label>내용</label></td>
-                     			<td align="center" width="90%"><textarea rows="10" cols="34" class="form-control" name="content" style="text-align:center;" readonly="readonly">${dto.content}</textarea></td>
-                    		</tr>                                     		           
-                    	</table>                                     
-                     </div>
-                     </div>
+				
+		<div style="font-size: 14pt; color: orange;" >
+            <div class="col-sm-6 cc-in" style="padding-left: 0; text-align: left;">
+         제목 : ${dto.subject} &nbsp;| <span style="font-size: 10pt;">종별 : ${dto.species}</span>
+         </div>
+         	<div class="col-sm-6 cc-in" style="padding-left: 0; text-align: right;">
+         <span style="font-size:10pt; text-align: right;">조회수:${dto.hitCount} | ${dto.created}</span>
+         	</div>
+         </div>
+         <br>
+         <hr size="1" style="width: 100%;">
+         
+    <div style="text-align:left; font-size: 12pt; color: orange;">작성자 : ${dto.userId}</div>
+        <br><br>
+        <div style="color: black; font-size: 11pt; text-align: left;">
+		   	 ${dto.content}
+		 </div>		<br><br>	
+        
+    <div class="col-sm-4 fly-who">
+				
+        <c:forEach var="vo" items="${readPreFile}">
+			<img style="width: 50%; height: 200px;" src="<%=cp%>/uploads/adopt/${vo.saveFilename}" align="left">
+		</c:forEach><br><br><br>
+	</div>
+	<br><br><br>		
+        
+				
 				<!-- 분양 정보 -->
 				<div class="col-sm-4 step-check">	
 							
 					<div class="col-sm-4 step-who" style="padding-left: 0">
 					<div class="separator" style="width:100%"></div>
-						<h3>분양 정보</h3>											
-					<div class="col-sm-6 cc-in" style="padding-left: 0">			
-					<div class="form-group">
-						<label for="checkin">종류</label>
-					<div class="guests-select" style="margin:0 auto; width:60%" align="center">
-						<input type="text" name="species" readonly="readonly" value="${dto.species}" style="text-align:center" class="form-control">
-					</div>
-					</div>
-					</div>
-			
+						<h3>분양 정보</h3>	
+						
 					<div class="col-sm-6 cc-out" style="padding-left: 0">											
 					<div class="form-group">
 						<label for="checkin">성별</label>
 					<div class="guests-select" style="margin:0 auto; width:60%" align="center">
-						<input type="text" name="gender" readonly="readonly" value="${dto.gender}" style="text-align:center" class="form-control">
+						<input type="text" name="gender" readonly="readonly" value="${dto.gender}" style="border:none; text-align:center" class="form-control">
 					</div>
 					</div>
 					</div>
@@ -209,7 +211,7 @@ function requestAdopt() {
 					<div class="form-group">
 						<label for="checkin">혈통서</label>
 					<div class="guests-select" style="margin:0 auto; width:60%" align="center">
-						<input type="text" name="lineage" readonly="readonly" value="${dto.lineage}" style="text-align:center" class="form-control">
+						<input type="text" name="lineage" readonly="readonly" value="${dto.lineage}" style="border:none; text-align:center" class="form-control">
 					</div>
 					</div>
 					</div>
@@ -218,7 +220,7 @@ function requestAdopt() {
 					<div class="form-group">
 						<label for="checkin">예방접종</label>
 					<div class="guests-select" style="margin:0 auto; width:60%" align="center">
-						<input type="text" name="vaccin" readonly="readonly" value="${dto.vaccin}" style="text-align:center" class="form-control">
+						<input type="text" name="vaccin" readonly="readonly" value="${dto.vaccin}" style="border:none; text-align:center" class="form-control">
 					</div>
 					</div>
 					</div>
@@ -227,30 +229,21 @@ function requestAdopt() {
                     	<table style="width: 70%; margin: 0px auto; border-spacing: 0px; padding: 0px;">
                     		<tr height="40%">
                     			<td align="center" width="10%"><label>품종</label></td>
-                     			<td align="center" width="90%"><input class="form-control" type="text" name="type" value="${dto.type}" style="text-align:center" placeholder="개 혹은 고양이의 품종" readonly="readonly"></td>
+                     			<td align="center" width="90%"><input class="form-control" type="text" name="type" value="${dto.type}" style="width:50%;border:none; text-align:center" placeholder="개 혹은 고양이의 품종" readonly="readonly"></td>
                     		</tr>
                     		<tr height="40%">
                     			<td align="center" width="10%"><label>개월수</label></td>
-                     			<td align="center" width="90%"><input class="form-control" type="text" name="month" value="${dto.month}" style="text-align:center;" placeholder="숫자 입력" readonly="readonly"></td>
+                     			<td align="center" width="90%"><input class="form-control" type="text" name="month" value="${dto.month}" style="width:50%; border:none; text-align:center;" placeholder="숫자 입력" readonly="readonly"></td>
                     		</tr>
                     		<tr height="40%">
                     			<td align="center" width="10%"><label>가격</label></td>
-                     			<td align="center" width="90%"><input class="form-control" type="text" name="price" value="${dto.price}" style="text-align:center;" placeholder="숫자 입력" readonly="readonly"></td>
+                     			<td align="center" width="90%"><input class="form-control" type="text" name="price" value="${dto.price}" style="width:50%; border:none; text-align:center;" placeholder="숫자 입력" readonly="readonly"></td>
                     		</tr>     
                     		<tr height="40%">
                     			<td align="center" width="10%"><label>보증금</label></td>
-                     			<td align="center" width="90%"><input class="form-control" type="text" name="deposit" value="${dto.deposit}" style="text-align:center;" placeholder="숫자 입력" readonly="readonly"></td>
+                     			<td align="center" width="90%"><input class="form-control" type="text" name="deposit" value="${dto.deposit}" style="width:50%; border:none; text-align:center;" placeholder="숫자 입력" readonly="readonly"></td>
                     		</tr>                                   		           
                     	</table>                                     
-                     </div>
-                     
-					<div class="col-sm-4 fly-who">
-					<div class="separator" style="width:100%"></div>
-						<h3>사진</h3>
-						<c:forEach var="vo" items="${readPreFile}">
-						<img src="<%=cp%>/uploads/adopt/${vo.saveFilename}" align="left">
-						</c:forEach>
-					
                      </div>
 			
 				</div>
@@ -271,7 +264,7 @@ function requestAdopt() {
                     	<div class="separator" style="width:100%"></div>
                     	</div>	
                     	<div align="left">
-                    	<font id="reply-open-close" color="#ff590b" style="font-size: 16px;">
+                    	<font id="reply-open-close" color="#ff590b" style="cursor:pointer; font-size: 16px;">
                     	댓글 ▼
                     	</font>
                     	<font id="postReplyCountView" color="#ff590b" style="font-size: 16px;">(${dataCountReply}개)</font>
