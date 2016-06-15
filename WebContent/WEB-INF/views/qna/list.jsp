@@ -75,16 +75,58 @@ th, td {
 	              <td align="center" width="10%"><label>날짜</label></td>
 	              <td align="center" width="5%"><label>조회수</label></td>              
 	           </tr>
+	           <tr align="center">
+	           	  <td align="center" style="color: #A6A6A6;">6</td>
+	              <td align="center" style="color: #A6A6A6;"><a href="${urlArticle}&qNum=${dto.qNum}">용변 훈련 방법 좀 알려주세요..<label style="color: tomato">[20]</label></a></td>
+	              <td align="center" style="color: #A6A6A6;">이선화</td>
+	              <td align="center" style="color: #A6A6A6;">2016/06/15</td>	          
+	              <td align="center" style="color: #A6A6A6;">118</td>	             
+	           </tr> 
+
 	           
+	           <tr align="center">
+	           	  <td align="center" style="color: #A6A6A6;">5</td>
+	              <td align="center" style="color: #A6A6A6;"><a href="${urlArticle}&qNum=${dto.qNum}">털이 너무 많이 빠져요.<label style="color: tomato">[4]</label></a></td>
+	              <td align="center" style="color: #A6A6A6;">황진아</td>
+	              <td align="center" style="color: #A6A6A6;">2016/06/14</td>	          
+	              <td align="center" style="color: #A6A6A6;">15</td>	             
+	           </tr> 	           
+	           
+	           <tr align="center">
+	           	  <td align="center" style="color: #A6A6A6;">4</td>
+	              <td align="center" style="color: #A6A6A6;"><a href="${urlArticle}&qNum=${dto.qNum}">강아지가 밥을 안먹어요.<label style="color: tomato">[1]</label></a></td>
+	              <td align="center" style="color: #A6A6A6;">안지아</td>
+	              <td align="center" style="color: #A6A6A6;">2016/06/14</td>	          
+	              <td align="center" style="color: #A6A6A6;">22</td>	             
+	           </tr>    
+
+	           <tr align="center">
+	           	  <td align="center" style="color: #A6A6A6;">3</td>
+	              <td align="center" style="color: #A6A6A6;"><a href="${urlArticle}&qNum=${dto.qNum}">사료 질문입니다.<label style="color: tomato">[2]</label></a></td>
+	              <td align="center" style="color: #A6A6A6;">김지원</td>
+	              <td align="center" style="color: #A6A6A6;">2016/06/10</td>	          
+	              <td align="center" style="color: #A6A6A6;">37</td>	             
+	           </tr>    
+
+	           <tr align="center">
+	           	  <td align="center" style="color: #A6A6A6;">2</td>
+	              <td align="center" style="color: #A6A6A6;"><a href="${urlArticle}&qNum=${dto.qNum}">예방 접종에 관한 질문이 있습니다.<label style="color: tomato">[8]</label></a></td>
+	              <td align="center" style="color: #A6A6A6;">이선화</td>
+	              <td align="center" style="color: #A6A6A6;">2016/06/10</td>	          
+	              <td align="center" style="color: #A6A6A6;">61</td>	             
+	           </tr>    
+	           
+	           	           
 	           <c:forEach var="dto" items="${list}">
 	           <tr align="center">
 	           	  <td align="center" style="color: #A6A6A6;">${dto.listNum}</td>
-	              <td align="center" style="color: #A6A6A6;"><a href="${urlArticle}&qNum=${dto.qNum}">${dto.subject}<label style="color: tomato">[1]</label></a></td>
+	              <td align="center" style="color: #A6A6A6;"><a href="${urlArticle}&qNum=${dto.qNum}">${dto.subject}<label style="color: tomato">[2]</label></a></td>
 	              <td align="center" style="color: #A6A6A6;">강하나</td>
 	              <td align="center" style="color: #A6A6A6;">${dto.created}</td>	          
 	              <td align="center" style="color: #A6A6A6;">${dto.hitCount}</td>	             
 	           </tr>     
-	           </c:forEach>     
+	           </c:forEach>     	           
+	           	           
 	        </table>          
 		</div>
 	</div>	        
