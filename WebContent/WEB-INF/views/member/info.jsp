@@ -17,7 +17,7 @@
 									<img src="http://placehold.it/1600x800" alt="" />
 								</c:if>
 								<c:if test="${not empty dto.themeprofile }">
-									<img style="width: 900px; height: 500px;" src="<%=cp%>/uploads/theme/${dto.themeprofile}" alt="" />
+									<img style="width: 1000px; height: 600px;" src="<%=cp%>/uploads/theme/${dto.themeprofile}" alt="" />
 								</c:if>
 
 								<form name="updateTheme" method="post" enctype="multipart/form-data">

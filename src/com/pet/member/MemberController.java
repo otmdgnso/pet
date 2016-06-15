@@ -75,11 +75,12 @@ public class MemberController {
          HttpSession session        
          ) throws Exception{
 	   
-	   SessionInfo info=(SessionInfo)session.getAttribute("member");	    
-      int cnt=0;         
+	   SessionInfo info=(SessionInfo)session.getAttribute("member");
+	   int cnt=0;
+	   if(info!=null) {   
         //호스트 체크하기          
        cnt=houseService.hostCheck(info.getMemberNum());   
-   
+	   }
       
       Map<String, Object> model=new HashMap<>();     
       model.put("cnt", cnt);
