@@ -42,10 +42,7 @@
 <!-- 페이징처리 -->
 <div class="cbp-vm-switcher cbp-vm-view-list">
 		<div class="form-group" style="margin:0 auto; width:80%; height:60px " align="center">
-		<div class="paging" style="text-align: center; min-height: 50px; line-height: 50px; color: #A6A6A6;">
-            <c:if test="${dataCount==0 }">
-                  	아직 위시리스트를 추가하지 않으셨어요.
-            </c:if>
+		<div class="paging" style="text-align: center; min-height: 50px; line-height: 50px; color: #A6A6A6;">           
             <c:if test="${dataCount!=0 }">
                ${paging}
             </c:if>

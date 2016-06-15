@@ -1,8 +1,5 @@
 package com.pet.member;
 
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -80,42 +77,6 @@ public class MemberServiceImpl implements MemberService {
 				dto.setThemeprofile(profile);
 			}	
 			result=dao.updateData("member.updateTheme", dto);
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		}
-		return result;
-	}
-
-	//ºÏ¸¶Å© 
-	@Override
-	public int insertBookmart(Bookmark dto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public List<Bookmark> listBookmark(Map<String, Object> map) {
-		List<Bookmark> list=null;
-		try {
-			list=dao.getListData("member.listBookmark", map);
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		}
-		return list;
-	}
-
-	@Override
-	public int deleteBookmark(int bookmarkNum) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int dataCount(Map<String, Object> map) {
-		int result=0;
-		
-		try {
-			result=dao.getIntValue("member.dataCount", map);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
