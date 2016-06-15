@@ -261,7 +261,7 @@ function deleteHouse(hostNum){
               <div class="separator" style="width:100%"></div>
               <div><i class="fa fa-paw" aria-hidden="true"></i> 수용 가능 펫 수</div><div align="right" style="text-align: center;"><input type="text" style="border: 0px; text-align: center;" readonly="readonly" value="${dto.capacity}마리"></div>
               <div class="separator" style="width:100%"></div>	
-              <div><i class="fa fa-check-square-o" aria-hidden="true"></i> 집 소개</div><div align="right" style="text-align: center;"><textarea rows="5%" cols="60%" readonly="readonly" style="border: #8C8C8C; text-align: center;">${dto.content}
+              <div><i class="fa fa-check-square-o" aria-hidden="true"></i> 집 소개</div><div align="right" style="text-align: center;"><textarea rows="5%" cols="60%" readonly="readonly" style="border: #8C8C8C; text-align: left;">${dto.content}
               </textarea></div>
             </div>
 

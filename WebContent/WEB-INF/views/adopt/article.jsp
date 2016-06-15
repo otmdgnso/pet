@@ -167,7 +167,7 @@ function requestAdopt() {
 				
 		<div style="font-size: 14pt; color: orange;" >
             <div class="col-sm-6 cc-in" style="padding-left: 0; text-align: left;">
-         제목 : ${dto.subject} &nbsp;| <span style="font-size: 10pt;">종별 : ${dto.species}</span>
+      ${dto.subject} &nbsp;| <span style="font-size: 10pt;">종별 : ${dto.species}</span>
          </div>
          	<div class="col-sm-6 cc-in" style="padding-left: 0; text-align: right;">
          <span style="font-size:10pt; text-align: right;">조회수:${dto.hitCount} | ${dto.created}</span>
