@@ -28,7 +28,7 @@
 	           
 	           <tr align="center" height="40px">
 	              <td align="center" style="color: #A6A6A6;">1</td>
-	              <td align="center" style="color: #A6A6A6;">고양이 놀이터 판매합니다.</td>
+	              <td align="center" style="color: #A6A6A6;">고양이의 로망!!징검다리 놀이터!!!</td>
 	              <td align="center" style="color: #A6A6A6;">남기태</td>
 	              <td align="center" style="color: #A6A6A6;">50,000</td>	          
 	              <td align="center" style="color: #A6A6A6;">2016-06-22</td>	             
