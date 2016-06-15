@@ -55,9 +55,10 @@
 	<select id="listAuction" resultType="com.pet.auction.Auction" parameterType="map">
 	SELECT * FROM (
   		SELECT ROWNUM rnum, tb.* FROM (
-    		SELECT auctionNum, subject, userId,content,species,hitCount,amount,aucEnd,userName
+    		SELECT a.auctionNum, subject, userId,content,species,hitCount,amount,TO_CHAR(a.aucEnd, 'YYYY-MM-DD') aucEnd,userName
     		FROM auction a JOIN
     		member m ON a.num=m.num
+    		
     		 <where>
                          <if test="searchValue != null and searchValue != ''">
 			                  <include refid="auction-where-list"/>
@@ -87,8 +88,8 @@
 	<!-- 경매 글 상세보기 -->
 	<select id="readAuction" resultType="com.pet.auction.Auction" parameterType="Integer">
 	SELECT auctionNum, subject, m.userId, content, amount,
-  		TO_CHAR(a.created, 'YYYY-MM-DD') created, aucEnd
-  		species,minPrice,buyPrice,aucEnd,
+  		TO_CHAR(a.created, 'YYYY-MM-DD') created,
+  		species,minPrice,buyPrice,TO_CHAR(a.aucEnd, 'YYYY-MM-DD') aucEnd,
   		categoryNum, 
   		a.num, hitCount
 	FROM auction a JOIN member m ON a.num=m.num
