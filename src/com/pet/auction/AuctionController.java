@@ -68,7 +68,7 @@ public class AuctionController {
 			) throws Exception {
 		String cp=req.getContextPath();
 		
-		int numPerPage=10;
+		int numPerPage=5;
 		int total_page=0;
 		int dataCount=0;
 		
