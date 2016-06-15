@@ -18,7 +18,7 @@ public class BookmarkServiceImpl implements BookmarkService {
 		int result=0;
 		
 		try {
-			result=dao.insertData("member.insertBookmark", dto);
+			result=dao.insertData("bookmark.insertBookmark", dto);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}

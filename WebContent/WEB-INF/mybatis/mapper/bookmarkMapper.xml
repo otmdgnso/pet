@@ -4,8 +4,8 @@
 <mapper namespace="bookmark">
 
 	<insert id="insertBookmark" parameterType="com.pet.member.Bookmark">
-		INSERT INTO bookmark(bookmarknum, hostnum, num)
-		VALUES(bookmark_seq.NEXTVAL, #{hostnum}, #{num});
+		INSERT INTO bookmark(bookmarkNum, hostNum, num)
+		VALUES(bookmark_seq.NEXTVAL, #{hostNum}, #{num})
 	</insert>
 	
 	<delete id="deleteBookmark" parameterType="Integer">
@@ -16,14 +16,18 @@
    <select id="listBookmark" parameterType="map" resultType="com.pet.member.Bookmark">
    		SELECT * FROM (
 		    SELECT ROWNUM rnum, tb.* FROM (
-			     SELECT bookmarkNum, b.num, b.hostNum, address, cost, subject, userName, profile
-			     FROM host h JOIN member m ON h.hostNum=m.num JOIN bookmark b ON b.num=m.num
-			     WHERE b.num=#{num}
-				 ORDER BY bookmarknum DESC
+			     SELECT b.hostNum, address, cost, subject, userName, profile
+			     FROM bookmark b JOIN host h ON b.hostNum=h.hostNum JOIN member m ON m.num=b.hostNum
+			     WHERE b.hostNum=m.num
+				 ORDER BY bookmarkNum DESC
 		<![CDATA[
 	     	 ) tb WHERE ROWNUM <= #{end}
 	   	 ) WHERE rnum >= #{start}
 	    ]]>	 
+   </select>
+   
+   <select id="dataCount" parameterType="map" resultType="Integer">
+   	SELECT NVL(COUNT(bookmarkNum), 0) FROM bookmark b JOIN member m ON b.num=m.num
    </select>
    
 </mapper>
