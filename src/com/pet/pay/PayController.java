@@ -120,4 +120,14 @@ public class PayController {
 		mav.addObject("dto", dto);
 		return mav;
 	}
+	
+	@RequestMapping(value="/pay/auctionpay")
+	public ModelAndView listAuction(HttpSession session
+			) throws Exception {
+		SessionInfo info = (SessionInfo) session.getAttribute("member");
+		
+		
+		ModelAndView mav=new ModelAndView(".pay.auctionpay");
+		return mav;
+	}
 }

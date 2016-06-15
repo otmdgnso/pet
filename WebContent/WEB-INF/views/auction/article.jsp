@@ -34,6 +34,24 @@ function checkTime(){
 	}
 		
 }
+//경매 종료일 계산
+$(function(){
+	var aucEnd = $("#aucEnd").val();
+	
+	var y=aucEnd.substr(0,4);
+	var m=aucEnd.substr(5,2)-1;
+	var d=aucEnd.substr(8,2);
+	var aucEnd = new Date(y,m,d);
+	var nowTime = new Date();
+	
+	var diff=aucEnd.getTime()-nowTime.getTime();
+	diff=diff/(1000*60*60*24);
+	
+	diff=Math.floor(diff);
+	$("#lblDate").html(diff+"일 남았습니다");
+	
+})
+
 
 function deleteAuction(auctionNum) {
 	if(confirm("경매 게시글을 삭제 하시겠습니까?")) {
@@ -66,7 +84,7 @@ function checkBid(){
 				if(confirm("즉시구입하시겠습니까?")){
 				}
 				
-				alert('즉시구입하셨습니다.');
+				alert('즉시구입하셨습니다.\n구입후 2틀내에 결제해주세요');
 				
 			
 				
@@ -223,6 +241,8 @@ function checkBid(){
 																		value="${dto.bidPrice}" style="text-align: center">
 																	<button id="bidInsertButton"   type="button" name="bidInsertButton" onclick="checkBid();"> 
 																				입찰하기</button>
+																				
+																	
 																
 															</td>
 															
@@ -236,17 +256,23 @@ function checkBid(){
 																			$("#bidInsertButton").text("입찰완료");
 																		</script>
 																	</c:if>
-																	<label >${bid.bidPrice}를 입찰하셨습니다 </label><br>
+																	<label >익명님이 <label style="color: #B4886B; font-weight: bold;;">${bid.bidPrice}원</label>를 입찰하셨습니다 <br>
 																</c:forEach>
 																
-																<label>최종입찰가&nbsp;&nbsp;:&nbsp; ${listBid[0].bidPrice}원을입찰하셨습니다.</label>
+																<label>최종입찰가&nbsp;&nbsp;:&nbsp; <label style="color: #B4886B; font-weight: bold;;"> ${listBid[0].bidPrice}원</label>을입찰하셨습니다.</label>
+																<button id="auctionPayButton"   type="button" name="auctionPayButton" onclick="javascript:location.href='<%=cp%>/pay/auctionpay'"> 
+																				결제하기</button>
 															</td>
 														</tr>
 														<tr height="40%">
-															<td align="center" width="10%"><label>
-															경매종료일:</label></td>
+															<td align="center" width="10%"><label>경매종료일:</label></td>
 															<td align="center" width="10%"><label>${dto.aucEnd }</label></td>
+															
 														</tr>
+														<tr height="40%">
+														<td align="center" width="10%"><label>남은날짜:</label></td>
+															<td align="center" width="10%"><label id="lblDate"></label></td>
+															</tr>
 													</table>
 												</div>
 
