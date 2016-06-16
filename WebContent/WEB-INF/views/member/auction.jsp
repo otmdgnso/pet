@@ -25,42 +25,44 @@
 	              <td align="center" width="10%"><label>입찰액</label></td>
 	              <td align="center" width="10%"><label>경매종료일</label></td>              
 	           </tr>
-	           
+	                 
 	           <tr align="center" height="40px">
 	              <td align="center" style="color: #A6A6A6;">5</td>
-	              <td align="center" style="color: #A6A6A6;">고양이의 로망!!징검다리 놀이터!!!</td>
-	              <td align="center" style="color: #A6A6A6;">김재환</td>
-	              <td align="center" style="color: #A6A6A6;">50,000</td>	          
-	              <td align="center" style="color: #A6A6A6;">2016-06-22</td>	             
-	           </tr>          
-	           <tr align="center" height="40px">
-	              <td align="center" style="color: #A6A6A6;">4</td>
-	              <td align="center" style="color: #A6A6A6;">고양이 전용 샴푸입니다!</td>
-	              <td align="center" style="color: #A6A6A6;">장승훈</td>
-	              <td align="center" style="color: #A6A6A6;">20,000</td>	          
-	              <td align="center" style="color: #A6A6A6;">2016-06-30</td>	             
-	           </tr>          
-	           <tr align="center" height="40px">
-	              <td align="center" style="color: #A6A6A6;">3</td>
 	              <td align="center" style="color: #A6A6A6;">숑숑터널</td>
 	              <td align="center" style="color: #A6A6A6;">안지아</td>
 	              <td align="center" style="color: #A6A6A6;">10,000</td>	          
 	              <td align="center" style="color: #A6A6A6;">2016-07-31</td>	             
 	           </tr>          
 	           <tr align="center" height="40px">
-	              <td align="center" style="color: #A6A6A6;">2</td>
+	              <td align="center" style="color: #A6A6A6;">4</td>
 	              <td align="center" style="color: #A6A6A6;">고급진 강아지 목줄 팝니다</td>
 	              <td align="center" style="color: #A6A6A6;">김수정</td>
 	              <td align="center" style="color: #A6A6A6;">10,000</td>	          
 	              <td align="center" style="color: #A6A6A6;">2016-07-02</td>	             
 	           </tr>          
 	           <tr align="center" height="40px">
-	              <td align="center" style="color: #A6A6A6;">1</td>
+	              <td align="center" style="color: #A6A6A6;">3</td>
 	              <td align="center" style="color: #A6A6A6;">강아지 쿠션 팔아요.</td>
 	              <td align="center" style="color: #A6A6A6;">강하늘</td>
 	              <td align="center" style="color: #A6A6A6;">10,000</td>	          
 	              <td align="center" style="color: #A6A6A6;">2016-07-01</td>	             
 	           </tr>          
+	           
+	             
+	           <tr align="center" height="40px">
+	              <td align="center" style="color: #A6A6A6;">2</td>
+	              <td align="center" style="color: #A6A6A6;">고양이의 로망!!징검다리 놀이터!!!</td>
+	              <td align="center" style="color: #A6A6A6;">김재환</td>
+	              <td align="center" style="color: #A6A6A6;">50,000</td>	          
+	              <td align="center" style="color: #A6A6A6;">2016-06-22</td>	             
+	           </tr>          
+	           <tr align="center" height="40px">
+	              <td align="center" style="color: #A6A6A6;">1</td>
+	              <td align="center" style="color: #A6A6A6;">고양이 전용 샴푸입니다!</td>
+	              <td align="center" style="color: #A6A6A6;">장승훈</td>
+	              <td align="center" style="color: #A6A6A6;">20,000</td>	          
+	              <td align="center" style="color: #A6A6A6;">2016-06-30</td>	             
+	           </tr>  
 	        </table> 
 		</div>
    			<!-- 페이징처리 -->
