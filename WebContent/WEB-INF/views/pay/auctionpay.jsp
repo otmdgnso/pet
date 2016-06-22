@@ -36,7 +36,7 @@
 			<c:forEach var="dto" items="${readFile}" begin="0" varStatus="status">
 				<a data-slide-index="${status.index}" href=""><img style="width: 150px; height: 105px;" src="<%=cp%>/uploads/auction/${dto.saveFilename}"></a>
 			</c:forEach>
-			<!-- 임시 사진 --><img src="<%=cp%>/res/image/catdog.JPG">
+			<!-- 임시 사진 --><img src="<%=cp%>/res/image/catcat.jpg">
 		</div>
 	</div>
         
@@ -45,10 +45,10 @@
 	    <div style="width: 100%; height: 100px;">
 	    			<table style="width: 100%; 	margin: 0px auto; border-spacing: 10px;">
 	                	<tr>				
-							<td align="center" width="30%"><h3 style="color: black">제목&nbsp;:강아지 사료 팝니다.</h3></td>
+							<td align="center" width="30%"><h3 style="color: black">제목&nbsp;:고양이의 로망!!!징검다리 놀이터!!!</h3></td>
 						</tr>
 						<tr>
-							<td align="center" width="30%" style="color: #8C8C8C;">경매주명&nbsp;:남기태</td>
+							<td align="center" width="30%" style="color: #8C8C8C;">경매주명&nbsp;:김재환</td>
 						</tr>
 						<tr>
 							<td align="center" width="30%" style="color: #8C8C8C;">경매종료일&nbsp;:2016-06-22</td>
@@ -65,11 +65,11 @@
                     	<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
                     		<tr>
                     			<td align="center" width="50%"><label>경매가</label></td>
-                     			<td align="center" width="50%"><label>50,000</label></td>
+                     			<td align="center" width="50%"><label>80,000</label></td>
                     		</tr>
                     		<tr>
                     			<td align="center" width="50%"><label>서비스 수수료</label></td>
-                     			<td align="center" width="50%"><label>5,000</label></td>
+                     			<td align="center" width="50%"><label>8,000</label></td>
                     		</tr>                                       		           
                     		                                      		           
                     	</table>                                     
@@ -79,7 +79,7 @@
                     	<table style="width: 100%; margin: 0px auto; border-spacing: 0px;">
                     		<tr>
 								<td align="center" width="50%"><h3 style="color: black">합계</h3></td>
-								<td align="center" width="50%"><h3 style="color: black">55,000</h3></td>
+								<td align="center" width="50%"><h3 style="color: black">88,000</h3></td>
 							</tr>
 						</table>
 	</div>
